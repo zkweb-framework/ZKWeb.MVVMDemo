@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using ZKWeb.Storage;
 using ZKWeb.Web;
 using ZKWeb.Web.ActionResults;
@@ -12,18 +14,18 @@ namespace ZKWeb.MVVMDemo.Plugins.MVVM.Angular.Support.src.Applications {
 	/// </summary>
 	[ExportMany]
 	public class AngularRouter : IHttpRequestHandler {
-		/// <summary>
-		/// Api的前缀
-		/// TODO: 需要移动到Base插件中
-		/// </summary>
-		public const string ApiPrefix = "/api/";
-		private IFileStorage _fileStorage;
+		protected IFileStorage _fileStorage;
+		protected ISet<string> _resourceExtensionSet;
 
 		/// <summary>
 		/// 初始化
 		/// </summary>
 		public AngularRouter(IFileStorage fileStorage) {
 			_fileStorage = fileStorage;
+			_resourceExtensionSet = new HashSet<string>() {
+				".js", ".css", ".module", ".jpg", ".png",
+				".gif", ".ico", ".bmp", ".map"
+			};
 		}
 
 		/// <summary>
@@ -32,10 +34,6 @@ namespace ZKWeb.MVVMDemo.Plugins.MVVM.Angular.Support.src.Applications {
 		public void OnRequest() {
 			var context = HttpManager.CurrentContext;
 			var path = context.Request.Path.Substring(1);
-			// 不处理Api请求
-			if (path.StartsWith(ApiPrefix)) {
-				return;
-			}
 			// 查找对应的文件
 			IFileEntry fileEntry = null;
 			if (string.IsNullOrEmpty(path)) {
@@ -47,9 +45,15 @@ namespace ZKWeb.MVVMDemo.Plugins.MVVM.Angular.Support.src.Applications {
 				if (!fileEntry.Exists) {
 					fileEntry = _fileStorage.GetResourceFile("static", "src", path);
 				}
-				// 不是资源文件，当作子页处理
 				if (!fileEntry.Exists) {
-					fileEntry = _fileStorage.GetResourceFile("static", "src", "index.html");
+					fileEntry = _fileStorage.GetResourceFile("static", "src", path + ".js");
+				}
+				// 判断是否资源文件，不是时当作子页处理
+				if (!fileEntry.Exists) {
+					var extension = Path.GetExtension(path);
+					if (!_resourceExtensionSet.Contains(extension)) {
+						fileEntry = _fileStorage.GetResourceFile("static", "src", "index.html");
+					}
 				}
 			}
 			// 返回文件内容

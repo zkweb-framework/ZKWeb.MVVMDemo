@@ -33,23 +33,32 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="MVVM.Angular.Support\plugin.json" />
     <None Include="MVVM.Angular.Website\plugin.json" />
     <None Include="MVVM.Angular.Website\static\.editorconfig" />
+    <None Include="MVVM.Angular.Website\static\.gitignore" />
     <None Include="MVVM.Angular.Website\static\bs-config.json" />
+    <None Include="MVVM.Angular.Website\static\gulpfile.js" />
     <None Include="MVVM.Angular.Website\static\package.json" />
-    <None Include="MVVM.Angular.Website\static\src\app\app.component.ts" />
-    <None Include="MVVM.Angular.Website\static\src\app\app.module.ts" />
-    <None Include="MVVM.Angular.Website\static\src\favicon.ico" />
+    <None Include="MVVM.Angular.Website\static\src\assets\styles\preloader\preloader.scss" />
+    <None Include="MVVM.Angular.Website\static\src\assets\styles\styles.scss" />
+    <None Include="MVVM.Angular.Website\static\src\modules\app_module\app.component.ts" />
+    <None Include="MVVM.Angular.Website\static\src\modules\app_module\app.module.ts" />
+    <None Include="MVVM.Angular.Website\static\src\assets\images\favicon.ico" />
     <None Include="MVVM.Angular.Website\static\src\index.html" />
-    <None Include="MVVM.Angular.Website\static\src\main.ts" />
-    <None Include="MVVM.Angular.Website\static\src\styles.css" />
-    <None Include="MVVM.Angular.Website\static\src\systemjs-angular-loader.js" />
-    <None Include="MVVM.Angular.Website\static\src\systemjs.config.extras.js" />
-    <None Include="MVVM.Angular.Website\static\src\systemjs.config.js" />
+    <None Include="MVVM.Angular.Website\static\src\modules\.gitignore" />
+    <None Include="MVVM.Angular.Website\static\src\modules\entry_point\main.ts" />
+    <None Include="MVVM.Angular.Website\static\src\assets\scripts\systemjs-angular-loader.js" />
+    <None Include="MVVM.Angular.Website\static\src\assets\scripts\systemjs.config.extras.js" />
+    <None Include="MVVM.Angular.Website\static\src\assets\scripts\systemjs.config.js" />
     <None Include="MVVM.Angular.Website\static\src\tsconfig.json" />
     <None Include="MVVM.Angular.Website\static\tslint.json" />
     <None Include="MVVM.Common.Admin\plugin.json" />
     <None Include="MVVM.Common.Base\plugin.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="MVVM.Angular.Support\src\新文件夹\" />
   </ItemGroup>
   
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard1.6' ">
