@@ -9,7 +9,7 @@ MVVM demo for zkweb framework use angular js 4.0
 **Build website files**
 
 ```
-cd src/ZKWeb.MVVMDemo.Plugins/MVVM.Angular.Website/static
+cd src/ZKWeb.MVVMPlugins/MVVM.Angular.Website/static
 cnpm install --global gulp-cli
 cnpm install
 cnpm install --dev

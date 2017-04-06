@@ -3,7 +3,7 @@
 	"Database": "SQLite",
 	"ConnectionString": "Data Source={{App_Data}}/test.db;",
 	"PluginDirectories": [
-		"../ZKWeb.MVVMDemo.Plugins"
+		"../ZKWeb.MVVMPlugins"
 	],
 	"Plugins": [
 		"MVVM.Common.Base",

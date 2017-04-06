@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFrameworks>net461;netstandard1.6</TargetFrameworks>
-    <AssemblyName>ZKWeb.MVVMDemo.Plugins</AssemblyName>
-    <PackageId>ZKWeb.MVVMDemo.Plugins</PackageId>
+    <AssemblyName>ZKWeb.MVVMPlugins</AssemblyName>
+    <PackageId>ZKWeb.MVVMPlugins</PackageId>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>

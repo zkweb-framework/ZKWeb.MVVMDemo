@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
-using ZKWeb.MVVMDemo.Plugins.MVVM.Common.Base.src.Domain.Entities.Interfaces;
+using ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Domain.Entities.Interfaces;
 
-namespace ZKWeb.MVVMDemo.Plugins.MVVM.Common.Base.src.Domain.Entities.TypeTraits {
+namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Domain.Entities.TypeTraits {
 	/// <summary>
 	/// 判断类型是否有更新时间
 	/// </summary>

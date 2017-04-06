@@ -7,7 +7,7 @@ using ZKWebStandard.Extensions;
 using ZKWebStandard.Ioc;
 using ZKWebStandard.Web;
 
-namespace ZKWeb.MVVMDemo.Plugins.MVVM.Angular.Support.src.Application {
+namespace ZKWeb.MVVMPlugins.MVVM.Angular.Support.src.Application {
 	/// <summary>
 	/// 负责处理AngularJS相关的请求
 	/// </summary>

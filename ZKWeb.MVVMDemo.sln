@@ -10,7 +10,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZKWeb.MVVMDemo.AspNetCore",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZKWeb.MVVMDemo.Console", "src\ZKWeb.MVVMDemo.Console\ZKWeb.MVVMDemo.Console.csproj", "{37570425-12A1-4D26-818A-21616DFE24AB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZKWeb.MVVMDemo.Plugins", "src\ZKWeb.MVVMDemo.Plugins\ZKWeb.MVVMDemo.Plugins.csproj", "{DA9DD2E0-8215-4C4D-8F94-E0D499CCE6EB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZKWeb.MVVMPlugins", "src\ZKWeb.MVVMPlugins\ZKWeb.MVVMPlugins.csproj", "{DA9DD2E0-8215-4C4D-8F94-E0D499CCE6EB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
