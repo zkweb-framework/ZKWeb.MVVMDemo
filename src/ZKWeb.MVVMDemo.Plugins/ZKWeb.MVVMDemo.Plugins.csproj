@@ -1,0 +1,59 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net461;netstandard1.6</TargetFrameworks>
+    <AssemblyName>ZKWeb.MVVMDemo.Plugins</AssemblyName>
+    <PackageId>ZKWeb.MVVMDemo.Plugins</PackageId>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="%2a%2a\**" />
+    <EmbeddedResource Remove="%2a%2a\**" />
+    <None Remove="%2a%2a\**" />
+    <Compile Remove="%2a%2a/%2a.cs" />
+    <EmbeddedResource Remove="%2a%2a/%2a.resx" />
+    <None Remove="%2a%2a/%2a" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="MVVM.Angular.Support\src\Applications\AngularRouter.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ZKWeb" Version="1.7.0" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net461' ">
+    <Reference Include="System" />
+    <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="MVVM.Angular.Website\plugin.json" />
+    <None Include="MVVM.Angular.Website\static\.editorconfig" />
+    <None Include="MVVM.Angular.Website\static\bs-config.json" />
+    <None Include="MVVM.Angular.Website\static\package.json" />
+    <None Include="MVVM.Angular.Website\static\src\app\app.component.ts" />
+    <None Include="MVVM.Angular.Website\static\src\app\app.module.ts" />
+    <None Include="MVVM.Angular.Website\static\src\favicon.ico" />
+    <None Include="MVVM.Angular.Website\static\src\index.html" />
+    <None Include="MVVM.Angular.Website\static\src\main.ts" />
+    <None Include="MVVM.Angular.Website\static\src\styles.css" />
+    <None Include="MVVM.Angular.Website\static\src\systemjs-angular-loader.js" />
+    <None Include="MVVM.Angular.Website\static\src\systemjs.config.extras.js" />
+    <None Include="MVVM.Angular.Website\static\src\systemjs.config.js" />
+    <None Include="MVVM.Angular.Website\static\src\tsconfig.json" />
+    <None Include="MVVM.Angular.Website\static\tslint.json" />
+    <None Include="MVVM.Common.Admin\plugin.json" />
+    <None Include="MVVM.Common.Base\plugin.json" />
+  </ItemGroup>
+  
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard1.6' ">
+    <DefineConstants>$(DefineConstants);NETCORE</DefineConstants>
+  </PropertyGroup>
+
+</Project>

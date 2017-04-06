@@ -1,0 +1,14 @@
+{
+	"ORM": "EFCore",
+	"Database": "SQLite",
+	"ConnectionString": "Data Source={{App_Data}}/test.db;",
+	"PluginDirectories": [
+		"../ZKWeb.MVVMDemo.Plugins"
+	],
+	"Plugins": [
+		"MVVM.Common.Base",
+		"MVVM.Common.Admin",
+		"MVVM.Angular.Support",
+		"MVVM.Angular.Website"
+	]
+}
