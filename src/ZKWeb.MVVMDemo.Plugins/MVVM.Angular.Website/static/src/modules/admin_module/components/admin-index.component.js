@@ -6,26 +6,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 var core_1 = require("@angular/core");
-var platform_browser_1 = require("@angular/platform-browser");
-var admin_module_1 = require("../admin_module/admin.module");
-var app_component_1 = require("./components/app.component");
-var AppModule = (function () {
-    function AppModule() {
+var AdminIndexComponent = (function () {
+    function AdminIndexComponent() {
     }
-    return AppModule;
+    return AdminIndexComponent;
 }());
-AppModule = __decorate([
-    core_1.NgModule({
-        imports: [
-            platform_browser_1.BrowserModule,
-            admin_module_1.AdminModule
-        ],
-        declarations: [
-            app_component_1.AppComponent
-        ],
-        bootstrap: [
-            app_component_1.AppComponent
-        ]
+AdminIndexComponent = __decorate([
+    core_1.Component({
+        selector: 'admin-index',
+        templateUrl: 'modules/admin_module/views/admin-index.html'
     })
-], AppModule);
-exports.AppModule = AppModule;
+], AdminIndexComponent);
+exports.AdminIndexComponent = AdminIndexComponent;

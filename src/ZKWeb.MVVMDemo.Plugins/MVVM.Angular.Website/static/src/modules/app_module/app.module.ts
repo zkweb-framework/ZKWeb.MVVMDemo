@@ -1,22 +1,16 @@
 ﻿import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { RouterModule } from '@angular/router';
+import { AdminModule } from '../admin_module/admin.module';
 import { AppComponent } from './components/app.component';
-import { MainSidebarComponent } from './components/main-sidebar.component';
-import { ControlSidebarComponent } from './components/control-sidebar.component';
-import { HeaderComponent } from './components/header.component';
-import { HomeComponent } from './components/home.component';
 
 @NgModule({
 	imports: [
-		BrowserModule
+		BrowserModule,
+		AdminModule
 	],
 	declarations: [
-		AppComponent,
-		MainSidebarComponent,
-		ControlSidebarComponent,
-		HeaderComponent,
-		HomeComponent
+		AppComponent
 	],
 	bootstrap: [
 		AppComponent
