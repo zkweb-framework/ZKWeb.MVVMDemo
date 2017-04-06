@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <Compile Include="MVVM.Angular.Support\src\Applications\AngularRouter.cs" />
+    <Compile Include="MVVM.Angular.Support\src\Applications\AngularScriptGenerator.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -40,12 +41,41 @@
     <None Include="MVVM.Angular.Website\static\bs-config.json" />
     <None Include="MVVM.Angular.Website\static\gulpfile.js" />
     <None Include="MVVM.Angular.Website\static\package.json" />
-    <None Include="MVVM.Angular.Website\static\src\assets\styles\preloader\preloader.scss" />
-    <None Include="MVVM.Angular.Website\static\src\assets\styles\styles.scss" />
-    <None Include="MVVM.Angular.Website\static\src\modules\app_module\app.component.ts" />
+    <None Include="MVVM.Angular.Website\static\src\assets\styles\adminLTE\AdminLTE.css" />
+    <None Include="MVVM.Angular.Website\static\src\assets\styles\adminLTE\AdminLTESkin.css" />
+    <None Include="MVVM.Angular.Website\static\src\assets\styles\bootstrap\bootstrap.css" />
+    <None Include="MVVM.Angular.Website\static\src\assets\styles\custom\alert.scss" />
+    <None Include="MVVM.Angular.Website\static\src\assets\styles\custom\button.scss" />
+    <None Include="MVVM.Angular.Website\static\src\assets\styles\custom\form.scss" />
+    <None Include="MVVM.Angular.Website\static\src\assets\styles\custom\index.scss" />
+    <None Include="MVVM.Angular.Website\static\src\assets\styles\custom\menu.scss" />
+    <None Include="MVVM.Angular.Website\static\src\assets\styles\custom\misc.scss" />
+    <None Include="MVVM.Angular.Website\static\src\assets\styles\custom\modal.scss" />
+    <None Include="MVVM.Angular.Website\static\src\assets\styles\custom\nav.scss" />
+    <None Include="MVVM.Angular.Website\static\src\assets\styles\custom\page.scss" />
+    <None Include="MVVM.Angular.Website\static\src\assets\styles\custom\panel.scss" />
+    <None Include="MVVM.Angular.Website\static\src\assets\styles\custom\sidebar.scss" />
+    <None Include="MVVM.Angular.Website\static\src\assets\styles\custom\tab.scss" />
+    <None Include="MVVM.Angular.Website\static\src\assets\styles\custom\table.scss" />
+    <None Include="MVVM.Angular.Website\static\src\assets\styles\custom\text.scss" />
+    <None Include="MVVM.Angular.Website\static\src\assets\styles\custom\toast.scss" />
+    <None Include="MVVM.Angular.Website\static\src\assets\styles\custom\variables.scss" />
+    <None Include="MVVM.Angular.Website\static\src\assets\styles\font-awesome\font-awesome.css" />
+    <None Include="MVVM.Angular.Website\static\src\assets\styles\preloader\preloader.css" />
+    <None Include="MVVM.Angular.Website\static\src\assets\styles\styles.entry.scss" />
+    <None Include="MVVM.Angular.Website\static\src\modules\app_module\components\app.component.ts" />
     <None Include="MVVM.Angular.Website\static\src\modules\app_module\app.module.ts" />
     <None Include="MVVM.Angular.Website\static\src\assets\images\favicon.ico" />
     <None Include="MVVM.Angular.Website\static\src\index.html" />
+    <None Include="MVVM.Angular.Website\static\src\modules\app_module\components\control-sidebar.component.ts" />
+    <None Include="MVVM.Angular.Website\static\src\modules\app_module\components\header.component.ts" />
+    <None Include="MVVM.Angular.Website\static\src\modules\app_module\components\home.component.ts" />
+    <None Include="MVVM.Angular.Website\static\src\modules\app_module\components\main-sidebar.component.ts" />
+    <None Include="MVVM.Angular.Website\static\src\modules\app_module\views\app.html" />
+    <None Include="MVVM.Angular.Website\static\src\modules\app_module\views\control-sidebar.html" />
+    <None Include="MVVM.Angular.Website\static\src\modules\app_module\views\header.html" />
+    <None Include="MVVM.Angular.Website\static\src\modules\app_module\views\home.html" />
+    <None Include="MVVM.Angular.Website\static\src\modules\app_module\views\main-sidebar.html" />
     <None Include="MVVM.Angular.Website\static\src\modules\entry_point\main.ts" />
     <None Include="MVVM.Angular.Website\static\src\assets\scripts\systemjs-angular-loader.js" />
     <None Include="MVVM.Angular.Website\static\src\assets\scripts\systemjs.config.extras.js" />
@@ -57,7 +87,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="MVVM.Angular.Support\src\新文件夹\" />
+    <Folder Include="MVVM.Angular.Website\static\src\modules\admin_module\" />
   </ItemGroup>
   
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard1.6' ">
