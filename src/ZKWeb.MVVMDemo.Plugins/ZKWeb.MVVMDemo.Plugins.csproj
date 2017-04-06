@@ -20,8 +20,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="MVVM.Angular.Support\src\Applications\AngularRouter.cs" />
-    <Compile Include="MVVM.Angular.Support\src\Applications\AngularScriptGenerator.cs" />
+    <Compile Include="MVVM.Angular.Support\src\Application\AngularRouter.cs" />
+    <Compile Include="MVVM.Angular.Support\src\Application\AngularScriptGenerator.cs" />
+    <Compile Include="MVVM.Common.Base\src\Domain\Entities\Interfaces\IHaveCreateTime.cs" />
+    <Compile Include="MVVM.Common.Base\src\Domain\Entities\Interfaces\IHaveDeleted.cs" />
+    <Compile Include="MVVM.Common.Base\src\Domain\Entities\Interfaces\IHaveUpdateTime.cs" />
+    <Compile Include="MVVM.Common.Base\src\Domain\Entities\TypeTraits\CreateTimeTypeTrait.cs" />
+    <Compile Include="MVVM.Common.Base\src\Domain\Entities\TypeTraits\DeletedTypeTrait.cs" />
+    <Compile Include="MVVM.Common.Base\src\Domain\Entities\TypeTraits\UpdateTimeTypeTrait.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -92,6 +98,17 @@
     <None Include="MVVM.Angular.Website\static\tslint.json" />
     <None Include="MVVM.Common.Admin\plugin.json" />
     <None Include="MVVM.Common.Base\plugin.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="MVVM.Common.Base\src\Application\Services\" />
+    <Folder Include="MVVM.Common.Base\src\Application\Dtos\" />
+    <Folder Include="MVVM.Common.Base\src\Application\Mappings\" />
+    <Folder Include="MVVM.Common.Base\src\Domain\Entities\Extensions\" />
+    <Folder Include="MVVM.Common.Base\src\Domain\Filters\" />
+    <Folder Include="MVVM.Common.Base\src\Domain\Repositories\" />
+    <Folder Include="MVVM.Common.Base\src\Domain\Services\" />
+    <Folder Include="MVVM.Common.Base\src\Domain\Uow\" />
   </ItemGroup>
   
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard1.6' ">
