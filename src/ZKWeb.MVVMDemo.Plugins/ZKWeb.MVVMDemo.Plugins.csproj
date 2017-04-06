@@ -41,6 +41,11 @@
     <None Include="MVVM.Angular.Website\static\bs-config.json" />
     <None Include="MVVM.Angular.Website\static\gulpfile.js" />
     <None Include="MVVM.Angular.Website\static\package.json" />
+    <None Include="MVVM.Angular.Website\static\src\assets\fonts\fontawesome-webfont.eot" />
+    <None Include="MVVM.Angular.Website\static\src\assets\fonts\fontawesome-webfont.svg" />
+    <None Include="MVVM.Angular.Website\static\src\assets\fonts\fontawesome-webfont.ttf" />
+    <None Include="MVVM.Angular.Website\static\src\assets\fonts\fontawesome-webfont.woff" />
+    <None Include="MVVM.Angular.Website\static\src\assets\fonts\fontawesome-webfont.woff2" />
     <None Include="MVVM.Angular.Website\static\src\assets\styles\adminLTE\AdminLTE.css" />
     <None Include="MVVM.Angular.Website\static\src\assets\styles\adminLTE\AdminLTESkin.css" />
     <None Include="MVVM.Angular.Website\static\src\assets\styles\bootstrap\bootstrap.css" />
@@ -65,6 +70,14 @@
     <None Include="MVVM.Angular.Website\static\src\assets\styles\styles.entry.scss" />
     <None Include="MVVM.Angular.Website\static\src\modules\admin_module\admin.module.ts" />
     <None Include="MVVM.Angular.Website\static\src\modules\admin_module\components\admin-index.component.ts" />
+    <None Include="MVVM.Angular.Website\static\src\modules\admin_module\components\admin-login.component.ts" />
+    <None Include="MVVM.Angular.Website\static\src\modules\admin_module\components\admin-container.component.ts" />
+    <None Include="MVVM.Angular.Website\static\src\modules\admin_module\images\ajax-loading.gif" />
+    <None Include="MVVM.Angular.Website\static\src\modules\admin_module\images\default-avatar.jpg" />
+    <None Include="MVVM.Angular.Website\static\src\modules\admin_module\images\logo.png" />
+    <None Include="MVVM.Angular.Website\static\src\modules\admin_module\styles\admin-container.entry.scss" />
+    <None Include="MVVM.Angular.Website\static\src\modules\admin_module\views\admin-container.html" />
+    <None Include="MVVM.Angular.Website\static\src\modules\admin_module\views\admin-login.html" />
     <None Include="MVVM.Angular.Website\static\src\modules\admin_module\views\admin-index.html" />
     <None Include="MVVM.Angular.Website\static\src\modules\app_module\components\app.component.ts" />
     <None Include="MVVM.Angular.Website\static\src\modules\app_module\app.module.ts" />
