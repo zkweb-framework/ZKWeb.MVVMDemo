@@ -22,12 +22,48 @@
   <ItemGroup>
     <Compile Include="MVVM.Angular.Support\src\Application\AngularRouter.cs" />
     <Compile Include="MVVM.Angular.Support\src\Application\AngularScriptGenerator.cs" />
+    <Compile Include="MVVM.Common.Base\src\Components\CacheIsolationPolicies\CacheIsolateByIdent.cs" />
+    <Compile Include="MVVM.Common.Base\src\Components\DatabaseInitializeHandler\DatabaseInitializeHandler.cs" />
+    <Compile Include="MVVM.Common.Base\src\Components\Exceptions\BadRequestException.cs" />
+    <Compile Include="MVVM.Common.Base\src\Components\Exceptions\ForbiddenException.cs" />
+    <Compile Include="MVVM.Common.Base\src\Components\Exceptions\NotFoundException.cs" />
+    <Compile Include="MVVM.Common.Base\src\Components\GenericConfigs\Attributes\GenericConfigAttribute.cs" />
+    <Compile Include="MVVM.Common.Base\src\Components\GenericConfigs\LocaleSettings.cs" />
+    <Compile Include="MVVM.Common.Base\src\Components\GenericConfigs\WebsiteSettings.cs" />
+    <Compile Include="MVVM.Common.Base\src\Components\ScheduledTasks\Interfaces\IScheduledTaskExecutor.cs" />
+    <Compile Include="MVVM.Common.Base\src\Components\ScheduledTasks\LogCleaner.cs" />
+    <Compile Include="MVVM.Common.Base\src\Components\ScheduledTasks\SessionCleaner.cs" />
+    <Compile Include="MVVM.Common.Base\src\Components\SessionIdStore\Interfaces\ISessionIdStore.cs" />
+    <Compile Include="MVVM.Common.Base\src\Components\SessionIdStore\SessionIdCookieStore.cs" />
+    <Compile Include="MVVM.Common.Base\src\Domain\Entities\Extensions\SessionExtensions.cs" />
+    <Compile Include="MVVM.Common.Base\src\Domain\Entities\GenericConfig.cs" />
     <Compile Include="MVVM.Common.Base\src\Domain\Entities\Interfaces\IHaveCreateTime.cs" />
     <Compile Include="MVVM.Common.Base\src\Domain\Entities\Interfaces\IHaveDeleted.cs" />
     <Compile Include="MVVM.Common.Base\src\Domain\Entities\Interfaces\IHaveUpdateTime.cs" />
+    <Compile Include="MVVM.Common.Base\src\Domain\Entities\ScheduledTask.cs" />
+    <Compile Include="MVVM.Common.Base\src\Domain\Entities\Session.cs" />
     <Compile Include="MVVM.Common.Base\src\Domain\Entities\TypeTraits\CreateTimeTypeTrait.cs" />
     <Compile Include="MVVM.Common.Base\src\Domain\Entities\TypeTraits\DeletedTypeTrait.cs" />
     <Compile Include="MVVM.Common.Base\src\Domain\Entities\TypeTraits\UpdateTimeTypeTrait.cs" />
+    <Compile Include="MVVM.Common.Base\src\Domain\Filters\CreateTimeFilter.cs" />
+    <Compile Include="MVVM.Common.Base\src\Domain\Filters\DeletedFilter.cs" />
+    <Compile Include="MVVM.Common.Base\src\Domain\Filters\GuidEntityFilter.cs" />
+    <Compile Include="MVVM.Common.Base\src\Domain\Filters\Interfaces\IEntityOperationFilter.cs" />
+    <Compile Include="MVVM.Common.Base\src\Domain\Filters\Interfaces\IEntityQueryFilter.cs" />
+    <Compile Include="MVVM.Common.Base\src\Domain\Filters\UpdateTimeFilter.cs" />
+    <Compile Include="MVVM.Common.Base\src\Domain\Repositories\Bases\RepositoryBase.cs" />
+    <Compile Include="MVVM.Common.Base\src\Domain\Repositories\GenericConfigRepository.cs" />
+    <Compile Include="MVVM.Common.Base\src\Domain\Repositories\Interfaces\IRepository.cs" />
+    <Compile Include="MVVM.Common.Base\src\Domain\Repositories\ScheduledTaskRepository.cs" />
+    <Compile Include="MVVM.Common.Base\src\Domain\Repositories\SessionRepository.cs" />
+    <Compile Include="MVVM.Common.Base\src\Domain\Services\Bases\DomainServiceBase.cs" />
+    <Compile Include="MVVM.Common.Base\src\Domain\Services\GenericConfigManager.cs" />
+    <Compile Include="MVVM.Common.Base\src\Domain\Services\Interfaces\IDomainService.cs" />
+    <Compile Include="MVVM.Common.Base\src\Domain\Services\ScheduledTaskManager.cs" />
+    <Compile Include="MVVM.Common.Base\src\Domain\Services\SessionManager.cs" />
+    <Compile Include="MVVM.Common.Base\src\Domain\Uow\Extensions\IUnitOfWorkExtensions.cs" />
+    <Compile Include="MVVM.Common.Base\src\Domain\Uow\Interfaces\IUnitOfWork.cs" />
+    <Compile Include="MVVM.Common.Base\src\Domain\Uow\UnitOfWork.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -104,11 +140,6 @@
     <Folder Include="MVVM.Common.Base\src\Application\Services\" />
     <Folder Include="MVVM.Common.Base\src\Application\Dtos\" />
     <Folder Include="MVVM.Common.Base\src\Application\Mappings\" />
-    <Folder Include="MVVM.Common.Base\src\Domain\Entities\Extensions\" />
-    <Folder Include="MVVM.Common.Base\src\Domain\Filters\" />
-    <Folder Include="MVVM.Common.Base\src\Domain\Repositories\" />
-    <Folder Include="MVVM.Common.Base\src\Domain\Services\" />
-    <Folder Include="MVVM.Common.Base\src\Domain\Uow\" />
   </ItemGroup>
   
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard1.6' ">
