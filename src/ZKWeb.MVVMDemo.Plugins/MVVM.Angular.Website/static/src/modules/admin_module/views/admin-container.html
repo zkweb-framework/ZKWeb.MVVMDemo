@@ -1,135 +1,137 @@
-﻿<div class="page-header">
-  <header class="main-header">
-    <a href="/admin.html" class="logo" title="logo">
-      <img src="/static/common.admin.images/logo.png" alt="logo">
-    </a>
-    <nav class="navbar navbar-static-top" role="navigation">
-      <div class="admin-navbar-left pull-left">
-        <a class="sidebar-toggle" data-toggle="offcanvas" role="button">
-          <span class="sr-only">切换导航栏</span>
-        </a>
-        <div class="template_area" area_id="admin_navbar_left"></div>
-      </div>
-      <div class="navbar-custom-menu">
-        <ul class="nav navbar-nav">
-          <li class="dropdown user user-menu">
-            <a aria-expanded="false" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown" title="菜单">
-              <img src="/static/common.admin.images/default-avatar.jpg" class="user-image" alt="头像">
-              <span class="username">test</span>
-            </a>
-            <ul class="dropdown-menu">
-              <li class="user-header">
-                <img src="/static/common.admin.images/default-avatar.jpg" class="img-circle" alt="头像">
-                <p>test</p>
-              </li>
-              <li class="user-body">
-                <div class="col-xs-4 text-center">
-                  <a href="/demo.html" target="_blank">网站首页</a>
-                </div>
-                <div class="col-xs-4 text-center">
-                  <a href="/admin/about_website.html" target="">关于网站</a>
-                </div>
-                <div class="col-xs-4 text-center">
-                  <a post-href="/api/cache/clear" ajax="true"><form class="inline" action="/api/cache/clear" method="post" ajax="true"></form>清理缓存</a>
-                </div>
-              </li>
-              <li class="user-footer">
-                <div class="pull-left">
-                  <a class="btn btn-default btn-flat" href="/admin/about_me.html" target="">关于我</a>
-                </div>
-                <div class="pull-right">
-                  <a class="btn btn-default btn-flat" post-href="/admin/logout"><form class="inline" action="/admin/logout" method="post"></form>退出登陆</a>
-                </div>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-      <div class="admin-navbar-right pull-right">
-        <div class="template_area" area_id="admin_navbar_right">
+﻿<div class="admin-container">
+  <div class="page-header">
+    <header class="main-header">
+      <a href="/admin.html" class="logo" title="logo">
+        <img src="/modules/admin_module/images/logo.png" alt="logo">
+      </a>
+      <nav class="navbar navbar-static-top" role="navigation">
+        <div class="admin-navbar-left pull-left">
+          <a class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <span class="sr-only">切换导航栏</span>
+          </a>
+          <div class="template_area" area_id="admin_navbar_left"></div>
         </div>
-      </div>
-      <div class="clearfix"></div>
-    </nav>
-  </header>
-  <aside class="main-sidebar" style="height: 1199px;">
-    <section class="sidebar">
-      <div class="template_area" area_id="admin_sidebar">
-        <div class="template_widget " data-widget="common.admin.widgets/admin_sidebar_app_menu" style="">
-          <ul class="sidebar-menu">
-            <li class="header">ZKWeb默认站点</li>
-            <li class="treeview">
-              <a href="/admin.html">
-                <i class="fa fa-home"></i><span>首页</span>
+        <div class="navbar-custom-menu">
+          <ul class="nav navbar-nav">
+            <li class="dropdown user user-menu">
+              <a aria-expanded="false" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown" title="菜单">
+                <img src="/modules/admin_module/images/default-avatar.jpg" class="user-image" alt="头像">
+                <span class="username">test</span>
               </a>
-            </li>
-            <li class="treeview">
-              <a class="treeview-toggle">
-                <i class="fa fa-gear"></i>
-                <span>系统管理</span>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="/admin/admins.html"><i class="fa fa-user-secret"></i>管理员管理</a></li>
-                <li><a href="/admin/users.html"><i class="fa fa-user"></i>用户管理</a></li>
-                <li><a href="/admin/roles.html"><i class="fa fa-legal"></i>角色管理</a></li>
-                <li><a href="/admin/settings.html"><i class="fa fa-wrench"></i>设置</a></li>
-              </ul>
-            </li>
-            <li class="treeview">
-              <a class="treeview-toggle">
-                <i class="fa fa-money"></i>
-                <span>财务管理</span>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="/admin/payment_apis.html"><i class="fa fa-arrow-circle-o-down"></i>支付接口管理</a></li>
-                <li><a href="/admin/payment_transactions.html"><i class="fa fa-download"></i>支付交易记录</a></li>
-              </ul>
-            </li>
-            <li class="treeview">
-              <a class="treeview-toggle">
-                <i class="fa fa-pencil"></i>
-                <span>内容管理</span>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="/admin/articles.html"><i class="fa fa-pencil"></i>文章管理</a></li>
-              </ul>
-            </li>
-            <li class="treeview">
-              <a class="treeview-toggle">
-                <i class="fa fa-building"></i>
-                <span>商城管理</span>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="/admin/product_categories.html"><i class="fa fa-sitemap"></i>商品类目管理</a></li>
-                <li><a href="/admin/products.html"><i class="fa fa-diamond"></i>商品管理</a></li>
-                <li><a href="/admin/product_properties.html"><i class="fa fa-check-square-o"></i>商品属性管理</a></li>
-                <li><a href="/admin/logistics.html"><i class="fa fa-truck"></i>物流管理</a></li>
-                <li><a href="/admin/orders.html"><i class="fa fa-cart-arrow-down"></i>订单管理</a></li>
-              </ul>
-            </li>
-            <li class="treeview">
-              <a class="treeview-toggle">
-                <i class="fa fa-flask"></i>
-                <span>功能测试</span>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="/admin/unit_test/web_tester.html"><i class="fa fa-flask"></i>运行测试</a></li>
+              <ul class="dropdown-menu">
+                <li class="user-header">
+                  <img src="/modules/admin_module/images/default-avatar.jpg" class="img-circle" alt="头像">
+                  <p>test</p>
+                </li>
+                <li class="user-body">
+                  <div class="col-xs-4 text-center">
+                    <a href="/demo.html" target="_blank">网站首页</a>
+                  </div>
+                  <div class="col-xs-4 text-center">
+                    <a href="/admin/about_website.html" target="">关于网站</a>
+                  </div>
+                  <div class="col-xs-4 text-center">
+                    <a post-href="/api/cache/clear" ajax="true"><form class="inline" action="/api/cache/clear" method="post" ajax="true"></form>清理缓存</a>
+                  </div>
+                </li>
+                <li class="user-footer">
+                  <div class="pull-left">
+                    <a class="btn btn-default btn-flat" href="/admin/about_me.html" target="">关于我</a>
+                  </div>
+                  <div class="pull-right">
+                    <a class="btn btn-default btn-flat" post-href="/admin/logout"><form class="inline" action="/admin/logout" method="post"></form>退出登陆</a>
+                  </div>
+                </li>
               </ul>
             </li>
           </ul>
         </div>
-      </div>
-    </section>
-  </aside>
-</div>
-<div class="content-wrapper page-body">
-  <div class="page-container admin-page-container">
-    <ng-content></ng-content>
+        <div class="admin-navbar-right pull-right">
+          <div class="template_area" area_id="admin_navbar_right">
+          </div>
+        </div>
+        <div class="clearfix"></div>
+      </nav>
+    </header>
+    <aside class="main-sidebar">
+      <section class="sidebar">
+        <div class="template_area" area_id="admin_sidebar">
+          <div class="template_widget " data-widget="common.admin.widgets/admin_sidebar_app_menu" style="">
+            <ul class="sidebar-menu">
+              <li class="header">ZKWeb默认站点</li>
+              <li class="treeview">
+                <a href="/admin.html">
+                  <i class="fa fa-home"></i><span>首页</span>
+                </a>
+              </li>
+              <li class="treeview">
+                <a class="treeview-toggle">
+                  <i class="fa fa-gear"></i>
+                  <span>系统管理</span>
+                </a>
+                <ul class="treeview-menu">
+                  <li><a href="/admin/admins.html"><i class="fa fa-user-secret"></i>管理员管理</a></li>
+                  <li><a href="/admin/users.html"><i class="fa fa-user"></i>用户管理</a></li>
+                  <li><a href="/admin/roles.html"><i class="fa fa-legal"></i>角色管理</a></li>
+                  <li><a href="/admin/settings.html"><i class="fa fa-wrench"></i>设置</a></li>
+                </ul>
+              </li>
+              <li class="treeview">
+                <a class="treeview-toggle">
+                  <i class="fa fa-money"></i>
+                  <span>财务管理</span>
+                </a>
+                <ul class="treeview-menu">
+                  <li><a href="/admin/payment_apis.html"><i class="fa fa-arrow-circle-o-down"></i>支付接口管理</a></li>
+                  <li><a href="/admin/payment_transactions.html"><i class="fa fa-download"></i>支付交易记录</a></li>
+                </ul>
+              </li>
+              <li class="treeview">
+                <a class="treeview-toggle">
+                  <i class="fa fa-pencil"></i>
+                  <span>内容管理</span>
+                </a>
+                <ul class="treeview-menu">
+                  <li><a href="/admin/articles.html"><i class="fa fa-pencil"></i>文章管理</a></li>
+                </ul>
+              </li>
+              <li class="treeview">
+                <a class="treeview-toggle">
+                  <i class="fa fa-building"></i>
+                  <span>商城管理</span>
+                </a>
+                <ul class="treeview-menu">
+                  <li><a href="/admin/product_categories.html"><i class="fa fa-sitemap"></i>商品类目管理</a></li>
+                  <li><a href="/admin/products.html"><i class="fa fa-diamond"></i>商品管理</a></li>
+                  <li><a href="/admin/product_properties.html"><i class="fa fa-check-square-o"></i>商品属性管理</a></li>
+                  <li><a href="/admin/logistics.html"><i class="fa fa-truck"></i>物流管理</a></li>
+                  <li><a href="/admin/orders.html"><i class="fa fa-cart-arrow-down"></i>订单管理</a></li>
+                </ul>
+              </li>
+              <li class="treeview">
+                <a class="treeview-toggle">
+                  <i class="fa fa-flask"></i>
+                  <span>功能测试</span>
+                </a>
+                <ul class="treeview-menu">
+                  <li><a href="/admin/unit_test/web_tester.html"><i class="fa fa-flask"></i>运行测试</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </aside>
   </div>
-</div>
-<div class="page-footer">
-  <div class="copyright-bar">
-    <div class="text-center">Powered by <a href="https://github.com/zkweb-framework" target="_blank">zkweb framework</a></div>
-    <div class="text-center">Copyright © 2017 ZKWeb All rights reserved</div>
+  <div class="content-wrapper page-body">
+    <div class="page-container admin-page-container">
+      <ng-content></ng-content>
+    </div>
+  </div>
+  <div class="page-footer">
+    <div class="copyright-bar">
+      <div class="text-center">Powered by <a href="https://github.com/zkweb-framework" target="_blank">zkweb framework</a></div>
+      <div class="text-center">Copyright © 2017 ZKWeb All rights reserved</div>
+    </div>
   </div>
 </div>
