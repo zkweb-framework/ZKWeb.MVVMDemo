@@ -1,0 +1,29 @@
+﻿/* 侧边栏折叠后LOGO仍然使用原来的宽度 */
+@media (min-width: 768px) {
+	.sidebar-mini.sidebar-collapse .main-header {
+		.logo {
+			width: 230px;
+		}
+
+		.navbar {
+			margin-left: 230px;
+		}
+	}
+}
+
+/* 修复迷你菜单的子菜单的顶部空隙 */
+.sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > .treeview-menu {
+	margin: -5px 0px 0px 0px;
+	padding: 5px 0px;
+}
+
+/* 普通菜单的子菜单的上下边距 */
+.skin-default .sidebar-menu > li > .treeview-menu {
+	padding: 5px 0px;
+	margin: 0px;
+}
+
+/* 侧边栏的字体大小 */
+.sidebar-menu .treeview-menu > li > a {
+	font-size: 12px;
+}

@@ -46,7 +46,6 @@
     <None Include="MVVM.Angular.Website\static\src\modules\app_module\app.module.ts" />
     <None Include="MVVM.Angular.Website\static\src\assets\images\favicon.ico" />
     <None Include="MVVM.Angular.Website\static\src\index.html" />
-    <None Include="MVVM.Angular.Website\static\src\modules\.gitignore" />
     <None Include="MVVM.Angular.Website\static\src\modules\entry_point\main.ts" />
     <None Include="MVVM.Angular.Website\static\src\assets\scripts\systemjs-angular-loader.js" />
     <None Include="MVVM.Angular.Website\static\src\assets\scripts\systemjs.config.extras.js" />

@@ -1,0 +1,209 @@
+﻿/*
+	面板 用于用户编辑，设置项，用户中心等页面
+*/
+
+.panel-sidebar {
+	/* 面板的左边栏 */
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	float: left;
+	width: 200px;
+	margin-right: 15px;
+
+	.portlet-title {
+		/* 标题 */
+		margin: 0px;
+		padding: 5px 15px;
+
+		.caption {
+			font-size: 14px;
+			line-height: 20px;
+		}
+	}
+
+	.profile-portlet {
+		/* 头像和文本的外框 */
+		padding: 10px;
+		border-bottom: 1px solid #ddd;
+		overflow: hidden;
+	}
+
+	.profile-image img {
+		/* 头像 */
+		float: left;
+		max-width: 40px;
+		margin: 0px 0px 0px 10px;
+		-webkit-border-radius: 6px !important;
+		-moz-border-radius: 6px !important;
+		border-radius: 6px !important;
+	}
+
+	.profile-title {
+		/* 文本 */
+		float: right;
+		width: 50%;
+
+		.main-title {
+			color: #5a7391;
+			font-weight: bold;
+		}
+
+		.sub-title {
+			color: #5b9bd1;
+		}
+	}
+
+	.buttons {
+		/* 按钮 */
+		text-align: center;
+		padding: 10px 0px;
+		border-bottom: 1px solid #EEE;
+
+		.btn {
+			margin-right: 5px;
+		}
+
+		.btn:last-child {
+			margin-right: 0;
+		}
+
+		button {
+			text-transform: uppercase;
+			font-size: 11px;
+			font-weight: 600;
+		}
+	}
+
+	ul.nav {
+		/* 菜单 */
+		margin-top: 0px;
+
+		> li > a {
+			color: #485a6a;
+			font-size: 14px;
+			font-weight: 400;
+			border-bottom: 1px solid #ddd;
+		}
+
+		> li > a i {
+			margin: 4px 4px 0px 0px;
+			float: left;
+		}
+
+		> li > a:hover {
+			background-color: #fafcfd;
+			color: #5b9bd1;
+		}
+
+		> li.active > a {
+			color: #5b9bd1;
+			background-color: #f6f9fb;
+		}
+	}
+
+	ul.nav.childs {
+		/* 子菜单 */
+		padding-left: 20px;
+		list-style: none outside none;
+		border-bottom: 1px solid #ddd;
+
+		> li > a {
+			font-size: 12px;
+			border-bottom: none;
+		}
+	}
+
+	ul.nav > li:last-child > ul.nav.childs {
+		/* 最后的子菜单不显示底部边框 */
+		border: none;
+	}
+}
+
+.panel-content {
+	/* 面板内容 */
+	border: 1px solid #eee;
+	border-radius: 4px;
+	min-height: 300px;
+	overflow-x: hidden;
+
+	.tabbable-line {
+		padding: 0px 0px 15px;
+	}
+	/* 调整面板内容下的边距 */
+	> .portlet {
+		padding: 15px;
+
+		> .portlet-body > .form-horizontal {
+			margin: 0px;
+		}
+	}
+}
+
+/* 使用当前主题的面板样式 */
+.panel.panel-themed {
+	margin: 10px 0px 0px;
+	border: 3px solid #0080BF;
+	border-radius: 3px;
+
+	.panel-heading {
+		background: #0080BF none repeat scroll 0% 0%;
+		width: 100%;
+		height: 30px;
+		line-height: 30px;
+		padding: 0px 0px 0px 10px;
+		color: #FFF;
+		border: none;
+		border-radius: 0px;
+		text-align: left;
+	}
+}
+
+/* 低分辨率下的样式 */
+@media (max-width: 991px) {
+	.panel-sidebar {
+		float: none;
+		width: 100%;
+		margin-bottom: 0px;
+
+		.portlet {
+			padding: 0px;
+			margin-bottom: 0px;
+
+			> .portlet-title {
+				padding: 0px;
+
+				.tools {
+					margin-left: 5px;
+				}
+
+				.caption {
+					float: none;
+					width: 100%;
+					padding: 0px;
+
+					> a {
+						padding: 10px 15px;
+						width: 100%;
+						display: block;
+					}
+				}
+			}
+
+			> ul.nav {
+				> li:last-child {
+					margin-bottom: -1px;
+
+					> ul.nav {
+						> li:last-child {
+							margin-bottom: 1px;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.panel-content {
+		overflow: visible;
+	}
+}

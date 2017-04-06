@@ -24,7 +24,7 @@ namespace ZKWeb.MVVMDemo.Plugins.MVVM.Angular.Support.src.Applications {
 			_fileStorage = fileStorage;
 			_resourceExtensionSet = new HashSet<string>() {
 				".js", ".css", ".module", ".jpg", ".png",
-				".gif", ".ico", ".bmp", ".map"
+				".gif", ".ico", ".bmp", ".map", ".html"
 			};
 		}
 

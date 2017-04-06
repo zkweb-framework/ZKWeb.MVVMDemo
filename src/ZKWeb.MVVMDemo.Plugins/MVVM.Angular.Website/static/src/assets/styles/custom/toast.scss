@@ -1,0 +1,8 @@
+﻿/* 弹出消息样式，换行和显示在最顶层 */
+.jq-toast-single {
+	word-break: break-all;
+}
+
+.jq-toast-wrap {
+	z-index: 11000;
+}

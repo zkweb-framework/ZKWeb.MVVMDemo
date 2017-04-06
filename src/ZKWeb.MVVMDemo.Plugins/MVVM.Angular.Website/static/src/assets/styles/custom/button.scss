@@ -1,0 +1,36 @@
+﻿/* 使用当前主题的按钮样式 */
+.btn.btn-themed {
+	background-color: #2296d4;
+	color: #FFF;
+	text-decoration: none;
+	border-radius: 2px;
+	text-align: center;
+	padding: 0px;
+}
+
+/* 工具栏按钮组换行时的上边距 */
+.btn-toolbar {
+	margin-top: -5px;
+
+	.btn {
+		margin-top: 5px;
+	}
+}
+
+/* 过滤按钮中的总数量 */
+.btn-filter > .total-count {
+	display: inline;
+	padding: .2em .6em .3em;
+	font-weight: bold;
+	background-color: #00a65a;
+	color: #fff;
+	font-size: 75%;
+	border-radius: .25em;
+	position: relative;
+	top: -1px;
+	margin: 0px 0px 0px 3px;
+
+	&.more-than-zero {
+		background-color: #f39c12;
+	}
+}

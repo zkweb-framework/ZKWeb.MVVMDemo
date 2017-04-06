@@ -6,16 +6,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 var core_1 = require("@angular/core");
-var AppComponent = (function () {
-    function AppComponent() {
-        this.name = 'Angular';
+var HeaderComponent = (function () {
+    function HeaderComponent() {
     }
-    return AppComponent;
+    return HeaderComponent;
 }());
-AppComponent = __decorate([
+HeaderComponent = __decorate([
     core_1.Component({
-        selector: 'my-app',
-        template: "<h1>Hello {{name}}</h1>",
+        selector: 'header',
+        templateUrl: 'modules/app_module/views/header.html'
     })
-], AppComponent);
-exports.AppComponent = AppComponent;
+], HeaderComponent);
+exports.HeaderComponent = HeaderComponent;

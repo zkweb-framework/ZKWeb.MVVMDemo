@@ -1,0 +1,276 @@
+﻿/* 输入框组 */
+.input-group {
+	.input-group-addon {
+		padding: 0px 4px;
+	}
+
+	.input-group-addon:not(:first-child):not(:last-child) {
+		border-left: none;
+	}
+	/* 验证码样式 */
+	.captcha {
+		height: 30px;
+	}
+}
+
+/* 验证信息显示 */
+.input-validation-error {
+	border-color: #f3565d;
+}
+
+.valid {
+	border-color: green;
+}
+
+.field-validation-error {
+	margin-top: 5px;
+	color: #f3565d;
+	display: block;
+}
+
+/* 必填项 */
+.form-group label em {
+	color: red;
+	font-style: normal;
+}
+
+/* 表单样式 */
+.form-horizontal {
+	margin: 0px 15px;
+}
+
+/* 表单控件样式 */
+.form-horizontal .form-group {
+	margin-right: 0px;
+	margin-left: 0px;
+	/* 字段名称 */
+	label.control-label {
+		padding: 5px 12px 0px 0px;
+		margin: 0px 0px 5px 0px;
+		text-align: right;
+		margin-top: 1px;
+		word-break: break-all; /* 设置自动换行 可分割单词 */
+	}
+	/* 只读文本 */
+	label.form-control {
+		border: none;
+	}
+	/* 单选 */
+	.radio-list > label.radio-inline:first-child {
+		padding-left: 20px;
+	}
+	/* 多选 */
+	input[type='checkbox'] {
+		width: auto;
+	}
+	/* 多选组 */
+	.checkbox-list > label.checkbox-inline:first-child {
+		padding-left: 20px;
+	}
+
+	.checkbox-list > label {
+		display: block;
+		cursor: pointer;
+
+		&.checkbox-inline {
+			display: inline-block;
+		}
+	}
+
+	.checkbox-group {
+		> .checkbox-group, > .checkbox-list {
+			padding-left: 20px;
+		}
+	}
+	/* 文件上传 */
+	.file-uploader {
+		margin-top: 5px;
+
+		input[type="file"] {
+			float: left;
+		}
+
+		.checkbox-inline {
+			padding-top: 0px;
+			margin: -5px 0px 0px 5px;
+		}
+	}
+	/* 缩略图 */
+	img.form-control {
+		height: auto;
+		max-width: 200px;
+	}
+	/* 向右对齐的按纽 */
+	.col-md-offset-9.col-md-3 > .btn,
+	.col-md-offset-10.col-md-2 > .btn,
+	.col-md-offset-11.col-md-1 > .btn {
+		float: right;
+	}
+	/* 文本和控件 */
+	@media (min-width: 992px) {
+		/* 相当于col-md-2 */
+		.control-label {
+			float: left;
+			width: 16.66666667%;
+		}
+		/* 相当于col-md-10 */
+		.form-controls {
+			float: left;
+			width: 83.33333333%;
+		}
+	}
+}
+
+/* 表单提交按钮 */
+.form-horizontal .form-actions {
+	.btn-submit {
+		color: #FFF;
+		background-color: #35AA47;
+	}
+
+	@media (min-width: 992px) {
+		/* 相当于col-md-offset-2 */
+		.btn-submit {
+			margin-left: 16.66666667%;
+		}
+	}
+}
+
+/* 表单提交中样式 */
+.form-horizontal.loading button[type='submit'] {
+	background: grey;
+	pointer-events: none;
+}
+
+/* 表单字体大小 */
+.form-control, .control-label, label, .label, .btn {
+	font-size: $font-size-normal;
+}
+
+/* 包含可滚动内容的表单控件 */
+.form-control-scrollable {
+	position: relative;
+	height: 150px;
+	overflow-y: scroll;
+	border: 1px solid #E5E5E5;
+	border-radius: 4px;
+	padding: 3px 12px;
+}
+
+/* 高级下拉框的样式 */
+.advance-select {
+	position: relative;
+
+	.btn.dropdown-toggle {
+		width: 100%;
+		text-align: left;
+
+		.option-text {
+			margin-right: 5px;
+			float: left;
+		}
+
+		.caret {
+			float: right;
+			margin-top: 7px;
+		}
+	}
+
+	.dropdown-menu {
+		margin: 0px 0px;
+		width: 95%;
+
+		.keyword {
+			border-color: #E5E5E5;
+			border-radius: 4px 4px 0px 0px;
+		}
+
+		select {
+			border-color: #E5E5E5;
+			margin-top: -1px;
+			border-radius: 0px 0px 4px 4px;
+		}
+	}
+
+	.input-group-btn {
+		.btn {
+			padding: 7px 13px 8px 13px;
+		}
+	}
+}
+
+/* 数字文本框的样式 */
+.number-input {
+	.up-down {
+		display: inline-block;
+		margin-left: -1px;
+
+		.up, .down {
+			display: block;
+			font-size: 8px;
+			padding: 1px 14px;
+			color: #999;
+
+			i {
+				font-size: 8px;
+			}
+		}
+	}
+}
+
+/* 数字文本框的样式 小型的样式 一般用在表格中的数量编辑框 */
+.number-input.number-input-sm {
+	.number {
+		float: left;
+		border: 1px solid #BEBEBE;
+		width: 50px;
+		height: 37px;
+		padding: 0px 5px;
+	}
+
+	.input-group-btn {
+		float: left;
+		margin-left: 5px;
+
+		.up {
+			margin-bottom: 3px;
+		}
+
+		.up, .down {
+			border: 1px solid #BEBEBE;
+			border-radius: 0px;
+		}
+	}
+}
+
+/* ios上的输入框使用自定义样式 */
+input[type="text"], input[type="password"], select, textarea {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+}
+
+/* 设置低分辨率时表单的提交按钮宽度100% */
+@media (max-width: 992px) {
+	.form-actions .btn[type='submit'] {
+		width: 100%;
+	}
+}
+
+/* input-line类的样式 */
+.input-inline {
+	display: inline-block;
+	width: auto;
+	vertical-align: middle;
+}
+
+/* 单选按钮和多选框 */
+.radio input[type="radio"],
+.radio-inline input[type="radio"],
+.checkbox input[type="checkbox"],
+.checkbox-inline input[type="checkbox"] {
+	position: relative;
+	margin-top: 1px;
+	margin-left: -20px;
+	float: left;
+	display: block;
+}
