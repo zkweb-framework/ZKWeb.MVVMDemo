@@ -8,10 +8,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
 var router_1 = require("@angular/router");
+var admin_container_component_1 = require("./components/admin-container.component");
 var admin_index_component_1 = require("./components/admin-index.component");
+var admin_login_component_1 = require("./components/admin-login.component");
 var routes = [
     { path: '', redirectTo: '/admin', pathMatch: 'full' },
-    { path: 'admin', component: admin_index_component_1.AdminIndexComponent }
+    { path: 'admin', component: admin_index_component_1.AdminIndexComponent },
+    { path: 'admin/login', component: admin_login_component_1.AdminLoginComponent }
 ];
 var AdminModule = (function () {
     function AdminModule() {
@@ -25,7 +28,9 @@ AdminModule = __decorate([
             router_1.RouterModule.forRoot(routes)
         ],
         declarations: [
-            admin_index_component_1.AdminIndexComponent
+            admin_container_component_1.AdminContainerComponent,
+            admin_index_component_1.AdminIndexComponent,
+            admin_login_component_1.AdminLoginComponent
         ],
         exports: [
             router_1.RouterModule
