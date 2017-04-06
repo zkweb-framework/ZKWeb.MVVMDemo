@@ -1,9 +1,8 @@
-﻿using System;
+﻿using Hangfire;
+using System;
 using System.Globalization;
-using System.IO;
 using ZKWeb.Logging;
-using ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Components.ScheduledTasks.Interfaces;
-using ZKWeb.Server;
+using ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Components.ScheduledTasks.Bases;
 using ZKWeb.Storage;
 using ZKWebStandard.Ioc;
 
@@ -18,23 +17,20 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Components.ScheduledTasks {
 	///		Transaction 30天
 	/// </summary>
 	[ExportMany, SingletonReuse]
-	public class LogCleaner : IScheduledTaskExecutor {
+	public class LogCleaner : ScheduledTaskBase {
 		/// <summary>
-		/// 任务键名
+		/// 任务Id
 		/// </summary>
-		public string Key { get { return "Common.Base.LogCleaner"; } }
-
+		public override string JobId => "LogCleaner";
 		/// <summary>
-		/// 每小时执行一次
+		/// 执行间隔
 		/// </summary>
-		public bool ShouldExecuteNow(DateTime lastExecuted) {
-			return ((DateTime.UtcNow - lastExecuted).TotalHours > 1.0);
-		}
+		public override string CronExpression => Cron.Hourly();
 
 		/// <summary>
 		/// 删除过期的日志
 		/// </summary>
-		public void Execute() {
+		public override void Execute() {
 			var now = DateTime.UtcNow.ToLocalTime();
 			var count = 0;
 			var fileStorage = Application.Ioc.Resolve<IFileStorage>();

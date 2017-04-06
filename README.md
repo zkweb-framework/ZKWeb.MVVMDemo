@@ -2,6 +2,8 @@ MVVM demo for zkweb framework use angular js 4.0
 
 ### Features
 
+- Base on Angular JS 4.0
+- Use hangfire to arrange jobs, provide hangfire dashboard
 - TODO
 
 ### How to start

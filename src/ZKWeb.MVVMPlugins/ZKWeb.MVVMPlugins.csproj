@@ -30,7 +30,7 @@
     <Compile Include="MVVM.Common.Base\src\Components\GenericConfigs\Attributes\GenericConfigAttribute.cs" />
     <Compile Include="MVVM.Common.Base\src\Components\GenericConfigs\LocaleSettings.cs" />
     <Compile Include="MVVM.Common.Base\src\Components\GenericConfigs\WebsiteSettings.cs" />
-    <Compile Include="MVVM.Common.Base\src\Components\ScheduledTasks\Interfaces\IScheduledTaskExecutor.cs" />
+    <Compile Include="MVVM.Common.Base\src\Components\ScheduledTasks\Bases\ScheduledTaskBase.cs" />
     <Compile Include="MVVM.Common.Base\src\Components\ScheduledTasks\LogCleaner.cs" />
     <Compile Include="MVVM.Common.Base\src\Components\ScheduledTasks\SessionCleaner.cs" />
     <Compile Include="MVVM.Common.Base\src\Components\SessionIdStore\Interfaces\ISessionIdStore.cs" />
@@ -40,7 +40,6 @@
     <Compile Include="MVVM.Common.Base\src\Domain\Entities\Interfaces\IHaveCreateTime.cs" />
     <Compile Include="MVVM.Common.Base\src\Domain\Entities\Interfaces\IHaveDeleted.cs" />
     <Compile Include="MVVM.Common.Base\src\Domain\Entities\Interfaces\IHaveUpdateTime.cs" />
-    <Compile Include="MVVM.Common.Base\src\Domain\Entities\ScheduledTask.cs" />
     <Compile Include="MVVM.Common.Base\src\Domain\Entities\Session.cs" />
     <Compile Include="MVVM.Common.Base\src\Domain\Entities\TypeTraits\CreateTimeTypeTrait.cs" />
     <Compile Include="MVVM.Common.Base\src\Domain\Entities\TypeTraits\DeletedTypeTrait.cs" />
@@ -54,12 +53,10 @@
     <Compile Include="MVVM.Common.Base\src\Domain\Repositories\Bases\RepositoryBase.cs" />
     <Compile Include="MVVM.Common.Base\src\Domain\Repositories\GenericConfigRepository.cs" />
     <Compile Include="MVVM.Common.Base\src\Domain\Repositories\Interfaces\IRepository.cs" />
-    <Compile Include="MVVM.Common.Base\src\Domain\Repositories\ScheduledTaskRepository.cs" />
     <Compile Include="MVVM.Common.Base\src\Domain\Repositories\SessionRepository.cs" />
     <Compile Include="MVVM.Common.Base\src\Domain\Services\Bases\DomainServiceBase.cs" />
     <Compile Include="MVVM.Common.Base\src\Domain\Services\GenericConfigManager.cs" />
     <Compile Include="MVVM.Common.Base\src\Domain\Services\Interfaces\IDomainService.cs" />
-    <Compile Include="MVVM.Common.Base\src\Domain\Services\ScheduledTaskManager.cs" />
     <Compile Include="MVVM.Common.Base\src\Domain\Services\SessionManager.cs" />
     <Compile Include="MVVM.Common.Base\src\Domain\Uow\Extensions\IUnitOfWorkExtensions.cs" />
     <Compile Include="MVVM.Common.Base\src\Domain\Uow\Interfaces\IUnitOfWork.cs" />
@@ -67,6 +64,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="6.0.2" />
+    <PackageReference Include="Hangfire.Core" Version="1.6.12" />
     <PackageReference Include="ZKWeb" Version="1.7.0" />
   </ItemGroup>
 

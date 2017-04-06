@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFrameworks>net461;netcoreapp1.0</TargetFrameworks>
@@ -14,6 +14,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="6.0.2" />
+    <PackageReference Include="Hangfire.Core" Version="1.6.12" />
     <PackageReference Include="ZKWeb" Version="1.7.0" />
     <PackageReference Include="ZKWeb.Hosting.AspNetCore" Version="1.7.0" />
     <PackageReference Include="ZKWeb.ORM.InMemory" Version="1.7.0" />

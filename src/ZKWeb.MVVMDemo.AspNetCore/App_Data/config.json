@@ -1,7 +1,7 @@
 {
 	"ORM": "EFCore",
-	"Database": "SQLite",
-	"ConnectionString": "Data Source={{App_Data}}/test.db;",
+	"Database": "MSSQL",
+	"ConnectionString": "Server=WORK-PC;Database=ZKWebMVVM;User Id=sa;Password=123;",
 	"PluginDirectories": [
 		"../ZKWeb.MVVMPlugins"
 	],
