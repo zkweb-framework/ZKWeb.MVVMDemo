@@ -18,6 +18,10 @@ namespace ZKWeb.MVVMDemo.AspNetCore {
 			GlobalConfiguration.Configuration.UseSqlServerStorage(config);
 			app.UseHangfireDashboard();
 			app.UseHangfireServer();
+			app.UseSwagger();
+			app.UseSwaggerUI(c => {
+				c.SwaggerEndpoint("/swagger/v1/swagger.json", "ZKWeb MVVM Demo V1");
+			});
 		}
 	}
 }

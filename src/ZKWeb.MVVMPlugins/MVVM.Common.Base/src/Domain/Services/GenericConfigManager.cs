@@ -30,7 +30,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Domain.Services {
 		/// 初始化
 		/// </summary>
 		public GenericConfigManager() {
-			var cacheFactory = Application.Ioc.Resolve<ICacheFactory>();
+			var cacheFactory = ZKWeb.Application.Ioc.Resolve<ICacheFactory>();
 			AttributeCache = new ConcurrentDictionary<Type, GenericConfigAttribute>();
 			ConfigValueCache = cacheFactory.CreateCache<Type, object>();
 		}

@@ -24,9 +24,9 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Components.ScheduledTasks {
 		/// 删除过期的会话
 		/// </summary>
 		public static void Execute() {
-			var sessionManager = Application.Ioc.Resolve<SessionManager>();
+			var sessionManager = ZKWeb.Application.Ioc.Resolve<SessionManager>();
 			var count = sessionManager.RemoveExpiredSessions();
-			var logManager = Application.Ioc.Resolve<LogManager>();
+			var logManager = ZKWeb.Application.Ioc.Resolve<LogManager>();
 			logManager.LogInfo(string.Format(
 				"SessionCleaner executed, {0} sessions removed", count));
 		}

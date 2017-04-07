@@ -33,7 +33,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Domain.Services {
 			}
 			// 从数据库中获取会话
 			// 当前没有会话时返回新的会话
-			var sessionIdStore = Application.Ioc.Resolve<ISessionIdStore>();
+			var sessionIdStore = ZKWeb.Application.Ioc.Resolve<ISessionIdStore>();
 			session = Get(sessionIdStore.GetSessionId());
 			if (session == null) {
 				session = new Session() {
@@ -58,7 +58,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Domain.Services {
 				throw new NullReferenceException("session is null");
 			}
 			// 添加或更新到数据库中
-			var sessionIdStore = Application.Ioc.Resolve<ISessionIdStore>();
+			var sessionIdStore = ZKWeb.Application.Ioc.Resolve<ISessionIdStore>();
 			var oldSessionId = sessionIdStore.GetSessionId();
 			Save(ref session, null);
 			// 检测到会话Id有变化时删除原会话
@@ -86,7 +86,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Domain.Services {
 			var context = HttpManager.CurrentContext;
 			context.RemoveData(SessionContextKey);
 			// 删除数据库中的会话
-			var sessionIdStore = Application.Ioc.Resolve<ISessionIdStore>();
+			var sessionIdStore = ZKWeb.Application.Ioc.Resolve<ISessionIdStore>();
 			var sessionId = sessionIdStore.GetSessionId();
 			if (sessionId != Guid.Empty) {
 				BatchDeleteForever(new[] { sessionId });

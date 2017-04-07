@@ -39,10 +39,10 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Domain.Uow {
 			/// 初始化
 			/// </summary>
 			public ScopeData() {
-				var databaseManager = Application.Ioc.Resolve<DatabaseManager>();
+				var databaseManager = ZKWeb.Application.Ioc.Resolve<DatabaseManager>();
 				Context = databaseManager.CreateContext();
-				QueryFilters = Application.Ioc.ResolveMany<IEntityQueryFilter>().ToList();
-				OperationFilters = Application.Ioc.ResolveMany<IEntityOperationFilter>().ToList();
+				QueryFilters = ZKWeb.Application.Ioc.ResolveMany<IEntityQueryFilter>().ToList();
+				OperationFilters = ZKWeb.Application.Ioc.ResolveMany<IEntityOperationFilter>().ToList();
 			}
 
 			/// <summary>

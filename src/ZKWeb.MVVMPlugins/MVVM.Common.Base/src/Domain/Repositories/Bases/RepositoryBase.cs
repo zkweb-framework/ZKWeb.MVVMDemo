@@ -21,7 +21,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Domain.Repositories.Bases {
 		/// 获取工作单元
 		/// </summary>
 		protected virtual IUnitOfWork UnitOfWork {
-			get { return Application.Ioc.Resolve<IUnitOfWork>(); }
+			get { return ZKWeb.Application.Ioc.Resolve<IUnitOfWork>(); }
 		}
 
 		/// <summary>

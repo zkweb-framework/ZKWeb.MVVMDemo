@@ -20,7 +20,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Domain.Services.Bases {
 		/// 获取工作单元
 		/// </summary>
 		protected virtual IUnitOfWork UnitOfWork {
-			get { return Application.Ioc.Resolve<IUnitOfWork>(); }
+			get { return ZKWeb.Application.Ioc.Resolve<IUnitOfWork>(); }
 		}
 	}
 
@@ -38,7 +38,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Domain.Services.Bases {
 		/// 获取仓储
 		/// </summary>
 		protected virtual IRepository<TEntity, TPrimaryKey> Repository {
-			get { return Application.Ioc.Resolve<IRepository<TEntity, TPrimaryKey>>(); }
+			get { return ZKWeb.Application.Ioc.Resolve<IRepository<TEntity, TPrimaryKey>>(); }
 		}
 
 		/// <summary>

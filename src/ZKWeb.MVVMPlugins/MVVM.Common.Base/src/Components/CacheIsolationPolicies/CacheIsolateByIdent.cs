@@ -13,7 +13,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Components.CacheIsolationPolici
 		/// </summary>
 		/// <returns></returns>
 		public object GetIsolationKey() {
-			var sessionManager = Application.Ioc.Resolve<SessionManager>();
+			var sessionManager = ZKWeb.Application.Ioc.Resolve<SessionManager>();
 			return sessionManager.GetSession().ReleatedId;
 		}
 	}

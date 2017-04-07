@@ -33,7 +33,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Components.ScheduledTasks {
 		public static void Execute() {
 			var now = DateTime.UtcNow.ToLocalTime();
 			var count = 0;
-			var fileStorage = Application.Ioc.Resolve<IFileStorage>();
+			var fileStorage = ZKWeb.Application.Ioc.Resolve<IFileStorage>();
 			var logsDirectory = fileStorage.GetStorageDirectory("logs");
 			if (!logsDirectory.Exists) {
 				return;
@@ -58,7 +58,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Components.ScheduledTasks {
 					++count;
 				}
 			}
-			var logManager = Application.Ioc.Resolve<LogManager>();
+			var logManager = ZKWeb.Application.Ioc.Resolve<LogManager>();
 			logManager.LogInfo(string.Format(
 				"LogCleaner executed, {0} files removed", count));
 		}
