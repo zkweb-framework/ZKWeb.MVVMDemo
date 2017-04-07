@@ -22,6 +22,7 @@
     <PackageReference Include="Hangfire.AspNetCore" Version="1.6.12" />
     <PackageReference Include="Hangfire.Core" Version="1.6.12" />
     <PackageReference Include="Hangfire.SqlServer" Version="1.6.12" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Server.IISIntegration" Version="1.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="1.1.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="1.0.0-rc3" />

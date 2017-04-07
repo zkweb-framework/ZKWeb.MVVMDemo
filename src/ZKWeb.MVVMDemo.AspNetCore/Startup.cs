@@ -25,7 +25,11 @@ namespace ZKWeb.MVVMDemo.AspNetCore {
 				c.SwaggerEndpoint("/swagger/v1/swagger.json", "ZKWeb MVVM Demo V1");
 			});
 			// 使用Mvc中间件
-			app.UseMvc();
+			app.UseMvc(routes => {
+				routes.MapRoute(
+					name: "default",
+					template: "{controller=Home}/{action=Index}/{id?}");
+			});
 			// 注册IServiceProvider
 			Application.Ioc.RegisterInstance(app.ApplicationServices);
 		}
