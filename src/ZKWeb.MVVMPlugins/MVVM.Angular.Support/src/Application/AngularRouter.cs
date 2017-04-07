@@ -13,6 +13,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Angular.Support.src.Application {
 	/// </summary>
 	[ExportMany]
 	public class AngularRouter : IHttpRequestHandler {
+		protected string _apiPrefix;
 		protected IFileStorage _fileStorage;
 		protected ISet<string> _resourceExtensionSet;
 
@@ -20,6 +21,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Angular.Support.src.Application {
 		/// 初始化
 		/// </summary>
 		public AngularRouter(IFileStorage fileStorage) {
+			_apiPrefix = "/api/";
 			_fileStorage = fileStorage;
 			_resourceExtensionSet = new HashSet<string>() {
 				".js", ".css", ".module", ".jpg", ".png",
@@ -32,8 +34,12 @@ namespace ZKWeb.MVVMPlugins.MVVM.Angular.Support.src.Application {
 		/// </summary>
 		public void OnRequest() {
 			var context = HttpManager.CurrentContext;
-			var path = context.Request.Path.Substring(1);
+			// 不处理api请求
+			if (context.Request.Path.StartsWith(_apiPrefix)) {
+				return;
+			}
 			// 查找对应的文件
+			var path = context.Request.Path.Substring(1);
 			IFileEntry fileEntry = null;
 			if (string.IsNullOrEmpty(path)) {
 				// 请求的是首页

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 
 namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Application.Services.Structs {
 	/// <summary>
@@ -18,14 +19,20 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Application.Services.Structs {
 		/// 属性列表
 		/// </summary>
 		public IEnumerable<Attribute> Attributes { get; set; }
+		/// <summary>
+		/// 实际的参数信息，可能等于null
+		/// </summary>
+		public ParameterInfo ParameterInfo { get; set; }
 
 		/// <summary>
 		/// 初始化
 		/// </summary>
-		public ApplicationServiceApiParameterInfo(Type type, string name, IEnumerable<Attribute> attributes) {
+		public ApplicationServiceApiParameterInfo(
+			Type type, string name, IEnumerable<Attribute> attributes, ParameterInfo parameterInfo) {
 			Type = type;
 			Name = name;
 			Attributes = attributes;
+			ParameterInfo = parameterInfo;
 		}
 	}
 }

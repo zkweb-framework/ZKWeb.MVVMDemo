@@ -88,8 +88,10 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Application.Services.Bases {
 					method.GetParameters().Select(p => new ApplicationServiceApiParameterInfo(
 						p.ParameterType,
 						p.Name,
-						p.GetCustomAttributes(typeof(Attribute), true).OfType<Attribute>())),
-					this.BuildActionDelegate(method));
+						p.GetCustomAttributes(typeof(Attribute), true).OfType<Attribute>(),
+						p)),
+					this.BuildActionDelegate(method),
+					method);
 				yield return info;
 			}
 		}

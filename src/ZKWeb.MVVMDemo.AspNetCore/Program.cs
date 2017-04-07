@@ -20,8 +20,10 @@ namespace ZKWeb.MVVMDemo.AspNetCore {
 				.ConfigureServices(s => {
 					s.AddSingleton<IApiDescriptionGroupCollectionProvider, ZKWebSwaggerApiProvider>();
 					s.AddHangfire(_ => { });
-					s.AddSwaggerGen(c =>
-						c.SwaggerDoc("v1", new Info() { Title = "ZKWeb MVVM Demo", Version = "V1" }));
+					s.AddSwaggerGen(c => {
+						c.DocInclusionPredicate((a, b) => true);
+						c.SwaggerDoc("v1", new Info() { Title = "ZKWeb MVVM Demo", Version = "V1" });
+					});
 				})
 				.UseKestrel()
 				.UseIISIntegration()

@@ -23,6 +23,7 @@
     <Compile Include="MVVM.Angular.Support\src\Application\AngularRouter.cs" />
     <Compile Include="MVVM.Angular.Support\src\Application\AngularScriptGenerator.cs" />
     <Compile Include="MVVM.Common.Base\src\Application\Services\Bases\ApplicationServiceBase.cs" />
+    <Compile Include="MVVM.Common.Base\src\Application\Services\ExampleService.cs" />
     <Compile Include="MVVM.Common.Base\src\Application\Services\Interfaces\IApplicationService.cs" />
     <Compile Include="MVVM.Common.Base\src\Application\Services\Attributes\UnitOfWorkAttribute.cs" />
     <Compile Include="MVVM.Common.Base\src\Application\Services\Structs\ApplicationServiceApiMethodInfo.cs" />
