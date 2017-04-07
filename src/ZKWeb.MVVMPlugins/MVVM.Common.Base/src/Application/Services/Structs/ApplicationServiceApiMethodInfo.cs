@@ -32,10 +32,6 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Application.Services.Structs {
 		/// Api函数主体
 		/// </summary>
 		public Func<IActionResult> Action { get; set; }
-		/// <summary>
-		/// 实际的函数信息，可能等于null
-		/// </summary>
-		public MethodInfo MethodInfo { get; set; }
 
 		/// <summary>
 		/// 初始化
@@ -44,15 +40,13 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Application.Services.Structs {
 			Type returnType, string name, string url,
 			IEnumerable<Attribute> attributes,
 			IEnumerable<ApplicationServiceApiParameterInfo> parameters,
-			Func<IActionResult> action,
-			MethodInfo methodInfo) {
+			Func<IActionResult> action) {
 			ReturnType = returnType;
 			Name = name;
 			Url = url;
 			Attributes = attributes;
 			Parameters = parameters;
 			Action = action;
-			MethodInfo = methodInfo;
 		}
 	}
 }
