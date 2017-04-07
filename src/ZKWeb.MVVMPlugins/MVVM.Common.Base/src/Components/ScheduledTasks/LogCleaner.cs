@@ -17,7 +17,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Components.ScheduledTasks {
 	///		Transaction 30天
 	/// </summary>
 	[ExportMany, SingletonReuse]
-	public class LogCleaner : ScheduledTaskBase {
+	public class LogCleaner : ScheduledTaskBase<LogCleaner> {
 		/// <summary>
 		/// 任务Id
 		/// </summary>
@@ -30,7 +30,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Components.ScheduledTasks {
 		/// <summary>
 		/// 删除过期的日志
 		/// </summary>
-		public override void Execute() {
+		public static void Execute() {
 			var now = DateTime.UtcNow.ToLocalTime();
 			var count = 0;
 			var fileStorage = Application.Ioc.Resolve<IFileStorage>();

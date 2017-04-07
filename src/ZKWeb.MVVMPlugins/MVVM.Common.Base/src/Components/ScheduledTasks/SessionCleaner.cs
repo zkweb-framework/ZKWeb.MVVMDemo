@@ -10,7 +10,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Components.ScheduledTasks {
 	/// 每小时删除一次过期的会话
 	/// </summary>
 	[ExportMany, SingletonReuse]
-	public class SessionCleaner : ScheduledTaskBase {
+	public class SessionCleaner : ScheduledTaskBase<SessionCleaner> {
 		/// <summary>
 		/// 任务Id
 		/// </summary>
@@ -23,7 +23,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Components.ScheduledTasks {
 		/// <summary>
 		/// 删除过期的会话
 		/// </summary>
-		public override void Execute() {
+		public static void Execute() {
 			var sessionManager = Application.Ioc.Resolve<SessionManager>();
 			var count = sessionManager.RemoveExpiredSessions();
 			var logManager = Application.Ioc.Resolve<LogManager>();
