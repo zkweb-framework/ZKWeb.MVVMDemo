@@ -1,155 +1,154 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>netstandard1.6</TargetFramework>
+		<AssemblyName>ZKWeb.MVVMPlugins</AssemblyName>
+		<PackageId>ZKWeb.MVVMPlugins</PackageId>
+		<GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+		<GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+		<GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+		<DisableImplicitFrameworkReferences Condition=" '$(TargetFramework)' == 'net461' ">true</DisableImplicitFrameworkReferences>
+	</PropertyGroup>
 
-  <PropertyGroup>
-    <TargetFrameworks>net461;netstandard1.6</TargetFrameworks>
-    <AssemblyName>ZKWeb.MVVMPlugins</AssemblyName>
-    <PackageId>ZKWeb.MVVMPlugins</PackageId>
-    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
-    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
-    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
-    <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
-  </PropertyGroup>
+	<ItemGroup>
+		<Compile Remove="%2a%2a\**" />
+		<EmbeddedResource Remove="%2a%2a\**" />
+		<None Remove="%2a%2a\**" />
+		<Compile Remove="%2a%2a/%2a.cs" />
+		<EmbeddedResource Remove="%2a%2a/%2a.resx" />
+		<None Remove="%2a%2a/%2a" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Compile Remove="%2a%2a\**" />
-    <EmbeddedResource Remove="%2a%2a\**" />
-    <None Remove="%2a%2a\**" />
-    <Compile Remove="%2a%2a/%2a.cs" />
-    <EmbeddedResource Remove="%2a%2a/%2a.resx" />
-    <None Remove="%2a%2a/%2a" />
-  </ItemGroup>
+	<ItemGroup>
+		<Compile Include="MVVM.Angular.Support\src\Application\AngularRouter.cs" />
+		<Compile Include="MVVM.Angular.Support\src\Application\AngularScriptGenerator.cs" />
+		<Compile Include="MVVM.Common.Base\src\Application\Services\Bases\ApplicationServiceBase.cs" />
+		<Compile Include="MVVM.Common.Base\src\Application\Services\ExampleService.cs" />
+		<Compile Include="MVVM.Common.Base\src\Application\Services\Interfaces\IApplicationService.cs" />
+		<Compile Include="MVVM.Common.Base\src\Application\Services\Attributes\UnitOfWorkAttribute.cs" />
+		<Compile Include="MVVM.Common.Base\src\Application\Services\Structs\ApplicationServiceApiMethodInfo.cs" />
+		<Compile Include="MVVM.Common.Base\src\Application\Services\Structs\ApplicationServiceApiParameterInfo.cs" />
+		<Compile Include="MVVM.Common.Base\src\Application\Swagger\SwaggerApiProvider.cs" />
+		<Compile Include="MVVM.Common.Base\src\Components\CacheIsolationPolicies\CacheIsolateByIdent.cs" />
+		<Compile Include="MVVM.Common.Base\src\Components\DatabaseInitializeHandler\DatabaseInitializeHandler.cs" />
+		<Compile Include="MVVM.Common.Base\src\Components\Exceptions\BadRequestException.cs" />
+		<Compile Include="MVVM.Common.Base\src\Components\Exceptions\ForbiddenException.cs" />
+		<Compile Include="MVVM.Common.Base\src\Components\Exceptions\NotFoundException.cs" />
+		<Compile Include="MVVM.Common.Base\src\Components\GenericConfigs\Attributes\GenericConfigAttribute.cs" />
+		<Compile Include="MVVM.Common.Base\src\Components\GenericConfigs\LocaleSettings.cs" />
+		<Compile Include="MVVM.Common.Base\src\Components\GenericConfigs\WebsiteSettings.cs" />
+		<Compile Include="MVVM.Common.Base\src\Components\ScheduledTasks\Bases\ScheduledTaskBase.cs" />
+		<Compile Include="MVVM.Common.Base\src\Components\ScheduledTasks\LogCleaner.cs" />
+		<Compile Include="MVVM.Common.Base\src\Components\ScheduledTasks\SessionCleaner.cs" />
+		<Compile Include="MVVM.Common.Base\src\Components\SessionIdStore\Interfaces\ISessionIdStore.cs" />
+		<Compile Include="MVVM.Common.Base\src\Components\SessionIdStore\SessionIdCookieStore.cs" />
+		<Compile Include="MVVM.Common.Base\src\Domain\Entities\Extensions\SessionExtensions.cs" />
+		<Compile Include="MVVM.Common.Base\src\Domain\Entities\GenericConfig.cs" />
+		<Compile Include="MVVM.Common.Base\src\Domain\Entities\Interfaces\IHaveCreateTime.cs" />
+		<Compile Include="MVVM.Common.Base\src\Domain\Entities\Interfaces\IHaveDeleted.cs" />
+		<Compile Include="MVVM.Common.Base\src\Domain\Entities\Interfaces\IHaveUpdateTime.cs" />
+		<Compile Include="MVVM.Common.Base\src\Domain\Entities\Session.cs" />
+		<Compile Include="MVVM.Common.Base\src\Domain\Entities\TypeTraits\CreateTimeTypeTrait.cs" />
+		<Compile Include="MVVM.Common.Base\src\Domain\Entities\TypeTraits\DeletedTypeTrait.cs" />
+		<Compile Include="MVVM.Common.Base\src\Domain\Entities\TypeTraits\UpdateTimeTypeTrait.cs" />
+		<Compile Include="MVVM.Common.Base\src\Domain\Filters\CreateTimeFilter.cs" />
+		<Compile Include="MVVM.Common.Base\src\Domain\Filters\DeletedFilter.cs" />
+		<Compile Include="MVVM.Common.Base\src\Domain\Filters\GuidEntityFilter.cs" />
+		<Compile Include="MVVM.Common.Base\src\Domain\Filters\Interfaces\IEntityOperationFilter.cs" />
+		<Compile Include="MVVM.Common.Base\src\Domain\Filters\Interfaces\IEntityQueryFilter.cs" />
+		<Compile Include="MVVM.Common.Base\src\Domain\Filters\UpdateTimeFilter.cs" />
+		<Compile Include="MVVM.Common.Base\src\Domain\Repositories\Bases\RepositoryBase.cs" />
+		<Compile Include="MVVM.Common.Base\src\Domain\Repositories\GenericConfigRepository.cs" />
+		<Compile Include="MVVM.Common.Base\src\Domain\Repositories\Interfaces\IRepository.cs" />
+		<Compile Include="MVVM.Common.Base\src\Domain\Repositories\SessionRepository.cs" />
+		<Compile Include="MVVM.Common.Base\src\Domain\Services\Bases\DomainServiceBase.cs" />
+		<Compile Include="MVVM.Common.Base\src\Domain\Services\GenericConfigManager.cs" />
+		<Compile Include="MVVM.Common.Base\src\Domain\Services\Interfaces\IDomainService.cs" />
+		<Compile Include="MVVM.Common.Base\src\Domain\Services\SessionManager.cs" />
+		<Compile Include="MVVM.Common.Base\src\Domain\Uow\Extensions\IUnitOfWorkExtensions.cs" />
+		<Compile Include="MVVM.Common.Base\src\Domain\Uow\Interfaces\IUnitOfWork.cs" />
+		<Compile Include="MVVM.Common.Base\src\Domain\Uow\UnitOfWork.cs" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Compile Include="MVVM.Angular.Support\src\Application\AngularRouter.cs" />
-    <Compile Include="MVVM.Angular.Support\src\Application\AngularScriptGenerator.cs" />
-    <Compile Include="MVVM.Common.Base\src\Application\Services\Bases\ApplicationServiceBase.cs" />
-    <Compile Include="MVVM.Common.Base\src\Application\Services\ExampleService.cs" />
-    <Compile Include="MVVM.Common.Base\src\Application\Services\Interfaces\IApplicationService.cs" />
-    <Compile Include="MVVM.Common.Base\src\Application\Services\Attributes\UnitOfWorkAttribute.cs" />
-    <Compile Include="MVVM.Common.Base\src\Application\Services\Structs\ApplicationServiceApiMethodInfo.cs" />
-    <Compile Include="MVVM.Common.Base\src\Application\Services\Structs\ApplicationServiceApiParameterInfo.cs" />
-    <Compile Include="MVVM.Common.Base\src\Application\Swagger\SwaggerApiProvider.cs" />
-    <Compile Include="MVVM.Common.Base\src\Components\CacheIsolationPolicies\CacheIsolateByIdent.cs" />
-    <Compile Include="MVVM.Common.Base\src\Components\DatabaseInitializeHandler\DatabaseInitializeHandler.cs" />
-    <Compile Include="MVVM.Common.Base\src\Components\Exceptions\BadRequestException.cs" />
-    <Compile Include="MVVM.Common.Base\src\Components\Exceptions\ForbiddenException.cs" />
-    <Compile Include="MVVM.Common.Base\src\Components\Exceptions\NotFoundException.cs" />
-    <Compile Include="MVVM.Common.Base\src\Components\GenericConfigs\Attributes\GenericConfigAttribute.cs" />
-    <Compile Include="MVVM.Common.Base\src\Components\GenericConfigs\LocaleSettings.cs" />
-    <Compile Include="MVVM.Common.Base\src\Components\GenericConfigs\WebsiteSettings.cs" />
-    <Compile Include="MVVM.Common.Base\src\Components\ScheduledTasks\Bases\ScheduledTaskBase.cs" />
-    <Compile Include="MVVM.Common.Base\src\Components\ScheduledTasks\LogCleaner.cs" />
-    <Compile Include="MVVM.Common.Base\src\Components\ScheduledTasks\SessionCleaner.cs" />
-    <Compile Include="MVVM.Common.Base\src\Components\SessionIdStore\Interfaces\ISessionIdStore.cs" />
-    <Compile Include="MVVM.Common.Base\src\Components\SessionIdStore\SessionIdCookieStore.cs" />
-    <Compile Include="MVVM.Common.Base\src\Domain\Entities\Extensions\SessionExtensions.cs" />
-    <Compile Include="MVVM.Common.Base\src\Domain\Entities\GenericConfig.cs" />
-    <Compile Include="MVVM.Common.Base\src\Domain\Entities\Interfaces\IHaveCreateTime.cs" />
-    <Compile Include="MVVM.Common.Base\src\Domain\Entities\Interfaces\IHaveDeleted.cs" />
-    <Compile Include="MVVM.Common.Base\src\Domain\Entities\Interfaces\IHaveUpdateTime.cs" />
-    <Compile Include="MVVM.Common.Base\src\Domain\Entities\Session.cs" />
-    <Compile Include="MVVM.Common.Base\src\Domain\Entities\TypeTraits\CreateTimeTypeTrait.cs" />
-    <Compile Include="MVVM.Common.Base\src\Domain\Entities\TypeTraits\DeletedTypeTrait.cs" />
-    <Compile Include="MVVM.Common.Base\src\Domain\Entities\TypeTraits\UpdateTimeTypeTrait.cs" />
-    <Compile Include="MVVM.Common.Base\src\Domain\Filters\CreateTimeFilter.cs" />
-    <Compile Include="MVVM.Common.Base\src\Domain\Filters\DeletedFilter.cs" />
-    <Compile Include="MVVM.Common.Base\src\Domain\Filters\GuidEntityFilter.cs" />
-    <Compile Include="MVVM.Common.Base\src\Domain\Filters\Interfaces\IEntityOperationFilter.cs" />
-    <Compile Include="MVVM.Common.Base\src\Domain\Filters\Interfaces\IEntityQueryFilter.cs" />
-    <Compile Include="MVVM.Common.Base\src\Domain\Filters\UpdateTimeFilter.cs" />
-    <Compile Include="MVVM.Common.Base\src\Domain\Repositories\Bases\RepositoryBase.cs" />
-    <Compile Include="MVVM.Common.Base\src\Domain\Repositories\GenericConfigRepository.cs" />
-    <Compile Include="MVVM.Common.Base\src\Domain\Repositories\Interfaces\IRepository.cs" />
-    <Compile Include="MVVM.Common.Base\src\Domain\Repositories\SessionRepository.cs" />
-    <Compile Include="MVVM.Common.Base\src\Domain\Services\Bases\DomainServiceBase.cs" />
-    <Compile Include="MVVM.Common.Base\src\Domain\Services\GenericConfigManager.cs" />
-    <Compile Include="MVVM.Common.Base\src\Domain\Services\Interfaces\IDomainService.cs" />
-    <Compile Include="MVVM.Common.Base\src\Domain\Services\SessionManager.cs" />
-    <Compile Include="MVVM.Common.Base\src\Domain\Uow\Extensions\IUnitOfWorkExtensions.cs" />
-    <Compile Include="MVVM.Common.Base\src\Domain\Uow\Interfaces\IUnitOfWork.cs" />
-    <Compile Include="MVVM.Common.Base\src\Domain\Uow\UnitOfWork.cs" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="AutoMapper" Version="6.0.2" />
+		<PackageReference Include="Hangfire.Core" Version="1.6.12" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="1.0.0-rc3" />
+		<PackageReference Include="ZKWeb" Version="1.7.0" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="6.0.2" />
-    <PackageReference Include="Hangfire.Core" Version="1.6.12" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="1.0.0-rc3" />
-    <PackageReference Include="ZKWeb" Version="1.7.0" />
-  </ItemGroup>
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net461' ">
+		<Reference Include="System" />
+		<Reference Include="Microsoft.CSharp" />
+	</ItemGroup>
 
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net461' ">
-    <Reference Include="System" />
-    <Reference Include="Microsoft.CSharp" />
-  </ItemGroup>
+	<ItemGroup>
+		<None Include="MVVM.Angular.Support\plugin.json" />
+		<None Include="MVVM.Angular.Website\plugin.json" />
+		<None Include="MVVM.Angular.Website\static\.editorconfig" />
+		<None Include="MVVM.Angular.Website\static\.gitignore" />
+		<None Include="MVVM.Angular.Website\static\bs-config.json" />
+		<None Include="MVVM.Angular.Website\static\gulpfile.js" />
+		<None Include="MVVM.Angular.Website\static\package.json" />
+		<None Include="MVVM.Angular.Website\static\src\assets\fonts\fontawesome-webfont.eot" />
+		<None Include="MVVM.Angular.Website\static\src\assets\fonts\fontawesome-webfont.svg" />
+		<None Include="MVVM.Angular.Website\static\src\assets\fonts\fontawesome-webfont.ttf" />
+		<None Include="MVVM.Angular.Website\static\src\assets\fonts\fontawesome-webfont.woff" />
+		<None Include="MVVM.Angular.Website\static\src\assets\fonts\fontawesome-webfont.woff2" />
+		<None Include="MVVM.Angular.Website\static\src\assets\styles\adminLTE\AdminLTE.css" />
+		<None Include="MVVM.Angular.Website\static\src\assets\styles\adminLTE\AdminLTESkin.css" />
+		<None Include="MVVM.Angular.Website\static\src\assets\styles\bootstrap\bootstrap.css" />
+		<None Include="MVVM.Angular.Website\static\src\assets\styles\custom\alert.scss" />
+		<None Include="MVVM.Angular.Website\static\src\assets\styles\custom\button.scss" />
+		<None Include="MVVM.Angular.Website\static\src\assets\styles\custom\form.scss" />
+		<None Include="MVVM.Angular.Website\static\src\assets\styles\custom\index.scss" />
+		<None Include="MVVM.Angular.Website\static\src\assets\styles\custom\menu.scss" />
+		<None Include="MVVM.Angular.Website\static\src\assets\styles\custom\misc.scss" />
+		<None Include="MVVM.Angular.Website\static\src\assets\styles\custom\modal.scss" />
+		<None Include="MVVM.Angular.Website\static\src\assets\styles\custom\nav.scss" />
+		<None Include="MVVM.Angular.Website\static\src\assets\styles\custom\page.scss" />
+		<None Include="MVVM.Angular.Website\static\src\assets\styles\custom\panel.scss" />
+		<None Include="MVVM.Angular.Website\static\src\assets\styles\custom\sidebar.scss" />
+		<None Include="MVVM.Angular.Website\static\src\assets\styles\custom\tab.scss" />
+		<None Include="MVVM.Angular.Website\static\src\assets\styles\custom\table.scss" />
+		<None Include="MVVM.Angular.Website\static\src\assets\styles\custom\text.scss" />
+		<None Include="MVVM.Angular.Website\static\src\assets\styles\custom\toast.scss" />
+		<None Include="MVVM.Angular.Website\static\src\assets\styles\custom\variables.scss" />
+		<None Include="MVVM.Angular.Website\static\src\assets\styles\font-awesome\font-awesome.css" />
+		<None Include="MVVM.Angular.Website\static\src\assets\styles\preloader\preloader.css" />
+		<None Include="MVVM.Angular.Website\static\src\assets\styles\styles.entry.scss" />
+		<None Include="MVVM.Angular.Website\static\src\modules\admin_module\admin.module.ts" />
+		<None Include="MVVM.Angular.Website\static\src\modules\admin_module\components\admin-index.component.ts" />
+		<None Include="MVVM.Angular.Website\static\src\modules\admin_module\components\admin-login.component.ts" />
+		<None Include="MVVM.Angular.Website\static\src\modules\admin_module\components\admin-container.component.ts" />
+		<None Include="MVVM.Angular.Website\static\src\modules\admin_module\images\ajax-loading.gif" />
+		<None Include="MVVM.Angular.Website\static\src\modules\admin_module\images\default-avatar.jpg" />
+		<None Include="MVVM.Angular.Website\static\src\modules\admin_module\images\logo.png" />
+		<None Include="MVVM.Angular.Website\static\src\modules\admin_module\styles\admin-container.entry.scss" />
+		<None Include="MVVM.Angular.Website\static\src\modules\admin_module\views\admin-container.html" />
+		<None Include="MVVM.Angular.Website\static\src\modules\admin_module\views\admin-login.html" />
+		<None Include="MVVM.Angular.Website\static\src\modules\admin_module\views\admin-index.html" />
+		<None Include="MVVM.Angular.Website\static\src\modules\app_module\components\app.component.ts" />
+		<None Include="MVVM.Angular.Website\static\src\modules\app_module\app.module.ts" />
+		<None Include="MVVM.Angular.Website\static\src\assets\images\favicon.ico" />
+		<None Include="MVVM.Angular.Website\static\src\index.html" />
+		<None Include="MVVM.Angular.Website\static\src\modules\app_module\views\app.html" />
+		<None Include="MVVM.Angular.Website\static\src\modules\entry_point\main.ts" />
+		<None Include="MVVM.Angular.Website\static\src\assets\scripts\systemjs-angular-loader.js" />
+		<None Include="MVVM.Angular.Website\static\src\assets\scripts\systemjs.config.extras.js" />
+		<None Include="MVVM.Angular.Website\static\src\assets\scripts\systemjs.config.js" />
+		<None Include="MVVM.Angular.Website\static\src\tsconfig.json" />
+		<None Include="MVVM.Angular.Website\static\tslint.json" />
+		<None Include="MVVM.Common.Admin\plugin.json" />
+		<None Include="MVVM.Common.Base\plugin.json" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <None Include="MVVM.Angular.Support\plugin.json" />
-    <None Include="MVVM.Angular.Website\plugin.json" />
-    <None Include="MVVM.Angular.Website\static\.editorconfig" />
-    <None Include="MVVM.Angular.Website\static\.gitignore" />
-    <None Include="MVVM.Angular.Website\static\bs-config.json" />
-    <None Include="MVVM.Angular.Website\static\gulpfile.js" />
-    <None Include="MVVM.Angular.Website\static\package.json" />
-    <None Include="MVVM.Angular.Website\static\src\assets\fonts\fontawesome-webfont.eot" />
-    <None Include="MVVM.Angular.Website\static\src\assets\fonts\fontawesome-webfont.svg" />
-    <None Include="MVVM.Angular.Website\static\src\assets\fonts\fontawesome-webfont.ttf" />
-    <None Include="MVVM.Angular.Website\static\src\assets\fonts\fontawesome-webfont.woff" />
-    <None Include="MVVM.Angular.Website\static\src\assets\fonts\fontawesome-webfont.woff2" />
-    <None Include="MVVM.Angular.Website\static\src\assets\styles\adminLTE\AdminLTE.css" />
-    <None Include="MVVM.Angular.Website\static\src\assets\styles\adminLTE\AdminLTESkin.css" />
-    <None Include="MVVM.Angular.Website\static\src\assets\styles\bootstrap\bootstrap.css" />
-    <None Include="MVVM.Angular.Website\static\src\assets\styles\custom\alert.scss" />
-    <None Include="MVVM.Angular.Website\static\src\assets\styles\custom\button.scss" />
-    <None Include="MVVM.Angular.Website\static\src\assets\styles\custom\form.scss" />
-    <None Include="MVVM.Angular.Website\static\src\assets\styles\custom\index.scss" />
-    <None Include="MVVM.Angular.Website\static\src\assets\styles\custom\menu.scss" />
-    <None Include="MVVM.Angular.Website\static\src\assets\styles\custom\misc.scss" />
-    <None Include="MVVM.Angular.Website\static\src\assets\styles\custom\modal.scss" />
-    <None Include="MVVM.Angular.Website\static\src\assets\styles\custom\nav.scss" />
-    <None Include="MVVM.Angular.Website\static\src\assets\styles\custom\page.scss" />
-    <None Include="MVVM.Angular.Website\static\src\assets\styles\custom\panel.scss" />
-    <None Include="MVVM.Angular.Website\static\src\assets\styles\custom\sidebar.scss" />
-    <None Include="MVVM.Angular.Website\static\src\assets\styles\custom\tab.scss" />
-    <None Include="MVVM.Angular.Website\static\src\assets\styles\custom\table.scss" />
-    <None Include="MVVM.Angular.Website\static\src\assets\styles\custom\text.scss" />
-    <None Include="MVVM.Angular.Website\static\src\assets\styles\custom\toast.scss" />
-    <None Include="MVVM.Angular.Website\static\src\assets\styles\custom\variables.scss" />
-    <None Include="MVVM.Angular.Website\static\src\assets\styles\font-awesome\font-awesome.css" />
-    <None Include="MVVM.Angular.Website\static\src\assets\styles\preloader\preloader.css" />
-    <None Include="MVVM.Angular.Website\static\src\assets\styles\styles.entry.scss" />
-    <None Include="MVVM.Angular.Website\static\src\modules\admin_module\admin.module.ts" />
-    <None Include="MVVM.Angular.Website\static\src\modules\admin_module\components\admin-index.component.ts" />
-    <None Include="MVVM.Angular.Website\static\src\modules\admin_module\components\admin-login.component.ts" />
-    <None Include="MVVM.Angular.Website\static\src\modules\admin_module\components\admin-container.component.ts" />
-    <None Include="MVVM.Angular.Website\static\src\modules\admin_module\images\ajax-loading.gif" />
-    <None Include="MVVM.Angular.Website\static\src\modules\admin_module\images\default-avatar.jpg" />
-    <None Include="MVVM.Angular.Website\static\src\modules\admin_module\images\logo.png" />
-    <None Include="MVVM.Angular.Website\static\src\modules\admin_module\styles\admin-container.entry.scss" />
-    <None Include="MVVM.Angular.Website\static\src\modules\admin_module\views\admin-container.html" />
-    <None Include="MVVM.Angular.Website\static\src\modules\admin_module\views\admin-login.html" />
-    <None Include="MVVM.Angular.Website\static\src\modules\admin_module\views\admin-index.html" />
-    <None Include="MVVM.Angular.Website\static\src\modules\app_module\components\app.component.ts" />
-    <None Include="MVVM.Angular.Website\static\src\modules\app_module\app.module.ts" />
-    <None Include="MVVM.Angular.Website\static\src\assets\images\favicon.ico" />
-    <None Include="MVVM.Angular.Website\static\src\index.html" />
-    <None Include="MVVM.Angular.Website\static\src\modules\app_module\views\app.html" />
-    <None Include="MVVM.Angular.Website\static\src\modules\entry_point\main.ts" />
-    <None Include="MVVM.Angular.Website\static\src\assets\scripts\systemjs-angular-loader.js" />
-    <None Include="MVVM.Angular.Website\static\src\assets\scripts\systemjs.config.extras.js" />
-    <None Include="MVVM.Angular.Website\static\src\assets\scripts\systemjs.config.js" />
-    <None Include="MVVM.Angular.Website\static\src\tsconfig.json" />
-    <None Include="MVVM.Angular.Website\static\tslint.json" />
-    <None Include="MVVM.Common.Admin\plugin.json" />
-    <None Include="MVVM.Common.Base\plugin.json" />
-  </ItemGroup>
+	<ItemGroup>
+		<Folder Include="MVVM.Common.Base\src\Application\Dtos\" />
+		<Folder Include="MVVM.Common.Base\src\Application\Mappings\" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="MVVM.Common.Base\src\Application\Dtos\" />
-    <Folder Include="MVVM.Common.Base\src\Application\Mappings\" />
-  </ItemGroup>
-  
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard1.6' ">
-    <DefineConstants>$(DefineConstants);NETCORE</DefineConstants>
-  </PropertyGroup>
+	<PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard1.6' ">
+		<DefineConstants>$(DefineConstants);NETCORE</DefineConstants>
+	</PropertyGroup>
 
 </Project>
