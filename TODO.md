@@ -14,6 +14,7 @@
 - 支持自动生成翻译文本的js
 	- 按语言分开文件
 	- 支持在前端配置载入的语言
+- 添加SinalR的支持
 
 - 修复CORE下Hangfire的问题
 	- https://github.com/HangfireIO/Hangfire/pull/486

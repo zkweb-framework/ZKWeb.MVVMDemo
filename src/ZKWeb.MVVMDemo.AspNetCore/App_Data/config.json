@@ -7,7 +7,12 @@
 	],
 	"Plugins": [
 		"MVVM.Common.Base",
-		"MVVM.Common.Admin",
+		"MVVM.Common.ApiExplorer",
+		"MVVM.Common.TaskScheduler",
+		"MVVM.Common.SessionState",
+		"MVVM.Common.MultiTenant",
+		"MVVM.Common.Organization",
+		"MVVM.Common.AdminPanel",
 		"MVVM.Angular.Support",
 		"MVVM.Angular.Website"
 	]
