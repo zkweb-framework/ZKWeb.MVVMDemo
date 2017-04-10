@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFramework>netcoreapp1.1</TargetFramework>
+		<TargetFrameworks>net461;netstandard1.6</TargetFrameworks>
 		<AssemblyName>ZKWeb.MVVMDemo.Console</AssemblyName>
 		<OutputType>Exe</OutputType>
 		<PackageId>ZKWeb.MVVMDemo.Console</PackageId>
