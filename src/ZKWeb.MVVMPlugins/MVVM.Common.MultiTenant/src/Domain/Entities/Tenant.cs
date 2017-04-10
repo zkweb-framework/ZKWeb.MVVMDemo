@@ -20,6 +20,10 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.MultiTenant.src.Domain.Entities {
 		/// </summary>
 		public virtual string Name { get; set; }
 		/// <summary>
+		/// 是否主租户
+		/// </summary>
+		public virtual bool IsMaster { get; set; }
+		/// <summary>
 		/// 创建时间
 		/// </summary>
 		public virtual DateTime CreateTime { get; set; }
@@ -38,7 +42,8 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.MultiTenant.src.Domain.Entities {
 		/// <param name="builder"></param>
 		public void Configure(IEntityMappingBuilder<Tenant> builder) {
 			builder.Id(t => t.Id);
-			builder.Map(t => t.Name, new EntityMappingOptions() { Index = "Idx_Name" });
+			builder.Map(t => t.Name, new EntityMappingOptions() { Unique = true });
+			builder.Map(t => t.IsMaster, new EntityMappingOptions() { Index = "Idx_IsMaster" });
 			builder.Map(t => t.CreateTime);
 			builder.Map(t => t.UpdateTime);
 			builder.Map(t => t.Remark);

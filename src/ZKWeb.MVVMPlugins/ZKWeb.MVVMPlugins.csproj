@@ -21,6 +21,9 @@
 	<ItemGroup>
 		<Compile Include="MVVM.Angular.Support\src\Application\AngularRouter.cs" />
 		<Compile Include="MVVM.Angular.Support\src\Application\AngularScriptGenerator.cs" />
+		<Compile Include="MVVM.Common.MultiTenant\src\Components\TenantProviders\ITenantProvider.cs" />
+		<Compile Include="MVVM.Common.MultiTenant\src\Domain\Repository\TenantRepository.cs" />
+		<Compile Include="MVVM.Common.MultiTenant\src\Domain\Services\TenantManager.cs" />
 		<Compile Include="MVVM.Common.Organization\src\Domain\Entities\Interfaces\IAmAdmin.cs" />
 		<Compile Include="MVVM.Common.Organization\src\Domain\Entities\Interfaces\IAmAnonymouseUser.cs" />
 		<Compile Include="MVVM.Common.Organization\src\Domain\Entities\Interfaces\IAmCooperationPartner.cs" />

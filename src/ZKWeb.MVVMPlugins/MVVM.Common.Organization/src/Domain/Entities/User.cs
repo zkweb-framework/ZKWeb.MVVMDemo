@@ -4,7 +4,8 @@ using ZKWebStandard.Utils;
 using ZKWebStandard.Ioc;
 using ZKWeb.Database;
 using ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Domain.Entities.Interfaces;
-using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Structs;
+using Newtonsoft.Json;
+using ZKWebStandard.Extensions;
 
 namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Entities {
 	/// <summary>
@@ -30,7 +31,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Entities {
 		/// <summary>
 		/// 密码信息，json
 		/// </summary>
-		public virtual PasswordInfo Password { get; set; }
+		public virtual string PasswordJson { get; set; }
 		/// <summary>
 		/// 创建时间
 		/// </summary>
@@ -57,7 +58,6 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Entities {
 		/// 初始化
 		/// </summary>
 		public User() {
-			Items = new UserItems();
 			Roles = new HashSet<UserRole>();
 		}
 
@@ -95,6 +95,24 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Entities {
 		}
 
 		/// <summary>
+		/// 获取密码信息
+		/// </summary>
+		/// <returns></returns>
+		public PasswordInfo GetPasswordInfo() {
+			return string.IsNullOrEmpty(PasswordJson) ?
+				new PasswordInfo() :
+				JsonConvert.DeserializeObject<PasswordInfo>(PasswordJson);
+		}
+
+		/// <summary>
+		/// 设置密码信息
+		/// </summary>
+		/// <param name="passwordInfo"></param>
+		public void SetPasswordInfo(PasswordInfo passwordInfo) {
+			PasswordJson = JsonConvert.SerializeObject(passwordInfo);
+		}
+
+		/// <summary>
 		/// 配置数据库结构
 		/// </summary>
 		public virtual void Configure(IEntityMappingBuilder<User> builder) {
@@ -103,11 +121,11 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Entities {
 			builder.Map(u => u.Username, new EntityMappingOptions() {
 				Unique = true, Length = 255
 			});
-			builder.Map(u => u.Password, new EntityMappingOptions() { WithSerialization = true });
+			builder.Map(u => u.PasswordJson);
 			builder.Map(u => u.CreateTime);
 			builder.Map(u => u.UpdateTime);
 			builder.HasManyToMany(u => u.Roles);
-			builder.Map(u => u.Items, new EntityMappingOptions() { WithSerialization = true });
+			builder.Map(u => u.ItemsJson);
 			builder.Map(u => u.Deleted);
 		}
 	}

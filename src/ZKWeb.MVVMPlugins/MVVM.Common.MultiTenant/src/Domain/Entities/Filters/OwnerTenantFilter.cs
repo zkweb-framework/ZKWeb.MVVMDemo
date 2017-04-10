@@ -6,9 +6,10 @@ using ZKWeb.Localize;
 using ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Components.Exceptions;
 using ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Domain.Filters.Interfaces;
 using ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Domain.Repositories.Interfaces;
+using ZKWeb.MVVMPlugins.MVVM.Common.MultiTenant.src.Domain.Entities;
 using ZKWeb.MVVMPlugins.MVVM.Common.MultiTenant.src.Domain.Entities.Interfaces;
 using ZKWeb.MVVMPlugins.MVVM.Common.MultiTenant.src.Domain.Entities.TypeTraits;
-using ZKWeb.MVVMPlugins.MVVM.Common.SessionState.src.Domain.Services;
+using ZKWeb.MVVMPlugins.MVVM.Common.MultiTenant.src.Domain.Services;
 using ZKWebStandard.Ioc;
 
 namespace ZKWeb.MVVMPlugins.MVVM.Common.MultiTenant.src.Domain.Filters {
@@ -18,21 +19,16 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.MultiTenant.src.Domain.Filters {
 	[ExportMany]
 	public class OwnerTenantFilter : IEntityQueryFilter, IEntityOperationFilter {
 		/// <summary>
-		/// 正在使用的用户Id
+		/// 当前的租户
 		/// </summary>
-		public Guid UsingUserId { get; set; }
-		/// <summary>
-		/// 正在使用的租户Id
-		/// </summary>
-		public Guid UsingTenantId { get; set; }
+		public Tenant UsingTenant { get; set; }
 
 		/// <summary>
 		/// 初始化
 		/// </summary>
 		public OwnerTenantFilter() {
-			var sessionManager = ZKWeb.Application.Ioc.Resolve<SessionManager>();
-			UsingUserId = sessionManager.GetSession().UserId ?? Guid.Empty;
-			UsingTenantId = sessionManager.GetSession().TenantId ?? Guid.Empty;
+			var tenantManager = Application.Ioc.Resolve<TenantManager>();
+			UsingTenant = tenantManager.GetTenant();
 		}
 
 		/// <summary>
@@ -40,20 +36,22 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.MultiTenant.src.Domain.Filters {
 		/// </summary>
 		IQueryable<TEntity> IEntityQueryFilter.FilterQuery<TEntity, TPrimaryKey>(
 			IQueryable<TEntity> query) {
-			if (OwnerTenantTypeTrait<TEntity>.HaveOwnerTenant) {
-				// 用户已登录, 且是租户时, 按租户过滤
-				// 用户未登录, 且是租户时, 按租户过滤
-				// 用户已登录，且是房东时, 不过滤
-				// 用户未登录, 且无租户时, 不返回任何数据
-				if (UsingUserId == Guid.Empty && UsingTenantId == Guid.Empty) {
-					query = query.Take(0);
-				} else if (UsingTenantId != Guid.Empty) {
-					query = query.Where(e =>
-						((IHaveOwnerTenant)e).OwnerTenant != null &&
-						((IHaveOwnerTenant)e).OwnerTenant.Id == UsingTenantId);
-				}
+			if (!OwnerTenantTypeTrait<TEntity>.HaveOwnerTenant) {
+				return query;
 			}
-			return query;
+			// 主租户不过滤数据
+			if (UsingTenant != null && UsingTenant.IsMaster) {
+				return query;
+			}
+			// 按租户过滤数据
+			if (UsingTenant == null) {
+				return query.Where(e =>
+					((IHaveOwnerTenant)e).OwnerTenant == null);
+			} else {
+				return query.Where(e =>
+				   ((IHaveOwnerTenant)e).OwnerTenant != null &&
+				   ((IHaveOwnerTenant)e).OwnerTenant.Id == UsingTenant.Id);
+			}
 		}
 
 		/// <summary>
@@ -61,26 +59,36 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.MultiTenant.src.Domain.Filters {
 		/// </summary>
 		Expression<Func<TEntity, bool>> IEntityQueryFilter.FilterPredicate<TEntity, TPrimaryKey>(
 			Expression<Func<TEntity, bool>> predicate) {
-			if (OwnerTenantTypeTrait<TEntity>.HaveOwnerTenant) {
-				// 用户已登录, 且是租户时, 按租户过滤
-				// 用户未登录, 且是租户时, 按租户过滤
-				// 用户已登录，且是房东时, 不过滤
-				// 用户未登录, 且无租户时, 不返回任何数据
-				if (UsingUserId == Guid.Empty && UsingTenantId == Guid.Empty) {
-					predicate = _ => false;
-				} else if (UsingTenantId != Guid.Empty) {
-					var paramExpr = predicate.Parameters[0];
-					var ownerTanantExpr = Expression.Property(
-						paramExpr, nameof(IHaveOwnerTenant.OwnerTenant));
-					var ownerTanantIdExpr = Expression.Property(
-						ownerTanantExpr, nameof(IEntity<Guid>.Id));
-					var body = Expression.AndAlso(
-						predicate.Body,
-						Expression.AndAlso(
-							Expression.NotEqual(ownerTanantExpr, Expression.Constant(null)),
-							Expression.Equal(ownerTanantIdExpr, Expression.Constant(UsingTenantId))));
-					predicate = Expression.Lambda<Func<TEntity, bool>>(body, paramExpr);
-				}
+			if (!OwnerTenantTypeTrait<TEntity>.HaveOwnerTenant) {
+				return predicate;
+			}
+			// 主租户不过滤数据
+			if (UsingTenant != null && UsingTenant.IsMaster) {
+				return predicate;
+			}
+			// 按租户过滤数据
+			if (UsingTenant == null) {
+				var paramExpr = predicate.Parameters[0];
+				var ownerTanantExpr = Expression.Property(
+					paramExpr, nameof(IHaveOwnerTenant.OwnerTenant));
+				var ownerTanantIdExpr = Expression.Property(
+					ownerTanantExpr, nameof(IEntity<Guid>.Id));
+				var body = Expression.AndAlso(
+					predicate.Body,
+					Expression.Equal(ownerTanantExpr, Expression.Constant(null)));
+				predicate = Expression.Lambda<Func<TEntity, bool>>(body, paramExpr);
+			} else {
+				var paramExpr = predicate.Parameters[0];
+				var ownerTanantExpr = Expression.Property(
+					paramExpr, nameof(IHaveOwnerTenant.OwnerTenant));
+				var ownerTanantIdExpr = Expression.Property(
+					ownerTanantExpr, nameof(IEntity<Guid>.Id));
+				var body = Expression.AndAlso(
+					predicate.Body,
+					Expression.AndAlso(
+						Expression.NotEqual(ownerTanantExpr, Expression.Constant(null)),
+						Expression.Equal(ownerTanantIdExpr, Expression.Constant(UsingTenant.Id))));
+				predicate = Expression.Lambda<Func<TEntity, bool>>(body, paramExpr);
 			}
 			return predicate;
 		}
@@ -92,38 +100,21 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.MultiTenant.src.Domain.Filters {
 			if (!OwnerTenantTypeTrait<TEntity>.HaveOwnerTenant) {
 				return;
 			}
-			// 用户已登录, 且是租户时, 检查并设置数据的租户
-			// 用户未登录, 且是租户时, 检查并设置数据的租户
-			// 用户已登录，且是房东时, 不检查且不修改数据的租户
-			// 用户未登录, 且无租户时, 不允许保存数据
 			var e = ((IHaveOwnerTenant)entity);
-			bool allowSave;
-			if (UsingUserId == Guid.Empty && UsingTenantId == Guid.Empty) {
-				allowSave = false;
-			} else if (UsingTenantId != Guid.Empty) {
-				if (e.OwnerTenant == null) {
-					// 设置数据所属租户
-					var repository = ZKWeb.Application.Ioc.Resolve<IRepository<Tenant, Guid>>();
-					var tenant = repository.Get(u => u.Id == UsingTenantId);
-					if (tenant == null) {
-						throw new BadRequestException(new T("Set entity owner tenant failed, tenant not found"));
-					}
-					e.OwnerTenant = tenant;
-					allowSave = true;
-				} else if (e.OwnerTenant.Id == UsingTenantId) {
-					// 检查数据所属租户
-					allowSave = true;
-				} else {
-					allowSave = false;
+			if (e.OwnerTenant == null) {
+				// 设置数据的租户
+				if (UsingTenant != null) {
+					var repository = Application.Ioc.Resolve<IRepository<Tenant, Guid>>();
+					e.OwnerTenant = repository.Get(u => u.Id == UsingTenant.Id);
 				}
 			} else {
-				allowSave = true;
-			}
-			// 检查失败时抛出错误
-			if (!allowSave) {
-				throw new ForbiddenException(
+				// 检查数据的租户是否一致，主租户不要求一致
+				if (UsingTenant == null ||
+					(!UsingTenant.IsMaster && UsingTenant.Id != e.OwnerTenant.Id)) {
+					throw new ForbiddenException(
 					new T("Action require the tennat ownership of {0}: {1}",
 					new T(typeof(TEntity).Name), entity.Id));
+				}
 			}
 		}
 
@@ -134,27 +125,15 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.MultiTenant.src.Domain.Filters {
 			if (!OwnerTenantTypeTrait<TEntity>.HaveOwnerTenant) {
 				return;
 			}
-			// 用户已登录, 且是租户时, 检查数据的租户
-			// 用户未登录, 且是租户时, 检查数据的租户
-			// 用户已登录，且是房东时, 不检查数据的租户
-			// 用户未登录, 且无租户时, 不允许删除数据
 			var e = ((IHaveOwnerTenant)entity);
-			bool allowDelete;
-			if (UsingUserId == Guid.Empty && UsingTenantId == Guid.Empty) {
-				allowSave = false;
-			} else if (UsingTenantId != Guid.Empty) {
-				if (e.OwnerTenant == null) {
+			if (e.OwnerTenant != null) {
+				// 检查数据的租户是否一致，主租户不要求一致
+				if (UsingTenant == null ||
+					(!UsingTenant.IsMaster && UsingTenant.Id != e.OwnerTenant.Id)) {
+					throw new ForbiddenException(
+						new T("Action require the tennat ownership of {0}: {1}",
+						new T(typeof(TEntity).Name), entity.Id));
 				}
-			}
-
-			if ((e.OwnerTenant == null && UsingTenantId != Guid.Empty) ||
-		(e.OwnerTenant != null && UsingTenantId != Guid.Empty &&
-		e.OwnerTenant.Id != UsingTenantId)) {
-				// 其他租户删除主租户的数据
-				// 或者非主租户删除其他租户的数据
-				throw new ForbiddenException(
-					new T("Action require the tennat ownership of {0}: {1}",
-					new T(typeof(TEntity).Name), entity.Id));
 			}
 		}
 	}

@@ -3,6 +3,9 @@ using System;
 using System.Collections.Concurrent;
 using System.Reflection;
 using ZKWeb.Cache;
+using ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Domain.Services.Bases;
+using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Components.GenericConfigs.Attributes;
+using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Entities;
 using ZKWebStandard.Collections;
 using ZKWebStandard.Extensions;
 using ZKWebStandard.Ioc;
@@ -58,7 +61,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Services {
 			using (uow.Scope()) {
 				uow.Context.BeginTransaction();
 				var config = Get(key);
-				config = config ?? new GenericConfig() { Id = key };
+				config = config ?? new GenericConfig() { Key = key };
 				Save(ref config, c => c.Value = JsonConvert.SerializeObject(value));
 				uow.Context.FinishTransaction();
 			}

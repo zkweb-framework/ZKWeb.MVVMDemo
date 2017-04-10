@@ -41,7 +41,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Domain.Repositories.Interfaces 
 		/// </summary>
 		/// <param name="entity">实体</param>
 		/// <param name="update">更新函数</param>
-		void Save(ref TEntity entity, Action<TEntity> update);
+		void Save(ref TEntity entity, Action<TEntity> update = null);
 
 		/// <summary>
 		/// 删除实体

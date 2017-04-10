@@ -1,4 +1,6 @@
-﻿namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Components.GenericConfigs {
+﻿using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Components.GenericConfigs.Attributes;
+
+namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Components.GenericConfigs {
 	/// <summary>
 	/// 网站设置
 	/// </summary>
