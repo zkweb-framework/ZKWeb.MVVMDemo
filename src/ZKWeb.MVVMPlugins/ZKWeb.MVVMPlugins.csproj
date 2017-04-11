@@ -19,6 +19,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<None Include="MVVM.Angular.Website\static\src\modules\generated_module\**\*.ts" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<Compile Include="MVVM.Angular.Support\src\Application\AngularRouter.cs" />
 		<Compile Include="MVVM.Angular.Support\src\Application\AngularScriptGenerator.cs" />
 		<Compile Include="MVVM.Angular.Support\src\Components\ScriptGenerator\DtoScriptGenerator.cs" />

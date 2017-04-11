@@ -29,6 +29,10 @@ namespace ZKWeb.MVVMPlugins.MVVM.Angular.Support.src.Application {
 		/// 保存应用服务脚本的文件夹名称
 		/// </summary>
 		protected string ServicesDirectoryName { get; set; }
+		/// <summary>
+		/// 生成模块的文件名
+		/// </summary>
+		protected string GeneratedModuleFilename { get; set; }
 
 		/// <summary>
 		/// 初始化
@@ -46,6 +50,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Angular.Support.src.Application {
 				"static", "src", "modules", "generated_module");
 			DtosDirectoryName = "dtos";
 			ServicesDirectoryName = "services";
+			GeneratedModuleFilename = "generated.module.ts";
 		}
 
 		/// <summary>
@@ -104,12 +109,14 @@ namespace ZKWeb.MVVMPlugins.MVVM.Angular.Support.src.Application {
 		/// <summary>
 		/// 根据之前生成的脚本生成模块脚本，并写入到文件
 		/// </summary>
-		/// <param name="dtos"></param>
-		/// <param name="applicationServices"></param>
 		protected virtual void GenerateModuleScript(
 			ISet<Type> dtos,
 			ISet<IApplicationService> applicationServices) {
-
+			var script = "";
+			var path = PathUtils.SecureCombine(
+				GenerateModuleDirectory, GeneratedModuleFilename);
+			PathUtils.EnsureParentDirectory(path);
+			File.WriteAllText(path, script);
 		}
 
 		/// <summary>
