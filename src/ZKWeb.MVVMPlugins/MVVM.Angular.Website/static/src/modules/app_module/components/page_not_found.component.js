@@ -6,16 +6,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 var core_1 = require("@angular/core");
-var AdminContainerComponent = (function () {
-    function AdminContainerComponent() {
+var PageNotFoundComponent = (function () {
+    function PageNotFoundComponent() {
     }
-    return AdminContainerComponent;
+    return PageNotFoundComponent;
 }());
-AdminContainerComponent = __decorate([
+PageNotFoundComponent = __decorate([
     core_1.Component({
-        selector: 'admin-container',
-        templateUrl: 'modules/admin_module/views/admin-container.html',
-        styleUrls: ['modules/admin_module/styles/admin-container.css']
+        selector: 'page-not-found',
+        templateUrl: 'modules/app_module/views/page_not_found.html',
+        styleUrls: ['modules/app_module/styles/page_not_found.css']
     })
-], AdminContainerComponent);
-exports.AdminContainerComponent = AdminContainerComponent;
+], PageNotFoundComponent);
+exports.PageNotFoundComponent = PageNotFoundComponent;

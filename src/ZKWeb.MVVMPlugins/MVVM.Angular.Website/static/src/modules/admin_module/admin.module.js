@@ -25,7 +25,7 @@ AdminModule = __decorate([
     core_1.NgModule({
         imports: [
             platform_browser_1.BrowserModule,
-            router_1.RouterModule.forRoot(routes)
+            router_1.RouterModule.forChild(routes)
         ],
         declarations: [
             admin_container_component_1.AdminContainerComponent,

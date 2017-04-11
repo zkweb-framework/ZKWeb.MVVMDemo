@@ -15,7 +15,7 @@ const routes: Routes = [
 @NgModule({
 	imports: [
 		BrowserModule,
-		RouterModule.forRoot(routes)
+		RouterModule.forChild(routes)
 	],
 	declarations: [
 		AdminContainerComponent,

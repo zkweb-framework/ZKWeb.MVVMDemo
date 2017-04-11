@@ -1,4 +1,6 @@
-﻿/* 表格载入中样式 */
+﻿@import "variables.scss";
+
+/* 表格载入中样式 */
 .ajax-table.loading {
 	background: #FFF url('../common.base.images/ajax-loading.gif') no-repeat scroll center center;
 	min-height: 300px;

@@ -6,16 +6,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 var core_1 = require("@angular/core");
-var AdminContainerComponent = (function () {
-    function AdminContainerComponent() {
+var AppComponent = (function () {
+    function AppComponent() {
     }
-    return AdminContainerComponent;
+    return AppComponent;
 }());
-AdminContainerComponent = __decorate([
+AppComponent = __decorate([
     core_1.Component({
-        selector: 'admin-container',
-        templateUrl: 'modules/admin_module/views/admin-container.html',
-        styleUrls: ['modules/admin_module/styles/admin-container.css']
+        selector: 'my-app',
+        templateUrl: 'modules/app_module/views/app.html'
     })
-], AdminContainerComponent);
-exports.AdminContainerComponent = AdminContainerComponent;
+], AppComponent);
+exports.AppComponent = AppComponent;

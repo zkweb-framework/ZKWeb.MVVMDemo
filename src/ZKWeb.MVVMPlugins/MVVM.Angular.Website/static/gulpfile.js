@@ -1,4 +1,4 @@
-var gulp = require('gulp');
+﻿var gulp = require('gulp');
 var ts = require('gulp-typescript');
 var sass = require('gulp-sass');
 
@@ -10,7 +10,7 @@ gulp.task("scripts", function() {
 });
 
 gulp.task("styles", function() {
-	return gulp.src('src/**/*.entry.scss')
+	return gulp.src('src/**/*.scss')
 		.pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
 		.pipe(gulp.dest('src'));
 });

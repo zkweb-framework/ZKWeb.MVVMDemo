@@ -1,4 +1,6 @@
-﻿/* 下拉菜单样式 */
+﻿@import "variables.scss";
+
+/* 下拉菜单样式 */
 .dropdown-menu {
 	font-size: $font-size-normal;
 	/* 菜单项高度 */

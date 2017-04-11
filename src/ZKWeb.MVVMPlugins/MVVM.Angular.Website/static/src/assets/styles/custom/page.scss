@@ -1,4 +1,6 @@
-﻿/* 设置html和body的高度等于100%*/
+﻿@import "variables.scss";
+
+/* 设置html和body的高度等于100%*/
 html, body {
 	font-size: $font-size-normal;
 	height: 100%;
