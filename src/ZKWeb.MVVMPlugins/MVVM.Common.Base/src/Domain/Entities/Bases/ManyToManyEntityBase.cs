@@ -30,14 +30,16 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Domain.Entities.Bases {
 
 		/// <summary>
 		/// 配置数据库结构
+		/// EF指定不支持多对多的级联删除(may cause cycles or multiple cascade paths)
+		/// 有需要请手动删除数据
 		/// </summary>
 		/// <param name="builder"></param>
 		public void Configure(IEntityMappingBuilder<TSelf> builder) {
 			builder.Id(e => e.Id);
 			builder.References(e => e.From,
-				new EntityMappingOptions() { Nullable = false });
+				new EntityMappingOptions() { Nullable = false, CascadeDelete = false });
 			builder.References(e => e.To,
-				new EntityMappingOptions() { Nullable = false });
+				new EntityMappingOptions() { Nullable = false, CascadeDelete = false });
 		}
 	}
 }

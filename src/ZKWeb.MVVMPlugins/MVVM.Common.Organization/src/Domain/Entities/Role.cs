@@ -97,7 +97,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Entities {
 			builder.Id(r => r.Id);
 			builder.Map(r => r.Name);
 			builder.Map(r => r.PrivilegesJson);
-			builder.Map(r => r.OwnerTenant, new EntityMappingOptions() { Nullable = false });
+			builder.References(r => r.OwnerTenant, new EntityMappingOptions() { Nullable = false });
 			builder.Map(r => r.CreateTime);
 			builder.Map(r => r.UpdateTime);
 			builder.Map(r => r.Remark);

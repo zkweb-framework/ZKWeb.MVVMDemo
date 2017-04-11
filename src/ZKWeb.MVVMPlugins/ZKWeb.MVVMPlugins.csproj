@@ -23,7 +23,7 @@
 		<Compile Include="MVVM.Angular.Support\src\Application\AngularScriptGenerator.cs" />
 		<Compile Include="MVVM.Common.Base\src\Components\Translates\Bases\DictionaryTranslationProviderBase.cs" />
 		<Compile Include="MVVM.Common.Base\src\Domain\Repositories\Bases\ManyToManyRepositoryBase.cs" />
-		<Compile Include="MVVM.Common.MultiTenant\src\Components\CacheIsolationPolicies\CacheIsolateByTenant.cs" />
+		<Compile Include="MVVM.Common.SessionState\src\Components\CacheIsolationPolicies\CacheIsolateByTenant.cs" />
 		<Compile Include="MVVM.Common.MultiTenant\src\Components\TenantProviders\ITenantProvider.cs" />
 		<Compile Include="MVVM.Common.MultiTenant\src\Domain\Repository\TenantRepository.cs" />
 		<Compile Include="MVVM.Common.MultiTenant\src\Domain\Services\TenantManager.cs" />
@@ -67,7 +67,7 @@
 		<Compile Include="MVVM.Common.Base\src\Application\Services\Structs\ApplicationServiceApiMethodInfo.cs" />
 		<Compile Include="MVVM.Common.Base\src\Application\Services\Structs\ApplicationServiceApiParameterInfo.cs" />
 		<Compile Include="MVVM.Common.ApiExplorer\src\Components\Swagger\SwaggerApiProvider.cs" />
-		<Compile Include="MVVM.Common.Organization\src\Components\CacheIsolationPolicies\CacheIsolateByIdent.cs" />
+		<Compile Include="MVVM.Common.SessionState\src\Components\CacheIsolationPolicies\CacheIsolateByIdent.cs" />
 		<Compile Include="MVVM.Common.Base\src\Components\DatabaseInitializeHandler\DatabaseInitializeHandler.cs" />
 		<Compile Include="MVVM.Common.Base\src\Components\Exceptions\BadRequestException.cs" />
 		<Compile Include="MVVM.Common.Base\src\Components\Exceptions\ForbiddenException.cs" />

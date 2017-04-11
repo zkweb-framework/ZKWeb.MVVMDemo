@@ -2,7 +2,7 @@
 using ZKWeb.MVVMPlugins.MVVM.Common.SessionState.src.Domain.Services;
 using ZKWebStandard.Ioc;
 
-namespace ZKWeb.MVVMPlugins.MVVM.Common.MultiTenant.src.Components.CacheIsolationPolicies {
+namespace ZKWeb.MVVMPlugins.MVVM.Common.SessionState.src.Components.CacheIsolationPolicies {
 	/// <summary>
 	/// 按当前租户隔离缓存
 	/// </summary>
