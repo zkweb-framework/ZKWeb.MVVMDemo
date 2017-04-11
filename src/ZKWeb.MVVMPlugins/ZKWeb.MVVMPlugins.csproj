@@ -21,6 +21,8 @@
 	<ItemGroup>
 		<Compile Include="MVVM.Angular.Support\src\Application\AngularRouter.cs" />
 		<Compile Include="MVVM.Angular.Support\src\Application\AngularScriptGenerator.cs" />
+		<Compile Include="MVVM.Angular.Support\src\Components\ScriptGenerator\DtoScriptGenerator.cs" />
+		<Compile Include="MVVM.Angular.Support\src\Components\ScriptGenerator\ServiceScriptGenerator.cs" />
 		<Compile Include="MVVM.Common.Base\src\Components\Translates\Bases\DictionaryTranslationProviderBase.cs" />
 		<Compile Include="MVVM.Common.Base\src\Domain\Repositories\Bases\ManyToManyRepositoryBase.cs" />
 		<Compile Include="MVVM.Common.SessionState\src\Components\CacheIsolationPolicies\CacheIsolateByTenant.cs" />
@@ -164,12 +166,14 @@
 		<None Include="MVVM.Angular.Website\static\src\assets\styles\preloader\preloader.css" />
 		<None Include="MVVM.Angular.Website\static\src\assets\styles\styles.scss" />
 		<None Include="MVVM.Angular.Website\static\src\modules\admin_module\admin.module.ts" />
+		<None Include="MVVM.Angular.Website\static\src\modules\admin_module\auth\admin-auth-guard.ts" />
 		<None Include="MVVM.Angular.Website\static\src\modules\admin_module\components\admin-index.component.ts" />
 		<None Include="MVVM.Angular.Website\static\src\modules\admin_module\components\admin-login.component.ts" />
 		<None Include="MVVM.Angular.Website\static\src\modules\admin_module\components\admin-container.component.ts" />
 		<None Include="MVVM.Angular.Website\static\src\modules\admin_module\images\ajax-loading.gif" />
 		<None Include="MVVM.Angular.Website\static\src\modules\admin_module\images\default-avatar.jpg" />
 		<None Include="MVVM.Angular.Website\static\src\modules\admin_module\images\logo.png" />
+		<None Include="MVVM.Angular.Website\static\src\modules\admin_module\services\admin-auth-service.ts" />
 		<None Include="MVVM.Angular.Website\static\src\modules\admin_module\styles\admin-container.scss" />
 		<None Include="MVVM.Angular.Website\static\src\modules\admin_module\styles\admin-login.scss" />
 		<None Include="MVVM.Angular.Website\static\src\modules\admin_module\views\admin-container.html" />
@@ -180,6 +184,8 @@
 		<None Include="MVVM.Angular.Website\static\src\modules\app_module\app.module.ts" />
 		<None Include="MVVM.Angular.Website\static\src\assets\images\favicon.ico" />
 		<None Include="MVVM.Angular.Website\static\src\index.html" />
+		<None Include="MVVM.Angular.Website\static\src\modules\app_module\services\app-config-service.ts" />
+		<None Include="MVVM.Angular.Website\static\src\modules\app_module\services\app-error-handle-service.ts" />
 		<None Include="MVVM.Angular.Website\static\src\modules\app_module\styles\page_not_found.scss" />
 		<None Include="MVVM.Angular.Website\static\src\modules\app_module\views\app.html" />
 		<None Include="MVVM.Angular.Website\static\src\modules\app_module\views\page_not_found.html" />

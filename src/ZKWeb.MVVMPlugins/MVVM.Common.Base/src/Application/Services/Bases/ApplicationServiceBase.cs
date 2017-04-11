@@ -17,7 +17,9 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Application.Services.Bases {
 	/// 并且公有函数会对应一个Api地址，格式是"/api/类名/函数名"
 	/// </summary>
 	public class ApplicationServiceBase :
-		IController, IApplicationService, IWebsiteStartHandler {
+		IController,
+		IApplicationService,
+		IWebsiteStartHandler {
 		/// <summary>
 		/// 当前的Http上下文
 		/// </summary>
@@ -38,34 +40,6 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Application.Services.Bases {
 		/// 基础地址
 		/// </summary>
 		protected virtual string UrlBase => $"/api/{GetType().Name}";
-
-		/// <summary>
-		/// 包装Api函数
-		/// </summary>
-		protected virtual Func<IActionResult> WrapApiMethod(
-			ApplicationServiceApiMethodInfo methodInfo) {
-			var attribute = methodInfo.Attributes
-				.OfType<UnitOfWorkAttribute>().FirstOrDefault() ?? new UnitOfWorkAttribute();
-			if (attribute.IsDisabled) {
-				// 不使用工作单元
-				return methodInfo.Action;
-			}
-			return new Func<IActionResult>(() => {
-				var uow = UnitOfWork;
-				// 使用工作单元
-				using (uow.Scope()) {
-					// 并且使用事务
-					if (attribute.IsTransactional) {
-						uow.Context.BeginTransaction(attribute.IsolationLevel);
-					}
-					var result = methodInfo.Action();
-					if (attribute.IsTransactional) {
-						uow.Context.FinishTransaction();
-					}
-					return result;
-				}
-			});
-		}
 
 		/// <summary>
 		/// 获取Api函数列表
@@ -111,7 +85,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Application.Services.Bases {
 			var controllerManager = ZKWeb.Application.Ioc.Resolve<ControllerManager>();
 			foreach (var methodInfo in GetApiMethods()) {
 				var url = methodInfo.Url;
-				var action = WrapApiMethod(methodInfo);
+				var action = methodInfo.Action;
 				controllerManager.RegisterAction(url, HttpMethods.POST, action);
 			}
 		}

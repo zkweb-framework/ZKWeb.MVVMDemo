@@ -11,9 +11,10 @@ var router_1 = require("@angular/router");
 var admin_container_component_1 = require("./components/admin-container.component");
 var admin_index_component_1 = require("./components/admin-index.component");
 var admin_login_component_1 = require("./components/admin-login.component");
+var admin_auth_guard_1 = require("./auth/admin-auth-guard");
 var routes = [
     { path: '', redirectTo: '/admin', pathMatch: 'full' },
-    { path: 'admin', component: admin_index_component_1.AdminIndexComponent },
+    { path: 'admin', component: admin_index_component_1.AdminIndexComponent, canActivate: [admin_auth_guard_1.AdminAuthGuard] },
     { path: 'admin/login', component: admin_login_component_1.AdminLoginComponent }
 ];
 var AdminModule = (function () {
@@ -31,6 +32,9 @@ AdminModule = __decorate([
             admin_container_component_1.AdminContainerComponent,
             admin_index_component_1.AdminIndexComponent,
             admin_login_component_1.AdminLoginComponent
+        ],
+        providers: [
+            admin_auth_guard_1.AdminAuthGuard
         ],
         exports: [
             router_1.RouterModule

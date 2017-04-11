@@ -6,9 +6,11 @@ import { AdminContainerComponent } from './components/admin-container.component'
 import { AdminIndexComponent } from './components/admin-index.component';
 import { AdminLoginComponent } from './components/admin-login.component';
 
+import { AdminAuthGuard } from './auth/admin-auth-guard';
+
 const routes: Routes = [
 	{ path: '', redirectTo: '/admin', pathMatch: 'full' },
-	{ path: 'admin', component: AdminIndexComponent },
+	{ path: 'admin', component: AdminIndexComponent, canActivate: [AdminAuthGuard] },
 	{ path: 'admin/login', component: AdminLoginComponent }
 ];
 
@@ -21,6 +23,9 @@ const routes: Routes = [
 		AdminContainerComponent,
 		AdminIndexComponent,
 		AdminLoginComponent
+	],
+	providers: [
+		AdminAuthGuard
 	],
 	exports: [
 		RouterModule

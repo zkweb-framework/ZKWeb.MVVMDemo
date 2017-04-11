@@ -14,11 +14,11 @@ namespace ZKWeb.MVVMDemo.AspNetCore {
 		/// <param name="app"></param>
 		protected override void ConfigureMiddlewares(IApplicationBuilder app) {
 			// 使用Hangfire中间件
-			var configManager = Application.Ioc.Resolve<WebsiteConfigManager>();
-			var config = configManager.WebsiteConfig.ConnectionString;
-			GlobalConfiguration.Configuration.UseSqlServerStorage(config);
-			app.UseHangfireDashboard();
-			app.UseHangfireServer();
+			// var configManager = Application.Ioc.Resolve<WebsiteConfigManager>();
+			// var config = configManager.WebsiteConfig.ConnectionString;
+			// GlobalConfiguration.Configuration.UseSqlServerStorage(config);
+			// app.UseHangfireDashboard();
+			// app.UseHangfireServer();
 			// 使用Swagger中间件
 			app.UseSwagger();
 			app.UseSwaggerUI(c => {

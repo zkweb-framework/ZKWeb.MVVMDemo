@@ -24,7 +24,7 @@ namespace ZKWeb.MVVMDemo.AspNetCore {
 						// 添加Mvc组件
 						s.AddMvcCore().AddApiExplorer();
 						// 添加Hangfire组件
-						s.AddHangfire(_ => { });
+						// s.AddHangfire(_ => { });
 						// 添加Swgger组件，使用自定义的Api列表提供器
 						s.Replace(new ServiceDescriptor(
 							typeof(IApiDescriptionGroupCollectionProvider),
