@@ -16,7 +16,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Services {
 	/// </summary>
 	[ExportMany, SingletonReuse]
 	public class GenericConfigManager :
-		DomainServiceBase<GenericConfig, string>, ICacheCleaner {
+		DomainServiceBase<GenericConfig, Guid>, ICacheCleaner {
 		/// <summary>
 		/// 配置属性的缓存
 		/// </summary>
@@ -30,7 +30,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Services {
 		/// 初始化
 		/// </summary>
 		public GenericConfigManager() {
-			var cacheFactory = ZKWeb.Application.Ioc.Resolve<ICacheFactory>();
+			var cacheFactory = Application.Ioc.Resolve<ICacheFactory>();
 			AttributeCache = new ConcurrentDictionary<Type, GenericConfigAttribute>();
 			ConfigValueCache = cacheFactory.CreateCache<Type, object>();
 		}
@@ -57,12 +57,13 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Services {
 			var attribute = GetConfigAttribute<T>();
 			var key = attribute.Key;
 			// 保存到数据库
+			var json = JsonConvert.SerializeObject(value);
 			var uow = UnitOfWork;
 			using (uow.Scope()) {
 				uow.Context.BeginTransaction();
-				var config = Get(key);
+				var config = Repository.Get(c => c.Key == key);
 				config = config ?? new GenericConfig() { Key = key };
-				Save(ref config, c => c.Value = JsonConvert.SerializeObject(value));
+				Repository.Save(ref config, c => c.Value = json);
 				uow.Context.FinishTransaction();
 			}
 			// 保存到缓存
@@ -84,7 +85,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Services {
 			// 从数据库获取
 			var attribute = GetConfigAttribute<T>();
 			var key = attribute.Key;
-			var config = Get(key);
+			var config = Get(c => c.Key == key);
 			if (config != null) {
 				value = JsonConvert.DeserializeObject<T>(config.Value);
 			}
@@ -105,7 +106,9 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Services {
 			// 从缓存删除
 			ConfigValueCache.Remove(typeof(T));
 			// 从数据库删除
-			Delete(key);
+			using (UnitOfWork.Scope()) {
+				Repository.BatchDelete(c => c.Key == key);
+			}
 		}
 
 		/// <summary>

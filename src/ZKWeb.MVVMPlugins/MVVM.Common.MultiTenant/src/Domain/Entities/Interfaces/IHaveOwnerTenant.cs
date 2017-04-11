@@ -1,4 +1,5 @@
-﻿using ZKWeb.Database;
+﻿using System;
+using ZKWeb.Database;
 
 namespace ZKWeb.MVVMPlugins.MVVM.Common.MultiTenant.src.Domain.Entities.Interfaces {
 	/// <summary>
@@ -9,5 +10,9 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.MultiTenant.src.Domain.Entities.Interfac
 		/// 所属的租户
 		/// </summary>
 		Tenant OwnerTenant { get; set; }
+		/// <summary>
+		/// 所属的租户Id
+		/// </summary>
+		Guid OwnerTenantId { get; set; }
 	}
 }

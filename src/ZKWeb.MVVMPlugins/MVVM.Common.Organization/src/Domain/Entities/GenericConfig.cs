@@ -1,6 +1,8 @@
 ﻿using System;
 using ZKWeb.Database;
 using ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Domain.Entities.Interfaces;
+using ZKWeb.MVVMPlugins.MVVM.Common.MultiTenant.src.Domain.Entities;
+using ZKWeb.MVVMPlugins.MVVM.Common.MultiTenant.src.Domain.Entities.Interfaces;
 using ZKWebStandard.Ioc;
 
 namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Entities {
@@ -30,6 +32,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Entities {
 		/// 所属的租户
 		/// </summary>
 		public virtual Tenant OwnerTenant { get; set; }
+		public virtual Guid OwnerTenantId { get; set; }
 		/// <summary>
 		/// 创建时间
 		/// </summary>
@@ -46,7 +49,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Entities {
 			builder.Id(c => c.Id);
 			builder.Map(c => c.Key);
 			builder.Map(c => c.Value);
-			builder.References(c => c.OwnerTenant);
+			builder.References(c => c.OwnerTenant, new EntityMappingOptions() { Nullable = false });
 			builder.Map(c => c.CreateTime);
 			builder.Map(c => c.UpdateTime);
 		}

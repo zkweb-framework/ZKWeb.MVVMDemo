@@ -1,4 +1,6 @@
-﻿using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Entities;
+﻿using System;
+using ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Domain.Repositories.Bases;
+using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Entities;
 using ZKWebStandard.Ioc;
 
 namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Repositories {
@@ -6,5 +8,5 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Repositories {
 	/// 通用配置的仓储
 	/// </summary>
 	[ExportMany, SingletonReuse]
-	public class GenericConfigRepository : RepositoryBase<GenericConfig, string> { }
+	public class GenericConfigRepository : RepositoryBase<GenericConfig, Guid> { }
 }

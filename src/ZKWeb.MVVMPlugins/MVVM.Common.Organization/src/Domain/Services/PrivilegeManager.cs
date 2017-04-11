@@ -5,6 +5,7 @@ using System.Reflection;
 using ZKWeb.Localize;
 using ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Components.Exceptions;
 using ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Domain.Services.Bases;
+using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Entities;
 using ZKWeb.Web;
 using ZKWebStandard.Extensions;
 using ZKWebStandard.Ioc;

@@ -2,16 +2,22 @@
 using System.Collections.Generic;
 using ZKWeb.Database;
 using ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Domain.Entities.Interfaces;
+using ZKWeb.MVVMPlugins.MVVM.Common.MultiTenant.src.Domain.Entities;
+using ZKWeb.MVVMPlugins.MVVM.Common.MultiTenant.src.Domain.Entities.Interfaces;
 using ZKWebStandard.Ioc;
 
 namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Entities {
 	/// <summary>
-	/// 用户角色
+	/// 角色
 	/// </summary>
 	[ExportMany]
-	public class UserRole :
-		IEntity<Guid>, IHaveCreateTime, IHaveUpdateTime, IHaveDeleted,
-		IEntityMappingProvider<UserRole> {
+	public class Role :
+		IEntity<Guid>,
+		IHaveCreateTime,
+		IHaveUpdateTime,
+		IHaveDeleted,
+		IHaveOwnerTenant,
+		IEntityMappingProvider<Role> {
 		/// <summary>
 		/// 角色Id
 		/// </summary>
@@ -23,7 +29,12 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Entities {
 		/// <summary>
 		/// 权限列表
 		/// </summary>
-		public virtual HashSet<string> Privileges { get; set; }
+		public virtual string PrivilegesJson { get; set; }
+		/// <summary>
+		/// 所属的租户
+		/// </summary>
+		public virtual Tenant OwnerTenant { get; set; }
+		public virtual Guid OwnerTenantId { get; set; }
 		/// <summary>
 		/// 创建时间
 		/// </summary>
@@ -40,12 +51,16 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Entities {
 		/// 是否已删除
 		/// </summary>
 		public virtual bool Deleted { get; set; }
+		/// <summary>
+		/// 关联的用户
+		/// </summary>
+		public virtual IList<UserToRole> Users { get; set; }
 
 		/// <summary>
 		/// 初始化
 		/// </summary>
-		public UserRole() {
-			Privileges = new HashSet<string>();
+		public Role() {
+			Users = new List<UserToRole>();
 		}
 
 		/// <summary>
@@ -59,14 +74,16 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Entities {
 		/// <summary>
 		/// 配置数据库结构
 		/// </summary>
-		public virtual void Configure(IEntityMappingBuilder<UserRole> builder) {
+		public virtual void Configure(IEntityMappingBuilder<Role> builder) {
 			builder.Id(r => r.Id);
 			builder.Map(r => r.Name);
-			builder.Map(r => r.Privileges, new EntityMappingOptions() { WithSerialization = true });
+			builder.Map(r => r.PrivilegesJson);
+			builder.Map(r => r.OwnerTenant, new EntityMappingOptions() { Nullable = false });
 			builder.Map(r => r.CreateTime);
 			builder.Map(r => r.UpdateTime);
 			builder.Map(r => r.Remark);
 			builder.Map(r => r.Deleted);
+			builder.HasMany(r => r.Users);
 		}
 	}
 }

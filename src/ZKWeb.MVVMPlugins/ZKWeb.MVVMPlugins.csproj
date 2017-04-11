@@ -21,12 +21,13 @@
 	<ItemGroup>
 		<Compile Include="MVVM.Angular.Support\src\Application\AngularRouter.cs" />
 		<Compile Include="MVVM.Angular.Support\src\Application\AngularScriptGenerator.cs" />
+		<Compile Include="MVVM.Common.Base\src\Components\Translates\Bases\DictionaryTranslationProviderBase.cs" />
 		<Compile Include="MVVM.Common.MultiTenant\src\Components\TenantProviders\ITenantProvider.cs" />
 		<Compile Include="MVVM.Common.MultiTenant\src\Domain\Repository\TenantRepository.cs" />
 		<Compile Include="MVVM.Common.MultiTenant\src\Domain\Services\TenantManager.cs" />
+		<Compile Include="MVVM.Common.Organization\src\Components\Translates\zh_CN.cs" />
 		<Compile Include="MVVM.Common.Organization\src\Domain\Entities\Interfaces\IAmAdmin.cs" />
 		<Compile Include="MVVM.Common.Organization\src\Domain\Entities\Interfaces\IAmAnonymouseUser.cs" />
-		<Compile Include="MVVM.Common.Organization\src\Domain\Entities\Interfaces\IAmCooperationPartner.cs" />
 		<Compile Include="MVVM.Common.Organization\src\Domain\Entities\Interfaces\IAmSuperAdmin.cs" />
 		<Compile Include="MVVM.Common.Organization\src\Domain\Entities\Interfaces\IAmUser.cs" />
 		<Compile Include="MVVM.Common.Organization\src\Domain\Entities\Interfaces\ICanUseAdminPanel.cs" />
@@ -34,14 +35,15 @@
 		<Compile Include="MVVM.Common.Organization\src\Domain\Entities\Interfaces\IUserType.cs" />
 		<Compile Include="MVVM.Common.Organization\src\Domain\Entities\TypeTraits\OwnerTypeTrait.cs" />
 		<Compile Include="MVVM.Common.Organization\src\Domain\Entities\User.cs" />
-		<Compile Include="MVVM.Common.Organization\src\Domain\Entities\UserRole.cs" />
+		<Compile Include="MVVM.Common.Organization\src\Domain\Entities\Role.cs" />
+		<Compile Include="MVVM.Common.Organization\src\Domain\Entities\UserToRole.cs" />
 		<Compile Include="MVVM.Common.Organization\src\Domain\Entities\UserTypes\AdminUserType.cs" />
 		<Compile Include="MVVM.Common.Organization\src\Domain\Entities\UserTypes\AnonymouseUserType.cs" />
-		<Compile Include="MVVM.Common.Organization\src\Domain\Entities\UserTypes\CooperationPartner.cs" />
 		<Compile Include="MVVM.Common.Organization\src\Domain\Entities\UserTypes\NormalUserType.cs" />
 		<Compile Include="MVVM.Common.Organization\src\Domain\Entities\UserTypes\SuperAdminUserType.cs" />
 		<Compile Include="MVVM.Common.Organization\src\Domain\Extensions\SessionExtensions.cs" />
 		<Compile Include="MVVM.Common.Organization\src\Domain\Extensions\UserExtensions.cs" />
+		<Compile Include="MVVM.Common.Organization\src\Domain\Filters\OwnerFilter.cs" />
 		<Compile Include="MVVM.Common.Organization\src\Domain\Repositories\UserRepository.cs" />
 		<Compile Include="MVVM.Common.Organization\src\Domain\Repositories\UserRoleRepository.cs" />
 		<Compile Include="MVVM.Common.Organization\src\Domain\Services\AdminManager.cs" />
@@ -64,6 +66,7 @@
 		<Compile Include="MVVM.Common.Organization\src\Components\GenericConfigs\Attributes\GenericConfigAttribute.cs" />
 		<Compile Include="MVVM.Common.Organization\src\Components\GenericConfigs\LocaleSettings.cs" />
 		<Compile Include="MVVM.Common.Organization\src\Components\GenericConfigs\WebsiteSettings.cs" />
+		<Compile Include="MVVM.Common.Organization\src\Plugin.cs" />
 		<Compile Include="MVVM.Common.TaskScheduler\src\Components\ScheduledTasks\Bases\ScheduledTaskBase.cs" />
 		<Compile Include="MVVM.Common.TaskScheduler\src\Components\ScheduledTasks\LogCleaner.cs" />
 		<Compile Include="MVVM.Common.SessionState\src\Components\ScheduledTasks\SessionCleaner.cs" />
@@ -107,6 +110,7 @@
 		<PackageReference Include="Hangfire.Core" Version="1.6.12" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="1.0.0-rc3" />
 		<PackageReference Include="ZKWeb" Version="1.7.0" />
+		<PackageReference Include="ZKWeb.ORM.EFCore" Version="1.7.0" />
 	</ItemGroup>
 
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net461' ">

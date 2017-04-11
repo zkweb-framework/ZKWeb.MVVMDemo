@@ -6,6 +6,8 @@ using ZKWeb.Database;
 using ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Domain.Entities.Interfaces;
 using Newtonsoft.Json;
 using ZKWebStandard.Extensions;
+using ZKWeb.MVVMPlugins.MVVM.Common.MultiTenant.src.Domain.Entities.Interfaces;
+using ZKWeb.MVVMPlugins.MVVM.Common.MultiTenant.src.Domain.Entities;
 
 namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Entities {
 	/// <summary>
@@ -14,7 +16,10 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Entities {
 	[ExportMany]
 	public class User :
 		IEntity<Guid>,
-		IHaveCreateTime, IHaveUpdateTime, IHaveDeleted,
+		IHaveCreateTime,
+		IHaveUpdateTime,
+		IHaveDeleted,
+		IHaveOwnerTenant,
 		IEntityMappingProvider<User> {
 		/// <summary>
 		/// 用户Id
@@ -33,6 +38,11 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Entities {
 		/// </summary>
 		public virtual string PasswordJson { get; set; }
 		/// <summary>
+		/// 所属的租户
+		/// </summary>
+		public virtual Tenant OwnerTenant { get; set; }
+		public virtual Guid OwnerTenantId { get; set; }
+		/// <summary>
 		/// 创建时间
 		/// </summary>
 		public virtual DateTime CreateTime { get; set; }
@@ -50,15 +60,15 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Entities {
 		/// </summary>
 		public virtual bool Deleted { get; set; }
 		/// <summary>
-		/// 关联的用户角色
+		/// 关联的角色
 		/// </summary>
-		public virtual ISet<UserRole> Roles { get; set; }
+		public virtual IList<UserToRole> Roles { get; set; }
 
 		/// <summary>
 		/// 初始化
 		/// </summary>
 		public User() {
-			Roles = new HashSet<UserRole>();
+			Roles = new List<UserToRole>();
 		}
 
 		/// <summary>
@@ -119,14 +129,16 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Entities {
 			builder.Id(u => u.Id);
 			builder.Map(u => u.Type, new EntityMappingOptions() { Index = "Idx_Type" });
 			builder.Map(u => u.Username, new EntityMappingOptions() {
-				Unique = true, Length = 255
+				Unique = true,
+				Length = 255
 			});
 			builder.Map(u => u.PasswordJson);
+			builder.References(u => u.OwnerTenant, new EntityMappingOptions() { Nullable = false });
 			builder.Map(u => u.CreateTime);
 			builder.Map(u => u.UpdateTime);
-			builder.HasManyToMany(u => u.Roles);
 			builder.Map(u => u.ItemsJson);
 			builder.Map(u => u.Deleted);
+			builder.HasMany(r => r.Roles);
 		}
 	}
 }

@@ -16,17 +16,18 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Extensions {
 			if (string.IsNullOrEmpty(password)) {
 				throw new ArgumentNullException("password");
 			}
-			user.Password = PasswordInfo.FromPassword(password);
+			user.SetPasswordInfo(PasswordInfo.FromPassword(password));
 		}
 
 		/// <summary>
 		/// 检查密码
 		/// </summary>
 		public static bool CheckPassword(this User user, string password) {
-			if (user.Password == null || string.IsNullOrEmpty(password)) {
+			var passwordInfo = user.GetPasswordInfo();
+			if (string.IsNullOrEmpty(passwordInfo.Hash)) {
 				return false;
 			}
-			return user.Password.Check(password);
+			return passwordInfo.Check(password);
 		}
 
 		/// <summary>
