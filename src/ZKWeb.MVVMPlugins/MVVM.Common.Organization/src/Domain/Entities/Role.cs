@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using ZKWeb.Database;
 using ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Domain.Entities.Interfaces;
@@ -69,6 +70,24 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Entities {
 		/// <returns></returns>
 		public override string ToString() {
 			return Name;
+		}
+
+		/// <summary>
+		/// 获取权限列表
+		/// </summary>
+		/// <returns></returns>
+		public IList<string> GetPrivileges() {
+			return string.IsNullOrEmpty(PrivilegesJson) ?
+				new List<string>() :
+				JsonConvert.DeserializeObject<IList<string>>(PrivilegesJson);
+		}
+
+		/// <summary>
+		/// 设置权限列表
+		/// </summary>
+		/// <param name="privileges">权限列表</param>
+		public void SetPrivileges(IList<string> privileges) {
+			PrivilegesJson = JsonConvert.SerializeObject(privileges);
 		}
 
 		/// <summary>

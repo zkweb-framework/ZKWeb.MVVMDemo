@@ -5,7 +5,13 @@ using System.Linq;
 using ZKWeb.Localize;
 using ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Components.Exceptions;
 using ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Domain.Services.Bases;
+using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Components.ExtraConfigKeys;
+using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Components.UserLoginHandlers.Interfaces;
 using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Entities;
+using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Entities.UserTypes;
+using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Extensions;
+using ZKWeb.MVVMPlugins.MVVM.Common.SessionState.src.Domain.Extensions;
+using ZKWeb.MVVMPlugins.MVVM.Common.SessionState.src.Domain.Services;
 using ZKWeb.Server;
 using ZKWeb.Storage;
 using ZKWebStandard.Extensions;
@@ -50,11 +56,11 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Services {
 			var configManager = Application.Ioc.Resolve<WebsiteConfigManager>();
 			var extra = configManager.WebsiteConfig.Extra;
 			SessionExpireDaysWithRememebrLogin = TimeSpan.FromDays(
-				extra.GetOrDefault(AdminExtraConfigKeys.SessionExpireDaysWithRememebrLogin, 30));
+				extra.GetOrDefault(OrganizationExtraConfigKeys.SessionExpireDaysWithRememebrLogin, 30));
 			SessionExpireDaysWithoutRememberLogin = TimeSpan.FromDays(
-				extra.GetOrDefault(AdminExtraConfigKeys.SessionExpireDaysWithoutRememberLogin, 1));
-			AvatarWidth = extra.GetOrDefault(AdminExtraConfigKeys.AvatarWidth, 150);
-			AvatarHeight = extra.GetOrDefault(AdminExtraConfigKeys.AvatarHeight, 150);
+				extra.GetOrDefault(OrganizationExtraConfigKeys.SessionExpireDaysWithoutRememberLogin, 1));
+			AvatarWidth = extra.GetOrDefault(OrganizationExtraConfigKeys.AvatarWidth, 150);
+			AvatarHeight = extra.GetOrDefault(OrganizationExtraConfigKeys.AvatarHeight, 150);
 			AvatarImageQuality = 90;
 		}
 
@@ -123,10 +129,13 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Services {
 			sessionManager.RemoveSession(false);
 			var session = sessionManager.GetSession();
 			session.ReGenerateId();
-			session.ReleatedId = user.Id;
+			session.UserId = user.Id;
+			session.TenantId = user.OwnerTenantId;
 			session.RememberLogin = rememberLogin;
-			session.SetExpiresAtLeast(session.RememberLogin ?
-				SessionExpireDaysWithRememebrLogin : SessionExpireDaysWithoutRememberLogin);
+			session.SetExpiresAtLeast(
+				session.RememberLogin ?
+				SessionExpireDaysWithRememebrLogin :
+				SessionExpireDaysWithoutRememberLogin);
 			sessionManager.SaveSession();
 			// 登陆后的处理
 			handlers.ForEach(c => c.AfterLogin(user));
@@ -141,23 +150,6 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Services {
 		}
 
 		/// <summary>
-		/// 获取登录后应该跳转到的url
-		/// </summary>
-		/// <returns></returns>
-		public virtual string GetUrlRedirectAfterLogin() {
-			var request = HttpManager.CurrentContext.Request;
-			var referer = request.GetReferer();
-			// 来源于同一站点时，跳转到来源页面
-			if (referer != null && referer.Authority == request.Host &&
-				!referer.AbsolutePath.Contains("/logout") &&
-				!referer.AbsolutePath.Contains("/login")) {
-				return referer.PathAndQuery;
-			}
-			// 默认跳转到首页
-			return BaseFilters.Url("/");
-		}
-
-		/// <summary>
 		/// 获取用户头像的网页图片路径，不存在时返回默认图片路径
 		/// </summary>
 		/// <param name="userId">用户Id</param>
@@ -165,9 +157,9 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Services {
 		public virtual string GetAvatarWebPath(Guid userId) {
 			if (!GetAvatarStorageFile(userId).Exists) {
 				// 没有自定义头像时使用默认头像
-				return "/static/common.admin.images/default-avatar.jpg";
+				return "/static/mvvm.common.organization.images/default-avatar.jpg";
 			}
-			return string.Format("/static/common.admin.images/avatar_{0}.jpg", userId);
+			return string.Format("/static/mvvm.common.organization.images/avatar_{0}.jpg", userId);
 		}
 
 		/// <summary>
@@ -178,7 +170,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Services {
 		public virtual IFileEntry GetAvatarStorageFile(Guid userId) {
 			var fileStorage = Application.Ioc.Resolve<IFileStorage>();
 			return fileStorage.GetStorageFile(
-				"static", "common.admin.images", string.Format("avatar_{0}.jpg", userId));
+				"static", "mvvm.common.organization.images", string.Format("avatar_{0}.jpg", userId));
 		}
 
 		/// <summary>

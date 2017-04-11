@@ -117,7 +117,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Entities {
 		/// <summary>
 		/// 设置密码信息
 		/// </summary>
-		/// <param name="passwordInfo"></param>
+		/// <param name="passwordInfo">密码信息</param>
 		public void SetPasswordInfo(PasswordInfo passwordInfo) {
 			PasswordJson = JsonConvert.SerializeObject(passwordInfo);
 		}

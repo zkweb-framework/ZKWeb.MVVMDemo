@@ -80,6 +80,13 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Application.Services.Bases {
 					continue;
 				if (method.ReturnType == typeof(void))
 					continue;
+				// 创建函数委托
+				// 如果函数未标记[UnitOfWork]则手动包装该函数
+				var action = this.BuildActionDelegate(method);
+				if (method.GetCustomAttribute<UnitOfWorkAttribute>() == null) {
+					action = new UnitOfWorkAttribute().Filter(action);
+				}
+				// 返回函数信息
 				var info = new ApplicationServiceApiMethodInfo(
 					method.ReturnType,
 					method.Name,
@@ -89,7 +96,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Application.Services.Bases {
 						p.ParameterType,
 						p.Name,
 						p.GetCustomAttributes(typeof(Attribute), true).OfType<Attribute>())),
-					this.BuildActionDelegate(method));
+					action);
 				yield return info;
 			}
 		}

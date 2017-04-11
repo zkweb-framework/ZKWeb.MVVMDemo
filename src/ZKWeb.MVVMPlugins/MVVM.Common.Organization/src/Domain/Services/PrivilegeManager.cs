@@ -5,9 +5,12 @@ using System.Reflection;
 using ZKWeb.Localize;
 using ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Components.Exceptions;
 using ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Domain.Services.Bases;
+using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Components.PrivilegeTranslators.Interfaces;
 using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Entities;
-using ZKWeb.Web;
-using ZKWebStandard.Extensions;
+using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Entities.Interfaces;
+using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Extensions;
+using ZKWeb.MVVMPlugins.MVVM.Common.SessionState.src.Domain.Services;
+using ZKWeb.Plugins.MVVM.Common.Organization.src.Components.PrivilegeProviders.Interfaces;
 using ZKWebStandard.Ioc;
 using ZKWebStandard.Web;
 
@@ -29,7 +32,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Services {
 
 		/// <summary>
 		/// 检查当前的用户类型是否继承了指定的类型，且是否拥有指定的权限
-		/// 如果用户类型不匹配且当前请求是get则跳转到登陆页面，否则抛出403错误
+		/// 如果用户类型不匹配或无指定的权限时抛出403错误	
 		/// </summary>
 		/// <param name="userType">用户类型，例如typeof(IAmAdmin)</param>
 		/// <param name="privileges">要求的权限列表</param>
@@ -38,14 +41,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Services {
 			var user = sessionManager.GetSession().GetUser();
 			var userTypeMatched = HasUserType(user, userType);
 			var context = HttpManager.CurrentContext;
-			if (context.Request.Method == HttpMethods.GET && (user == null || !userTypeMatched)) {
-				// 要求管理员时跳转到后台登陆页面，否则跳转到前台登陆页面
-				if (typeof(ICanUseAdminPanel).GetTypeInfo().IsAssignableFrom(userType)) {
-					context.Response.RedirectByScript(BaseFilters.Url("/admin/login"));
-				} else {
-					context.Response.RedirectByScript(BaseFilters.Url("/user/login"));
-				}
-			} else if (userTypeMatched && HasPrivileges(user, privileges)) {
+			if (userTypeMatched && HasPrivileges(user, privileges)) {
 				// 检查通过
 			} else if (privileges != null && privileges.Length > 0) {
 				// 无权限403
@@ -84,8 +80,10 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Services {
 				return true;
 			}
 			if (privileges != null && privileges.Length > 0) {
+				var containsPrivileges = new HashSet<string>(
+					user.Roles.SelectMany(r => r.To.GetPrivileges()));
 				foreach (var privilege in privileges) {
-					if (!user.Roles.Any(r => r.Privileges.Contains(privilege))) {
+					if (!containsPrivileges.Contains(privilege)) {
 						// 未包含指定的所有权限
 						return false;
 					}
