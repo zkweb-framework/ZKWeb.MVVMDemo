@@ -16,9 +16,9 @@
 
 /* 登陆框大小 */
 .login-box {
-  width: 480px;
+  width: 450px;
   padding: 0px;
-  margin: 0px;
+  margin: -80px 0px 0px 0px;
 }
 
 @media (max-width: 480px) {
@@ -32,7 +32,8 @@
 .login-box form {
   .form-actions .btn[type="submit"] {
     // width: 70px;
-    width: 83.33333333%;
+    margin-left: 0px;
+    width: 100%;
   }
 
   .rememberLogin {
