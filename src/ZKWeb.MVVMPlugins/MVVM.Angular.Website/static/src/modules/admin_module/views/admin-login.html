@@ -1,3 +1,53 @@
-﻿<div>
-  admin login
+﻿<div class="login-box-container">
+  <div class="login-box">
+    <div class="login-logo"><a><img src="/modules/admin_module/images/logo.png" alt="logo"></a></div>
+    <div class="login-box-body">
+      <h3 class="login-box-msg">管理员登陆</h3>
+      <p class="text-danger"></p>
+      <form name="AdminLoginForm" action="/admin/login" method="POST" role="form" ajax="true" class="form-horizontal" novalidate="novalidate">
+        <div class="form-group">
+          <label class="control-label">
+            用户名
+            <em>*</em>
+          </label>
+          <div class="form-controls">
+            <input name="Username" class="form-control" value="" placeholder="请填写用户名" data-val="true" data-val-required="请填写用户名" type="text">
+            <span class="field-validation-valid" data-valmsg-for="Username" data-valmsg-replace="true"></span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label">
+            密码
+            <em>*</em>
+          </label>
+          <div class="form-controls">
+            <input name="Password" class="form-control" value="" placeholder="请填写密码" data-val="true" data-val-required="请填写密码" type="password">
+            <span class="field-validation-valid" data-valmsg-for="Password" data-valmsg-replace="true"></span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label">
+            验证码
+            <em>*</em>
+          </label>
+          <div class="form-controls">
+            <div class="input-group" require-script="/static/common.captcha.js/captcha.min.js">
+              <input name="Captcha" class="form-control" value="" placeholder="请填写验证码" data-val="true" data-val-required="请填写验证码" type="text">
+              <span class="input-group-addon">
+                <img alt="验证码" class="captcha" src="/captcha?key=Common.Admin.AdminLogin" title="点击更换验证码图片">
+              </span>
+            </div>
+            <span class="field-validation-valid" data-valmsg-for="Captcha" data-valmsg-replace="true"></span>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button class="btn btn-submit" type="submit">登陆</button>
+        </div>
+      </form>
+      <div class="login-hint">
+        <p>默认管理员账号: admin, 密码: 123456, 登录后请尽快修改密码</p>
+      </div>
+    </div>
+  </div>
 </div>
