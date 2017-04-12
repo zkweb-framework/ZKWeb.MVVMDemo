@@ -7,7 +7,7 @@ import { TestParam } from '../dtos/test-param';
 @Injectable()
 // 示例服务
 export class ExampleService {
-	constructor(private appApiService: AppApiService) {}
+	constructor(private appApiService: AppApiService) { }
 
 	// 获取对象
 	GetObject(x: number): Observable<any> {
@@ -26,5 +26,4 @@ export class ExampleService {
 				param
 			});
 	}
-
 }

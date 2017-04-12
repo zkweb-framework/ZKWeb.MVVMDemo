@@ -35,9 +35,10 @@ namespace ZKWeb.MVVMPlugins.MVVM.Angular.Support.src.Components.ScriptGenerator 
 			classBuilder.AppendLine("@Injectable()");
 			classBuilder.AppendLine($"// {classDescription}");
 			classBuilder.AppendLine($"export class {className} {{");
-			classBuilder.AppendLine("	constructor(private appApiService: AppApiService) {}");
+			classBuilder.AppendLine("	constructor(private appApiService: AppApiService) { }");
 			classBuilder.AppendLine();
-			foreach (var method in service.GetApiMethods()) {
+			var methods = service.GetApiMethods().ToList();
+			foreach (var method in methods) {
 				// 获取方法信息
 				var newDiscoveredTypes = new List<Type>();
 				var methodName = method.Name;
@@ -83,7 +84,9 @@ namespace ZKWeb.MVVMPlugins.MVVM.Angular.Support.src.Components.ScriptGenerator 
 				}
 				classBuilder.AppendLine($"			}});");
 				classBuilder.AppendLine($"	}}");
-				classBuilder.AppendLine();
+				if (method != methods.Last()) {
+					classBuilder.AppendLine();
+				}
 			}
 			classBuilder.AppendLine("}");
 			includeBuilder.AppendLine();

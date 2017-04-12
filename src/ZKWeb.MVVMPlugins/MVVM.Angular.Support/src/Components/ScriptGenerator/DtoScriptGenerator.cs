@@ -98,7 +98,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Angular.Support.src.Components.ScriptGenerator 
 				foreach (var newDiscoveredType in newDiscoveredTypes) {
 					if (!includedTypes.Contains(newDiscoveredType)) {
 						var importName = newDiscoveredType.Name;
-						var importFile = pathConfig.NormalizeFilename(newDiscoveredType.Name);
+						var importFile = pathConfig.NormalizeFilename(importName);
 						includeBuilder.AppendLine($"import {{ {importName} }} from './{importFile}';");
 						includedTypes.Add(newDiscoveredType);
 						discoveredTypes.Add(newDiscoveredType);
