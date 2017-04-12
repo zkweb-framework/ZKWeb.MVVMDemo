@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { AppApiService } from '../../app_module/services/app-api-service';
+import { AppApiService } from '../../base_module/services/app-api-service';
 import { TestDto } from '../dtos/test-dto';
 import { TestParam } from '../dtos/test-param';
 

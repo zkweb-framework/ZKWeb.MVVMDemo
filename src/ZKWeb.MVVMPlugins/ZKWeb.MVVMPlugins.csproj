@@ -194,9 +194,11 @@
 		<None Include="MVVM.Angular.Website\static\src\modules\app_module\app.module.ts" />
 		<None Include="MVVM.Angular.Website\static\src\assets\images\favicon.ico" />
 		<None Include="MVVM.Angular.Website\static\src\index.html" />
-		<None Include="MVVM.Angular.Website\static\src\modules\app_module\services\app-api-service.ts" />
-		<None Include="MVVM.Angular.Website\static\src\modules\app_module\services\app-config-service.ts" />
-		<None Include="MVVM.Angular.Website\static\src\modules\app_module\services\app-translation-service.ts" />
+		<None Include="MVVM.Angular.Website\static\src\modules\base_module\base.module.ts" />
+		<None Include="MVVM.Angular.Website\static\src\modules\base_module\pipes\trans-pipe.ts" />
+		<None Include="MVVM.Angular.Website\static\src\modules\base_module\services\app-api-service.ts" />
+		<None Include="MVVM.Angular.Website\static\src\modules\base_module\services\app-config-service.ts" />
+		<None Include="MVVM.Angular.Website\static\src\modules\base_module\services\app-translation-service.ts" />
 		<None Include="MVVM.Angular.Website\static\src\modules\app_module\styles\page_not_found.scss" />
 		<None Include="MVVM.Angular.Website\static\src\modules\app_module\views\app.html" />
 		<None Include="MVVM.Angular.Website\static\src\modules\app_module\views\page_not_found.html" />
@@ -214,6 +216,10 @@
 		<None Include="MVVM.Common.Organization\static\mvvm.common.organization.images\default-avatar.jpg" />
 		<None Include="MVVM.Common.SessionState\plugin.json" />
 		<None Include="MVVM.Common.TaskScheduler\plugin.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="MVVM.Angular.Website\static\src\modules\pipes_module\" />
 	</ItemGroup>
 
 	<PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard1.6' ">

@@ -182,6 +182,7 @@ export class Translation_zh_CN {
 		"UserIndexPage": "用户中心页",
 		"AdminSidebarAppMenu": "后台侧边栏程序菜单",
 		"EnterAdminPanel": "进入后台",
-		"UserLoginInfo": "登录信息"
+		"UserLoginInfo": "登录信息",
+		"Default admin account is admin, password is 123456, please change it after login immediately": "默认管理员账号: admin, 密码: 123456, 登录后请尽快修改密码"
 	};
 }

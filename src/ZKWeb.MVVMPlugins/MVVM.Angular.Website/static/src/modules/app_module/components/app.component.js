@@ -9,12 +9,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var app_translation_service_1 = require("../services/app-translation-service");
+var app_translation_service_1 = require("../../base_module/services/app-translation-service");
 var AppComponent = (function () {
     function AppComponent(injector) {
         this.injector = injector;
     }
     AppComponent.prototype.ngOnInit = function () {
+        // TODO: 删除这里的测试代码
         var a = this.injector.get(app_translation_service_1.AppTranslationService);
         console.log(a.translate("Index"));
     };

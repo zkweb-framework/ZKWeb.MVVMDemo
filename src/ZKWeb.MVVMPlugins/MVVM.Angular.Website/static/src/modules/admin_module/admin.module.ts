@@ -1,6 +1,7 @@
 ﻿import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
+import { BaseModule } from '../base_module/base.module';
 
 import { AdminContainerComponent } from './components/admin-container.component';
 import { AdminIndexComponent } from './components/admin-index.component';
@@ -17,6 +18,7 @@ const routes: Routes = [
 @NgModule({
 	imports: [
 		BrowserModule,
+		BaseModule,
 		RouterModule.forChild(routes)
 	],
 	declarations: [

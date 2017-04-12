@@ -9,13 +9,12 @@ var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
 var router_1 = require("@angular/router");
 var generated_module_1 = require("../generated_module/generated.module");
+var base_module_1 = require("../base_module/base.module");
 var admin_module_1 = require("../admin_module/admin.module");
 var app_component_1 = require("./components/app.component");
 var page_not_found_component_1 = require("./components/page_not_found.component");
-var app_api_service_1 = require("./services/app-api-service");
-var app_config_service_1 = require("./services/app-config-service");
-var app_translation_service_1 = require("./services/app-translation-service");
 var routes = [
+    // 404页面
     { path: '**', component: page_not_found_component_1.PageNotFoundComponent }
 ];
 var AppModule = (function () {
@@ -28,17 +27,13 @@ AppModule = __decorate([
         imports: [
             platform_browser_1.BrowserModule,
             generated_module_1.GeneratedModule,
+            base_module_1.BaseModule,
             admin_module_1.AdminModule,
             router_1.RouterModule.forRoot(routes)
         ],
         declarations: [
             app_component_1.AppComponent,
             page_not_found_component_1.PageNotFoundComponent
-        ],
-        providers: [
-            app_api_service_1.AppApiService,
-            app_config_service_1.AppConfigService,
-            app_translation_service_1.AppTranslationService
         ],
         bootstrap: [
             app_component_1.AppComponent

@@ -2,12 +2,12 @@
   <div class="login-box">
     <div class="login-logo"><a><img src="/modules/admin_module/images/logo.png" alt="logo"></a></div>
     <div class="login-box-body">
-      <h3 class="login-box-msg">管理员登陆</h3>
+      <h3 class="login-box-msg">{{ "Admin Login" | trans }}</h3>
       <p class="text-danger"></p>
       <form name="AdminLoginForm" action="/admin/login" method="POST" role="form" ajax="true" class="form-horizontal" novalidate="novalidate">
         <div class="form-group">
           <label class="control-label">
-            用户名
+            {{ "Username" | trans }}
             <em>*</em>
           </label>
           <div class="form-controls">
@@ -17,7 +17,7 @@
         </div>
         <div class="form-group">
           <label class="control-label">
-            密码
+            {{ "Password" | trans }}
             <em>*</em>
           </label>
           <div class="form-controls">
@@ -27,7 +27,7 @@
         </div>
         <div class="form-group">
           <label class="control-label">
-            验证码
+            {{ "Captcha" | trans }}
             <em>*</em>
           </label>
           <div class="form-controls">
@@ -42,11 +42,11 @@
         </div>
 
         <div class="form-actions">
-          <button class="btn btn-submit" type="submit">登陆</button>
+          <button class="btn btn-submit" type="submit">{{ "Login" | trans }}</button>
         </div>
       </form>
       <div class="login-hint">
-        <p>默认管理员账号: admin, 密码: 123456, 登录后请尽快修改密码</p>
+        <p>{{ "Default admin account is admin, password is 123456, please change it after login immediately" | trans }}</p>
       </div>
     </div>
   </div>

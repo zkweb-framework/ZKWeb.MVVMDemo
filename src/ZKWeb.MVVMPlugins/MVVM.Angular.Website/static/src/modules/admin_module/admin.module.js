@@ -8,6 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
 var router_1 = require("@angular/router");
+var base_module_1 = require("../base_module/base.module");
 var admin_container_component_1 = require("./components/admin-container.component");
 var admin_index_component_1 = require("./components/admin-index.component");
 var admin_login_component_1 = require("./components/admin-login.component");
@@ -26,6 +27,7 @@ AdminModule = __decorate([
     core_1.NgModule({
         imports: [
             platform_browser_1.BrowserModule,
+            base_module_1.BaseModule,
             router_1.RouterModule.forChild(routes)
         ],
         declarations: [

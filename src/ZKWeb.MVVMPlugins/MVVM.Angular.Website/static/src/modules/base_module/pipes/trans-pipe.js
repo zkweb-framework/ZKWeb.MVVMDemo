@@ -9,27 +9,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var app_api_service_1 = require("../../base_module/services/app-api-service");
-var ExampleService = (function () {
-    function ExampleService(appApiService) {
-        this.appApiService = appApiService;
+var app_translation_service_1 = require("../../base_module/services/app-translation-service");
+// 翻译文本的管道
+// 例: {{ "text" | trans }}
+var TransPipe = (function () {
+    function TransPipe(appTranslationService) {
+        this.appTranslationService = appTranslationService;
     }
-    // 获取对象
-    ExampleService.prototype.GetObject = function (x) {
-        return this.appApiService.call("/api/ExampleService/GetObject", {
-            x: x
-        });
+    TransPipe.prototype.transform = function (value) {
+        return this.appTranslationService.translate(value);
     };
-    // 获取Dto
-    ExampleService.prototype.GetDto = function (param) {
-        return this.appApiService.call("/api/ExampleService/GetDto", {
-            param: param
-        });
-    };
-    return ExampleService;
+    return TransPipe;
 }());
-ExampleService = __decorate([
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [app_api_service_1.AppApiService])
-], ExampleService);
-exports.ExampleService = ExampleService;
+TransPipe = __decorate([
+    core_1.Pipe({ name: 'trans' }),
+    __metadata("design:paramtypes", [app_translation_service_1.AppTranslationService])
+], TransPipe);
+exports.TransPipe = TransPipe;
