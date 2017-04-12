@@ -1,5 +1,7 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using ZKWeb.Plugin;
 using ZKWebStandard.Ioc;
@@ -88,6 +90,23 @@ namespace ZKWeb.MVVMPlugins.MVVM.Angular.Support.src.Components.ScriptGenerator 
 		/// <returns></returns>
 		public virtual string NormalizeClassName(string className) {
 			return className.Replace('-', '_');
+		}
+
+		/// <summary>
+		/// 获取类型的类名称，支持反省
+		/// </summary>
+		/// <param name="type">类型</param>
+		/// <returns></returns>
+		public virtual string NormalizeClassName(Type type) {
+			var typeInfo = type.GetTypeInfo();
+			if (typeInfo.IsGenericType) {
+				var typename = type.Name.Split('`')[0] + "_";
+				foreach (var genericType in typeInfo.GetGenericArguments()) {
+					typename += NormalizeClassName(genericType);
+				}
+				return typename;
+			}
+			return type.Name;
 		}
 	}
 }

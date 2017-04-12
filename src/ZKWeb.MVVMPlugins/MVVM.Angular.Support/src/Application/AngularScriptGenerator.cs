@@ -56,7 +56,8 @@ namespace ZKWeb.MVVMPlugins.MVVM.Angular.Support.src.Application {
 				}
 				// 生成此类型的脚本
 				var script = generator.GenerateScript(discoveredType, discoveredTypes);
-				var filename = pathConfig.NormalizeFilename(discoveredType.Name) + ".ts";
+				var filename = pathConfig.NormalizeFilename(
+					pathConfig.NormalizeClassName(discoveredType)) + ".ts";
 				var path = PathUtils.SecureCombine(
 					pathConfig.GenerateModuleDirectory,
 					pathConfig.DtosDirectoryName,
@@ -80,7 +81,8 @@ namespace ZKWeb.MVVMPlugins.MVVM.Angular.Support.src.Application {
 			var pathConfig = ZKWeb.Application.Ioc.Resolve<ScriptPathConfig>();
 			// 生成此应用服务的脚本
 			var script = generator.GenerateScript(service);
-			var filename = pathConfig.NormalizeFilename(service.GetType().Name) + ".ts";
+			var filename = pathConfig.NormalizeFilename(
+				pathConfig.NormalizeClassName(service.GetType())) + ".ts";
 			var path = PathUtils.SecureCombine(
 				pathConfig.GenerateModuleDirectory,
 				pathConfig.ServicesDirectoryName,

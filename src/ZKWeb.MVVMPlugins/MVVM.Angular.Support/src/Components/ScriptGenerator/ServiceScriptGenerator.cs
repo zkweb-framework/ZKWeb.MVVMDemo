@@ -56,8 +56,8 @@ namespace ZKWeb.MVVMPlugins.MVVM.Angular.Support.src.Components.ScriptGenerator 
 				// 必要时引用其他类型的脚本
 				foreach (var newDiscoveredType in newDiscoveredTypes) {
 					if (!includedTypes.Contains(newDiscoveredType)) {
-						var importName = newDiscoveredType.Name;
-						var importFile = pathConfig.NormalizeFilename(newDiscoveredType.Name);
+						var importName = pathConfig.NormalizeClassName(newDiscoveredType);
+						var importFile = pathConfig.NormalizeFilename(importName);
 						includeBuilder.AppendLine($"import {{ {importName} }} from '../dtos/{importFile}';");
 						includedTypes.Add(newDiscoveredType);
 					}

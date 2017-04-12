@@ -23,6 +23,10 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Application.Services {
 			public string OtherMember { get; set; }
 		}
 
+		public class TestGenericDto<T> {
+			public T GenericMember { get; set; }
+		}
+
 		[Description("测试Dto")]
 		public class TestDto {
 			[Description("返回名称")]
@@ -32,7 +36,9 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Application.Services {
 		}
 
 		[Description("获取Dto")]
-		public TestDto GetDto([Description("参数")]TestParam param) {
+		public TestDto GetDto(
+			[Description("参数")]TestParam param,
+			TestGenericDto<TestOtherDto> a) {
 			return new TestDto() { ReturnName = param?.ParamName };
 		}
 	}

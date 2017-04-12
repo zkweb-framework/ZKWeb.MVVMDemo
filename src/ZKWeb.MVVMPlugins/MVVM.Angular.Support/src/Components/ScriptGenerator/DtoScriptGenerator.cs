@@ -62,7 +62,8 @@ namespace ZKWeb.MVVMPlugins.MVVM.Angular.Support.src.Components.ScriptGenerator 
 			if (typeInfo.IsClass &&
 				typeInfo.Assembly != typeof(string).GetTypeInfo().Assembly) {
 				discoveredTypes.Add(type);
-				return type.Name;
+				var pathConfig = ZKWeb.Application.Ioc.Resolve<ScriptPathConfig>();
+				return pathConfig.NormalizeClassName(type);
 			}
 			// 其他类型都归到any
 			return "any";
@@ -86,7 +87,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Angular.Support.src.Components.ScriptGenerator 
 			var includeBuilder = new StringBuilder();
 			var classBuilder = new StringBuilder();
 			var includedTypes = new HashSet<Type>() { type };
-			var className = pathConfig.NormalizeClassName(type.Name);
+			var className = pathConfig.NormalizeClassName(type);
 			var classDescription = type.GetTypeInfo()
 				.GetCustomAttribute<DescriptionAttribute>()?.Description ?? className;
 			classBuilder.AppendLine($"// {classDescription}");
@@ -105,7 +106,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Angular.Support.src.Components.ScriptGenerator 
 				// 必要时引用其他类型的脚本
 				foreach (var newDiscoveredType in newDiscoveredTypes) {
 					if (!includedTypes.Contains(newDiscoveredType)) {
-						var importName = newDiscoveredType.Name;
+						var importName = pathConfig.NormalizeClassName(newDiscoveredType);
 						var importFile = pathConfig.NormalizeFilename(importName);
 						includeBuilder.AppendLine($"import {{ {importName} }} from './{importFile}';");
 						includedTypes.Add(newDiscoveredType);

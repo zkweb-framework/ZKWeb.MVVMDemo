@@ -21,9 +21,10 @@ var ExampleService = (function () {
         });
     };
     // 获取Dto
-    ExampleService.prototype.GetDto = function (param) {
+    ExampleService.prototype.GetDto = function (param, a) {
         return this.appApiService.call("/api/ExampleService/GetDto", {
-            param: param
+            param: param,
+            a: a
         });
     };
     return ExampleService;
