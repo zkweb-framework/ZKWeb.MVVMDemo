@@ -41,6 +41,10 @@ namespace ZKWeb.MVVMPlugins.MVVM.Angular.Support.src.Components.ScriptGenerator 
 					typeInfo.GetElementType(), discoveredTypes);
 				return elementType + "[]";
 			}
+			// 判断是否枚举
+			if (typeInfo.IsEnum) {
+				// TODO: 支持生成枚举脚本
+			}
 			// 判断是否集合
 			var collectionInterface = typeInfo.GetInterfaces().FirstOrDefault(x =>
 				x.GetTypeInfo().IsGenericType &&
