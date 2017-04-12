@@ -25,6 +25,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Application.Services {
 
 		public class TestGenericDto<T> {
 			public T GenericMember { get; set; }
+			public TestEnum EnumMember { get; set; }
 		}
 
 		[Description("测试Dto")]
@@ -33,6 +34,16 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Application.Services {
 			public string ReturnName { get; set; }
 			public TestOtherDto OtherDtoA { get; set; }
 			public TestOtherDto OtherDtoB { get; set; }
+		}
+
+		[Description("测试枚举")]
+		public enum TestEnum {
+			[Description("A值")]
+			A = 1,
+			[Description("B值")]
+			B = 3,
+			[Description("C值")]
+			C = 5
 		}
 
 		[Description("获取Dto")]

@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using ZKWebStandard.Extensions;
 using ZKWebStandard.Ioc;
 
 namespace ZKWeb.MVVMPlugins.MVVM.Angular.Support.src.Components.ScriptGenerator {
@@ -45,10 +46,6 @@ namespace ZKWeb.MVVMPlugins.MVVM.Angular.Support.src.Components.ScriptGenerator 
 					typeInfo.GetElementType(), discoveredTypes);
 				return elementType + "[]";
 			}
-			// 判断是否枚举
-			if (typeInfo.IsEnum) {
-				// TODO: 支持生成枚举脚本
-			}
 			// 判断是否集合
 			var collectionInterface = typeInfo.GetInterfaces().FirstOrDefault(x =>
 				x.GetTypeInfo().IsGenericType &&
@@ -59,8 +56,8 @@ namespace ZKWeb.MVVMPlugins.MVVM.Angular.Support.src.Components.ScriptGenerator 
 				return elementType + "[]";
 			}
 			// 判断是否其他数据传输对象
-			if (typeInfo.IsClass &&
-				typeInfo.Assembly != typeof(string).GetTypeInfo().Assembly) {
+			if (typeInfo.IsEnum ||
+				(typeInfo.IsClass && typeInfo.Assembly != typeof(string).GetTypeInfo().Assembly)) {
 				discoveredTypes.Add(type);
 				var pathConfig = ZKWeb.Application.Ioc.Resolve<ScriptPathConfig>();
 				return pathConfig.NormalizeClassName(type);
@@ -80,9 +77,9 @@ namespace ZKWeb.MVVMPlugins.MVVM.Angular.Support.src.Components.ScriptGenerator 
 		}
 
 		/// <summary>
-		/// 根据对象类型生成脚本
+		/// 生成类型是class的脚本
 		/// </summary>
-		public virtual string GenerateScript(Type type, IList<Type> discoveredTypes) {
+		protected virtual string GenerateClassScript(Type type, IList<Type> discoveredTypes) {
 			var pathConfig = ZKWeb.Application.Ioc.Resolve<ScriptPathConfig>();
 			var includeBuilder = new StringBuilder();
 			var classBuilder = new StringBuilder();
@@ -122,6 +119,44 @@ namespace ZKWeb.MVVMPlugins.MVVM.Angular.Support.src.Components.ScriptGenerator 
 				includeBuilder.AppendLine();
 			}
 			return includeBuilder.ToString() + classBuilder.ToString();
+		}
+
+		/// <summary>
+		/// 生成类型是enum的脚本
+		/// </summary>
+		protected virtual string GenerateEnumScript(Type type) {
+			var pathConfig = ZKWeb.Application.Ioc.Resolve<ScriptPathConfig>();
+			var enumBuilder = new StringBuilder();
+			var enumName = pathConfig.NormalizeClassName(type);
+			var enumDescription = type.GetTypeInfo()
+				.GetCustomAttribute<DescriptionAttribute>()?.Description ?? enumName;
+			enumBuilder.AppendLine($"// {enumDescription}");
+			enumBuilder.AppendLine($"export enum {enumName} {{");
+			var enumValues = Enum.GetValues(type).OfType<Enum>().ToList();
+			foreach (var value in enumValues) {
+				var valueName = value.ToString();
+				var valueInt = value.ConvertOrDefault<int>();
+				var valueDescription = value.GetDescription();
+				enumBuilder.AppendLine($"	// {valueDescription}");
+				enumBuilder.Append($"	{valueName} = {valueInt}");
+				if (value != enumValues.Last()) {
+					enumBuilder.Append(",");
+				}
+				enumBuilder.AppendLine();
+			}
+			enumBuilder.AppendLine("}");
+			return enumBuilder.ToString();
+		}
+
+		/// <summary>
+		/// 根据对象类型生成脚本
+		/// </summary>
+		public virtual string GenerateScript(Type type, IList<Type> discoveredTypes) {
+			if (type.GetTypeInfo().IsEnum) {
+				return GenerateEnumScript(type);
+			} else {
+				return GenerateClassScript(type, discoveredTypes);
+			}
 		}
 	}
 }
