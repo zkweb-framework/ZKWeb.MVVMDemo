@@ -11,8 +11,11 @@
 
 	<ItemGroup>
 		<Compile Remove="%2a%2a\**" />
+		<Compile Remove="MVVM.Angular.Website\static\src\modules\pipes_module\**" />
 		<EmbeddedResource Remove="%2a%2a\**" />
+		<EmbeddedResource Remove="MVVM.Angular.Website\static\src\modules\pipes_module\**" />
 		<None Remove="%2a%2a\**" />
+		<None Remove="MVVM.Angular.Website\static\src\modules\pipes_module\**" />
 		<Compile Remove="%2a%2a/%2a.cs" />
 		<EmbeddedResource Remove="%2a%2a/%2a.resx" />
 		<None Remove="%2a%2a/%2a" />
@@ -216,10 +219,6 @@
 		<None Include="MVVM.Common.Organization\static\mvvm.common.organization.images\default-avatar.jpg" />
 		<None Include="MVVM.Common.SessionState\plugin.json" />
 		<None Include="MVVM.Common.TaskScheduler\plugin.json" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="MVVM.Angular.Website\static\src\modules\pipes_module\" />
 	</ItemGroup>
 
 	<PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard1.6' ">
