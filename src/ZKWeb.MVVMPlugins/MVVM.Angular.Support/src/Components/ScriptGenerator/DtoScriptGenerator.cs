@@ -20,6 +20,10 @@ namespace ZKWeb.MVVMPlugins.MVVM.Angular.Support.src.Components.ScriptGenerator 
 		public virtual string GetScriptType(Type type, IList<Type> discoveredTypes) {
 			// 拆开Nullable
 			type = Nullable.GetUnderlyingType(type) ?? type;
+			// 判断是否布尔
+			if (type == typeof(bool)) {
+				return "boolean";
+			}
 			// 判断是否数值
 			if (type == typeof(sbyte) || type == typeof(byte) ||
 				type == typeof(short) || type == typeof(ushort) ||
