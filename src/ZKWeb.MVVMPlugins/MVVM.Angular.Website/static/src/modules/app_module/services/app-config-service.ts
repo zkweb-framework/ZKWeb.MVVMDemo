@@ -4,18 +4,22 @@
 @Injectable()
 export class AppConfigService {
 	private apiUrlBase: string;
+	private language: string;
 
 	constructor() {
-		var overrideConfig = window["overrideConfig"] || {};
-		this.apiUrlBase = overrideConfig.apiUrlBase;
-		if (!this.apiUrlBase) {
-			this.apiUrlBase = location.protocol + "//" + location.host + "/api/";
-		}
+		var appConfig = window["appConfig"] || {};
+		this.apiUrlBase = appConfig.apiUrlBase ||
+			(location.protocol + "//" + location.host);
+		this.language = appConfig.language || "en-US";
 	}
 
 	// 获取Api的基础地址
-	// 默认和当前浏览器的地址一样，有需要可以修改window.overrideConfig.apiUrlBase
 	getApiUrlBase(): string {
 		return this.apiUrlBase;
+	}
+
+	// 获取当前使用的语言
+	getLanguage(): string {
+		return this.language;
 	}
 }

@@ -17,10 +17,18 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Application.Services {
 			public string ParamName { get; set; }
 		}
 
+		[Description("测试其他Dto")]
+		public class TestOtherDto {
+			[Description("其他成员")]
+			public string OtherMember { get; set; }
+		}
+
 		[Description("测试Dto")]
 		public class TestDto {
 			[Description("返回名称")]
 			public string ReturnName { get; set; }
+			public TestOtherDto OtherDtoA { get; set; }
+			public TestOtherDto OtherDtoB { get; set; }
 		}
 
 		[Description("获取Dto")]

@@ -11,6 +11,8 @@ var router_1 = require("@angular/router");
 var admin_module_1 = require("../admin_module/admin.module");
 var app_component_1 = require("./components/app.component");
 var page_not_found_component_1 = require("./components/page_not_found.component");
+var app_api_service_1 = require("./services/app-api-service");
+var app_config_service_1 = require("./services/app-config-service");
 var routes = [
     { path: '**', component: page_not_found_component_1.PageNotFoundComponent }
 ];
@@ -29,6 +31,10 @@ AppModule = __decorate([
         declarations: [
             app_component_1.AppComponent,
             page_not_found_component_1.PageNotFoundComponent
+        ],
+        providers: [
+            app_api_service_1.AppApiService,
+            app_config_service_1.AppConfigService
         ],
         bootstrap: [
             app_component_1.AppComponent

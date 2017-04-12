@@ -13,6 +13,10 @@
   <script src="node_modules/systemjs/dist/system.src.js"></script>
   <script src="assets/scripts/systemjs.config.js"></script>
   <script>
+    window.appConfig = {
+      apiUrlBase: null,
+      language: "zh-CN"
+    };
     System.import('modules/entry_point/main.js').catch(function (err) { console.error(err); });
   </script>
 </head>

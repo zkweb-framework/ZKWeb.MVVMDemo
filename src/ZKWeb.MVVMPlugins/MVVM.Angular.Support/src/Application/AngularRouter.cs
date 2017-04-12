@@ -11,7 +11,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Angular.Support.src.Application {
 	/// <summary>
 	/// 负责处理AngularJS相关的请求
 	/// </summary>
-	[ExportMany]
+	[ExportMany, SingletonReuse]
 	public class AngularRouter : IHttpRequestHandler {
 		protected string _apiPrefix;
 		protected IFileStorage _fileStorage;

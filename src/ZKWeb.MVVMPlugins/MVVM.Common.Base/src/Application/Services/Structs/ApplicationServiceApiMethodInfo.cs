@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Reflection;
 using ZKWeb.Web;
 
 namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Application.Services.Structs {

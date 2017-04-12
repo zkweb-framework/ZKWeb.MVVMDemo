@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
+using ZKWeb.Localize;
 using ZKWeb.MVVMPlugins.MVVM.Angular.Support.src.Components.ScriptGenerator;
 using ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Application.Services.Bases;
 using ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Application.Services.Interfaces;
-using ZKWeb.Plugin;
-using ZKWeb.Web;
 using ZKWebStandard.Ioc;
 using ZKWebStandard.Utils;
 
@@ -15,139 +12,155 @@ namespace ZKWeb.MVVMPlugins.MVVM.Angular.Support.src.Application {
 	/// <summary>
 	/// 负责处理AngularJS的服务脚本
 	/// </summary>
-	[ExportMany]
-	public class AngularScriptGenerator : IWebsiteStartHandler {
+	[ExportMany, SingletonReuse]
+	public class AngularScriptGenerator {
 		/// <summary>
-		/// 生成模块的文件夹路径
+		/// 已生成脚本的数据传输对象类型
 		/// </summary>
-		protected string GenerateModuleDirectory { get; set; }
+		protected ISet<Type> GeneratedDtoTypes { get; set; }
 		/// <summary>
-		/// 保存数据传输脚本的文件夹名称
+		/// 已生成脚本的应用服务
 		/// </summary>
-		protected string DtosDirectoryName { get; set; }
+		protected ISet<IApplicationService> GeneratedApplicationServices { get; set; }
 		/// <summary>
-		/// 保存应用服务脚本的文件夹名称
+		/// 已生成脚本的语言
 		/// </summary>
-		protected string ServicesDirectoryName { get; set; }
-		/// <summary>
-		/// 生成模块的文件名
-		/// </summary>
-		protected string GeneratedModuleFilename { get; set; }
+		protected ISet<string> GeneratedTranslationLanguages { get; set; }
 
 		/// <summary>
 		/// 初始化
 		/// </summary>
 		public AngularScriptGenerator() {
-			var pluginManager = ZKWeb.Application.Ioc.Resolve<PluginManager>();
-			var websitePlugin = pluginManager.Plugins
-				.FirstOrDefault(p => p.Directory.EndsWith("MVVM.Angular.Website"));
-			if (websitePlugin == null) {
-				throw new DirectoryNotFoundException(
-					"Plugin 'MVVM.Angular.Website' not found, please check your plugin list");
-			}
-			GenerateModuleDirectory = PathUtils.SecureCombine(
-				websitePlugin.Directory,
-				"static", "src", "modules", "generated_module");
-			DtosDirectoryName = "dtos";
-			ServicesDirectoryName = "services";
-			GeneratedModuleFilename = "generated.module.ts";
-		}
-
-		/// <summary>
-		/// 转换文件名称
-		/// 例
-		/// "ExampleService" => "example-service"
-		/// "MyHTTPService" => "my-http-service"
-		/// </summary>
-		protected virtual string NormalizeFilename(string filename) {
-			var result = new StringBuilder() { Capacity = filename.Length + 8 };
-			bool lastCharIsNotUpper = false;
-			foreach (var c in filename) {
-				if (char.IsUpper(c)) {
-					if (lastCharIsNotUpper) {
-						result.Append('-');
-						lastCharIsNotUpper = false;
-					}
-					result.Append(char.ToLower(c));
-				} else {
-					lastCharIsNotUpper = true;
-					result.Append(c);
-				}
-			}
-			return result.ToString();
+			GeneratedDtoTypes = new HashSet<Type>();
+			GeneratedApplicationServices = new HashSet<IApplicationService>();
+			GeneratedTranslationLanguages = new HashSet<string>();
 		}
 
 		/// <summary>
 		/// 根据数据传输对象生成脚本，并写入到文件
 		/// </summary>
 		protected virtual void GenerateDtoScript(Type type) {
+			// 递归生成所有关联的对象传输对象
+			// 例如 class A { B b; } 的时候可以生成A和B的脚本	
 			var generator = ZKWeb.Application.Ioc.Resolve<DtoScriptGenerator>();
-			if (!generator.ShouldGenerate(type)) {
-				return;
+			var pathConfig = ZKWeb.Application.Ioc.Resolve<ScriptPathConfig>();
+			var discoveredTypes = new List<Type>() { type };
+			while (discoveredTypes.Count > 0) {
+				// 出栈
+				var discoveredType = discoveredTypes[discoveredTypes.Count - 1];
+				discoveredTypes.RemoveAt(discoveredTypes.Count - 1);
+				// 如果不需要生成或已经生成过则跳过
+				if (!generator.ShouldGenerate(discoveredType) ||
+					GeneratedDtoTypes.Contains(discoveredType)) {
+					continue;
+				}
+				// 生成此类型的脚本
+				var script = generator.GenerateScript(discoveredType, discoveredTypes);
+				var filename = pathConfig.NormalizeFilename(discoveredType.Name) + ".ts";
+				var path = PathUtils.SecureCombine(
+					pathConfig.GenerateModuleDirectory,
+					pathConfig.DtosDirectoryName,
+					filename);
+				PathUtils.EnsureParentDirectory(path);
+				File.WriteAllText(path, script);
+				// 添加到已生成的集合
+				GeneratedDtoTypes.Add(discoveredType);
 			}
-			var script = generator.GenerateScript(type);
-			var filename = NormalizeFilename(type.Name) + ".ts";
-			var path = PathUtils.SecureCombine(
-				GenerateModuleDirectory, DtosDirectoryName, filename);
-			PathUtils.EnsureParentDirectory(path);
-			File.WriteAllText(path, script);
 		}
 
 		/// <summary>
 		/// 根据应用服务生成脚本，并写入到文件
 		/// </summary>
 		protected virtual void GenerateServiceScript(IApplicationService service) {
+			// 如果已生成过则跳过
+			if (GeneratedApplicationServices.Contains(service)) {
+				return;
+			}
 			var generator = ZKWeb.Application.Ioc.Resolve<ServiceScriptGenerator>();
+			var pathConfig = ZKWeb.Application.Ioc.Resolve<ScriptPathConfig>();
+			// 生成此应用服务的脚本
 			var script = generator.GenerateScript(service);
-			var filename = NormalizeFilename(service.GetType().Name) + ".ts";
+			var filename = pathConfig.NormalizeFilename(service.GetType().Name) + ".ts";
 			var path = PathUtils.SecureCombine(
-				GenerateModuleDirectory, ServicesDirectoryName, filename);
+				pathConfig.GenerateModuleDirectory,
+				pathConfig.ServicesDirectoryName,
+				filename);
 			PathUtils.EnsureParentDirectory(path);
 			File.WriteAllText(path, script);
+			// 添加到已生成的集合
+			GeneratedApplicationServices.Add(service);
+		}
+
+		/// <summary>
+		/// 根据翻译的语言生成脚本，并写入到文件
+		/// </summary>
+		protected virtual void GenerateTranslationScript(string language) {
+			// 如果已生成过则跳过
+			if (GeneratedTranslationLanguages.Contains(language)) {
+				return;
+			}
+			var generator = ZKWeb.Application.Ioc.Resolve<TranslationScriptGenerator>();
+			var pathConfig = ZKWeb.Application.Ioc.Resolve<ScriptPathConfig>();
+			// 生成此语言的脚本
+			var script = generator.GenerateScript(language);
+			var filename = pathConfig.NormalizeFilename(language) + ".ts";
+			var path = PathUtils.SecureCombine(
+				pathConfig.GenerateModuleDirectory,
+				pathConfig.TranslationsDirectoryName,
+				filename);
+			PathUtils.EnsureParentDirectory(path);
+			File.WriteAllText(path, script);
+			// 添加到已生成的集合
+			GeneratedTranslationLanguages.Add(language);
 		}
 
 		/// <summary>
 		/// 根据之前生成的脚本生成模块脚本，并写入到文件
 		/// </summary>
-		protected virtual void GenerateModuleScript(
-			ISet<Type> dtos,
-			ISet<IApplicationService> applicationServices) {
-			var script = "";
+		protected virtual void GenerateModuleScript() {
+			var generator = ZKWeb.Application.Ioc.Resolve<ModuleScriptGenerator>();
+			var pathConfig = ZKWeb.Application.Ioc.Resolve<ScriptPathConfig>();
+			var script = generator.GenerateScript(
+				GeneratedDtoTypes,
+				GeneratedApplicationServices,
+				GeneratedTranslationLanguages);
 			var path = PathUtils.SecureCombine(
-				GenerateModuleDirectory, GeneratedModuleFilename);
+				pathConfig.GenerateModuleDirectory,
+				pathConfig.GeneratedModuleFilename);
 			PathUtils.EnsureParentDirectory(path);
 			File.WriteAllText(path, script);
 		}
 
 		/// <summary>
-		/// 网站启动时生成脚本
+		/// 生成所有脚本
 		/// </summary>
-		public virtual void OnWebsiteStart() {
+		public virtual void GenerateAll() {
+			// 清空上次生成的集合
+			GeneratedDtoTypes.Clear();
+			GeneratedApplicationServices.Clear();
+			GeneratedTranslationLanguages.Clear();
+			// 生成应用服务的脚本
 			var applicationServices = ZKWeb.Application.Ioc.ResolveMany<ApplicationServiceBase>();
-			var generatedDtoTypes = new HashSet<Type>();
-			var generatedApplicationServices = new HashSet<IApplicationService>();
 			foreach (var applicationService in applicationServices) {
 				// 生成数据传输对象的脚本
 				foreach (var method in applicationService.GetApiMethods()) {
 					// 生成返回类型
-					if (!generatedDtoTypes.Contains(method.ReturnType)) {
-						GenerateDtoScript(method.ReturnType);
-						generatedDtoTypes.Add(method.ReturnType);
-					}
+					GenerateDtoScript(method.ReturnType);
 					// 生成参数类型
 					foreach (var parameter in method.Parameters) {
-						if (!generatedDtoTypes.Contains(parameter.Type)) {
-							GenerateDtoScript(parameter.Type);
-							generatedDtoTypes.Add(parameter.Type);
-						}
+						GenerateDtoScript(parameter.Type);
 					}
 				}
 				// 生成应用服务的脚本
 				GenerateServiceScript(applicationService);
-				generatedApplicationServices.Add(applicationService);
+			}
+			// 生成翻译的脚本
+			var languages = ZKWeb.Application.Ioc.ResolveMany<ILanguage>();
+			foreach (var language in languages) {
+				GenerateTranslationScript(language.Name);
 			}
 			// 生成模块的脚本
-			GenerateModuleScript(generatedDtoTypes, generatedApplicationServices);
+			GenerateModuleScript();
 		}
 	}
 }
