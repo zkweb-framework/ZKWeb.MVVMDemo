@@ -115,15 +115,28 @@ namespace ZKWeb.MVVMPlugins.MVVM.Angular.Support.src.Application {
 		}
 
 		/// <summary>
+		/// 根据之前翻译的语言生成索引脚本，并写入到文件
+		/// </summary>
+		protected virtual void GenerateTranslationIndexScript() {
+			var generator = ZKWeb.Application.Ioc.Resolve<TranslationScriptGenerator>();
+			var pathConfig = ZKWeb.Application.Ioc.Resolve<ScriptPathConfig>();
+			var script = generator.GenerateIndexScript(GeneratedTranslationLanguages);
+			var filename = "index.ts";
+			var path = PathUtils.SecureCombine(
+				pathConfig.GenerateModuleDirectory,
+				pathConfig.TranslationsDirectoryName,
+				filename);
+			PathUtils.EnsureParentDirectory(path);
+			File.WriteAllText(path, script);
+		}
+
+		/// <summary>
 		/// 根据之前生成的脚本生成模块脚本，并写入到文件
 		/// </summary>
 		protected virtual void GenerateModuleScript() {
 			var generator = ZKWeb.Application.Ioc.Resolve<ModuleScriptGenerator>();
 			var pathConfig = ZKWeb.Application.Ioc.Resolve<ScriptPathConfig>();
-			var script = generator.GenerateScript(
-				GeneratedDtoTypes,
-				GeneratedApplicationServices,
-				GeneratedTranslationLanguages);
+			var script = generator.GenerateScript(GeneratedApplicationServices);
 			var path = PathUtils.SecureCombine(
 				pathConfig.GenerateModuleDirectory,
 				pathConfig.GeneratedModuleFilename);
@@ -159,6 +172,8 @@ namespace ZKWeb.MVVMPlugins.MVVM.Angular.Support.src.Application {
 			foreach (var language in languages) {
 				GenerateTranslationScript(language.Name);
 			}
+			// 生成翻译的索引脚本
+			GenerateTranslationIndexScript();
 			// 生成模块的脚本
 			GenerateModuleScript();
 		}

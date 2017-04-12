@@ -196,6 +196,7 @@
 		<None Include="MVVM.Angular.Website\static\src\index.html" />
 		<None Include="MVVM.Angular.Website\static\src\modules\app_module\services\app-api-service.ts" />
 		<None Include="MVVM.Angular.Website\static\src\modules\app_module\services\app-config-service.ts" />
+		<None Include="MVVM.Angular.Website\static\src\modules\app_module\services\app-translation-service.ts" />
 		<None Include="MVVM.Angular.Website\static\src\modules\app_module\styles\page_not_found.scss" />
 		<None Include="MVVM.Angular.Website\static\src\modules\app_module\views\app.html" />
 		<None Include="MVVM.Angular.Website\static\src\modules\app_module\views\page_not_found.html" />

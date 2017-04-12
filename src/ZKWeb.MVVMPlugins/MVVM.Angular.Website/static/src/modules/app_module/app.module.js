@@ -8,11 +8,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
 var router_1 = require("@angular/router");
+var generated_module_1 = require("../generated_module/generated.module");
 var admin_module_1 = require("../admin_module/admin.module");
 var app_component_1 = require("./components/app.component");
 var page_not_found_component_1 = require("./components/page_not_found.component");
 var app_api_service_1 = require("./services/app-api-service");
 var app_config_service_1 = require("./services/app-config-service");
+var app_translation_service_1 = require("./services/app-translation-service");
 var routes = [
     { path: '**', component: page_not_found_component_1.PageNotFoundComponent }
 ];
@@ -25,6 +27,7 @@ AppModule = __decorate([
     core_1.NgModule({
         imports: [
             platform_browser_1.BrowserModule,
+            generated_module_1.GeneratedModule,
             admin_module_1.AdminModule,
             router_1.RouterModule.forRoot(routes)
         ],
@@ -34,7 +37,8 @@ AppModule = __decorate([
         ],
         providers: [
             app_api_service_1.AppApiService,
-            app_config_service_1.AppConfigService
+            app_config_service_1.AppConfigService,
+            app_translation_service_1.AppTranslationService
         ],
         bootstrap: [
             app_component_1.AppComponent

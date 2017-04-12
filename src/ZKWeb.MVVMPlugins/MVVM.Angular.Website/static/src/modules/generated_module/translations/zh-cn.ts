@@ -1,9 +1,7 @@
-import { Injectable } from '@angular/core';
-
 // zh-CN
 export class Translation_zh_CN {
-	public language = "zh-CN";
-	public translations: { [key: string]: string } = {
+	public static language = "zh-CN";
+	public static translations: { [key: string]: string } = {
 		"ZKWeb Default Website": "ZKWeb默认站点",
 		"Captcha": "验证码",
 		"Click to change captcha image": "点击更换验证码图片",
