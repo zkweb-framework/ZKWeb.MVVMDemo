@@ -1,7 +1,5 @@
-using Hangfire;
 using Microsoft.AspNetCore.Builder;
 using ZKWeb.Hosting.AspNetCore;
-using ZKWeb.Server;
 
 namespace ZKWeb.MVVMDemo.AspNetCore {
 	/// <summary>
@@ -13,12 +11,6 @@ namespace ZKWeb.MVVMDemo.AspNetCore {
 		/// </summary>
 		/// <param name="app"></param>
 		protected override void ConfigureMiddlewares(IApplicationBuilder app) {
-			// 使用Hangfire中间件
-			// var configManager = Application.Ioc.Resolve<WebsiteConfigManager>();
-			// var config = configManager.WebsiteConfig.ConnectionString;
-			// GlobalConfiguration.Configuration.UseSqlServerStorage(config);
-			// app.UseHangfireDashboard();
-			// app.UseHangfireServer();
 			// 使用Swagger中间件
 			app.UseSwagger();
 			app.UseSwaggerUI(c => {

@@ -3,8 +3,8 @@ MVVM demo for zkweb framework use angular js 4.0
 ### Features
 
 - Base on Angular JS 4.0
+	- Support automatic generate script for dto and application service
 - Use entity framework core
-- Use hangfire to arrange jobs, provide hangfire dashboard
 - Use swagger to browse and test apis
 - TODO
 

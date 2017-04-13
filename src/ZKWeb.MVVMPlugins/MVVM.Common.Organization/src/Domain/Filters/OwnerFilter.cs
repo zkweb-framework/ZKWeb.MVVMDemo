@@ -21,7 +21,8 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Filters {
 		/// <summary>
 		/// 数据应当属于的用户Id
 		/// </summary>
-		public Guid ExceptedOwnerId { get; set; }
+		public Guid ExceptedOwnerId => _exceptedOwnerId.Value;
+		protected Lazy<Guid> _exceptedOwnerId;
 
 		/// <summary>
 		/// 初始化
@@ -29,7 +30,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Filters {
 		/// </summary>
 		public OwnerFilter() {
 			var sessionManager = Application.Ioc.Resolve<SessionManager>();
-			ExceptedOwnerId = sessionManager.GetSession().UserId ?? Guid.Empty;
+			_exceptedOwnerId = new Lazy<Guid>(() => sessionManager.GetSession().UserId ?? Guid.Empty);
 		}
 
 		/// <summary>

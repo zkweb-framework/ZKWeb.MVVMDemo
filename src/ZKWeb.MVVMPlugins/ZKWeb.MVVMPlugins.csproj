@@ -93,7 +93,9 @@
 		<Compile Include="MVVM.Common.Organization\src\Plugin.cs" />
 		<Compile Include="MVVM.Common.SessionState\src\Components\TenantProviders\SessionTenantProvider.cs" />
 		<Compile Include="MVVM.Common.SessionState\src\Domain\Extensions\SessionExtensions.cs" />
-		<Compile Include="MVVM.Common.TaskScheduler\src\Components\ScheduledTasks\Bases\ScheduledTaskBase.cs" />
+		<Compile Include="MVVM.Common.TaskScheduler\src\Components\ScheduledTasks\DefaultScheduledTaskProvider.cs" />
+		<Compile Include="MVVM.Common.TaskScheduler\src\Components\ScheduledTasks\Interfaces\IScheduledTask.cs" />
+		<Compile Include="MVVM.Common.TaskScheduler\src\Components\ScheduledTasks\Interfaces\IScheduledTaskProvider.cs" />
 		<Compile Include="MVVM.Common.TaskScheduler\src\Components\ScheduledTasks\LogCleaner.cs" />
 		<Compile Include="MVVM.Common.SessionState\src\Components\ScheduledTasks\SessionCleaner.cs" />
 		<Compile Include="MVVM.Common.SessionState\src\Components\SessionIdStore\Interfaces\ISessionIdStore.cs" />
@@ -115,7 +117,7 @@
 		<Compile Include="MVVM.Common.Base\src\Domain\Filters\GuidEntityFilter.cs" />
 		<Compile Include="MVVM.Common.Base\src\Domain\Filters\Interfaces\IEntityOperationFilter.cs" />
 		<Compile Include="MVVM.Common.Base\src\Domain\Filters\Interfaces\IEntityQueryFilter.cs" />
-		<Compile Include="MVVM.Common.MultiTenant\src\Domain\Entities\Filters\OwnerTenantFilter.cs" />
+		<Compile Include="MVVM.Common.MultiTenant\src\Domain\Filters\OwnerTenantFilter.cs" />
 		<Compile Include="MVVM.Common.Base\src\Domain\Filters\UpdateTimeFilter.cs" />
 		<Compile Include="MVVM.Common.Base\src\Domain\Repositories\Bases\RepositoryBase.cs" />
 		<Compile Include="MVVM.Common.Organization\src\Domain\Repositories\GenericConfigRepository.cs" />
@@ -128,11 +130,16 @@
 		<Compile Include="MVVM.Common.Base\src\Domain\Uow\Extensions\IUnitOfWorkExtensions.cs" />
 		<Compile Include="MVVM.Common.Base\src\Domain\Uow\Interfaces\IUnitOfWork.cs" />
 		<Compile Include="MVVM.Common.Base\src\Domain\Uow\UnitOfWork.cs" />
+		<Compile Include="MVVM.Common.TaskScheduler\src\Domain\Entities\ScheduledTask.cs" />
+		<Compile Include="MVVM.Common.TaskScheduler\src\Domain\Entities\ScheduledTaskLog.cs" />
+		<Compile Include="MVVM.Common.TaskScheduler\src\Domain\Repositories\ScheduledTaskLogRepository.cs" />
+		<Compile Include="MVVM.Common.TaskScheduler\src\Domain\Repositories\ScheduledTaskRepository.cs" />
+		<Compile Include="MVVM.Common.TaskScheduler\src\Domain\Services\ScheduledTaskManager.cs" />
+		<Compile Include="MVVM.Common.TaskScheduler\src\Plugin.cs" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="AutoMapper" Version="6.0.2" />
-		<PackageReference Include="Hangfire.Core" Version="1.6.12" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="1.0.0-rc3" />
 		<PackageReference Include="ZKWeb" Version="1.7.0" />
 		<PackageReference Include="ZKWeb.ORM.EFCore" Version="1.7.0" />

@@ -1,7 +1,7 @@
-﻿using Hangfire;
+﻿using System;
 using ZKWeb.Logging;
 using ZKWeb.MVVMPlugins.MVVM.Common.SessionState.src.Domain.Services;
-using ZKWeb.MVVMPlugins.MVVM.Common.TaskScheduler.src.Components.ScheduledTasks.Bases;
+using ZKWeb.MVVMPlugins.MVVM.Common.TaskScheduler.src.Components.ScheduledTasks.Interfaces;
 using ZKWebStandard.Ioc;
 
 namespace ZKWeb.MVVMPlugins.MVVM.Common.SessionState.src.Components.ScheduledTasks {
@@ -10,20 +10,23 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.SessionState.src.Components.ScheduledTas
 	/// 每小时删除一次过期的会话
 	/// </summary>
 	[ExportMany, SingletonReuse]
-	public class SessionCleaner : ScheduledTaskBase<SessionCleaner> {
+	public class SessionCleaner : IScheduledTask {
 		/// <summary>
-		/// 任务Id
+		/// 任务键名
 		/// </summary>
-		public override string JobId => "SessionCleaner";
+		public string Key { get { return "SessionCleaner"; } }
+
 		/// <summary>
-		/// 执行间隔
+		/// 每小时执行一次
 		/// </summary>
-		public override string CronExpression => Cron.Hourly();
+		public bool ShouldExecuteNow(DateTime lastExecuted) {
+			return ((DateTime.UtcNow - lastExecuted).TotalHours > 1.0);
+		}
 
 		/// <summary>
 		/// 删除过期的会话
 		/// </summary>
-		public static void Execute() {
+		public void Execute() {
 			var sessionManager = ZKWeb.Application.Ioc.Resolve<SessionManager>();
 			var count = sessionManager.RemoveExpiredSessions();
 			var logManager = ZKWeb.Application.Ioc.Resolve<LogManager>();

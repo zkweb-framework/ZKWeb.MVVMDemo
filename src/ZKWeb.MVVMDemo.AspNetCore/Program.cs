@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Builder;
-using Hangfire;
 using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
 using ZKWeb.MVVMDemo.AspNetCore.Swagger;
@@ -23,8 +22,6 @@ namespace ZKWeb.MVVMDemo.AspNetCore {
 					.ConfigureServices(s => {
 						// 添加Mvc组件
 						s.AddMvcCore().AddApiExplorer();
-						// 添加Hangfire组件
-						// s.AddHangfire(_ => { });
 						// 添加Swgger组件，使用自定义的Api列表提供器
 						s.Replace(new ServiceDescriptor(
 							typeof(IApiDescriptionGroupCollectionProvider),

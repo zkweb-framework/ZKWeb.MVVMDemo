@@ -25,15 +25,20 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.SessionState.src.Domain.Extensions {
 				return null;
 			}
 			// 从Http上下文中获取，确保保存时的会话和获取时的会话是同一个
-			var context = HttpManager.CurrentContext;
-			var pair = context.GetData<Tuple<Session, Tenant>>(SessionTenantContextKey);
-			if (pair != null && pair.Item1 == session) {
-				return pair.Item2;
+			if (HttpManager.CurrentContextExists) {
+				var context = HttpManager.CurrentContext;
+				var pair = context.GetData<Tuple<Session, Tenant>>(SessionTenantContextKey);
+				if (pair != null && pair.Item1 == session) {
+					return pair.Item2;
+				}
 			}
 			// 从服务获取
 			var service = Application.Ioc.Resolve<IDomainService<Tenant, Guid>>();
 			var user = service.Get(session.TenantId.Value);
-			context.PutData(SessionTenantContextKey, Tuple.Create(session, user));
+			if (HttpManager.CurrentContextExists) {
+				var context = HttpManager.CurrentContext;
+				context.PutData(SessionTenantContextKey, Tuple.Create(session, user));
+			}
 			return user;
 		}
 

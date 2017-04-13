@@ -1,8 +1,7 @@
-﻿using Hangfire;
-using System;
+﻿using System;
 using System.Globalization;
 using ZKWeb.Logging;
-using ZKWeb.MVVMPlugins.MVVM.Common.TaskScheduler.src.Components.ScheduledTasks.Bases;
+using ZKWeb.MVVMPlugins.MVVM.Common.TaskScheduler.src.Components.ScheduledTasks.Interfaces;
 using ZKWeb.Storage;
 using ZKWebStandard.Ioc;
 
@@ -17,23 +16,26 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.TaskScheduler.src.Components.ScheduledTa
 	///		Transaction 30天
 	/// </summary>
 	[ExportMany, SingletonReuse]
-	public class LogCleaner : ScheduledTaskBase<LogCleaner> {
+	public class LogCleaner : IScheduledTask {
 		/// <summary>
-		/// 任务Id
+		/// 任务键名
 		/// </summary>
-		public override string JobId => "LogCleaner";
+		public string Key { get { return "LogCleaner"; } }
+
 		/// <summary>
-		/// 执行间隔
+		/// 每小时执行一次
 		/// </summary>
-		public override string CronExpression => Cron.Hourly();
+		public bool ShouldExecuteNow(DateTime lastExecuted) {
+			return ((DateTime.UtcNow - lastExecuted).TotalHours > 1.0);
+		}
 
 		/// <summary>
 		/// 删除过期的日志
 		/// </summary>
-		public static void Execute() {
+		public void Execute() {
 			var now = DateTime.UtcNow.ToLocalTime();
 			var count = 0;
-			var fileStorage = ZKWeb.Application.Ioc.Resolve<IFileStorage>();
+			var fileStorage = Application.Ioc.Resolve<IFileStorage>();
 			var logsDirectory = fileStorage.GetStorageDirectory("logs");
 			if (!logsDirectory.Exists) {
 				return;
@@ -58,7 +60,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.TaskScheduler.src.Components.ScheduledTa
 					++count;
 				}
 			}
-			var logManager = ZKWeb.Application.Ioc.Resolve<LogManager>();
+			var logManager = Application.Ioc.Resolve<LogManager>();
 			logManager.LogInfo(string.Format(
 				"LogCleaner executed, {0} files removed", count));
 		}

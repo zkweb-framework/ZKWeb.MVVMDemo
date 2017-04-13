@@ -21,14 +21,15 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.MultiTenant.src.Domain.Filters {
 		/// <summary>
 		/// 当前的租户
 		/// </summary>
-		public Tenant UsingTenant { get; set; }
+		public Tenant UsingTenant => _usingTenant.Value;
+		protected Lazy<Tenant> _usingTenant;
 
 		/// <summary>
 		/// 初始化
 		/// </summary>
 		public OwnerTenantFilter() {
 			var tenantManager = Application.Ioc.Resolve<TenantManager>();
-			UsingTenant = tenantManager.GetTenant();
+			_usingTenant = new Lazy<Tenant>(() => tenantManager.GetTenant());
 		}
 
 		/// <summary>

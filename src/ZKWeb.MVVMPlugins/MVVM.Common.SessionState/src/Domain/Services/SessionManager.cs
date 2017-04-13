@@ -24,6 +24,12 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.SessionState.src.Domain.Services {
 		/// </summary>
 		/// <returns></returns>
 		public virtual Session GetSession() {
+			// Http上下文不存在时返回一个随机会话
+			if (!HttpManager.CurrentContextExists) {
+				var randomSession = new Session();
+				randomSession.ReGenerateId();
+				return randomSession;
+			}
 			// 从Http上下文中获取会话
 			// 因为一次请求中可能会调用多次GetSession，应该确保返回同一个对象
 			var context = HttpManager.CurrentContext;
