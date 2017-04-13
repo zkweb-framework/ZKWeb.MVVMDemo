@@ -17,7 +17,4 @@
 	- 支持在前端配置载入的语言
 - 添加SinalR的支持
 
-- 修复CORE下Hangfire的问题
-	- https://github.com/HangfireIO/Hangfire/pull/486
-	- 或者换掉Hangfire因为还有其他bug
 - 重新拉取项目运行检查是否有遗漏提交的文件
