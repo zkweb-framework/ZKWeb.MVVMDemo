@@ -14,4 +14,4 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 
 // Styles
-import '../vendor_module/styles/font-awesome/font-awesome.css';
+import './vendor/styles/font-awesome/font-awesome.css';

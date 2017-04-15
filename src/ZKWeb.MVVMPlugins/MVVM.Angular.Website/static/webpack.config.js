@@ -5,15 +5,12 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CompressionPlugin = require("compression-webpack-plugin");
 var ngtools = require('@ngtools/webpack');
 var CopyWebpackPlugin = require("copy-webpack-plugin");
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-
-var extractCSS = new ExtractTextPlugin('dist/scss.css');
 
 var webpackConfig = {
 	entry: {
-		polyfills: './src/modules/entry_point/polyfills.ts',
-		vendor: './src/modules/entry_point/vendor.ts',
-		app: './src/modules/entry_point/main.ts'
+		polyfills: './src/polyfills.ts',
+		vendor: './src/vendor.ts',
+		app: './src/main.ts'
 	},
 	output: {
 		publicPath: 'dist/',
@@ -22,6 +19,7 @@ var webpackConfig = {
 	plugins: [
 		new ngtools.AotPlugin({
 			tsConfigPath: path.resolve(__dirname, './tsconfig.json'),
+			skipMetadataEmit: true,
 			entryModule: path.resolve(__dirname, './src/modules/app_module/app.module#AppModule')
 		}),
 		new webpack.optimize.CommonsChunkPlugin({
@@ -36,8 +34,8 @@ var webpackConfig = {
 		}),
 		new webpack.optimize.UglifyJsPlugin({ minimize: false }),
 		new CopyWebpackPlugin([
-			{ from: path.resolve(__dirname, "./src/modules/vendor_module/images/favicon.ico"), to: "favicon.ico" },
-			{ from: path.resolve(__dirname, "./src/modules/vendor_module/styles/preloader/preloader.css"), to: "preloader.css" },
+			{ from: path.resolve(__dirname, "./src/vendor/images/favicon.ico"), to: "favicon.ico" },
+			{ from: path.resolve(__dirname, "./src/vendor/styles/preloader/preloader.css"), to: "preloader.css" },
 		]),
 	],
 	module: {
@@ -52,7 +50,7 @@ var webpackConfig = {
 			},
 			{
 				test: /\.scss$/,
-				use: extractCSS.extract(['raw-loader', 'sass-loader'])
+				use: ['to-string-loader', 'css-loader', 'sass-loader']
 			},
 			{
 				test: /\.html$/,
