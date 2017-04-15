@@ -2,9 +2,8 @@
 	"name": "zkweb-mvvm-demo",
 	"version": "1.0.0",
 	"scripts": {
-		"dev:aot": "./node_modules/.bin/webpack-dev-server --config webpack.aot.ts --color --progress",
-		"dev": "./node_modules/.bin/webpack-dev-server --config webpack.config.js --color --inline --hot --content-base ./dist",
-		"webpack:aot": "./node_modules/.bin/webpack --config webpack.aot.ts --colors --progress",
+		"build": "./node_modules/.bin/webpack --config webpack.aot.ts --colors --progress",
+		"watch": "./node_modules/.bin/webpack --config webpack.aot.ts --colors --progress --watch",
 		"lint": "./node_modules/.bin/tslint ./src/**/*.ts -t verbose"
 	},
 	"keywords": [],

@@ -10,16 +10,19 @@ MVVM demo for zkweb framework use angular js 4.0
 
 ### How to start
 
+**Use taobao npm mirror if needed**
+
+```
+npm config set registry http://registry.npm.taobao.org
+npm config set sass_binary_site http://npm.taobao.org/mirrors/node-sass
+```
+
 **Build website files**
 
 ```
 cd src/ZKWeb.MVVMPlugins/MVVM.Angular.Website/static
-cnpm install -g gulp-cli
-cnpm install
-cnpm install --dev
-
-cnpm run webpack:aot
-gulp
+npm install
+npm run watch
 ```
 
 **Start website**
