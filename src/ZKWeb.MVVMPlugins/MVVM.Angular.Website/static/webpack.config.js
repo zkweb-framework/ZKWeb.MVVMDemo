@@ -5,6 +5,9 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CompressionPlugin = require("compression-webpack-plugin");
 var ngtools = require('@ngtools/webpack');
 var CopyWebpackPlugin = require("copy-webpack-plugin");
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+var extractCSS = new ExtractTextPlugin('dist/scss.css');
 
 var webpackConfig = {
 	entry: {
@@ -49,7 +52,7 @@ var webpackConfig = {
 			},
 			{
 				test: /\.scss$/,
-				loaders: ['raw-loader', 'sass-loader']
+				use: extractCSS.extract(['raw-loader', 'sass-loader'])
 			},
 			{
 				test: /\.html$/,
