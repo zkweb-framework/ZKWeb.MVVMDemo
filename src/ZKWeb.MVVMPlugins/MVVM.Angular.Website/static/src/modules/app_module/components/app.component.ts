@@ -3,7 +3,7 @@ import { AppTranslationService } from '../../base_module/services/app-translatio
 
 @Component({
 	selector: 'my-app',
-	templateUrl: '/modules/app_module/views/app.html'
+	templateUrl: '../views/app.html'
 })
 export class AppComponent implements OnInit {
 	constructor(private injector: Injector) {

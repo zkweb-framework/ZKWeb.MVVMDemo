@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>ZKWeb MVVM Demo</title>
+	<base href="/">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="dist/favicon.ico" rel="icon" type="image/x-icon" />
+	<link rel="stylesheet" href="dist/preloader.css" />
+</head>
+<body class="skin-default">
+	<my-app>
+		<div class="preloader-container">
+			<div class="preloader">
+			</div>
+		</div>
+	</my-app>
+	<script>
+		window.appConfig = {
+			apiUrlBase: null,
+			language: "zh-CN"
+		};
+	</script>
+	<script src="dist/polyfills.bundle.js"></script>
+	<script src="dist/vendor.bundle.js"></script>
+	<script src="dist/app.bundle.js"></script>
+</body>
+</html>

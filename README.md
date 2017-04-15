@@ -14,9 +14,11 @@ MVVM demo for zkweb framework use angular js 4.0
 
 ```
 cd src/ZKWeb.MVVMPlugins/MVVM.Angular.Website/static
-cnpm install --global gulp-cli
+cnpm install -g gulp-cli
 cnpm install
 cnpm install --dev
+
+cnpm run webpack:aot
 gulp
 ```
 
