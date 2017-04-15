@@ -2,8 +2,7 @@
 
 @Component({
 	selector: 'admin-login',
-	template: "",
-	// templateUrl: '../views/admin-login.html',
-	// styleUrls: ['../styles/admin-login.css']
+	templateUrl: '../views/admin-login.html',
+	styleUrls: ['../styles/admin-login.scss']
 })
 export class AdminLoginComponent { }

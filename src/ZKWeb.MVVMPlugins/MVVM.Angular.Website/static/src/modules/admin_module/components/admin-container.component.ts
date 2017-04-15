@@ -2,8 +2,7 @@
 
 @Component({
 	selector: 'admin-container',
-	template: "",
-	// templateUrl: '../views/admin-container.html',
-	// styleUrls: [ '../styles/admin-container.css' ]
+	templateUrl: '../views/admin-container.html',
+	styleUrls: [ '../styles/admin-container.scss' ]
 })
 export class AdminContainerComponent { }
