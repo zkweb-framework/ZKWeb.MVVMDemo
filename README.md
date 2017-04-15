@@ -5,7 +5,7 @@ MVVM demo for zkweb framework use angular js 4.0
 - Base on Angular JS 4.0
 	- Support automatic generate script for dto and application service
 - Use entity framework core
-- Use swagger to browse and test apis
+- Use swagger
 - TODO
 
 ### How to start
