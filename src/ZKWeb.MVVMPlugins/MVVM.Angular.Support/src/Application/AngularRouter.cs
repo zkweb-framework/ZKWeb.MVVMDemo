@@ -43,15 +43,15 @@ namespace ZKWeb.MVVMPlugins.MVVM.Angular.Support.src.Application {
 			IFileEntry fileEntry = null;
 			if (string.IsNullOrEmpty(path)) {
 				// 请求的是首页
-				fileEntry = _fileStorage.GetResourceFile("static", "index.html");
+				fileEntry = _fileStorage.GetResourceFile("static", "dist", "index.html");
 			} else {
 				// 请求的是子页或资源文件
-				fileEntry = _fileStorage.GetResourceFile("static", path);
+				fileEntry = _fileStorage.GetResourceFile("static", "dist", path);
 				// 判断是否资源文件，不是时当作子页处理
 				if (!fileEntry.Exists) {
 					var extension = Path.GetExtension(path);
 					if (!_resourceExtensionSet.Contains(extension)) {
-						fileEntry = _fileStorage.GetResourceFile("static", "index.html");
+						fileEntry = _fileStorage.GetResourceFile("static", "dist", "index.html");
 					}
 				}
 			}

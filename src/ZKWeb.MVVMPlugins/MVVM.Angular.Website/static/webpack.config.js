@@ -13,8 +13,8 @@ var webpackConfig = {
 		app: './src/main.ts'
 	},
 	output: {
-		publicPath: 'dist/',
-		path: path.resolve(__dirname, './dist')
+		publicPath: '/',
+		path: path.resolve(__dirname, './dist'),
 	},
 	plugins: [
 		new ngtools.AotPlugin({
@@ -24,6 +24,17 @@ var webpackConfig = {
 		}),
 		new webpack.optimize.CommonsChunkPlugin({
 			name: ['app', 'vendor', 'polyfills']
+		}),
+		new HtmlWebpackPlugin({
+			filename: 'index.html',
+			template: './src/index.html',
+			inject: true,
+			minify: {
+				removeComments: true,
+				collapseWhitespace: true,
+				removeAttributeQuotes: true
+			},
+			chunksSortMode: 'dependency'
 		}),
 		new CompressionPlugin({
 			asset: "[path].gz[query]",
