@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFrameworks>net461;netstandard1.6</TargetFrameworks>
+		<TargetFramework>netstandard1.6</TargetFramework>
 		<AssemblyName>ZKWeb.MVVMPlugins</AssemblyName>
 		<PackageId>ZKWeb.MVVMPlugins</PackageId>
 		<GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
