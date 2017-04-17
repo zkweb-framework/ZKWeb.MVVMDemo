@@ -3,7 +3,10 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { InputTextModule, PanelModule, ButtonModule } from 'primeng/primeng';
+
+import { GeneratedModule } from '../generated_module/generated.module';
 import { BaseModule } from '../base_module/base.module';
+import { BaseFormModule } from '../base_form_module/base_form.module';
 
 import { AdminAuthGuard } from '../base_module/auth/admin-auth-guard';
 
@@ -27,7 +30,9 @@ const routes: Routes = [
 		InputTextModule,
 		PanelModule,
 		ButtonModule,
+		GeneratedModule,
 		BaseModule,
+		BaseFormModule,
 		RouterModule.forChild(routes)
 	],
 	declarations: [
