@@ -53,7 +53,12 @@ var webpackConfig = {
 		rules: [
 			{
 				test: /\.ts$/,
-				loaders: [ '@ngtools/webpack' ]
+				loaders: ['@ngtools/webpack'],
+			},
+			{
+				test: /\.js$/,
+				loaders: ['babel-loader'],
+				exclude: [/node_modules/, /dist/]
 			},
 			{
 				test: /\.css$/,
