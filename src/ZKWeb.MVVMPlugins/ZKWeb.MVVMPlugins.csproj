@@ -34,4 +34,6 @@
 		<DefineConstants>$(DefineConstants);NETCORE</DefineConstants>
 	</PropertyGroup>
 
+	<ProjectExtensions><VisualStudio><UserProperties MVVM_1Angular_1Website_4static_4package_1json__JSONSchema="" /></VisualStudio></ProjectExtensions>
+
 </Project>

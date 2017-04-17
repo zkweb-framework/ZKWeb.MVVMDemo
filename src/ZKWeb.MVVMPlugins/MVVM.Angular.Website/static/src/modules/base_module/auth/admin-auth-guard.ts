@@ -7,6 +7,7 @@ export class AdminAuthGuard implements CanActivate {
 	constructor(private router: Router) { }
 
 	canActivate() {
+		alert(1);
 		this.router.navigate(['admin', 'login']);
 		return false;
 	}
