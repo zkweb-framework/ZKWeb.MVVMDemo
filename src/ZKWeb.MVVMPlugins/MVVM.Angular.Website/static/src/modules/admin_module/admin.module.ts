@@ -1,6 +1,8 @@
 ﻿import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
+import { InputTextModule, PasswordModule, PanelModule } from 'primeng/primeng';
 import { BaseModule } from '../base_module/base.module';
 
 import { AdminAuthGuard } from '../base_module/auth/admin-auth-guard';
@@ -20,6 +22,11 @@ const routes: Routes = [
 @NgModule({
 	imports: [
 		CommonModule,
+		FormsModule,
+		ReactiveFormsModule,
+		InputTextModule,
+		PasswordModule,
+		PanelModule,
 		BaseModule,
 		RouterModule.forChild(routes)
 	],

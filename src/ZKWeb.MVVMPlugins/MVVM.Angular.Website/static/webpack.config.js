@@ -62,7 +62,7 @@ var webpackConfig = {
 			},
 			{
 				test: /\.css$/,
-				loaders: ['to-string-loader', 'css-loader']
+				loaders: ['style-loader', 'css-loader']
 			},
 			{
 				test: /\.scss$/,
@@ -91,6 +91,10 @@ var webpackConfig = {
 			{
 				test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
 				loader: 'url-loader?limit=10000&mimetype=image/svg+xml'
+			},
+			{
+				test: /\.(jpg|jpeg|bmp|png|gif)$/,
+				loader: "file-loader"
 			},
 		]
 	}
