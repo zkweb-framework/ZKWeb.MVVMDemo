@@ -2,7 +2,7 @@
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-import { InputTextModule, PasswordModule, PanelModule } from 'primeng/primeng';
+import { InputTextModule, PanelModule, ButtonModule } from 'primeng/primeng';
 import { BaseModule } from '../base_module/base.module';
 
 import { AdminAuthGuard } from '../base_module/auth/admin-auth-guard';
@@ -25,8 +25,8 @@ const routes: Routes = [
 		FormsModule,
 		ReactiveFormsModule,
 		InputTextModule,
-		PasswordModule,
 		PanelModule,
+		ButtonModule,
 		BaseModule,
 		RouterModule.forChild(routes)
 	],

@@ -60,6 +60,7 @@
 	margin: 12px 15px 0px 12px;
 	border-top: 1px solid #aeaeae;
 	text-align: center;
+	font-size: 12px;
 
 	p {
 		margin: 15px 0px 0px 0px;
@@ -68,5 +69,10 @@
 
 /* 登录LOGO */
 .login-logo {
+	text-align: center;
+}
+
+/* 标题框标题 */
+.login-panel-header {
 	text-align: center;
 }

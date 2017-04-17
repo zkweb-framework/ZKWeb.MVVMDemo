@@ -15,8 +15,17 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Components.Translates {
 			Codes = new HashSet<string>() { "zh-CN" };
 			Translates = new Dictionary<string, string>()
 			{
+				{ "Admin Login", "管理员登录" },
+				{ "Tenant", "租户" },
+				{ "Username", "用户名" },
+				{ "Password", "密码" },
+				{ "Captcha", "验证码" },
+				{ "Submit", "提交" },
+				{ "Default admin account is admin, password is 123456, please change it after login immediately",
+					"默认管理员账号: admin, 密码: 123456, 登录后请尽快修改密码" } 
+
 				// TODO: 缩减这里的翻译
-				{ "ZKWeb Default Website", "ZKWeb默认站点" },
+				/* { "ZKWeb Default Website", "ZKWeb默认站点" },
 				{ "Captcha", "验证码" },
 				{ "Click to change captcha image", "点击更换验证码图片" },
 				{ "Please enter captcha", "请填写验证码" },
@@ -199,8 +208,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Components.Translates {
 				{ "AdminSidebarAppMenu", "后台侧边栏程序菜单" },
 				{ "EnterAdminPanel", "进入后台" },
 				{ "UserLoginInfo", "登录信息" },
-				{ "Default admin account is admin, password is 123456, please change it after login immediately",
-					"默认管理员账号: admin, 密码: 123456, 登录后请尽快修改密码" }
+				*/
 			};
 		}
 	}
