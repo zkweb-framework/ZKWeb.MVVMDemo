@@ -32,7 +32,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Extensions {
 				}
 			}
 			// 从服务获取
-			var service = Application.Ioc.Resolve<IDomainService<User, Guid>>();
+			var service = ZKWeb.Application.Ioc.Resolve<IDomainService<User, Guid>>();
 			var user = service.Get(session.UserId.Value);
 			if (HttpManager.CurrentContextExists) {
 				var context = HttpManager.CurrentContext;

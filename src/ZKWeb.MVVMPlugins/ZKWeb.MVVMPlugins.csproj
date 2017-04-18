@@ -30,10 +30,6 @@
 		<Reference Include="Microsoft.CSharp" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="MVVM.Common.AdminPanel\src\Components\" />
-	</ItemGroup>
-
 	<PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard1.6' ">
 		<DefineConstants>$(DefineConstants);NETCORE</DefineConstants>
 	</PropertyGroup>

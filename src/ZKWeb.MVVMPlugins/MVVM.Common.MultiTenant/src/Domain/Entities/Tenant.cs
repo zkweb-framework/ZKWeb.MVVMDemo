@@ -1,11 +1,13 @@
 ﻿using System;
 using ZKWeb.Database;
 using ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Domain.Entities.Interfaces;
+using ZKWebStandard.Ioc;
 
 namespace ZKWeb.MVVMPlugins.MVVM.Common.MultiTenant.src.Domain.Entities {
 	/// <summary>
 	/// 租户
 	/// </summary>
+	[ExportMany]
 	public class Tenant :
 		IEntity<Guid>,
 		IHaveCreateTime,

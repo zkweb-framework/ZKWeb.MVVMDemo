@@ -34,7 +34,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Extensions {
 		/// 获取用户类型对象
 		/// </summary>
 		public static IUserType GetUserType(this User user) {
-			var type = Application.Ioc.ResolveMany<IUserType>()
+			var type = ZKWeb.Application.Ioc.ResolveMany<IUserType>()
 				.FirstOrDefault(t => t.Type == user?.Type);
 			if (type == null) {
 				throw new NotSupportedException(string.Format(

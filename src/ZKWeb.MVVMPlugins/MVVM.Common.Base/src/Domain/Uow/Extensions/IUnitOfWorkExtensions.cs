@@ -165,5 +165,52 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Domain.Uow.Extensions {
 			uow.OperationFilters = uow.OperationFilters.ConcatIfNotNull(filter).ToList();
 			return new SimpleDisposable(() => uow.OperationFilters = oldFilters);
 		}
+
+		/// <summary>
+		/// 在一定范围内启用指定的过滤器
+		/// 自动检测过滤器是查询还是操作过滤器
+		/// </summary>
+		/// <param name="uow">工作单元</param>
+		/// <param name="filter">过滤器</param>
+		/// <returns></returns>
+		public static IDisposable EnableFilter(
+			this IUnitOfWork uow, object filter) {
+			var oldQueryFilters = uow.QueryFilters;
+			var oldOperationFilters = uow.OperationFilters;
+			if (filter is IEntityQueryFilter) {
+				uow.QueryFilters = uow.QueryFilters
+					.ConcatIfNotNull((IEntityQueryFilter)filter).ToList();
+			}
+			if (filter is IEntityOperationFilter) {
+				uow.OperationFilters = uow.OperationFilters
+					.ConcatIfNotNull((IEntityOperationFilter)filter).ToList();
+			}
+			return new SimpleDisposable(() => {
+				uow.QueryFilters = oldQueryFilters;
+				uow.OperationFilters = oldOperationFilters;
+			});
+		}
+
+		/// <summary>
+		/// 在一定范围内禁用指定的过滤器
+		/// 自动检测过滤器是查询还是操作过滤器
+		/// </summary>
+		/// <param name="uow">工作单元</param>
+		/// <param name="filterType">过滤器类型</param>
+		/// <returns></returns>
+		public static IDisposable DisableFilter(
+			this IUnitOfWork uow, Type filterType) {
+			var oldQueryFilters = uow.QueryFilters;
+			var oldOperationFilters = uow.OperationFilters;
+			var filterTypeInfo = filterType.GetTypeInfo();
+			uow.QueryFilters = uow.QueryFilters.Where(
+				f => !filterTypeInfo.IsAssignableFrom(f.GetType())).ToList();
+			uow.OperationFilters = uow.OperationFilters.Where(
+				f => !filterTypeInfo.IsAssignableFrom(f.GetType())).ToList();
+			return new SimpleDisposable(() => {
+				uow.QueryFilters = oldQueryFilters;
+				uow.OperationFilters = oldOperationFilters;
+			});
+		}
 	}
 }

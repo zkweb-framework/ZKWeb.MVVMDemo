@@ -19,6 +19,6 @@ export abstract class FormFieldBaseComponent implements OnInit {
 
 	ngOnInit() {
 		this.translatedDisplayName = this.appTranslationService.translate(this.displayName || this.fieldName);
-		this.translatedPlaceHolder = this.appTranslationService.translate(this.placeHolder || this.fieldName);
+		this.translatedPlaceHolder = this.appTranslationService.translate(this.placeHolder) || this.translatedDisplayName;
 	}
 }

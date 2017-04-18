@@ -41,7 +41,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Components.ActionFilter
 					HttpMethod.Equals(
 						HttpManager.CurrentContext.Request.Method,
 						StringComparison.OrdinalIgnoreCase)) {
-					var privilegeManager = Application.Ioc.Resolve<PrivilegeManager>();
+					var privilegeManager = ZKWeb.Application.Ioc.Resolve<PrivilegeManager>();
 					privilegeManager.Check(RequiredUserType, Privileges);
 				}
 				return action();

@@ -4,6 +4,8 @@ using ZKWeb.Localize;
 using ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Components.Exceptions;
 using ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Domain.Services.Bases;
 using ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Domain.Services.Interfaces;
+using ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Domain.Uow.Extensions;
+using ZKWeb.MVVMPlugins.MVVM.Common.MultiTenant.src.Domain.Filters;
 using ZKWeb.MVVMPlugins.MVVM.Common.MultiTenant.src.Domain.Services;
 using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Entities;
 using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Entities.Interfaces;
@@ -38,9 +40,9 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Services {
 		/// </summary>
 		/// <returns></returns>
 		protected virtual User GetSuperAdmin() {
-			var superAdminTypes = Application.Ioc.ResolveMany<IUserType>()
+			var superAdminTypes = ZKWeb.Application.Ioc.ResolveMany<IUserType>()
 				.Where(t => t is IAmSuperAdmin).Select(t => t.Type).ToList();
-			var userManager = Application.Ioc.Resolve<UserManager>();
+			var userManager = ZKWeb.Application.Ioc.Resolve<UserManager>();
 			return userManager.Get(u => superAdminTypes.Contains(u.Type));
 		}
 
@@ -51,30 +53,33 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Services {
 		/// </summary>
 		/// <returns></returns>
 		public virtual User EnsureSuperAdmin() {
-			var admin = GetSuperAdmin();
-			if (admin != null) {
-				return admin;
-			}
-			lock (SuperAdminLock) {
-				var tenantManager = Application.Ioc.Resolve<TenantManager>();
-				var masterTenant = tenantManager.EnsureMasterTenant();
-				var userManager = Application.Ioc.Resolve<UserManager>();
-				using (UnitOfWork.Scope()) {
-					UnitOfWork.Context.BeginTransaction();
-					admin = GetSuperAdmin();
-					if (admin != null) {
-						return admin;
-					}
-					admin = new User() {
-						Type = SuperAdminUserType.ConstType,
-						Username = SuperAdminName,
-						OwnerTenant = tenantManager.Get(masterTenant.Id),
-					};
-					admin.SetPassword(SuperAdminPassword);
-					userManager.Save(ref admin);
-					UnitOfWork.Context.FinishTransaction();
+			using (UnitOfWork.Scope())
+			using (UnitOfWork.DisableFilter(typeof(OwnerTenantFilter))) {
+				var admin = GetSuperAdmin();
+				if (admin != null) {
+					return admin;
 				}
-				return admin;
+				lock (SuperAdminLock) {
+					var tenantManager = ZKWeb.Application.Ioc.Resolve<TenantManager>();
+					var masterTenant = tenantManager.EnsureMasterTenant();
+					var userManager = ZKWeb.Application.Ioc.Resolve<UserManager>();
+					using (UnitOfWork.Scope()) {
+						UnitOfWork.Context.BeginTransaction();
+						admin = GetSuperAdmin();
+						if (admin != null) {
+							return admin;
+						}
+						admin = new User() {
+							Type = SuperAdminUserType.ConstType,
+							Username = SuperAdminName,
+							OwnerTenant = tenantManager.Get(masterTenant.Id),
+						};
+						admin.SetPassword(SuperAdminPassword);
+						userManager.Save(ref admin);
+						UnitOfWork.Context.FinishTransaction();
+					}
+					return admin;
+				}
 			}
 		}
 
@@ -83,7 +88,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Services {
 		/// 登陆失败时会抛出例外
 		/// </summary>
 		public virtual void Login(string username, string password, bool rememberLogin) {
-			var userManager = Application.Ioc.Resolve<UserManager>();
+			var userManager = ZKWeb.Application.Ioc.Resolve<UserManager>();
 			var user = userManager.FindUser(username);
 			// 用户不存在或密码错误时抛出例外
 			if (user == null || !user.CheckPassword(password)) {

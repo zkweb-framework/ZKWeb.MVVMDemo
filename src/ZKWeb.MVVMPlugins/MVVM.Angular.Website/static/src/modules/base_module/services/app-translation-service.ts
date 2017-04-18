@@ -18,7 +18,7 @@ export class AppTranslationService {
 
     // 翻译指定文本，翻译不存在时返回原文本
 	translate(text: string) {
-		if (this.translation == null) {
+		if (this.translation == null || !text) {
 			return text;
 		}
 		return this.translation.translations[text] || text;

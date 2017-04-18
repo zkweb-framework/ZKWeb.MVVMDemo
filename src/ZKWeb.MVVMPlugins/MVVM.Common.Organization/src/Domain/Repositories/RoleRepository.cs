@@ -16,7 +16,9 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Repositories {
 		/// </summary>
 		/// <returns></returns>
 		public override IQueryable<Role> Query() {
-			return base.Query().Include(r => r.Users);
+			return base.Query()
+				.Include(r => r.OwnerTenant)
+				.Include(r => r.Users);
 		}
 	}
 }

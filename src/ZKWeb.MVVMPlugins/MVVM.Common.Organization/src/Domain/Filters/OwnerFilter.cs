@@ -29,7 +29,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Filters {
 		/// 数据应当属于的用户Id默认等于当前登录用户Id
 		/// </summary>
 		public OwnerFilter() {
-			var sessionManager = Application.Ioc.Resolve<SessionManager>();
+			var sessionManager = ZKWeb.Application.Ioc.Resolve<SessionManager>();
 			_exceptedOwnerId = new Lazy<Guid>(() => sessionManager.GetSession().UserId ?? Guid.Empty);
 		}
 
@@ -74,7 +74,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Filters {
 				// 未登陆用户保存数据，不需要设置
 			} else if (e.Owner == null && ExceptedOwnerId != Guid.Empty) {
 				// 已登陆用户保存数据，设置所属用户，注意这里会受查询过滤器的影响
-				var repository = Application.Ioc.Resolve<IRepository<User, Guid>>();
+				var repository = ZKWeb.Application.Ioc.Resolve<IRepository<User, Guid>>();
 				var user = repository.Get(u => u.Id == ExceptedOwnerId);
 				if (user == null) {
 					throw new BadRequestException(new T("Set entity owner failed, user not found"));

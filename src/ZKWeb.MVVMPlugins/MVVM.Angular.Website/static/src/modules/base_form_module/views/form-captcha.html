@@ -3,5 +3,5 @@
 </div>
 <div class="ui-grid-col-{{ fieldGridWidth }}" [formGroup]="formGroup">
 	<input pInputText type="text" [formControlName]="fieldName" [placeholder]="translatedPlaceHolder" />
-	<z-form-validation-messages [formGroup]="formGroup" [fieldName]="fieldName" [validationMessages]="validationMessages"></z-form-validation-messages>
+	<z-form-validation-messages [formGroup]="formGroup" [fieldName]="fieldName" [displayName]="displayName" [validationMessages]="validationMessages"></z-form-validation-messages>
 </div>

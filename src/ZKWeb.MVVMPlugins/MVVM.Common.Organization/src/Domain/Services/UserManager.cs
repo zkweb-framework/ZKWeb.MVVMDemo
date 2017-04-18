@@ -53,7 +53,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Services {
 		/// 初始化
 		/// </summary>
 		public UserManager() {
-			var configManager = Application.Ioc.Resolve<WebsiteConfigManager>();
+			var configManager = ZKWeb.Application.Ioc.Resolve<WebsiteConfigManager>();
 			var extra = configManager.WebsiteConfig.Extra;
 			SessionExpireDaysWithRememebrLogin = TimeSpan.FromDays(
 				extra.GetOrDefault(OrganizationExtraConfigKeys.SessionExpireDaysWithRememebrLogin, 30));
@@ -84,7 +84,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Services {
 		/// </summary>
 		public virtual User FindUser(string username) {
 			var uow = UnitOfWork;
-			var handlers = Application.Ioc.ResolveMany<IUserLoginHandler>();
+			var handlers = ZKWeb.Application.Ioc.ResolveMany<IUserLoginHandler>();
 			User user = null;
 			using (uow.Scope()) {
 				// 通过处理器查找用户
@@ -121,11 +121,11 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Services {
 		/// </summary>
 		public virtual void LoginWithUser(User user, bool rememberLogin) {
 			// 获取回调
-			var handlers = Application.Ioc.ResolveMany<IUserLoginHandler>().ToList();
+			var handlers = ZKWeb.Application.Ioc.ResolveMany<IUserLoginHandler>().ToList();
 			// 登陆前的处理
 			handlers.ForEach(c => c.BeforeLogin(user));
 			// 设置会话
-			var sessionManager = Application.Ioc.Resolve<SessionManager>();
+			var sessionManager = ZKWeb.Application.Ioc.Resolve<SessionManager>();
 			sessionManager.RemoveSession(false);
 			var session = sessionManager.GetSession();
 			session.ReGenerateId();
@@ -145,7 +145,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Services {
 		/// 退出登录
 		/// </summary>
 		public virtual void Logout() {
-			var sessionManager = Application.Ioc.Resolve<SessionManager>();
+			var sessionManager = ZKWeb.Application.Ioc.Resolve<SessionManager>();
 			sessionManager.RemoveSession(true);
 		}
 
@@ -168,7 +168,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Services {
 		/// <param name="userId">用户Id</param>
 		/// <returns></returns>
 		public virtual IFileEntry GetAvatarStorageFile(Guid userId) {
-			var fileStorage = Application.Ioc.Resolve<IFileStorage>();
+			var fileStorage = ZKWeb.Application.Ioc.Resolve<IFileStorage>();
 			return fileStorage.GetStorageFile(
 				"static", "mvvm.common.organization.images", string.Format("avatar_{0}.jpg", userId));
 		}

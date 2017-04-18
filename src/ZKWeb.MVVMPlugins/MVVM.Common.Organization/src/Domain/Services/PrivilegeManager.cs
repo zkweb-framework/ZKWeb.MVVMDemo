@@ -25,7 +25,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Services {
 		/// </summary>
 		/// <returns></returns>
 		public virtual List<string> GetPrivileges() {
-			var providers = Application.Ioc.ResolveMany<IPrivilegesProvider>();
+			var providers = ZKWeb.Application.Ioc.ResolveMany<IPrivilegesProvider>();
 			var privileges = providers.SelectMany(p => p.GetPrivileges()).Distinct().ToList();
 			return privileges;
 		}
@@ -37,7 +37,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Services {
 		/// <param name="userType">用户类型，例如typeof(IAmAdmin)</param>
 		/// <param name="privileges">要求的权限列表</param>
 		public virtual void Check(Type userType, params string[] privileges) {
-			var sessionManager = Application.Ioc.Resolve<SessionManager>();
+			var sessionManager = ZKWeb.Application.Ioc.Resolve<SessionManager>();
 			var user = sessionManager.GetSession().GetUser();
 			var userTypeMatched = HasUserType(user, userType);
 			var context = HttpManager.CurrentContext;
@@ -45,7 +45,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Services {
 				// 检查通过
 			} else if (privileges != null && privileges.Length > 0) {
 				// 无权限403
-				var translator = Application.Ioc.Resolve<IPrivilegeTranslator>();
+				var translator = ZKWeb.Application.Ioc.Resolve<IPrivilegeTranslator>();
 				throw new ForbiddenException(
 					new T("Action require {0}, and {1} privileges",
 					new T(userType.Name),
