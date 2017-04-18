@@ -2,7 +2,7 @@
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-import { InputTextModule, PanelModule, ButtonModule } from 'primeng/primeng';
+import { InputTextModule, PanelModule, ButtonModule, MessagesModule } from 'primeng/primeng';
 
 import { GeneratedModule } from '../generated_module/generated.module';
 import { BaseModule } from '../base_module/base.module';
@@ -30,6 +30,7 @@ const routes: Routes = [
 		InputTextModule,
 		PanelModule,
 		ButtonModule,
+		MessagesModule,
 		GeneratedModule,
 		BaseModule,
 		BaseFormModule,

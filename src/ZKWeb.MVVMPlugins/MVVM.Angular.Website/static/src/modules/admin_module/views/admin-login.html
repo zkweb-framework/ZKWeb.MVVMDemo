@@ -4,11 +4,12 @@
 			<a><img [src]="logoUrl" alt="logo"></a>
 		</div>
 		<div class="login-box-body">
-			<form [formGroup]="adminLoginForm">
+			<form [formGroup]="adminLoginForm" (ngSubmit)="onSubmit()">
 				<p-panel>
 					<p-header>
 						<div class="login-panel-header">{{ "Admin Login" | trans }}</div>
 					</p-header>
+					<p-messages [value]="msgs"></p-messages>
 					<z-form-grid>
 						<z-form-text [formGroup]="adminLoginForm" fieldName="Tenant"></z-form-text>
 						<z-form-text [formGroup]="adminLoginForm" fieldName="Username"></z-form-text>
