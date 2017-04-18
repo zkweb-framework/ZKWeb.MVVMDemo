@@ -6,7 +6,7 @@ export class Translation_zh_CN {
 		"{0} is required": "请填写{0}",
 		"Length of {0} must not less than {1}": "{0}的长度必须不少于{1}",
 		"Length of {0} must not greater than {1}": "{0}的长度必须不大于{1}",
-		"{0} format is incorrect": "{0}的格式不正确",
+		"Format of {0} is incorrect": "{0}的格式不正确",
 		"Admin Login": "管理员登录",
 		"Tenant": "租户",
 		"Username": "用户名",

@@ -10,7 +10,7 @@ export class FormValidationMessagesComponent implements OnInit {
 	@Input() formGroup: FormGroup;
 	@Input() fieldName: string;
 	@Input() displayName: string;
-	@Input() customMessages: { [key: string]: string };
+	@Input() validationMessages: { [key: string]: string };
 	errorMessages: string[] = [];
 
 	constructor(private appTranslationService: AppTranslationService) {
@@ -19,7 +19,7 @@ export class FormValidationMessagesComponent implements OnInit {
 
 	private formatErrorMessage(type: string, data: any): string {
 		// 获取自定义的错误信息
-		var message = (this.customMessages || {})[type];
+		var message = (this.validationMessages || {})[type];
 		if (message) {
 			return message;
 		}

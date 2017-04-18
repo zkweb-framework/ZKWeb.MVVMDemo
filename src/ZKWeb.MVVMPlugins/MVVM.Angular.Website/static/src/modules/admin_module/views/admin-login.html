@@ -10,47 +10,11 @@
 						<div class="login-panel-header">{{ "Admin Login" | trans }}</div>
 					</p-header>
 					<z-form-grid>
-						<div class="ui-grid-row">
-							<div class="ui-grid-col-4">
-								{{ "Tenant" | trans }}:
-							</div>
-							<div class="ui-grid-col-8">
-								<input pInputText type="text" formControlName="Tenant" [placeholder]="'Tenant' | trans" />
-								<z-form-validation-messages [formGroup]="adminLoginForm" fieldName="Tenant"></z-form-validation-messages>
-							</div>
-						</div>
-						<div class="ui-grid-row">
-							<div class="ui-grid-col-4">
-								{{ "Username" | trans }}:
-							</div>
-							<div class="ui-grid-col-8">
-								<input pInputText type="text" formControlName="Username" [placeholder]="'Username' | trans" />
-								<z-form-validation-messages [formGroup]="adminLoginForm" fieldName="Username"></z-form-validation-messages>
-							</div>
-						</div>
-						<div class="ui-grid-row">
-							<div class="ui-grid-col-4">
-								{{ "Password" | trans }}:
-							</div>
-							<div class="ui-grid-col-8">
-								<input pInputText type="password" formControlName="Password" [placeholder]="'Password' | trans" />
-								<z-form-validation-messages [formGroup]="adminLoginForm" fieldName="Password"></z-form-validation-messages>
-							</div>
-						</div>
-						<div class="ui-grid-row">
-							<div class="ui-grid-col-4">
-								{{ "Captcha" | trans }}:
-							</div>
-							<div class="ui-grid-col-8">
-								<input pInputText type="text" formControlName="Captcha" [placeholder]="'Captcha' | trans" />
-								<z-form-validation-messages [formGroup]="adminLoginForm" fieldName="Captcha"></z-form-validation-messages>
-							</div>
-						</div>
-						<div class="ui-grid-row">
-							<div class="ui-grid-col-12">
-								<button pButton type="submit" [label]="'Submit' | trans" [disabled]="!adminLoginForm.valid"></button>
-							</div>
-						</div>
+						<z-form-text [formGroup]="adminLoginForm" fieldName="Tenant"></z-form-text>
+						<z-form-text [formGroup]="adminLoginForm" fieldName="Username"></z-form-text>
+						<z-form-password [formGroup]="adminLoginForm" fieldName="Password"></z-form-password>
+						<z-form-captcha [formGroup]="adminLoginForm" fieldName="Captcha"></z-form-captcha>
+						<z-form-submit-button [formGroup]="adminLoginForm"></z-form-submit-button>
 					</z-form-grid>
 					<div class="login-hint">
 						<p>{{ "Default admin account is admin, password is 123456, please change it after login immediately" | trans }}</p>
