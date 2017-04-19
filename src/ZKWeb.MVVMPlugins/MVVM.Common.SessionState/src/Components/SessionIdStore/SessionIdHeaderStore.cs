@@ -13,11 +13,11 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.SessionState.src.Components.SessionIdSou
 		/// <summary>
 		/// 客户端发过来的会话Id
 		/// </summary>
-		public const string SessionHeaderIn = "X-ZKWebSessionId";
+		public const string SessionHeaderIn = "X-ZKWeb-SessionId";
 		/// <summary>
 		/// 发送给客户端的会话Id
 		/// </summary>
-		public const string SessionHeaderOut = "X-Set-ZKWebSessionId";
+		public const string SessionHeaderOut = "X-Set-ZKWeb-SessionId";
 
 		/// <summary>
 		/// 获取会话Id

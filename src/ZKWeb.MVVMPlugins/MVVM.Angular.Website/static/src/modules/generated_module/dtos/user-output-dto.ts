@@ -3,7 +3,7 @@ import { RoleOutputDto } from './role-output-dto';
 // 用户传出信息
 export class UserOutputDto {
 	// 用户Id
-	public Id: any;
+	public Id: string;
 	// 用户类型
 	public Type: string;
 	// 用户名
@@ -11,7 +11,7 @@ export class UserOutputDto {
 	// 租户名
 	public OwnerTenantName: string;
 	// 租户Id
-	public OwnerTenantId: any;
+	public OwnerTenantId: string;
 	// 创建时间
 	public CreateTime: string;
 	// 更新时间

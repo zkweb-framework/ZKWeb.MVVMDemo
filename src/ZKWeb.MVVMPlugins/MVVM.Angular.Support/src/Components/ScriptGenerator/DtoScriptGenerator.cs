@@ -35,7 +35,10 @@ namespace ZKWeb.MVVMPlugins.MVVM.Angular.Support.src.Components.ScriptGenerator 
 				return "number";
 			}
 			// 判断是否字符串
-			if (type == typeof(char) || type == typeof(string)) {
+			if (type == typeof(char) ||
+				type == typeof(string) ||
+				type == typeof(Guid) ||
+				type == typeof(DateTime)) {
 				return "string";
 			}
 			// 判断是否数组
@@ -44,7 +47,16 @@ namespace ZKWeb.MVVMPlugins.MVVM.Angular.Support.src.Components.ScriptGenerator 
 			if (typeInfo.IsArray) {
 				var elementType = GetScriptType(
 					typeInfo.GetElementType(), discoveredTypes);
-				return elementType + "[]";
+				return $"{elementType}[]";
+			}
+			// 判断是否字典
+			var dictionaryInterface = typeInfo.GetInterfaces().FirstOrDefault(x =>
+				x.GetTypeInfo().IsGenericType &&
+				x.GetTypeInfo().GetGenericTypeDefinition() == typeof(IDictionary<,>));
+			if (dictionaryInterface != null) {
+				var keyType = GetScriptType(typeInfo.GetGenericArguments()[0], discoveredTypes);
+				var valueType = GetScriptType(typeInfo.GetGenericArguments()[1], discoveredTypes);
+				return $"{{ [key: {keyType}]: {valueType} }}";
 			}
 			// 判断是否集合
 			var collectionInterface = typeInfo.GetInterfaces().FirstOrDefault(x =>
@@ -53,7 +65,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Angular.Support.src.Components.ScriptGenerator 
 			if (collectionInterface != null) {
 				var elementType = GetScriptType(
 					collectionInterface.GetGenericArguments()[0], discoveredTypes);
-				return elementType + "[]";
+				return $"{elementType}[]";
 			}
 			// 判断是否其他数据传输对象
 			if (typeInfo.IsEnum ||

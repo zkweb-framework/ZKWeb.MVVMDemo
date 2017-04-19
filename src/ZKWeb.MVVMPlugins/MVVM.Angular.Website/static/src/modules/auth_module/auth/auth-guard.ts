@@ -17,7 +17,6 @@ export class AuthGuard implements CanActivate {
 			setTimeout(() => {
 				this.appSessionService.getSessionInfo().subscribe(
 					sessionInfo => {
-						alert(sessionInfo);
 						this.router.navigate(this.appConfigService.getLoginUrl());
 						o.next(false);
 						o.complete();

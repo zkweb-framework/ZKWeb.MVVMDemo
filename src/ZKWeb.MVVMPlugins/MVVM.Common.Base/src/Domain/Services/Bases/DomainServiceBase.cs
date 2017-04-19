@@ -45,6 +45,9 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Domain.Services.Bases {
 		/// 根据主键获取实体
 		/// </summary>
 		public virtual TEntity Get(TPrimaryKey id) {
+			if (id.Equals(default(TPrimaryKey))) {
+				return default(TEntity);
+			}
 			var expr = ExpressionUtils.MakeMemberEqualiventExpression<TEntity>("Id", id);
 			using (UnitOfWork.Scope()) {
 				return Repository.Get(expr);

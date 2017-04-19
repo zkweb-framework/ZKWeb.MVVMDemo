@@ -1,7 +1,7 @@
 // 角色传出信息
 export class RoleOutputDto {
 	// 角色Id
-	public Id: any;
+	public Id: string;
 	// 角色名称
 	public Name: string;
 	// 权限列表
@@ -9,7 +9,7 @@ export class RoleOutputDto {
 	// 租户名
 	public OwnerTenantName: string;
 	// 租户Id
-	public OwnerTenantId: any;
+	public OwnerTenantId: string;
 	// 创建时间
 	public CreateTime: string;
 	// 更新时间

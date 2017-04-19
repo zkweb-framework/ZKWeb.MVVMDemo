@@ -12,7 +12,6 @@
 		"MVVM.Common.MultiTenant",
 		"MVVM.Common.SessionState",
 		"MVVM.Common.Organization",
-		"MVVM.Common.AdminPanel",
 		"MVVM.Angular.Support",
 		"MVVM.Angular.Website"
 	]

@@ -2,6 +2,8 @@
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Message } from 'primeng/primeng';
 
+import { UserLoginService } from '../../generated_module/services/user-login-service';
+
 @Component({
 	selector: 'admin-login',
 	templateUrl: '../views/admin-login.html',
@@ -17,10 +19,16 @@ export class AdminLoginComponent implements OnInit {
 	logoUrl = require("../../../vendor/images/logo.png");
 	msgs: Message[] = [];
 
+	constructor(private userLoginService: UserLoginService) { }
+
 	onSubmit() {
-		var formValue = this.adminLoginForm.value;
-		this.msgs = [];
-		this.msgs.push({ severity: 'info', summary: 'Info Message', detail: JSON.stringify(formValue) });
+		this.userLoginService.Login(this.adminLoginForm.value).subscribe(
+			result => {
+				this.msgs = [{ severity: 'info', detail: result.Message }];
+			},
+			error => {
+				this.msgs = [{ severity: 'error', detail: error }];
+			});
 	}
 
 	ngOnInit() {

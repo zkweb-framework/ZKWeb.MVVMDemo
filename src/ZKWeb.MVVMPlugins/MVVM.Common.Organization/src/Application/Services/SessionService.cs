@@ -1,13 +1,12 @@
 ﻿using AutoMapper;
 using System.ComponentModel;
-using ZKWeb.MVVMPlugins.MVVM.Common.AdminPanel.src.Application.Dtos;
 using ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Application.Services.Bases;
 using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Application.Dtos;
 using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Extensions;
 using ZKWeb.MVVMPlugins.MVVM.Common.SessionState.src.Domain.Services;
 using ZKWebStandard.Ioc;
 
-namespace ZKWeb.MVVMPlugins.MVVM.Common.AdminPanel.src.Application.Services {
+namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Application.Services {
 	/// <summary>
 	/// 会话服务
 	/// 用于获取当前登录的用户信息

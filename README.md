@@ -1,4 +1,4 @@
-MVVM demo for zkweb framework use angular js 4.0
+MVVM demo for zkweb framework
 
 ### Features
 
@@ -9,7 +9,7 @@ MVVM demo for zkweb framework use angular js 4.0
 - Use Entity Framework Core
 - Use Swagger
 - Use AutoMapper
-- Support Running on .Net Core
+- Support .Net Core
 - Support Multi Tenant
 - Support Multi Language
 - TODO

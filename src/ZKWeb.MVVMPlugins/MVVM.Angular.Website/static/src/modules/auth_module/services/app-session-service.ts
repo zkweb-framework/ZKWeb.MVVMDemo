@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
+import { Http, Response, Headers, RequestOptionsArgs } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { SessionInfoDto } from '../../generated_module/dtos/session-info-dto';
 import { SessionService } from '../../generated_module/services/session-service';
 import { AppConfigService } from '../../base_module/services/app-config-service';
+import { AppApiService } from '../../base_module/services/app-api-service';
 
 // 获取会话信息的服务
 @Injectable()
@@ -12,7 +14,26 @@ export class AppSessionService {
 
 	constructor(
 		private appConfigService: AppConfigService,
-		private sessionService: SessionService) { }
+		private appApiService: AppApiService,
+		private sessionService: SessionService) {
+		// 请求api时附上会话Id
+		appApiService.registerOptionsFilter(option => {
+			console.log("add session header");
+			option.headers.append(
+				appConfigService.getSessionIdHeader(),
+				appConfigService.getSessionId());
+			return option;
+		});
+		// 解析api返回的会话Id
+		appApiService.registerResultFilter(response => {
+			console.log("parse session header");
+			var newSessionId = response.headers.get(appConfigService.getSessionIdSetHeader());
+			if (newSessionId) {
+				appConfigService.setSessionId(newSessionId);
+			}
+			return response;
+		});
+	}
 
 	// 获取当前的会话信息
 	getSessionInfo(): Observable<SessionInfoDto> {
