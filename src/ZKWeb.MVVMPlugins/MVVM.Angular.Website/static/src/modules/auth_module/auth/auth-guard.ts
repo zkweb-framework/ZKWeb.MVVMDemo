@@ -15,25 +15,20 @@ export class AuthGuard implements CanActivate {
 	canActivate(): Observable<boolean> {
 		return new Observable(o => {
 			setTimeout(() => {
-				this.router.navigate(this.appConfigService.getLoginUrl());
-				o.next(false);
-				o.complete();
-			}, 8000);
+				this.appSessionService.getSessionInfo().subscribe(
+					sessionInfo => {
+						alert(sessionInfo);
+						this.router.navigate(this.appConfigService.getLoginUrl());
+						o.next(false);
+						o.complete();
+					},
+					error => {
+						alert(error);
+						this.router.navigate(this.appConfigService.getLoginUrl());
+						o.next(false);
+						o.complete();
+					});
+			}, 3000);
 		});
-		/* return new Observable(o => {
-			this.appSessionService.getSessionInfo().subscribe(
-				sessionInfo => {
-					alert(sessionInfo);
-					this.router.navigate(this.appConfigService.getLoginUrl());
-					o.next(false);
-					o.complete();
-				},
-				error => {
-					alert(error);
-					this.router.navigate(this.appConfigService.getLoginUrl());
-					o.next(false);
-					o.complete();
-				});
-		}); */
 	}
 }

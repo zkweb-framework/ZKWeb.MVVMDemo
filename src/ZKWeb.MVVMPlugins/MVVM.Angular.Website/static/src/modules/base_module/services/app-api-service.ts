@@ -3,6 +3,7 @@ import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/publishLast';
 import { AppConfigService } from './app-config-service';
 
 // 调用远程Api的服务
@@ -18,8 +19,9 @@ export class AppApiService {
 		var body = JSON.stringify(args);
 		return this.http
 			.post(fullUrl, body)
-			.map(this.extractData)
-			.catch(this.handleError);
+			.publishLast().refCount() // 防止多次subscribe提交多次
+			.map(this.extractData) // 解析返回的结果
+			.catch(this.handleError); // 转换返回的错误
 	}
 
 	// 解析返回的结果
@@ -27,7 +29,7 @@ export class AppApiService {
 		return response.json();
 	}
 
-	// 处理返回的错误
+	// 转换返回的错误
 	protected handleError(error: Response | any) {
 		let errMsg: string;
 		if (error instanceof Response) {

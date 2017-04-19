@@ -1,5 +1,6 @@
 ﻿import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InputTextModule, ButtonModule } from 'primeng/primeng';
 
@@ -18,6 +19,7 @@ import { AppTranslationService } from './services/app-translation-service';
 @NgModule({
 	imports: [
 		CommonModule,
+		HttpModule,
 		FormsModule,
 		ReactiveFormsModule,
 		InputTextModule,

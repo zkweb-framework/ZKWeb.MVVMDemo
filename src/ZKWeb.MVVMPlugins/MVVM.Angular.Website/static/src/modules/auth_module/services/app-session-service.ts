@@ -1,4 +1,4 @@
-﻿import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { SessionInfoDto } from '../../generated_module/dtos/session-info-dto';
 import { SessionService } from '../../generated_module/services/session-service';
@@ -11,13 +11,13 @@ export class AppSessionService {
 	private sessionInfo: SessionInfoDto;
 
 	constructor(
-		private appConfigService: AppConfigService/*,
-		private sessionService: SessionService*/) { }
+		private appConfigService: AppConfigService,
+		private sessionService: SessionService) { }
 
 	// 获取当前的会话信息
 	getSessionInfo(): Observable<SessionInfoDto> {
 		// 如果本地已有会话信息则直接返回
-		/* var newSessionId = this.appConfigService.getSessionId();
+		var newSessionId = this.appConfigService.getSessionId();
 		if (newSessionId == this.sessionId && this.sessionInfo) {
 			return new Observable<SessionInfoDto>(o => {
 				o.next(this.sessionInfo);
@@ -26,8 +26,11 @@ export class AppSessionService {
 		}
 		// 调用api重新获取
 		var observable = this.sessionService.GetSessionInfo();
-		observable.subscribe(result => this.sessionInfo = result);
-		return observable; */
-		return null;
+		observable.subscribe(result => {
+			console.log("get session info from remote success");
+			this.sessionInfo = result;
+			console.log(this.sessionInfo);
+		});
+		return observable;
 	}
 }
