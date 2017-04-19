@@ -65,7 +65,11 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.SessionState.src.Domain.Entities {
 						new Dictionary<string, object>() :
 						JsonConvert.DeserializeObject<IDictionary<string, object>>(ItemsJson);
 				}
-				_items[key] = value;
+				if (value == null) {
+					_items.Remove(key);
+				} else {
+					_items[key] = value;
+				}
 				ItemsJson = JsonConvert.SerializeObject(_items);
 			}
 		}

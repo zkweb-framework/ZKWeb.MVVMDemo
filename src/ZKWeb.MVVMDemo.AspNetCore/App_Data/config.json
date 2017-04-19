@@ -11,6 +11,7 @@
 		"MVVM.Common.TaskScheduler",
 		"MVVM.Common.MultiTenant",
 		"MVVM.Common.SessionState",
+		"MVVM.Common.Captcha",
 		"MVVM.Common.Organization",
 		"MVVM.Angular.Support",
 		"MVVM.Angular.Website"
