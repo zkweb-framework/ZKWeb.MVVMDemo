@@ -1,3 +1,6 @@
 ﻿<div class="app-container">
-  <router-outlet></router-outlet>
+	<router-outlet (activate)="onRouterActivate()" (deactivate)="onRouterDeactivate()"></router-outlet>
+	<div class="preloader-container" *ngIf="!routerActivated">
+		<div class="preloader"></div>
+	</div>
 </div>

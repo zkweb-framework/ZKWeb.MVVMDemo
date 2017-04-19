@@ -17,6 +17,10 @@
 	  <EmbeddedResource Remove="MVVM.Angular.Website\static\node_modules\**" />
 	  <None Remove="MVVM.Angular.Website\static\node_modules\**" />
 	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Include="MVVM.Angular.Website\static\src\modules\auth_module\services\app-session-service.ts" />
+	</ItemGroup>
 	
 	<ItemGroup>
 		<PackageReference Include="AutoMapper" Version="6.0.2" />

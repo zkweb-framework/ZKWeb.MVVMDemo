@@ -19,8 +19,13 @@ var webpackConfig = {
 	plugins: [
 		new ngtools.AotPlugin({
 			tsConfigPath: path.resolve(__dirname, './tsconfig.json'),
-			skipMetadataEmit: true,
-			entryModule: path.resolve(__dirname, './src/modules/app_module/app.module#AppModule')
+			skipMetadataEmit: false,
+			entryModule: path.resolve(__dirname, './src/modules/app_module/app.module#AppModule'),
+			compilerOptions: {
+				emitDecoratorMetadata: true,
+				experimentalDecorators: true,
+				sourceMap: true,
+			}
 		}),
 		new webpack.optimize.CommonsChunkPlugin({
 			name: ['app', 'vendor', 'polyfills']

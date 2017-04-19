@@ -20,6 +20,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Angular.Support.src.Components.ScriptGenerator 
 			var moduleBuilder = new StringBuilder();
 			var importedNames = new List<string>();
 			includeBuilder.AppendLine("import { NgModule } from '@angular/core';");
+			includeBuilder.AppendLine("import { BaseModule } from '../base_module/base.module';");
 			// 导入生成的应用服务
 			foreach (var service in generatedApplicationServices) {
 				var importName = service.GetType().Name;
@@ -30,6 +31,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Angular.Support.src.Components.ScriptGenerator 
 			}
 			// 定义模块
 			moduleBuilder.AppendLine("@NgModule({");
+			moduleBuilder.AppendLine("	imports: [BaseModule],");
 			moduleBuilder.AppendLine("	providers: [");
 			foreach (var name in importedNames) {
 				moduleBuilder.Append($"		{name}");
