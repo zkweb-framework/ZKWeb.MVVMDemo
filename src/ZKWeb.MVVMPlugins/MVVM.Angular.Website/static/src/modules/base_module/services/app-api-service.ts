@@ -27,16 +27,34 @@ export class AppApiService {
 	constructor(
 		protected http: Http,
 		protected appConfigService: AppConfigService) {
-		// 让服务端把请求当作ajax请求
+		// 设置http头
 		this.registerOptionsFilter(options => {
+			// 让服务端把请求当作ajax请求
 			options.headers.append("X-Requested-With", "XMLHttpRequest");
+			// 设置当前语言
+			options.headers.append(this.appConfigService.getLanguageHeader(), this.appConfigService.getLanguage());
+			// 设置当前时区
+			options.headers.append(this.appConfigService.getTimezoneHeader(), this.appConfigService.getTimezone());
+			// 附上会话Id
+			options.headers.append(this.appConfigService.getSessionIdHeader(), this.appConfigService.getSessionId());
 			return options;
+		});
+		// 过滤回应
+		this.registerResultFilter(response => {
+			// 解析返回的会话Id
+			var newSessionId = response.headers.get(this.appConfigService.getSessionIdSetHeader());
+			if (newSessionId) {
+				this.appConfigService.setSessionId(newSessionId);
+			}
+			return response;
 		});
 		// 设置默认的结果转换器
 		this.setResultConverter(response => {
 			try {
+				// 尝试使用json解析
 				return response.json();
 			} catch (e) {
+				// 失败时返回字符串
 				return response.text();
 			}
 		});
@@ -45,8 +63,10 @@ export class AppApiService {
 			console.log("api request error:", error);
 			var errorMessage: string;
 			if (error instanceof Response) {
-				errorMessage = error.text().replace(/<[^>]+>/g, ""); // 过滤html标签
+				// 返回过滤html标签后的文本
+				errorMessage = error.text().replace(/<[^>]+>/g, "");
 			} else {
+				// 返回错误对象的json
 				errorMessage = JSON.stringify(error);
 			}
 			return new Observable(o => {

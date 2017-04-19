@@ -9,9 +9,10 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Components.UserLoginHan
 		/// 根据用户名查找用户
 		/// 不支持此函数或没有查找到时返回null
 		/// </summary>
+		/// <param name="tenant">租户</param>
 		/// <param name="username">用户名</param>
 		/// <returns></returns>
-		User FindUser(string username);
+		User FindUser(string tenant, string username);
 
 		/// <summary>
 		/// 登陆前的处理

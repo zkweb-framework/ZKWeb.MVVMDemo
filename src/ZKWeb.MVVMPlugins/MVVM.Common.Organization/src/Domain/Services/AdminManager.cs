@@ -87,9 +87,13 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Services {
 		/// 登陆管理员
 		/// 登陆失败时会抛出例外
 		/// </summary>
-		public virtual void Login(string username, string password, bool rememberLogin) {
+		public virtual void Login(
+			string tenant,
+			string username,
+			string password,
+			bool rememberLogin) {
 			var userManager = ZKWeb.Application.Ioc.Resolve<UserManager>();
-			var user = userManager.FindUser(username);
+			var user = userManager.FindUser(tenant, username);
 			// 用户不存在或密码错误时抛出例外
 			if (user == null || !user.CheckPassword(password)) {
 				throw new ForbiddenException(new T("Incorrect username or password"));

@@ -15,5 +15,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Application.Dtos {
 		public string Password { get; set; }
 		[Description("验证码")]
 		public string Captcha { get; set; }
+		[Description("记住登录")]
+		public bool? RememberLogin { get; set; }
 	}
 }

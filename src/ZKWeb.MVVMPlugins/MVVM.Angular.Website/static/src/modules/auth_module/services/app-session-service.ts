@@ -14,26 +14,7 @@ export class AppSessionService {
 
 	constructor(
 		private appConfigService: AppConfigService,
-		private appApiService: AppApiService,
-		private sessionService: SessionService) {
-		// 请求api时附上会话Id
-		appApiService.registerOptionsFilter(option => {
-			console.log("add session header");
-			option.headers.append(
-				appConfigService.getSessionIdHeader(),
-				appConfigService.getSessionId());
-			return option;
-		});
-		// 解析api返回的会话Id
-		appApiService.registerResultFilter(response => {
-			console.log("parse session header");
-			var newSessionId = response.headers.get(appConfigService.getSessionIdSetHeader());
-			if (newSessionId) {
-				appConfigService.setSessionId(newSessionId);
-			}
-			return response;
-		});
-	}
+		private sessionService: SessionService) { }
 
 	// 获取当前的会话信息
 	getSessionInfo(): Observable<SessionInfoDto> {
@@ -48,9 +29,7 @@ export class AppSessionService {
 		// 调用api重新获取
 		var observable = this.sessionService.GetSessionInfo();
 		observable.subscribe(result => {
-			console.log("get session info from remote success");
 			this.sessionInfo = result;
-			console.log(this.sessionInfo);
 		});
 		return observable;
 	}

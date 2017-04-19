@@ -9,10 +9,19 @@ import { UserLoginRequestDto } from '../dtos/user-login-request-dto';
 export class UserLoginService {
 	constructor(private appApiService: AppApiService) { }
 
-	// 获取当前的会话信息
-	Login(request: UserLoginRequestDto): Observable<ActionResponseDto> {
+	// 登录用户
+	LoginUser(request: UserLoginRequestDto): Observable<ActionResponseDto> {
 		return this.appApiService.call<ActionResponseDto>(
-			"/api/UserLoginService/Login",
+			"/api/UserLoginService/LoginUser",
+			{
+				request
+			});
+	}
+
+	// 登录管理员
+	LoginAdmin(request: UserLoginRequestDto): Observable<ActionResponseDto> {
+		return this.appApiService.call<ActionResponseDto>(
+			"/api/UserLoginService/LoginAdmin",
 			{
 				request
 			});

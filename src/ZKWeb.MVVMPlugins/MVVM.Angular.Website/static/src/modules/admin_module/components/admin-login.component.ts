@@ -1,4 +1,5 @@
 ﻿import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Message } from 'primeng/primeng';
 
@@ -19,16 +20,14 @@ export class AdminLoginComponent implements OnInit {
 	logoUrl = require("../../../vendor/images/logo.png");
 	msgs: Message[] = [];
 
-	constructor(private userLoginService: UserLoginService) { }
+	constructor(
+		private router: Router,
+		private userLoginService: UserLoginService) { }
 
 	onSubmit() {
-		this.userLoginService.Login(this.adminLoginForm.value).subscribe(
-			result => {
-				this.msgs = [{ severity: 'info', detail: result.Message }];
-			},
-			error => {
-				this.msgs = [{ severity: 'error', detail: error }];
-			});
+		this.userLoginService.LoginAdmin(this.adminLoginForm.value).subscribe(
+			result => { this.router.navigate(['']) },
+			error => { this.msgs = [{ severity: 'error', detail: error }]; });
 	}
 
 	ngOnInit() {

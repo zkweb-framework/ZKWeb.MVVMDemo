@@ -8,4 +8,6 @@ export class UserLoginRequestDto {
 	public Password: string;
 	// 验证码
 	public Captcha: string;
+	// 记住登录
+	public RememberLogin: boolean;
 }

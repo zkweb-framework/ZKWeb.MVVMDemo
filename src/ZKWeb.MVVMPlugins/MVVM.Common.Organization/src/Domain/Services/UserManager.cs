@@ -5,6 +5,8 @@ using System.Linq;
 using ZKWeb.Localize;
 using ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Components.Exceptions;
 using ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Domain.Services.Bases;
+using ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Domain.Uow.Extensions;
+using ZKWeb.MVVMPlugins.MVVM.Common.MultiTenant.src.Domain.Filters;
 using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Components.ExtraConfigKeys;
 using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Components.UserLoginHandlers.Interfaces;
 using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Entities;
@@ -65,38 +67,27 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Services {
 		}
 
 		/// <summary>
-		/// 注册用户
-		/// 注册失败时会抛出例外
-		/// </summary>
-		public virtual void Reg(
-			string username, string password, Action<User> update = null) {
-			var user = new User() {
-				Type = NormalUserType.ConstType,
-				Username = username
-			};
-			user.SetPassword(password);
-			Save(ref user);
-		}
-
-		/// <summary>
 		/// 根据用户名查找用户
 		/// 找不到时返回null
 		/// </summary>
-		public virtual User FindUser(string username) {
+		public virtual User FindUser(
+			string tenant,
+			string username) {
 			var uow = UnitOfWork;
 			var handlers = ZKWeb.Application.Ioc.ResolveMany<IUserLoginHandler>();
 			User user = null;
-			using (uow.Scope()) {
+			using (uow.Scope())
+			using (uow.DisableFilter(typeof(OwnerTenantFilter))) {
 				// 通过处理器查找用户
 				foreach (var handler in handlers) {
-					user = handler.FindUser(username);
+					user = handler.FindUser(tenant, username);
 					if (user != null) {
 						return user;
 					}
 				}
 				// 通过用户名查找用户
 				// 默认过滤器会过滤已删除的用户
-				user = Get(u => u.Username == username);
+				user = Get(u => u.Username == username && u.OwnerTenant.Name == tenant);
 			}
 			return user;
 		}
@@ -105,9 +96,13 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Services {
 		/// 登陆用户
 		/// 登陆失败时会抛出例外
 		/// </summary>
-		public virtual void Login(string username, string password, bool rememberLogin) {
+		public virtual void Login(
+			string tenant,
+			string username,
+			string password,
+			bool rememberLogin) {
 			// 用户不存在或密码错误时抛出例外
-			var user = FindUser(username);
+			var user = FindUser(tenant, username);
 			if (user == null || !user.CheckPassword(password)) {
 				throw new ForbiddenException(new T("Incorrect username or password"));
 			}

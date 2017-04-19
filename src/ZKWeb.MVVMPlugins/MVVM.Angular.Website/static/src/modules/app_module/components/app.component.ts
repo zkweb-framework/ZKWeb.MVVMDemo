@@ -1,4 +1,5 @@
 ﻿import { Component, OnInit, Injector } from '@angular/core';
+import { Router, NavigationStart, NavigationEnd } from '@angular/router';
 
 @Component({
 	selector: 'my-app',
@@ -7,13 +8,9 @@
 export class AppComponent {
 	routerActivated: boolean;
 
-	onRouterActivate() {
-		this.routerActivated = true;
-		console.log("router activated");
-	}
-
-	onRouterDeactivate() {
-		this.routerActivated = false;
-		console.log("router deactivated");
+	constructor(private router: Router) {
+		router.events.subscribe(e => {
+			this.routerActivated = (e instanceof NavigationEnd);
+		});
 	}
 }
