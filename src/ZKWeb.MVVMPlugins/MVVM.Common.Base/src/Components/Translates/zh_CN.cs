@@ -20,6 +20,8 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Components.Translates {
 				{ "Length of {0} must not less than {1}", "{0}的长度必须不少于{1}" },
 				{ "Length of {0} must not greater than {1}", "{0}的长度必须不大于{1}" },
 				{ "Format of {0} is incorrect", "{0}的格式不正确" },
+				{ "Loading", "加载中" },
+				{ "Load Failed", "加载失败" }
 			};
 		}
 	}

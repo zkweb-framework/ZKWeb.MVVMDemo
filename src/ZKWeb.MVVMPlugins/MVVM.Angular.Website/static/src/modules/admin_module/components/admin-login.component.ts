@@ -1,4 +1,4 @@
-﻿import { Component, OnInit } from '@angular/core';
+﻿import { Component, OnInit, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Message } from 'primeng/primeng';
@@ -19,6 +19,7 @@ export class AdminLoginComponent implements OnInit {
 	});
 	logoUrl = require("../../../vendor/images/logo.png");
 	msgs: Message[] = [];
+	captchaRefreshEvent = new EventEmitter();
 
 	constructor(
 		private router: Router,
@@ -26,8 +27,13 @@ export class AdminLoginComponent implements OnInit {
 
 	onSubmit() {
 		this.userLoginService.LoginAdmin(this.adminLoginForm.value).subscribe(
-			result => { this.router.navigate(['']) },
-			error => { this.msgs = [{ severity: 'error', detail: error }]; });
+			result => {
+				this.router.navigate([''])
+			},
+			error => {
+				this.msgs = [{ severity: 'error', detail: error }];
+				this.captchaRefreshEvent.emit()
+			});
 	}
 
 	ngOnInit() {

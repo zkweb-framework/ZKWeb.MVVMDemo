@@ -1,7 +1,15 @@
 ﻿<div class="ui-grid-col-{{ labelGridWidth }}">
 	{{ translatedDisplayName }}:
 </div>
-<div class="ui-grid-col-{{ fieldGridWidth }}" [formGroup]="formGroup">
+<div class="ui-grid-col-{{ fieldGridWidth - captchaGridWidth }}" [formGroup]="formGroup">
 	<input pInputText type="text" [formControlName]="fieldName" [placeholder]="translatedPlaceHolder" />
 	<z-form-validation-messages [formGroup]="formGroup" [fieldName]="fieldName" [displayName]="displayName" [validationMessages]="validationMessages"></z-form-validation-messages>
+</div>
+<div class="ui-grid-col-{{ captchaGridWidth }}">
+	<div *ngIf="!captchaImageBase64" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">
+		<span>{{ captchaLoadingText }}</span>
+	</div>
+	<div *ngIf="captchaImageBase64" (click)="refreshCaptcha()">
+		<img src="data:image/png;base64,{{ captchaImageBase64 }}" />
+	</div>
 </div>

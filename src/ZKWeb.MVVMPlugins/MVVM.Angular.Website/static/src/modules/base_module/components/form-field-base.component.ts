@@ -13,7 +13,7 @@ export abstract class FormFieldBaseComponent implements OnInit {
 	translatedDisplayName: string;
 	translatedPlaceHolder: string;
 
-	constructor(private appTranslationService: AppTranslationService) {
+	constructor(protected appTranslationService: AppTranslationService) {
 
 	}
 

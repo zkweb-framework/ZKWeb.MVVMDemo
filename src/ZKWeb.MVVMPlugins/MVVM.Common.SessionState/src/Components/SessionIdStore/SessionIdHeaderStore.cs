@@ -34,6 +34,11 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.SessionState.src.Components.SessionIdSou
 		/// <param name="sessionId">会话Id</param>
 		/// <param name="expires">过期时间</param>
 		public void SetSessionId(Guid sessionId, DateTime? expires) {
+			// 相同时不需要再发送
+			if (GetSessionId() == sessionId) {
+				return;
+			}
+			// 发送多次不同的会话id会导致出错，应该手动避免
 			var context = HttpManager.CurrentContext;
 			context.Response.AddHeader(SessionHeaderOut, sessionId.ToString());
 		}
