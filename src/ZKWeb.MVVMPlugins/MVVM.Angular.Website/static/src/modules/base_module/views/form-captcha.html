@@ -2,7 +2,7 @@
 	{{ translatedDisplayName }}:
 </div>
 <div class="ui-grid-col-{{ fieldGridWidth - captchaGridWidth }}" [formGroup]="formGroup">
-	<input pInputText type="text" [formControlName]="fieldName" [placeholder]="translatedPlaceHolder" />
+	<input pInputText type="text" [formControlName]="fieldName" [placeholder]="translatedPlaceHolder" [pTooltip]="translatedTooltip" [tooltipPosition]="tooltipPosition" />
 	<z-form-validation-messages [formGroup]="formGroup" [fieldName]="fieldName" [displayName]="displayName" [validationMessages]="validationMessages"></z-form-validation-messages>
 </div>
 <div class="ui-grid-col-{{ captchaGridWidth }}">

@@ -7,11 +7,14 @@ export abstract class FormFieldBaseComponent implements OnInit {
 	@Input() fieldName: string;
 	@Input() displayName: string;
 	@Input() placeHolder: string;
+	@Input() tooltip: string;
+	@Input() tooltipPosition: string = "top";
 	@Input() validationMessages: { [key: string]: string };
 	@Input() labelGridWidth: number = 4;
 	@Input() fieldGridWidth: number = 8;
 	translatedDisplayName: string;
 	translatedPlaceHolder: string;
+	translatedTooltip: string;
 
 	constructor(protected appTranslationService: AppTranslationService) {
 
@@ -20,5 +23,6 @@ export abstract class FormFieldBaseComponent implements OnInit {
 	ngOnInit() {
 		this.translatedDisplayName = this.appTranslationService.translate(this.displayName || this.fieldName);
 		this.translatedPlaceHolder = this.appTranslationService.translate(this.placeHolder) || this.translatedDisplayName;
+		this.translatedTooltip = this.appTranslationService.translate(this.tooltip) || this.translatedPlaceHolder;
 	}
 }
