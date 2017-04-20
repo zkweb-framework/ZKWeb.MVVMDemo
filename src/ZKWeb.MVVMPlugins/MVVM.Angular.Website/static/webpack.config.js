@@ -44,9 +44,7 @@ var webpackConfig = {
 		new CompressionPlugin({
 			asset: "[path].gz[query]",
 			algorithm: "gzip",
-			test: /\.js$|\.html$/,
-			threshold: 10240,
-			minRatio: 0.3
+			test: /\.js$|\.html$/
 		}),
 		new webpack.optimize.UglifyJsPlugin({ minimize: false }),
 		new CopyWebpackPlugin([
