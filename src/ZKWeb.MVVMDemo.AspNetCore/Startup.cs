@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Builder;
+Ôªøusing Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 
 namespace ZKWeb.MVVMDemo.AspNetCore {
@@ -7,29 +7,29 @@ namespace ZKWeb.MVVMDemo.AspNetCore {
 	/// </summary>
 	public class Startup : ZKWeb.Hosting.AspNetCore.StartupBase {
 		/// <summary>
-		/// ≈‰÷√÷–º‰º˛
+		/// ÈÖçÁΩÆ‰∏≠Èó¥‰ª∂
 		/// </summary>
 		/// <param name="app"></param>
 		protected override void ConfigureMiddlewares(IApplicationBuilder app) {
-			//  π”√¥ÌŒÛÃ· æ“≥√Ê
+			// ‰ΩøÁî®ÈîôËØØÊèêÁ§∫È°µÈù¢
 			var env = (IHostingEnvironment)app.ApplicationServices.GetService(typeof(IHostingEnvironment));
 			if (env.IsDevelopment()) {
 				app.UseDeveloperExceptionPage();
 			} else {
 				app.UseStatusCodePages();
 			}
-			//  π”√Swagger÷–º‰º˛
+			// ‰ΩøÁî®Swagger‰∏≠Èó¥‰ª∂
 			app.UseSwagger();
 			app.UseSwaggerUI(c => {
 				c.SwaggerEndpoint("/swagger/v1/swagger.json", "ZKWeb MVVM Demo V1");
 			});
-			//  π”√Mvc÷–º‰º˛
+			// ‰ΩøÁî®Mvc‰∏≠Èó¥‰ª∂
 			app.UseMvc(routes => {
 				routes.MapRoute(
 					name: "default",
 					template: "{controller=Home}/{action=Index}/{id?}");
 			});
-			// ◊¢≤·IServiceProvider
+			// Ê≥®ÂÜåIServiceProvider
 			Application.Ioc.RegisterInstance(app.ApplicationServices);
 		}
 	}
