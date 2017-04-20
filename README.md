@@ -10,9 +10,10 @@ MVVM demo for zkweb framework
 - Use Swagger
 - Use AutoMapper
 - Support .Net Core
-- Support Multi Tenant
-- Support Multi Language
-- Support Multi Timezone
+- Support multi-tenant
+- Support multi-language
+- Support multi-timezone
+- Support automatic validate DTOs from request
 - TODO
 
 ### How to start

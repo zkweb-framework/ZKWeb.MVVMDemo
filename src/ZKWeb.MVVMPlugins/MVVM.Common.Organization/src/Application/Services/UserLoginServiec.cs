@@ -39,7 +39,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Application.Services {
 		public virtual ActionResponseDto LoginUser(UserLoginRequestDto request) {
 			// 检查验证码
 			if (!_captchaManager.Check("UserLogin", request.Captcha)) {
-				throw new BadRequestException("Incorrect captcha");
+				throw new BadRequestException(new T("Incorrect captcha"));
 			}
 			// TODO
 			// 登录用户
