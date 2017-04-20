@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Application.Services.Interfaces;
+using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Components.ActionFilters;
 using ZKWeb.Plugins.MVVM.Common.Organization.src.Components.PrivilegeProviders.Interfaces;
 using ZKWebStandard.Ioc;
 
@@ -14,8 +17,12 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Components.PrivilegePro
 		/// </summary>
 		/// <returns></returns>
 		public IEnumerable<string> GetPrivileges() {
-			// TODO
-			throw new NotImplementedException();
+			var applicationServices = ZKWeb.Application.Ioc.ResolveMany<IApplicationService>();
+			return applicationServices
+				.SelectMany(a => a.GetApiMethods())
+				.SelectMany(m => m.Attributes.OfType<CheckPrivilegeAttribute>())
+				.SelectMany(a => a.Privileges)
+				.Distinct();
 		}
 	}
 }

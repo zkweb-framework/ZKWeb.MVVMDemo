@@ -12,6 +12,7 @@ MVVM demo for zkweb framework
 - Support .Net Core
 - Support Multi Tenant
 - Support Multi Language
+- Support Multi Timezone
 - TODO
 
 ### How to start

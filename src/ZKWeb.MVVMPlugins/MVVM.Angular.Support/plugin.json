@@ -4,6 +4,6 @@
 	"Description": "AngularJS website support",
 	"Dependencies": [
 		"MVVM.Common.Base",
-		"MVVM.Common.AdminPanel"
+		"MVVM.Common.Organization"
 	]
 }

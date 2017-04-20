@@ -6,6 +6,8 @@ export class UserOutputDto {
 	public Id: string;
 	// 用户类型
 	public Type: string;
+	// 实现的用户类型列表
+	public ImplementedTypes: string[];
 	// 用户名
 	public Name: string;
 	// 租户名

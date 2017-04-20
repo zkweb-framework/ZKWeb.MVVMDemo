@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.FastReflection;
 using System.Linq;
+using System.Reflection;
 using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Entities;
 using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Entities.Interfaces;
 using ZKWebStandard.Utils;
@@ -41,6 +45,22 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Extensions {
 					"Unsupported user type: {0}", user.Type));
 			}
 			return type;
+		}
+
+		/// <summary>
+		/// 获取已实现的用户类型列表
+		/// </summary>
+		public static IEnumerable<Type> GetImplementedUserTypes(this User user) {
+			var result = new HashSet<Type>();
+			var type = user.GetUserType().GetType();
+			foreach (var interfaceType in type.FastGetInterfaces()) {
+				result.Add(interfaceType);
+			}
+			while (type != null && type != typeof(object)) {
+				result.Add(type);
+				type = type.GetTypeInfo().BaseType;
+			}
+			return result;
 		}
 	}
 }

@@ -1,4 +1,6 @@
-﻿namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Entities.Interfaces {
+﻿using System.Collections.Generic;
+
+namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Entities.Interfaces {
 	/// <summary>
 	/// 用户类型的接口
 	/// </summary>

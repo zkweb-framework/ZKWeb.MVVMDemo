@@ -10,6 +10,8 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Application.Dtos {
 		public Guid Id { get; set; }
 		[Description("用户类型")]
 		public string Type { get; set; }
+		[Description("实现的用户类型列表")]
+		public IList<string> ImplementedTypes { get; set; }
 		[Description("用户名")]
 		public string Name { get; set; }
 		[Description("租户名")]
@@ -26,6 +28,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Application.Dtos {
 		public IList<RoleOutputDto> Roles { get; set; }
 
 		public UserOutputDto() {
+			ImplementedTypes = new List<string>();
 			Roles = new List<RoleOutputDto>();
 		}
 	}

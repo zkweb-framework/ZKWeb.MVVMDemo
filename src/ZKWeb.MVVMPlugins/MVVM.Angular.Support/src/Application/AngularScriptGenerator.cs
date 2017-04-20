@@ -133,6 +133,27 @@ namespace ZKWeb.MVVMPlugins.MVVM.Angular.Support.src.Application {
 		}
 
 		/// <summary>
+		/// 生成用户类型和权限列表脚本，并写入到文件
+		/// </summary>
+		protected virtual void GeneratePrivilegesScript() {
+			var generator = ZKWeb.Application.Ioc.Resolve<PrivilegeScriptGenerator>();
+			var pathConfig = ZKWeb.Application.Ioc.Resolve<ScriptPathConfig>();
+			var userTypesScript = generator.GenerateUserTypesScript();
+			var privilegesScript = generator.GeneratePrivilegesScript();
+			var userTypesPath = PathUtils.SecureCombine(
+				pathConfig.GenerateModuleDirectory,
+				pathConfig.PrivilegesDirectoryName,
+				"user-types.ts");
+			var privilegesPath = PathUtils.SecureCombine(
+				pathConfig.GenerateModuleDirectory,
+				pathConfig.PrivilegesDirectoryName,
+				"privileges.ts");
+			PathUtils.EnsureParentDirectory(userTypesPath);
+			File.WriteAllText(userTypesPath, userTypesScript);
+			File.WriteAllText(privilegesPath, privilegesScript);
+		}
+
+		/// <summary>
 		/// 根据之前生成的脚本生成模块脚本，并写入到文件
 		/// </summary>
 		protected virtual void GenerateModuleScript() {
@@ -176,6 +197,8 @@ namespace ZKWeb.MVVMPlugins.MVVM.Angular.Support.src.Application {
 			}
 			// 生成翻译的索引脚本
 			GenerateTranslationIndexScript();
+			// 生成用户类型和权限列表的脚本
+			GeneratePrivilegesScript();
 			// 生成模块的脚本
 			GenerateModuleScript();
 		}

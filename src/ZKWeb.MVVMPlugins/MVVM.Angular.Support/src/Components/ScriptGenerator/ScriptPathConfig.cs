@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 using ZKWeb.Plugin;
 using ZKWebStandard.Ioc;
 using ZKWebStandard.Utils;
@@ -30,6 +31,10 @@ namespace ZKWeb.MVVMPlugins.MVVM.Angular.Support.src.Components.ScriptGenerator 
 		/// </summary>
 		public string TranslationsDirectoryName { get; set; }
 		/// <summary>
+		/// 保存权限脚本的文件夹名称
+		/// </summary>
+		public string PrivilegesDirectoryName { get; set; }
+		/// <summary>
 		/// 生成模块的文件名
 		/// </summary>
 		public string GeneratedModuleFilename { get; set; }
@@ -51,6 +56,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Angular.Support.src.Components.ScriptGenerator 
 			DtosDirectoryName = "dtos";
 			ServicesDirectoryName = "services";
 			TranslationsDirectoryName = "translations";
+			PrivilegesDirectoryName = "privileges";
 			GeneratedModuleFilename = "generated.module.ts";
 		}
 
@@ -89,7 +95,18 @@ namespace ZKWeb.MVVMPlugins.MVVM.Angular.Support.src.Components.ScriptGenerator 
 		/// <param name="className">类名</param>
 		/// <returns></returns>
 		public virtual string NormalizeClassName(string className) {
-			return className.Replace('-', '_');
+			return Regex.Replace(className, "[^a-zA-Z0-9_]", "_");
+		}
+
+		/// <summary>
+		/// 转换变量名称
+		/// 例
+		/// "a:b" => "a_b"
+		/// </summary>
+		/// <param name="variableName"></param>
+		/// <returns></returns>
+		public virtual string NormalizeVariableName(string variableName ) {
+			return Regex.Replace(variableName, "[^a-zA-Z0-9_]", "_");
 		}
 
 		/// <summary>
