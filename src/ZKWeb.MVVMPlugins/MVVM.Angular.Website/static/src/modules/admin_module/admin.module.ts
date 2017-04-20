@@ -2,7 +2,13 @@
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-import { InputTextModule, PanelModule, ButtonModule, MessagesModule } from 'primeng/primeng';
+import {
+	InputTextModule,
+	PanelModule,
+	ButtonModule,
+	MessagesModule,
+	BlockUIModule
+} from 'primeng/primeng';
 
 import { BaseModule } from '../base_module/base.module';
 import { GeneratedModule } from '../generated_module/generated.module';
@@ -31,6 +37,7 @@ const routes: Routes = [
 		PanelModule,
 		ButtonModule,
 		MessagesModule,
+		BlockUIModule,
 		BaseModule,
 		GeneratedModule,
 		AuthModule,

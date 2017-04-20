@@ -20,17 +20,21 @@ export class AdminLoginComponent implements OnInit {
 	logoUrl = require("../../../vendor/images/logo.png");
 	msgs: Message[] = [];
 	captchaRefreshEvent = new EventEmitter();
+	isSubmitting = false;
 
 	constructor(
 		private router: Router,
 		private userLoginService: UserLoginService) { }
 
 	onSubmit() {
+		this.isSubmitting = true;
 		this.userLoginService.LoginAdmin(this.adminLoginForm.value).subscribe(
 			result => {
-				this.router.navigate([''])
+				this.isSubmitting = false;
+				this.router.navigate(['']);
 			},
 			error => {
+				this.isSubmitting = false;
 				this.msgs = [{ severity: 'error', detail: error }];
 				this.captchaRefreshEvent.emit()
 			});

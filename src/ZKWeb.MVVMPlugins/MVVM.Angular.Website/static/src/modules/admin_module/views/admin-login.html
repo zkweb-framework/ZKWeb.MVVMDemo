@@ -5,7 +5,8 @@
 		</div>
 		<div class="login-box-body">
 			<form [formGroup]="adminLoginForm" (ngSubmit)="onSubmit()">
-				<p-panel>
+				<p-blockUI [blocked]="isSubmitting" [target]="adminLoginPanel"></p-blockUI>
+				<p-panel #adminLoginPanel>
 					<p-header>
 						<div class="login-panel-header">{{ "Admin Login" | trans }}</div>
 					</p-header>
