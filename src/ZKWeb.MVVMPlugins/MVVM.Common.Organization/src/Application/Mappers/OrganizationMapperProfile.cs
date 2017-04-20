@@ -17,7 +17,8 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Application.Mappers {
 				.ForMember(
 					d => d.ImplementedTypes,
 					m => m.ResolveUsing(u => u.GetImplementedUserTypes().Select(t => t.Name).ToList()))
-				.ForMember(d => d.OwnerTenantName, m => m.ResolveUsing(u => u.OwnerTenant?.Name));
+				.ForMember(d => d.OwnerTenantName, m => m.ResolveUsing(u => u.OwnerTenant?.Name))
+				.ForMember(d => d.Privileges, m => m.ResolveUsing(u => u.GetPrivileges().ToList()));
 
 			// 角色
 			CreateMap<Role, RoleOutputDto>()

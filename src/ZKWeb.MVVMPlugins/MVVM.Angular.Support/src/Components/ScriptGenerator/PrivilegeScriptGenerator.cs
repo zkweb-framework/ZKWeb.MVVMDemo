@@ -53,6 +53,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Angular.Support.src.Components.ScriptGenerator 
 		/// <returns></returns>
 		public virtual string GeneratePrivilegesScript() {
 			// 获取系统中注册的所有权限
+			var pathConfig = ZKWeb.Application.Ioc.Resolve<ScriptPathConfig>();
 			var privilegeProviders = ZKWeb.Application.Ioc.ResolveMany<IPrivilegesProvider>();
 			var privilegeTranslator = ZKWeb.Application.Ioc.Resolve<IPrivilegeTranslator>();
 			var allPrivileges = privilegeProviders.SelectMany(p => p.GetPrivileges()).Distinct();
@@ -61,10 +62,9 @@ namespace ZKWeb.MVVMPlugins.MVVM.Angular.Support.src.Components.ScriptGenerator 
 			classBuilder.AppendLine($"export class Privileges {{");
 			foreach (var privilege in allPrivileges) {
 				var name = privilegeTranslator.Translate(privilege);
-				var variableName = privilege.Replace(':', '_').Replace(' ', '_');
+				var variableName = pathConfig.NormalizeVariableName(privilege);
 				classBuilder.AppendLine($"	// {name}");
 				classBuilder.AppendLine($"	public static {variableName} = {JsonConvert.SerializeObject(privilege)};");
-				classBuilder.AppendLine($"	public static {variableName}_Name = {JsonConvert.SerializeObject(privilege)}");
 			}
 			classBuilder.AppendLine("}");
 			return classBuilder.ToString();

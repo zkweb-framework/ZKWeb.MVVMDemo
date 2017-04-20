@@ -22,4 +22,6 @@ export class UserOutputDto {
 	public Deleted: boolean;
 	// 角色列表
 	public Roles: RoleOutputDto[];
+	// 权限列表
+	public Privileges: string[];
 }

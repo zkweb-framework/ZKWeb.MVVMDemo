@@ -15,13 +15,20 @@ import { GeneratedModule } from '../generated_module/generated.module';
 import { AuthModule } from '../auth_module/auth.module';
 
 import { AuthGuard } from '../auth_module/auth/auth-guard';
+import { UserTypes } from '../generated_module/privileges/user-types';
 
 import { AdminContainerComponent } from './components/admin-container.component';
 import { AdminIndexComponent } from './components/admin-index.component';
 import { AdminLoginComponent } from './components/admin-login.component';
 
 const routes: Routes = [
-	{ path: '', component: AdminIndexComponent, pathMatch: 'full', canActivate: [AuthGuard] },
+	{
+		path: '', component:
+		AdminIndexComponent,
+		pathMatch: 'full',
+		canActivate: [AuthGuard],
+		data: { requireUserType: UserTypes.ICanUseAdminPanel }
+	},
 	{ path: 'login', component: AdminLoginComponent },
 	// { path: 'tenants', loadChildren: '../admin_tenants_module/admin_tenants.module#AdminTenantsModule' },
 	// { path: 'users', loadChildren: '../admin_users_module/admin.admin_users.module#AdminUsersModule' },

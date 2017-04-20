@@ -23,7 +23,15 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Components.Translates {
 				{ "Default admin account is admin, password is 123456, please change it after login immediately",
 					"默认管理员账号: admin, 密码: 123456, 登录后请尽快修改密码" },
 				{ "Incorrect username or password", "用户名或密码错误" },
-				{ "Incorrect captcha", "验证码错误" }
+				{ "Incorrect captcha", "验证码错误" },
+				{ "Action require user to be '{0}', and have privileges '{1}'", "操作要求用户是'{0}'，且拥有权限'{1}'" },
+				{ "Action require user to be '{0}'", "操作要求用户是'{0}'" },
+				{ "User", "用户" },
+				{ "UserType", "用户类型" },
+				{ "Admin", "管理员" },
+				{ "SuperAdmin", "超级管理员" },
+				{ "Action require the ownership of {0}: {1}", "操作需要拥有以下{0}的所有权: {1}" },
+				{ "Action require the tenant ownership of {0}: {1}", "操作需要拥有以下{0}的租户所有权: {1}" },
 
 				// TODO: 缩减这里的翻译
 				/* { "ZKWeb Default Website", "ZKWeb默认站点" },
@@ -115,12 +123,8 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Components.Translates {
 				{ "About Website", "关于网站" },
 				{ "Admin Panel", "管理后台" },
 				{ "My Apps", "我的应用" },
-				{ "Action require {0}, and {1} privileges", "操作要求拥有{0}身份，且拥有{1}权限" },
-				{ "Action require {0}", "操作要求拥有{0}身份" },
-				{ "User", "用户" },
-				{ "UserType", "用户类型" },
-				{ "Admin", "管理员" },
-				{ "SuperAdmin", "超级管理员" },
+				
+				
 				{ "CooperationPartner", "合作伙伴" },
 				{ "CreateTime", "创建时间" },
 				{ "Admin Manage", "管理员管理" },
@@ -188,8 +192,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Components.Translates {
 				{ "ZKWeb Version", "ZKWeb版本" },
 				{ "ZKWeb Full Version", "ZKWeb完整版本" },
 				{ "Memory Usage", "使用内存" },
-				{ "Action require the ownership of {0}: {1}", "操作需要拥有以下{0}的所有权: {1}" },
-				{ "Action require the tenant ownership of {0}: {1}", "操作需要拥有以下{0}的租户所有权: {1}" },
+				
 				{ "System Manage", "系统管理" },
 				{ "Other", "其它" },
 				{ "Toggle navigation", "切换导航栏" },

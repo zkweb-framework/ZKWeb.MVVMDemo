@@ -47,13 +47,13 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Services {
 				// 无权限403
 				var translator = ZKWeb.Application.Ioc.Resolve<IPrivilegeTranslator>();
 				throw new ForbiddenException(
-					new T("Action require {0}, and {1} privileges",
+					new T("Action require user to be '{0}', and have privileges '{1}'",
 					new T(userType.Name),
 					string.Join(",", privileges.Select(p => translator.Translate(p)))));
 			} else {
 				// 用户类型不符合，或未登录
 				throw new ForbiddenException(
-					new T("Action require {0}", new T(userType.Name)));
+					new T("Action require user to be '{0}'", new T(userType.Name)));
 			}
 		}
 

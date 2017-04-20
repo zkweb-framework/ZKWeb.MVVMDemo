@@ -62,5 +62,12 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Extensions {
 			}
 			return result;
 		}
+
+		/// <summary>
+		/// 获取用户拥有的权限列表
+		/// </summary>
+		public static IEnumerable<string> GetPrivileges(this User user) {
+			return user.Roles.SelectMany(r => r.To.GetPrivileges()).Distinct();
+		}
 	}
 }
