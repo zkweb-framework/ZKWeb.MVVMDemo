@@ -22,6 +22,9 @@ namespace ZKWeb.MVVMDemo.AspNetCore.Swagger {
 				.FirstOrDefault()?.Description ??
 				context.ApiDescription.ActionDescriptor.DisplayName;
 			// 设置参数的描述
+			if (operation.Parameters == null) {
+				return;
+			}
 			var parametersAttributeMap = context.ApiDescription.Properties["ParameterAttributeMap"]
 				as IDictionary<string, IList<Attribute>> ??
 				new Dictionary<string, IList<Attribute>>();
