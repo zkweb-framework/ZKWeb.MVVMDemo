@@ -2,7 +2,7 @@
 import { CommonModule } from '@angular/common';
 import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { InputTextModule, ButtonModule, TooltipModule } from 'primeng/primeng';
+import { InputTextModule, ButtonModule } from 'primeng/primeng';
 
 import { FormGridComponent } from './components/form-grid.component';
 import { FormValidationMessagesComponent } from './components/form-validation-messages.component';
@@ -23,8 +23,7 @@ import { AppTranslationService } from './services/app-translation-service';
 		FormsModule,
 		ReactiveFormsModule,
 		InputTextModule,
-		ButtonModule,
-		TooltipModule
+		ButtonModule
 	],
 	declarations: [
 		FormGridComponent,
