@@ -1,7 +1,14 @@
 ﻿@charset "UTF-8";
 
+html {
+	margin: 0px;
+	padding: 0px;
+	height: 100%;
+}
+
 body {
 	margin: 0px;
+	padding: 0px;
 	height: 100%;
 	overflow-x: hidden;
 	overflow-y: auto;
@@ -12,27 +19,32 @@ body {
 	font-size: 1em;
 }
 
+my-app, .app-container, admin-index, admin-container, .layout-wrapper, #layout-content {
+	height: 100%;
+	display: block;
+}
+
 #layout-sidebar {
 	position: absolute;
 	left: 0;
 	top: 0;
-	background-color: #313b3f;
+	background-color: #34495E;
 	border-right: solid 1px #151d21;
 	overflow: hidden;
-	width: 299px;
+	width: 269px;
 }
 
 .layout-logo {
-	height: 65px;
+	height: 50px;
 	display: block;
-	padding: 15px 0 17px 0;
 	z-index: 997;
-	background-color: #313b3f;
+	background-color: #34495E;
 	text-align: center;
 }
 
 	.layout-logo img {
-		height: 70px;
+		max-height: 50px;
+		width: auto;
 	}
 
 #layout-sidebar > a {
@@ -130,8 +142,16 @@ body {
 		}
 
 #layout-content {
-	margin-left: 300px;
+	margin-left: 270px;
 	background-color: #FFFFFF;
+	display: flex;
+	flex-direction: column;
+}
+
+#layout-content-body {
+	flex: 1 0 auto;
+	min-height: initial;
+	background: #FFFFFF;
 }
 
 .content-section {
@@ -158,12 +178,12 @@ body {
 }
 
 #topbar {
-	background-color: #1976D2;
+	background-color: #34495E;
 	box-sizing: border-box;
 	display: block;
 	border-bottom: solid 1px #dde3e6;
-	padding: 15px;
 	overflow: hidden;
+	height: 50px;
 }
 
 .topbar-link {

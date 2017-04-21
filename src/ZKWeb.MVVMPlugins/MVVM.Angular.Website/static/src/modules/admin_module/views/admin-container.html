@@ -2,7 +2,7 @@
 	<div id="layout-sidebar" [ngClass]="{'active':mobileMenuActive}">
 		<span class="layout-logo">
 			<a href="#" class="sidebar-logo" [routerLink]="['/']">
-				<img alt="logo" src="showcase/resources/images/primeng-sidebar.svg" />
+				<img alt="logo" [src]="logoUrl" />
 			</a>
 			<a href="#" id="menu-button-mobile" (click)="toggleMenu($event)" [ngClass]="{'active':mobileMenuActive}">
 				<img alt="logo" src="showcase/resources/images/menuicon.svg" />
@@ -226,7 +226,7 @@
 			</div>
 		</div>
 
-		<div>
+		<div id="layout-content-body">
 			<ng-content></ng-content>
 		</div>
 

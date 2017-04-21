@@ -6,6 +6,7 @@
 	styleUrls: [ '../styles/admin-container.scss' ]
 })
 export class AdminContainerComponent {
+	logoUrl = require("../../../vendor/images/logo.png");
 	activeMenuId: string;
 	themesVisible: boolean = false;
 	mobileMenuActive: boolean = false;
