@@ -10,12 +10,8 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Application.Dtos {
 		public Guid Id { get; set; }
 		[Description("用户类型")]
 		public string Type { get; set; }
-		[Description("实现的用户类型列表")]
-		public IList<string> ImplementedTypes { get; set; }
 		[Description("用户名")]
 		public string Name { get; set; }
-		[Description("租户名")]
-		public string OwnerTenantName { get; set; }
 		[Description("租户Id")]
 		public Guid OwnerTenantId { get; set; }
 		[Description("创建时间")]
@@ -26,12 +22,20 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Application.Dtos {
 		public bool Deleted { get; set; }
 		[Description("角色列表")]
 		public IList<RoleOutputDto> Roles { get; set; }
+
+		[Description("租户名")]
+		public string OwnerTenantName { get; set; }
+		[Description("租户是主租户")]
+		public bool OwnerTenantIsMasterTenant { get; set; }
+
+		[Description("实现的用户类型列表")]
+		public IList<string> ImplementedTypes { get; set; }
 		[Description("权限列表")]
 		public IList<string> Privileges { get; set; }
 
 		public UserOutputDto() {
-			ImplementedTypes = new List<string>();
 			Roles = new List<RoleOutputDto>();
+			ImplementedTypes = new List<string>();
 			Privileges = new List<string>();
 		}
 	}

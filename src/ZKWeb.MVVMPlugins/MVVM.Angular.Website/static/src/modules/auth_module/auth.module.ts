@@ -4,6 +4,7 @@ import { BaseModule } from '../base_module/base.module';
 import { GeneratedModule } from '../generated_module/generated.module';
 
 import { AuthGuard } from './auth/auth-guard';
+import { AppPrivilegeService } from './services/app-privilege-service';
 import { AppSessionService } from './services/app-session-service';
 
 @NgModule({
@@ -14,6 +15,7 @@ import { AppSessionService } from './services/app-session-service';
 	],
 	providers: [
 		AuthGuard,
+		AppPrivilegeService,
 		AppSessionService
 	]
 })

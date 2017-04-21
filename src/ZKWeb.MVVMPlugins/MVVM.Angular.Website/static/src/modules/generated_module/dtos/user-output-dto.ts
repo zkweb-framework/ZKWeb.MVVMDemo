@@ -6,12 +6,8 @@ export class UserOutputDto {
 	public Id: string;
 	// 用户类型
 	public Type: string;
-	// 实现的用户类型列表
-	public ImplementedTypes: string[];
 	// 用户名
 	public Name: string;
-	// 租户名
-	public OwnerTenantName: string;
 	// 租户Id
 	public OwnerTenantId: string;
 	// 创建时间
@@ -22,6 +18,12 @@ export class UserOutputDto {
 	public Deleted: boolean;
 	// 角色列表
 	public Roles: RoleOutputDto[];
+	// 租户名
+	public OwnerTenantName: string;
+	// 租户是主租户
+	public OwnerTenantIsMasterTenant: boolean;
+	// 实现的用户类型列表
+	public ImplementedTypes: string[];
 	// 权限列表
 	public Privileges: string[];
 }

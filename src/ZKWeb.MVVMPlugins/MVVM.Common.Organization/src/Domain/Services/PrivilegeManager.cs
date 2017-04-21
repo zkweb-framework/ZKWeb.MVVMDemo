@@ -9,10 +9,10 @@ using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Components.PrivilegeTransla
 using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Entities;
 using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Entities.Interfaces;
 using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Extensions;
+using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Structs;
 using ZKWeb.MVVMPlugins.MVVM.Common.SessionState.src.Domain.Services;
 using ZKWeb.Plugins.MVVM.Common.Organization.src.Components.PrivilegeProviders.Interfaces;
 using ZKWebStandard.Ioc;
-using ZKWebStandard.Web;
 
 namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Services {
 	/// <summary>
@@ -28,33 +28,6 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Services {
 			var providers = ZKWeb.Application.Ioc.ResolveMany<IPrivilegesProvider>();
 			var privileges = providers.SelectMany(p => p.GetPrivileges()).Distinct().ToList();
 			return privileges;
-		}
-
-		/// <summary>
-		/// 检查当前的用户类型是否继承了指定的类型，且是否拥有指定的权限
-		/// 如果用户类型不匹配或无指定的权限时抛出403错误	
-		/// </summary>
-		/// <param name="userType">用户类型，例如typeof(IAmAdmin)</param>
-		/// <param name="privileges">要求的权限列表</param>
-		public virtual void Check(Type userType, params string[] privileges) {
-			var sessionManager = ZKWeb.Application.Ioc.Resolve<SessionManager>();
-			var user = sessionManager.GetSession().GetUser();
-			var userTypeMatched = HasUserType(user, userType);
-			var context = HttpManager.CurrentContext;
-			if (userTypeMatched && HasPrivileges(user, privileges)) {
-				// 检查通过
-			} else if (privileges != null && privileges.Length > 0) {
-				// 无权限403
-				var translator = ZKWeb.Application.Ioc.Resolve<IPrivilegeTranslator>();
-				throw new ForbiddenException(
-					new T("Action require user to be '{0}', and have privileges '{1}'",
-					new T(userType.Name),
-					string.Join(",", privileges.Select(p => translator.Translate(p)))));
-			} else {
-				// 用户类型不符合，或未登录
-				throw new ForbiddenException(
-					new T("Action require user to be '{0}'", new T(userType.Name)));
-			}
 		}
 
 		/// <summary>
@@ -91,6 +64,55 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Services {
 			}
 			// 检查通过
 			return true;
+		}
+
+		/// <summary>
+		/// 检查用户是否满足指定的权限要求
+		/// </summary>
+		/// <param name="user">用户</param>
+		/// <param name="requirement">权限要求</param>
+		/// <param name="errorMessage">验证不通过时的信息</param>
+		public virtual bool IsAuthorized(User user, AuthRequirement requirement, out string errorMessage) {
+			// 要求主租户，但用户不属于主租户
+			if (requirement.RequireMasterTenant &&
+				(user == null || !user.OwnerTenant.IsMaster)) {
+				errorMessage = new T("Action require user under master tenant");
+				return false;
+			}
+			// 用户类型不匹配
+			if (requirement.RequireUserType != null &&
+				(user == null || !HasUserType(user, requirement.RequireUserType))) {
+				errorMessage = new T(
+					"Action require user to be '{0}'",
+					new T(requirement.RequireUserType.Name));
+				return false;
+			}
+			// 未拥有所有要求的权限
+			if (requirement.RequirePrivileges != null &&
+				(user == null || !HasPrivileges(user, requirement.RequirePrivileges))) {
+				var translator = ZKWeb.Application.Ioc.Resolve<IPrivilegeTranslator>();
+				errorMessage = new T("Action require user to be '{0}', and have privileges '{1}'",
+					new T(requirement.RequireUserType?.Name),
+					string.Join(",", requirement.RequirePrivileges.Select(p => translator.Translate(p))));
+				return false;
+			}
+			errorMessage = null;
+			return true;
+		}
+
+		/// <summary>
+		/// 检查当前用户是否满足指定的权限要求
+		/// 不满足时抛出403例外
+		/// </summary>
+		/// <param name="userType">用户类型，例如typeof(IAmAdmin)</param>
+		/// <param name="privileges">要求的权限列表</param>
+		public virtual void Check(AuthRequirement requirement) {
+			var sessionManager = ZKWeb.Application.Ioc.Resolve<SessionManager>();
+			var user = sessionManager.GetSession().GetUser();
+			string errorMessage;
+			if (!IsAuthorized(user, requirement, out errorMessage)) {
+				throw new ForbiddenException(errorMessage);
+			}
 		}
 	}
 }

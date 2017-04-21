@@ -26,6 +26,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Components.Translates {
 				{ "Incorrect captcha", "验证码错误" },
 				{ "Action require user to be '{0}', and have privileges '{1}'", "操作要求用户是'{0}'，且拥有权限'{1}'" },
 				{ "Action require user to be '{0}'", "操作要求用户是'{0}'" },
+				{ "Action require user under master tenant", "操作要求用户属于主租户" },
 				{ "User", "用户" },
 				{ "UserType", "用户类型" },
 				{ "Admin", "管理员" },

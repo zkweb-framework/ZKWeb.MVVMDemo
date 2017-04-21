@@ -1,4 +1,5 @@
 ﻿import { Component } from '@angular/core';
+import { AdminNavMenu } from '../navigation/admin-nav-menu';
 
 @Component({
 	selector: 'admin-container',

@@ -33,9 +33,13 @@ npm install
 npm run watch
 ```
 
+**Modify database configuration"
+
+Open `ZKWeb.MVVMDemo.AspNetCore\App_Data\config.json` and modify database configuration.
+
 **Start website**
 
-Open ZKWeb.MVVMDemo.sln with VS2017 and just run the project.
+Open `ZKWeb.MVVMDemo.sln` with VS2017 and run the project.
 
 ### LICENSE
 

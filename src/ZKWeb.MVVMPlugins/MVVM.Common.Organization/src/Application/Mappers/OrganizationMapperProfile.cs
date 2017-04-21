@@ -14,10 +14,13 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Application.Mappers {
 		public OrganizationMapperProfile() {
 			// 用户
 			CreateMap<User, UserOutputDto>()
+				.ForMember(d => d.OwnerTenantName, m => m.ResolveUsing(u => u.OwnerTenant?.Name))
+				.ForMember(
+					d => d.OwnerTenantIsMasterTenant,
+					m => m.ResolveUsing(u => u.OwnerTenant?.IsMaster ?? false))
 				.ForMember(
 					d => d.ImplementedTypes,
 					m => m.ResolveUsing(u => u.GetImplementedUserTypes().Select(t => t.Name).ToList()))
-				.ForMember(d => d.OwnerTenantName, m => m.ResolveUsing(u => u.OwnerTenant?.Name))
 				.ForMember(d => d.Privileges, m => m.ResolveUsing(u => u.GetPrivileges().ToList()));
 
 			// 角色

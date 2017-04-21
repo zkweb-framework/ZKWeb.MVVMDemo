@@ -34,11 +34,6 @@ var webpackConfig = {
 			filename: 'index.html',
 			template: './src/index.html',
 			inject: true,
-			minify: {
-				removeComments: true,
-				collapseWhitespace: true,
-				removeAttributeQuotes: true
-			},
 			chunksSortMode: 'dependency'
 		}),
 		new CompressionPlugin({

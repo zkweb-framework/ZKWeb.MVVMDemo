@@ -23,11 +23,11 @@ import { AdminLoginComponent } from './components/admin-login.component';
 
 const routes: Routes = [
 	{
-		path: '', component:
-		AdminIndexComponent,
+		path: '',
+		component: AdminIndexComponent,
 		pathMatch: 'full',
 		canActivate: [AuthGuard],
-		data: { requireUserType: UserTypes.ICanUseAdminPanel }
+		data: { auth: { requireUserType: UserTypes.ICanUseAdminPanel } }
 	},
 	{ path: 'login', component: AdminLoginComponent },
 	// { path: 'tenants', loadChildren: '../admin_tenants_module/admin_tenants.module#AdminTenantsModule' },

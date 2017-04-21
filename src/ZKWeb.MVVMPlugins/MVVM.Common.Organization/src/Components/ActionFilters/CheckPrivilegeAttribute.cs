@@ -1,5 +1,6 @@
 ﻿using System;
 using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Services;
+using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Structs;
 using ZKWeb.Web;
 using ZKWebStandard.Web;
 
@@ -10,13 +11,17 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Components.ActionFilter
 	[AttributeUsage(AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
 	public class CheckPrivilegeAttribute : ActionFilterAttribute {
 		/// <summary>
+		/// 是否要求主租户
+		/// </summary>
+		public bool RequireMasterTenant { get; set; }
+		/// <summary>
 		/// 要求的用户类型
 		/// </summary>
-		public Type RequiredUserType { get; set; }
+		public Type RequireUserType { get; set; }
 		/// <summary>
 		/// 要求的权限列表
 		/// </summary>
-		public string[] Privileges { get; set; }
+		public string[] RequirePrivileges { get; set; }
 		/// <summary>
 		/// Http方法
 		/// 如果等于空则所有Http方法都会检查
@@ -27,8 +32,20 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Components.ActionFilter
 		/// 初始化
 		/// </summary>
 		public CheckPrivilegeAttribute(Type requiredUserType, params string[] privileges) {
-			RequiredUserType = requiredUserType;
-			Privileges = privileges;
+			RequireUserType = requiredUserType;
+			RequirePrivileges = privileges;
+			HttpMethod = null;
+		}
+
+		/// <summary>
+		/// 初始化
+		/// </summary>
+		public CheckPrivilegeAttribute(
+			bool requireMasterTenant,
+			Type requiredUserType, params string[] privileges) {
+			RequireMasterTenant = requireMasterTenant;
+			RequireUserType = requiredUserType;
+			RequirePrivileges = privileges;
 			HttpMethod = null;
 		}
 
@@ -41,8 +58,12 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Components.ActionFilter
 					HttpMethod.Equals(
 						HttpManager.CurrentContext.Request.Method,
 						StringComparison.OrdinalIgnoreCase)) {
+					var requirement = new AuthRequirement(
+						RequireMasterTenant,
+						RequireUserType,
+						RequirePrivileges);
 					var privilegeManager = ZKWeb.Application.Ioc.Resolve<PrivilegeManager>();
-					privilegeManager.Check(RequiredUserType, Privileges);
+					privilegeManager.Check(requirement);
 				}
 				return action();
 			};
