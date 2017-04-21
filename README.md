@@ -13,7 +13,11 @@ MVVM demo for zkweb framework
 - Support multi-tenant
 - Support multi-language
 - Support multi-timezone
+- Support unit of work
+	- Support query filter
+	- Support operation filter
 - Support automatic validate DTOs from request
+- Support CORS api request
 - TODO
 
 ### How to start
