@@ -27,6 +27,8 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Application.Dtos {
 		public string OwnerTenantName { get; set; }
 		[Description("租户是主租户")]
 		public bool OwnerTenantIsMasterTenant { get; set; }
+		[Description("头像图片的Base64")]
+		public string AvatarImageBase64 { get; set; }
 
 		[Description("实现的用户类型列表")]
 		public IList<string> ImplementedTypes { get; set; }

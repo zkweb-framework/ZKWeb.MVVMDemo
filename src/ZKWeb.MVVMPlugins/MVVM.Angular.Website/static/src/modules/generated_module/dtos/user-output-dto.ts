@@ -22,6 +22,8 @@ export class UserOutputDto {
 	public OwnerTenantName: string;
 	// 租户是主租户
 	public OwnerTenantIsMasterTenant: boolean;
+	// 头像图片的Base64
+	public AvatarImageBase64: string;
 	// 实现的用户类型列表
 	public ImplementedTypes: string[];
 	// 权限列表
