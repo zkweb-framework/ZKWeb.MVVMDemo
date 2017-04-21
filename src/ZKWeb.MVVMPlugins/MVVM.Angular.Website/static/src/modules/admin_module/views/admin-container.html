@@ -35,16 +35,11 @@
 				<i class="fa fa-list"></i>
 			</a>
 
-			<span class="topbar-link" id="themeSwitcher" (mouseenter)="dropdownVisible = true" (mouseleave)="dropdownVisible = false">
-				<img src="showcase/resources/images/themeswitcher.svg" />
-				<span>Themes</span>
-				<div id="GlobalThemeSwitcher" [style.display]="dropdownVisible ? 'block' : 'none'" style="margin-top:10px">
+			<a class="topbar-link" (mouseenter)="dropdownVisible = true" (mouseleave)="dropdownVisible = false">
+				<img class="avatar" [src]="avatarUrl" />
+				<span class="username">{{ username }}</span>
+				<div id="topbarDropdown" [style.display]="dropdownVisible ? 'block' : 'none'">
 					<span>Premium Templates</span>
-					<a href="http://www.primefaces.org/layouts/ultima-ng"><img src="showcase/resources/images/themeswitcher-ultima.png" alt="Ultima Template"><span class="ui-text">Ultima</span></a>
-					<a href="http://www.primefaces.org/layouts/barcelona-ng"><img src="showcase/resources/images/themeswitcher-barcelona.png" alt="Barcelona Template"><span class="ui-text">Barcelona</span></a>
-					<a href="http://www.primefaces.org/layouts/atlantis-ng"><img src="showcase/resources/images/themeswitcher-atlantis.png" alt="Atlantis Template"><span class="ui-text">Atlantis</span></a>
-					<a href="http://www.primefaces.org/layouts/poseidon-ng"><img src="showcase/resources/images/themeswitcher-poseidon.png" alt="Poseidon Template"><span class="ui-text">Poseidon</span></a>
-					<a href="http://www.primefaces.org/layouts/omega-ng"><img src="showcase/resources/images/themeswitcher-omega.png" alt="Omega Template"><span class="ui-text">Omega</span></a>
 					<span>Free Themes</span>
 					<a href="#" data-theme="omega" onclick="DemoApp.changeTheme(event, this)"><span class="ui-text">Omega</span></a>
 					<a href="#" data-theme="bootstrap" onclick="DemoApp.changeTheme(event, this)"><span class="ui-text">Bootstrap</span></a>
@@ -64,7 +59,7 @@
 					<a href="#" data-theme="trontastic" onclick="DemoApp.changeTheme(event, this)"><span class="ui-text">Trontastic</span></a>
 					<a href="#" data-theme="voclain" onclick="DemoApp.changeTheme(event, this)"><span class="ui-text">Voclain</span></a>
 				</div>
-			</span>
+			</a>
 		</div>
 
 		<div id="layout-content-body">

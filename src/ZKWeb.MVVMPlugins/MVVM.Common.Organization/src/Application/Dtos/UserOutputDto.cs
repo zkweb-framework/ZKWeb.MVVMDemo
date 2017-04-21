@@ -11,7 +11,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Application.Dtos {
 		[Description("用户类型")]
 		public string Type { get; set; }
 		[Description("用户名")]
-		public string Name { get; set; }
+		public string Username { get; set; }
 		[Description("租户Id")]
 		public Guid OwnerTenantId { get; set; }
 		[Description("创建时间")]

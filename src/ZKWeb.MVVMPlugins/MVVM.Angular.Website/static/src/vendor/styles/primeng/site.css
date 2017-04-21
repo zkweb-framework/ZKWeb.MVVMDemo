@@ -204,12 +204,10 @@ my-app, .app-container, admin-index, admin-container, .layout-wrapper, #layout-c
 .topbar-link {
 	float: right;
 	width: 80px;
+	height: 50px;
 	text-align: center;
 	padding: 10px 5px;
-	border-radius: 5px;
 	font-size: 12px;
-	-webkit-border-radius: 5px;
-	background-color: rgb(246, 249, 251);
 	margin-left: 5px;
 	-webkit-transition: all 0.5s ease;
 	-moz-transition: all 0.5s ease;
@@ -221,7 +219,7 @@ my-app, .app-container, admin-index, admin-container, .layout-wrapper, #layout-c
 }
 
 	.topbar-link:hover {
-		background-color: rgba(255, 255, 255, 0.8);
+		background-color: #20282b;
 		-webkit-transition: all 0.5s ease;
 		-moz-transition: all 0.5s ease;
 		-ms-transition: all 0.5s ease;
@@ -229,9 +227,18 @@ my-app, .app-container, admin-index, admin-container, .layout-wrapper, #layout-c
 		transition: all 0.5s ease;
 	}
 
-	.topbar-link img {
-		width: 80%;
-		height: 30px;
+	.topbar-link > img {
+		width: 25px;
+		height: 25px;
+		display: block;
+		float: left;
+		border-radius: 50%;
+	}
+
+	.topbar-link > span {
+		color: #ccc;
+		line-height: 25px;
+		display: block;
 	}
 /*
 .PFGrayText {
@@ -314,16 +321,15 @@ my-app, .app-container, admin-index, admin-container, .layout-wrapper, #layout-c
 		float: right;
 	}
 
-/** ThemeSwitcher **/
-#GlobalThemeSwitcher {
+#topbarDropdown {
 	display: block;
 	text-align: left;
-	width: 200px;
+	width: 280px;
 	max-height: 400px;
 	overflow-y: auto;
 	background-color: #eff3f6;
 	border: solid 1px #bcc7cf;
-	z-index: 99999999999;
+	z-index: 1000;
 	position: absolute;
 	border-radius: 10px;
 	-moz-border-radius: 10px;
@@ -331,10 +337,10 @@ my-app, .app-container, admin-index, admin-container, .layout-wrapper, #layout-c
 	-webkit-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
 	-moz-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
 	box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
-	margin-left: -60px;
+	margin: 15px 0px 0px -200px;
 }
 
-	#GlobalThemeSwitcher a {
+	#topbarDropdown a {
 		display: block;
 		padding: 10px;
 		border-bottom: solid 1px #dde3e7;
@@ -343,11 +349,11 @@ my-app, .app-container, admin-index, admin-container, .layout-wrapper, #layout-c
 		overflow: hidden;
 	}
 
-		#GlobalThemeSwitcher a:hover {
+		#topbarDropdown a:hover {
 			color: #fdd106;
 		}
 
-		#GlobalThemeSwitcher a span.ui-theme {
+		#topbarDropdown a span.ui-theme {
 			width: 30px;
 			height: 27px;
 			float: left;
@@ -357,20 +363,20 @@ my-app, .app-container, admin-index, admin-container, .layout-wrapper, #layout-c
 			-webkit-border-radius: 5px;
 		}
 
-		#GlobalThemeSwitcher a img {
+		#topbarDropdown a img {
 			float: left;
 			width: 30px;
 			height: 27px;
 		}
 
-		#GlobalThemeSwitcher a span.ui-text {
+		#topbarDropdown a span.ui-text {
 			display: inline-block;
 			margin-top: 7px;
 			margin-left: 10px;
 			font-size: 14px;
 		}
 
-	#GlobalThemeSwitcher > span {
+	#topbarDropdown > span {
 		font-size: 18px;
 		display: inline-block;
 		margin: 20px 0 0 9px;

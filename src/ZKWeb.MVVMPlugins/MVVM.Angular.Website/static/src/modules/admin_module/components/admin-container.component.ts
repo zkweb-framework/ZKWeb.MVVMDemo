@@ -15,20 +15,27 @@ export class AdminContainerComponent implements OnInit {
 	dropdownVisible: boolean = false;
 	mobileMenuActive: boolean = false;
 	navMenuGroups: NavMenuGroup[] = [];
+	defaultAvatarUrl: string = require("../../../vendor/images/default-avatar.jpg");
+	avatarUrl: string = this.defaultAvatarUrl;
+	username: string;
 
 	constructor(
 		private appSessionService: AppSessionService,
 		private appPrivilegeService: AppPrivilegeService) { }
 
 	ngOnInit() {
-		// 根据当前用户显示导航栏菜单，过滤无权限的菜单项
+		// 更新当前登录用户的信息
 		this.navMenuGroups = [];
+		this.avatarUrl = this.defaultAvatarUrl;
+		this.username = null;
 		this.appSessionService.getSessionInfo().subscribe(sessionInfo => {
+			var user = sessionInfo.User;
+			// 根据当前用户显示导航栏菜单，过滤无权限的菜单项
 			var newMenuGroups = [];
 			AdminNavMenu.forEach(group => {
 				// 检查分组权限
 				if (group.auth != null &&
-					!this.appPrivilegeService.isAuthorized(sessionInfo.User, group.auth)) {
+					!this.appPrivilegeService.isAuthorized(user, group.auth)) {
 					return;
 				}
 				// 构建新的菜单项列表
@@ -42,7 +49,7 @@ export class AdminContainerComponent implements OnInit {
 				(group.items || []).forEach(item => {
 					// 检查菜单项权限
 					if (item.auth != null &&
-						!this.appPrivilegeService.isAuthorized(sessionInfo.User, item.auth)) {
+						!this.appPrivilegeService.isAuthorized(user, item.auth)) {
 						return;
 					}
 					newGroup.items.push(item);
@@ -53,6 +60,14 @@ export class AdminContainerComponent implements OnInit {
 				}
 			});
 			this.navMenuGroups = newMenuGroups;
+			// 更新当前用户的头像地址
+			if (user.AvatarImageBase64) {
+				this.avatarUrl = "data:image/png;base64," + user.AvatarImageBase64;
+			} else {
+				this.avatarUrl = this.defaultAvatarUrl;
+			}
+			// 更新当前用户的用户名
+			this.username = user.Username;
 		});
 	}
 

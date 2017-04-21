@@ -7,7 +7,7 @@ export class UserOutputDto {
 	// 用户类型
 	public Type: string;
 	// 用户名
-	public Name: string;
+	public Username: string;
 	// 租户Id
 	public OwnerTenantId: string;
 	// 创建时间
