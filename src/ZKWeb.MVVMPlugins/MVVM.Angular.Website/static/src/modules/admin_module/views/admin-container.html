@@ -5,7 +5,7 @@
 				<img alt="logo" [src]="logoUrl" />
 			</a>
 			<a href="#" id="menu-button-mobile" (click)="toggleMenu($event)" [ngClass]="{'active':mobileMenuActive}">
-				<img alt="logo" src="showcase/resources/images/menuicon.svg" />
+				<i class="fa fa-list"></i>
 			</a>
 		</span>
 
@@ -177,12 +177,7 @@
 	<div id="layout-content">
 		<div id="topbar">
 			<a href="#" id="menu-button" (click)="toggleMenu($event)" [ngClass]="{'active':mobileMenuActive}">
-				<img alt="logo" src="showcase/resources/images/menuicon.svg" />
-			</a>
-
-			<a href="http://forum.primefaces.org/viewforum.php?f=35" class="topbar-link">
-				<img alt="mockosx" src="showcase/resources/images/community.svg" />
-				<span>Forum</span>
+				<i class="fa fa-list"></i>
 			</a>
 
 			<span class="topbar-link" id="themeSwitcher" (mouseenter)="themesVisible = true" (mouseleave)="themesVisible = false">
@@ -215,15 +210,6 @@
 					<a href="#" data-theme="voclain" onclick="DemoApp.changeTheme(event, this)"><span class="ui-text">Voclain</span></a>
 				</div>
 			</span>
-
-			<a href="setup.html" class="topbar-link" [routerLink]="['/setup']">
-				<img alt="mockosx" src="showcase/resources/images/setup.svg" />
-				<span>Setup</span>
-			</a>
-
-			<div class="mobile-logo">
-				<img src="showcase/resources/images/primeng-sidebar.svg" />
-			</div>
 		</div>
 
 		<div id="layout-content-body">
@@ -231,8 +217,10 @@
 		</div>
 
 		<div class="content-section footer clearfix">
-			<span><a href="http://www.primetek.com.tr">PrimeTek</a>, Copyright &copy; 2017</span>
-			<span>All rights reserved</span>
+			<div class="copyright-bar">
+				<div class="text-center">Powered by <a href="https://github.com/zkweb-framework" target="_blank">zkweb framework</a></div>
+				<div class="text-center">Copyright © 2016~2017 ZKWeb All rights reserved</div>
+			</div>
 		</div>
 	</div>
 </div>

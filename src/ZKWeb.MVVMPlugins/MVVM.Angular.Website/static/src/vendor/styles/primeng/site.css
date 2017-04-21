@@ -156,10 +156,9 @@ my-app, .app-container, admin-index, admin-container, .layout-wrapper, #layout-c
 
 .content-section {
 	display: block;
-	border-bottom: solid 1px #dde3e6;
-	padding: 30px;
+	padding: 15px;
 	overflow: hidden;
-	background-color: #f5f7f8;
+	border-top: 1px solid #eee;
 }
 
 	.content-section:first-of-type > div > span {
@@ -227,17 +226,25 @@ my-app, .app-container, admin-index, admin-container, .layout-wrapper, #layout-c
 }*/
 
 #menu-button {
-	float: left;
-	padding: 10px 10px 5px 10px;
-	border-radius: 5px;
 	display: none;
+	border-radius: 5px;
+	position: relative;
+	z-index: 1000;
+	color: #fff;
+	height: 50px;
+	width: 70px;
+	text-align: center;
+	padding: 0px;
+	line-height: 50px;
 }
 
 #menu-button-mobile {
 	float: left;
-	padding: 10px 10px 5px 10px;
-	border-radius: 5px;
 	display: none;
+	width: 70px;
+	height: 50px;
+	line-height: 50px;
+	color: #fff;
 }
 
 	#menu-button.active,
@@ -694,10 +701,6 @@ input.searchInput {
 		width: 340px;
 	}
 
-	.topbar-link {
-		display: none
-	}
-
 	.mobile-logo {
 		display: block;
 		float: right;
@@ -723,8 +726,6 @@ input.searchInput {
 		}
 
 	.layout-logo {
-		padding: 15px;
-		height: 68px;
 		box-sizing: border-box;
 	}
 
@@ -1064,3 +1065,7 @@ pre {
 	.whouses img {
 		width: 100%;
 	}
+
+.text-center {
+	text-align: center;
+}
