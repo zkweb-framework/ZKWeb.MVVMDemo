@@ -168,6 +168,7 @@ my-app, .app-container, admin-index, admin-container, .layout-wrapper, #layout-c
 	flex: 1 0 auto;
 	min-height: initial;
 	background: #FFFFFF;
+	padding: 15px;
 }
 
 .content-section {
@@ -327,7 +328,7 @@ my-app, .app-container, admin-index, admin-container, .layout-wrapper, #layout-c
 	width: 320px;
 	max-height: 400px;
 	overflow-y: auto;
-	/* background-color: #eff3f6; */
+	background-color: #eff3f6;
 	border: solid 1px #bcc7cf;
 	z-index: 1000;
 	position: absolute;
