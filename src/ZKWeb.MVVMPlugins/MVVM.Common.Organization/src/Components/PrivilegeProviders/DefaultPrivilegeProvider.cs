@@ -21,7 +21,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Components.PrivilegePro
 			return applicationServices
 				.SelectMany(a => a.GetApiMethods())
 				.SelectMany(m => m.Attributes.OfType<CheckPrivilegeAttribute>())
-				.SelectMany(a => a.Privileges)
+				.SelectMany(a => a.RequirePrivileges)
 				.Distinct();
 		}
 	}

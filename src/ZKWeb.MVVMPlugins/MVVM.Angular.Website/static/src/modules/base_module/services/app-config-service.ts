@@ -32,7 +32,7 @@ export class AppConfigService {
 		this.languageHeader = appConfig.languageHeader || "X-ZKWeb-Language";
 		this.timezone = appConfig.timezone || "Asia/Shanghai";
 		this.timezoneHeader = appConfig.timezoneHeader || "X-ZKWeb-Timezone";
-		this.loginUrl = appConfig.loginUrl || ["admin", "login"];
+		this.loginUrl = appConfig.loginUrl || ["/admin", "login"];
 		this.sessionIdHeader = appConfig.sessionIdHeader || "X-ZKWeb-SessionId";
 		this.sessionIdSetHeader = appConfig.sessionIdSetHeader || "X-Set-ZKWeb-SessionId";
 		this.sessionIdKey = appConfig.sessionIdKey || "ZKWeb-SessionId";

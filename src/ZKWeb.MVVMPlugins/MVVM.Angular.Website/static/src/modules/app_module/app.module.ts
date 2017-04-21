@@ -2,6 +2,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
+import { BaseModule } from '../base_module/base.module';
 
 import { AppComponent } from './components/app.component';
 import { PageNotFoundComponent } from './components/page_not_found.component';
@@ -16,6 +17,7 @@ const routes: Routes = [
 	imports: [
 		BrowserModule,
 		BrowserAnimationsModule,
+		BaseModule,
 		RouterModule.forRoot(routes)
 	],
 	declarations: [

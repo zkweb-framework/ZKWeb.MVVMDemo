@@ -47,17 +47,17 @@ my-app, .app-container, admin-index, admin-container, .layout-wrapper, #layout-c
 		width: auto;
 	}
 
-#layout-sidebar > a {
+#layout-sidebar > .menu-group > a {
 	width: 100%;
 	height: 50px;
 	display: block;
-	padding: 15px 0px 0px 25px;
 	cursor: pointer;
 	border-top: solid 1px #404a4e;
 	box-sizing: border-box;
+	padding: 0px 0px 0px 15px;
 }
 
-	#layout-sidebar > a.active-menuitem {
+	#layout-sidebar > .menu-group > a.active-menuitem {
 		background-color: #20282b !important;
 		-webkit-transition: all 0.5s ease;
 		-moz-transition: all 0.5s ease;
@@ -66,7 +66,7 @@ my-app, .app-container, admin-index, admin-container, .layout-wrapper, #layout-c
 		transition: all 0.5s ease;
 	}
 
-	#layout-sidebar > a:hover {
+	#layout-sidebar > .menu-group > a:hover {
 		background-color: #20282b;
 		-webkit-transition: all 0.5s ease;
 		-moz-transition: all 0.5s ease;
@@ -75,27 +75,34 @@ my-app, .app-container, admin-index, admin-container, .layout-wrapper, #layout-c
 		transition: all 0.5s ease;
 	}
 
-	#layout-sidebar > a img {
+	#layout-sidebar > .menu-group > a i {
+		color: #ccc;
+		line-height: 50px;
+		float: left;
+	}
+
+	#layout-sidebar > .menu-group > a img {
 		width: 20px;
 		height: auto;
 		float: left;
 	}
 
-	#layout-sidebar > a span {
-		color: #9ba5ac;
+	#layout-sidebar > .menu-group > a span {
+		color: #ccc;
 		font-size: 16px;
 		margin: 0px 0px 0px 30px;
 		display: block;
+		line-height: 50px;
 	}
 
-#layout-sidebar > div {
-	width: auto;
-	padding: 20px 15px;
+#layout-sidebar > .menu-group > div {
+	width: 100%;
+	padding: 15px 20px;
 	overflow: hidden;
 	background-color: #20282b;
 }
 
-	#layout-sidebar > div.submenuhide {
+	#layout-sidebar > .menu-group > div.submenuhide {
 		overflow: hidden;
 		max-height: 0;
 		padding-top: 0;
@@ -112,7 +119,7 @@ my-app, .app-container, admin-index, admin-container, .layout-wrapper, #layout-c
 		transition-timing-function: cubic-bezier(0.86, 0, 0.07, 1);
 	}
 
-	#layout-sidebar > div.submenushow {
+	#layout-sidebar > .menu-group > div.submenushow {
 		-moz-transition-duration: 0.3s;
 		-webkit-transition-duration: 0.3s;
 		-o-transition-duration: 0.3s;
@@ -124,7 +131,7 @@ my-app, .app-container, admin-index, admin-container, .layout-wrapper, #layout-c
 		max-height: 500px;
 	}
 
-	#layout-sidebar > div a {
+	#layout-sidebar > .menu-group > div > a {
 		width: 50%;
 		float: left;
 		padding: 6px;
@@ -136,10 +143,19 @@ my-app, .app-container, admin-index, admin-container, .layout-wrapper, #layout-c
 		font-size: 14px;
 	}
 
-		#layout-sidebar > div a:hover {
+		#layout-sidebar > .menu-group > div > a:hover {
 			background-color: #101517;
 			color: #8dc5d9;
 		}
+
+#layout-sidebar > .menu-group > .submenu > .menu-item {
+	height: 38px;
+	line-height: 38px;
+}
+
+	#layout-sidebar > .menu-group > .submenu > .menu-item > a {
+		color: #ccc;
+	}
 
 #layout-content {
 	margin-left: 270px;

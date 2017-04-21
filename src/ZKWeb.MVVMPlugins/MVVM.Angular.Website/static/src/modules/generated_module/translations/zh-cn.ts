@@ -26,6 +26,15 @@ export class Translation_zh_CN {
 		"Admin": "管理员",
 		"SuperAdmin": "超级管理员",
 		"Action require the ownership of {0}: {1}": "操作需要拥有以下{0}的所有权: {1}",
-		"Action require the tenant ownership of {0}: {1}": "操作需要拥有以下{0}的租户所有权: {1}"
+		"Action require the tenant ownership of {0}: {1}": "操作需要拥有以下{0}的租户所有权: {1}",
+		"Admin Index": "后台首页",
+		"System Manage": "系统管理",
+		"Tenant Manage": "租户管理",
+		"User Manage": "用户管理",
+		"Role Manage": "角色管理",
+		"System Settings": "系统设置",
+		"Website Settings": "网站设置",
+		"404 Not Found": "404 找不到页面",
+		"Go Back": "返回上一页"
 	};
 }
