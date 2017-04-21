@@ -324,10 +324,10 @@ my-app, .app-container, admin-index, admin-container, .layout-wrapper, #layout-c
 #topbarDropdown {
 	display: block;
 	text-align: left;
-	width: 280px;
+	width: 320px;
 	max-height: 400px;
 	overflow-y: auto;
-	background-color: #eff3f6;
+	/* background-color: #eff3f6; */
 	border: solid 1px #bcc7cf;
 	z-index: 1000;
 	position: absolute;
@@ -337,50 +337,41 @@ my-app, .app-container, admin-index, admin-container, .layout-wrapper, #layout-c
 	-webkit-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
 	-moz-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
 	box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
-	margin: 15px 0px 0px -200px;
+	margin: 15px 0px 0px -240px;
 }
+
+	#topbarDropdown > .user-header {
+		height: 115px;
+		padding: 10px;
+		text-align: center;
+		background-color: #34495E;
+	}
+
+		#topbarDropdown > .user-header > img {
+			height: 45px;
+			width: 45px;
+			border: 3px solid;
+			border-color: rgba(255,255,255,0.2);
+			border-radius: 50%;
+		}
+
+		#topbarDropdown > .user-header > p {
+			color: rgba(255,255,255,0.8);
+			font-size: 17px;
+			margin-top: 10px;
+		}
 
 	#topbarDropdown a {
 		display: block;
 		padding: 10px;
 		border-bottom: solid 1px #dde3e7;
-		text-align: left;
 		color: #87939B;
 		overflow: hidden;
 	}
 
 		#topbarDropdown a:hover {
-			color: #fdd106;
+			color: #34495E;
 		}
-
-		#topbarDropdown a span.ui-theme {
-			width: 30px;
-			height: 27px;
-			float: left;
-			border: solid 1px #D7DCE0;
-			border-radius: 5px;
-			-moz-border-radius: 5px;
-			-webkit-border-radius: 5px;
-		}
-
-		#topbarDropdown a img {
-			float: left;
-			width: 30px;
-			height: 27px;
-		}
-
-		#topbarDropdown a span.ui-text {
-			display: inline-block;
-			margin-top: 7px;
-			margin-left: 10px;
-			font-size: 14px;
-		}
-
-	#topbarDropdown > span {
-		font-size: 18px;
-		display: inline-block;
-		margin: 20px 0 0 9px;
-	}
 
 .topbar-link {
 	display: block

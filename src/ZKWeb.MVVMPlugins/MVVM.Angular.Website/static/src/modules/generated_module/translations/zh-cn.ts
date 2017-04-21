@@ -35,6 +35,10 @@ export class Translation_zh_CN {
 		"System Settings": "系统设置",
 		"Website Settings": "网站设置",
 		"404 Not Found": "404 找不到页面",
-		"Go Back": "返回上一页"
+		"Go Back": "返回上一页",
+		"About Website": "关于网站",
+		"Clear Cache": "清理缓存",
+		"About Me": "关于我",
+		"Logout": "退出登录"
 	};
 }

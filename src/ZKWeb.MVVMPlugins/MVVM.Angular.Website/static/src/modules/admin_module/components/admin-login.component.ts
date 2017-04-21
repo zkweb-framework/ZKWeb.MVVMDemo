@@ -31,7 +31,7 @@ export class AdminLoginComponent implements OnInit {
 		this.userLoginService.LoginAdmin(this.adminLoginForm.value).subscribe(
 			result => {
 				this.isSubmitting = false;
-				this.router.navigate(['']);
+				this.router.navigate(['/']);
 			},
 			error => {
 				this.isSubmitting = false;

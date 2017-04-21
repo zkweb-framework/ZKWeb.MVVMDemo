@@ -1,6 +1,8 @@
 ﻿import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NavMenuGroup } from '../navigation/nav-menu-group';
 import { AdminNavMenu } from '../navigation/admin-nav-menu';
+import { AppConfigService } from '../../base_module/services/app-config-service';
 import { AppSessionService } from '../../auth_module/services/app-session-service';
 import { AppPrivilegeService } from '../../auth_module/services/app-privilege-service';
 
@@ -20,6 +22,8 @@ export class AdminContainerComponent implements OnInit {
 	username: string;
 
 	constructor(
+		private router: Router,
+		private appConfigService: AppConfigService,
 		private appSessionService: AppSessionService,
 		private appPrivilegeService: AppPrivilegeService) { }
 
@@ -71,9 +75,21 @@ export class AdminContainerComponent implements OnInit {
 		});
 	}
 
+	// 切换手机版菜单的显示
 	toggleMenu(e) {
-		// 切换手机版菜单的显示
 		this.mobileMenuActive = !this.mobileMenuActive;
 		e.preventDefault();
+	}
+
+	// 清理缓存
+	clearCache(e) {
+		alert("TODO");
+		e.preventDefault();
+	}
+
+	// 退出登录
+	logout(e) {
+		this.appConfigService.setSessionId("");
+		this.router.navigate(['/']);
 	}
 }
