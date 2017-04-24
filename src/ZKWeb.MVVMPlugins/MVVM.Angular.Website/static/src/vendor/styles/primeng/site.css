@@ -200,6 +200,7 @@ my-app, .app-container, admin-index, admin-container, .layout-wrapper, #layout-c
 	border-bottom: solid 1px #dde3e6;
 	overflow: hidden;
 	height: 50px;
+	min-height: 50px;
 }
 
 .topbar-link {
@@ -316,11 +317,9 @@ my-app, .app-container, admin-index, admin-container, .layout-wrapper, #layout-c
 .footer {
 	font-size: 14px;
 	color: #84939f;
+	min-height: 35px;
+	background: #fff;
 }
-
-	.footer span:last-child {
-		float: right;
-	}
 
 #topbarDropdown {
 	display: block;

@@ -7,12 +7,16 @@ import {
 	PanelModule,
 	ButtonModule,
 	MessagesModule,
-	BlockUIModule
+	BlockUIModule,
+	DataTableModule,
+	DropdownModule,
+	MultiSelectModule
 } from 'primeng/primeng';
 
 import { BaseModule } from '../base_module/base.module';
 import { GeneratedModule } from '../generated_module/generated.module';
 import { AuthModule } from '../auth_module/auth.module';
+import { AdminBaseModule } from '../admin_base_module/admin_base.module';
 
 import { AuthGuard } from '../auth_module/auth/auth-guard';
 import { UserTypes } from '../generated_module/privileges/user-types';
@@ -45,9 +49,13 @@ const routes: Routes = [
 		ButtonModule,
 		MessagesModule,
 		BlockUIModule,
+		DataTableModule,
+		DropdownModule,
+		MultiSelectModule,
 		BaseModule,
 		GeneratedModule,
 		AuthModule,
+		AdminBaseModule,
 		RouterModule.forChild(routes)
 	],
 	declarations: [

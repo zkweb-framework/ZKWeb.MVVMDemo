@@ -13,11 +13,11 @@ import {
 import { BaseModule } from '../base_module/base.module';
 import { GeneratedModule } from '../generated_module/generated.module';
 import { AuthModule } from '../auth_module/auth.module';
+import { AdminBaseModule } from '../admin_base_module/admin_base.module';
 
 import { AuthGuard } from '../auth_module/auth/auth-guard';
 import { UserTypes } from '../generated_module/privileges/user-types';
 
-import { AdminContainerComponent } from './components/admin-container.component';
 import { AdminIndexComponent } from './components/admin-index.component';
 import { AdminLoginComponent } from './components/admin-login.component';
 
@@ -48,15 +48,15 @@ const routes: Routes = [
 		BaseModule,
 		GeneratedModule,
 		AuthModule,
+		AdminBaseModule,
 		RouterModule.forChild(routes)
 	],
 	declarations: [
-		AdminContainerComponent,
 		AdminIndexComponent,
 		AdminLoginComponent
 	],
 	exports: [
-		RouterModule
+		RouterModule,
 	]
 })
 export class AdminModule { }
