@@ -15,6 +15,8 @@ export class Translation_zh_CN {
 		"Add": "添加",
 		"Edit": "编辑",
 		"Remove": "删除",
+		"Search": "搜索",
+		"Actions": "操作",
 		"Admin Login": "管理员登录",
 		"Tenant": "租户",
 		"Username": "用户名",
@@ -44,6 +46,13 @@ export class Translation_zh_CN {
 		"About Website": "关于网站",
 		"Clear Cache": "清理缓存",
 		"About Me": "关于我",
-		"Logout": "退出登录"
+		"Logout": "退出登录",
+		"Name": "名称",
+		"IsMasterTenant": "是否主租户",
+		"CreateTime": "创建时间",
+		"UpdateTime": "更新时间",
+		"Please Select": "请选择",
+		"Yes": "是",
+		"No": "否"
 	};
 }

@@ -29,20 +29,15 @@
 						</span>
 					</div>
 				</p-header>
-				<p-column field="vin" header="Vin (startsWith)" [filter]="true" [sortable]="true" filterPlaceholder="Search"></p-column>
-				<p-column field="year" header="Year" width="100" [sortable]="true">
-				</p-column>
-				<p-column field="brand" header="Brand (Custom)" width="100" [filter]="true" [sortable]="true" [style]="{'overflow':'visible'}" filterMatchMode="equals">
+				<p-column field="Name" [header]="'Name' | trans" [filter]="true" [sortable]="true" [filterPlaceholder]="'Search' | trans"></p-column>
+				<p-column field="IsMaster" [header]="'IsMasterTenant' | trans" [filter]="true">
 					<ng-template pTemplate="filter" let-col>
-						<p-dropdown [options]="brands" [style]="{'width':'100%'}" (onChange)="table.filter($event.value,col.field,col.filterMatchMode)" styleClass="ui-column-filter"></p-dropdown>
+						<p-dropdown [options]="isMasterOptions" (onChange)="table.filter($event.value, col.field, col.filterMatchMode)" class="ui-column-filter"></p-dropdown>
 					</ng-template>
 				</p-column>
-				<p-column field="color" header="Color (Custom)" width="100" [filter]="true" [sortable]="true" filterMatchMode="in" [style]="{'overflow':'visible'}">
-					<ng-template pTemplate="filter" let-col>
-						<p-multiSelect [options]="colors" defaultLabel="All Colors" (onChange)="table.filter($event.value,col.field,col.filterMatchMode)" styleClass="ui-column-filter"></p-multiSelect>
-					</ng-template>
-				</p-column>
-				<p-column header="Action" styleClass="col-button">
+				<p-column field="CreateTime" [header]="'CreateTime' | trans" [sortable]="true"></p-column>
+				<p-column field="UpdateTime" [header]="'UpdateTime' | trans" [sortable]="true"></p-column>
+				<p-column [header]="'Actions' | trans" styleClass="col-button">
 					<ng-template let-row="rowData" pTemplate="body">
 						<button type="button" pButton (click)="edit(row)" icon="fa-edit" [innerHtml]="'Edit' | trans"></button>
 						<button type="button" pButton (click)="remove(row)" icon="fa-remove" [innerHtml]="'Remove' | trans"></button>

@@ -45,7 +45,14 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Components.Translates {
 				{ "About Website", "关于网站" },
 				{ "Clear Cache", "清理缓存" },
 				{ "About Me", "关于我" },
-				{ "Logout", "退出登录" }
+				{ "Logout", "退出登录" },
+				{ "Name", "名称" },
+				{ "IsMasterTenant", "是否主租户" },
+				{ "CreateTime", "创建时间" },
+				{ "UpdateTime", "更新时间" },
+				{ "Please Select", "请选择" },
+				{ "Yes", "是" },
+				{ "No", "否" }
 
 				// TODO: 缩减这里的翻译
 				/* { "ZKWeb Default Website", "ZKWeb默认站点" },
