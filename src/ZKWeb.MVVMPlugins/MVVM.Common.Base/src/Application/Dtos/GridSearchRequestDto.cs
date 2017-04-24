@@ -20,10 +20,10 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Application.Dtos {
 		[Description("是否升序")]
 		public bool Ascending { get; set; }
 		[Description("列过滤条件")]
-		public IDictionary<string, object> ColumnFilters { get; set; }
+		public IList<GridSearchColumnFilter> ColumnFilters { get; set; }
 
 		public GridSearchRequestDto() {
-			ColumnFilters = new Dictionary<string, object>();
+			ColumnFilters = new List<GridSearchColumnFilter>();
 		}
 	}
 }

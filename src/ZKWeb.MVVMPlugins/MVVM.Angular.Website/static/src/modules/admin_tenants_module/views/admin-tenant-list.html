@@ -2,35 +2,50 @@
 	<div class="portlet">
 		<h3 class="portlet-title">
 			<i class="fa fa-gear"></i>
-			<span class="caption-subject">租户管理</span>
+			<span class="caption-subject">{{ "Tenant Manage" | trans }}</span>
 		</h3>
 		<div class="portlet-body">
-			<div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none">
-				<button type="button" pButton icon="fa-plus" (click)="add()" label="Add"></button>
-				<span class="pull-right">
-					<i class="fa fa-search" style="margin:4px 4px 0 0"></i>
-					<input #gb type="text" pInputText size="50" placeholder="Global Filter">
-				</span>
-			</div>
-			<p-dataTable [value]="cars" [rows]="10" [paginator]="true" [globalFilter]="gb" [resizableColumns]="true" [reorderableColumns]="true" [loading]="loading" #dt>
-				<p-header>List of Cars</p-header>
+			<p-messages [value]="msgs"></p-messages>
+			<p-dataTable [value]="value"
+						 [paginator]="true"
+						 [rows]="rows"
+						 [totalRecords]="totalRecords"
+						 [rowsPerPageOptions]="rowsPerPageOptions"
+						 [globalFilter]="globalFilter"
+						 [resizableColumns]="true"
+						 [reorderableColumns]="true"
+						 [emptyMessage]="emptyMessage"
+						 [lazy]="true"
+						 (onLazyLoad)="search($event)"
+						 [loading]="loading" #table>
+				<p-header>
+					<div class="ui-helper-clearfix">
+						<span class="pull-left">
+							<button type="button" pButton icon="fa-plus" (click)="add()" [label]="'Add' | trans"></button>
+						</span>
+						<span class="pull-right">
+							<i class="fa fa-search search-icon"></i>
+							<input #globalFilter type="text" pInputText [placeholder]="'Name/Remark' | trans">
+						</span>
+					</div>
+				</p-header>
 				<p-column field="vin" header="Vin (startsWith)" [filter]="true" [sortable]="true" filterPlaceholder="Search"></p-column>
 				<p-column field="year" header="Year" width="100" [sortable]="true">
 				</p-column>
 				<p-column field="brand" header="Brand (Custom)" width="100" [filter]="true" [sortable]="true" [style]="{'overflow':'visible'}" filterMatchMode="equals">
 					<ng-template pTemplate="filter" let-col>
-						<p-dropdown [options]="brands" [style]="{'width':'100%'}" (onChange)="dt.filter($event.value,col.field,col.filterMatchMode)" styleClass="ui-column-filter"></p-dropdown>
+						<p-dropdown [options]="brands" [style]="{'width':'100%'}" (onChange)="table.filter($event.value,col.field,col.filterMatchMode)" styleClass="ui-column-filter"></p-dropdown>
 					</ng-template>
 				</p-column>
 				<p-column field="color" header="Color (Custom)" width="100" [filter]="true" [sortable]="true" filterMatchMode="in" [style]="{'overflow':'visible'}">
 					<ng-template pTemplate="filter" let-col>
-						<p-multiSelect [options]="colors" defaultLabel="All Colors" (onChange)="dt.filter($event.value,col.field,col.filterMatchMode)" styleClass="ui-column-filter"></p-multiSelect>
+						<p-multiSelect [options]="colors" defaultLabel="All Colors" (onChange)="table.filter($event.value,col.field,col.filterMatchMode)" styleClass="ui-column-filter"></p-multiSelect>
 					</ng-template>
 				</p-column>
 				<p-column header="Action" styleClass="col-button">
 					<ng-template let-row="rowData" pTemplate="body">
-						<button type="button" pButton (click)="edit(row)" icon="fa-edit"></button>
-						<button type="button" pButton (click)="remove(row)" icon="fa-remove"></button>
+						<button type="button" pButton (click)="edit(row)" icon="fa-edit" [innerHtml]="'Edit' | trans"></button>
+						<button type="button" pButton (click)="remove(row)" icon="fa-remove" [innerHtml]="'Remove' | trans"></button>
 					</ng-template>
 				</p-column>
 			</p-dataTable>

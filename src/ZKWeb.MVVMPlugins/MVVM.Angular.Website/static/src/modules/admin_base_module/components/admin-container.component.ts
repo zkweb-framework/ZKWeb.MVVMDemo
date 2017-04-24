@@ -75,19 +75,19 @@ export class AdminContainerComponent implements OnInit {
 		});
 	}
 
-	// 切换手机版菜单的显示
+	/** 切换手机版菜单的显示 */
 	toggleMenu(e) {
 		this.mobileMenuActive = !this.mobileMenuActive;
 		e.preventDefault();
 	}
 
-	// 清理缓存
+	/** 清理缓存 */
 	clearCache(e) {
 		alert("TODO");
 		e.preventDefault();
 	}
 
-	// 退出登录
+	/** 退出登录 */
 	logout(e) {
 		this.appConfigService.setSessionId("");
 		this.router.navigate(['/']);

@@ -1,22 +1,22 @@
 export class UserTypes {
-	// IAmAdmin
+	/** IAmAdmin */
 	public static IAmAdmin = "IAmAdmin";
-	// IAmUser
+	/** IAmUser */
 	public static IAmUser = "IAmUser";
-	// IUserType
+	/** IUserType */
 	public static IUserType = "IUserType";
-	// ICanUseAdminPanel
+	/** ICanUseAdminPanel */
 	public static ICanUseAdminPanel = "ICanUseAdminPanel";
-	// AdminUserType
+	/** AdminUserType */
 	public static AdminUserType = "AdminUserType";
-	// IAmAnonymouseUser
+	/** IAmAnonymouseUser */
 	public static IAmAnonymouseUser = "IAmAnonymouseUser";
-	// AnonymouseUserType
+	/** AnonymouseUserType */
 	public static AnonymouseUserType = "AnonymouseUserType";
-	// NormalUserType
+	/** NormalUserType */
 	public static NormalUserType = "NormalUserType";
-	// IAmSuperAdmin
+	/** IAmSuperAdmin */
 	public static IAmSuperAdmin = "IAmSuperAdmin";
-	// SuperAdminUserType
+	/** SuperAdminUserType */
 	public static SuperAdminUserType = "SuperAdminUserType";
 }

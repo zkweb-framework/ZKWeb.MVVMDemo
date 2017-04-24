@@ -1,5 +1,8 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { SelectItem } from 'primeng/primeng';
+import { CrudListBaseComponent } from '../../base_module/components/crud-list-base.component'
+import { GridSearchRequestDto } from '../../generated_module/dtos/grid-search-request-dto';
+import { GridSearchResponseDto } from '../../generated_module/dtos/grid-search-response-dto';
 
 export interface Car {
 	vin;
@@ -1215,14 +1218,12 @@ export const cars: Car[] = [
 	selector: 'admin-tenant-list',
 	templateUrl: '../views/admin-tenant-list.html'
 })
-export class AdminTenantListComponent {
-	cars: Car[];
+export class AdminTenantListComponent extends CrudListBaseComponent {
 	brands: SelectItem[];
 	colors: SelectItem[];
-	loading: false;
 
 	ngOnInit() {
-		this.cars = cars;
+		// this.value = cars;
 		this.brands = [];
 		this.brands.push({ label: 'All Brands', value: null });
 		this.brands.push({ label: 'Audi', value: 'Audi' });
@@ -1246,15 +1247,15 @@ export class AdminTenantListComponent {
 		this.colors.push({ label: 'Blue', value: 'Blue' });
 	}
 
-	add() {
-		alert(123);
+	submitSearch(request: GridSearchRequestDto) {
+		return null;
 	}
 
-	edit(row) {
-		alert("edit: " + JSON.stringify(row));
+	submitEdit(obj: any) {
+		return null;
 	}
 
-	remove(row) {
-		alert("remove: " + JSON.stringify(row));
+	submitRemove(obj: any) {
+		return null;
 	}
 }

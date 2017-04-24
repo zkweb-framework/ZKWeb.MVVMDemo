@@ -31,7 +31,7 @@ export class FormCaptchaComponent extends FormFieldBaseComponent {
 		}
 	}
 
-	// 刷新验证码
+	/** 刷新验证码 */
 	refreshCaptcha() {
 		this.captchaImageBase64 = null;
 		this.captchaLoadingText = this.appTranslationService.translate("Loading");

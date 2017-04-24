@@ -3,7 +3,7 @@ import { NavMenuItem } from './nav-menu-item';
 import { UserTypes } from '../../generated_module/privileges/user-types';
 import { Privileges } from '../../generated_module/privileges/privileges';
 
-// 定义后台导航栏
+/** 定义后台导航栏 */
 export const AdminNavMenu: NavMenuGroup[] = [
 	{
 		name: "Admin Index",

@@ -40,7 +40,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Angular.Support.src.Components.ScriptGenerator 
 			classBuilder.AppendLine($"export class UserTypes {{");
 			foreach (var type in allTypes) {
 				var typeName = type.Name;
-				classBuilder.AppendLine($"	// {new T(typeName)}");
+				classBuilder.AppendLine($"	/** {new T(typeName)} */");
 				classBuilder.AppendLine($"	public static {typeName} = {JsonConvert.SerializeObject(typeName)};");
 			}
 			classBuilder.AppendLine("}");
@@ -63,7 +63,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Angular.Support.src.Components.ScriptGenerator 
 			foreach (var privilege in allPrivileges) {
 				var name = privilegeTranslator.Translate(privilege);
 				var variableName = pathConfig.NormalizeVariableName(privilege);
-				classBuilder.AppendLine($"	// {name}");
+				classBuilder.AppendLine($"	/** {name} */");
 				classBuilder.AppendLine($"	public static {variableName} = {JsonConvert.SerializeObject(privilege)};");
 			}
 			classBuilder.AppendLine("}");

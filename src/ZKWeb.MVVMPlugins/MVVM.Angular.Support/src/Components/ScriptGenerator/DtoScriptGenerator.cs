@@ -99,7 +99,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Angular.Support.src.Components.ScriptGenerator 
 			var className = pathConfig.NormalizeClassName(type);
 			var classDescription = type.GetTypeInfo()
 				.GetCustomAttribute<DescriptionAttribute>()?.Description ?? className;
-			classBuilder.AppendLine($"// {classDescription}");
+			classBuilder.AppendLine($"/** {classDescription} */");
 			classBuilder.AppendLine($"export class {className} {{");
 			foreach (var property in type.GetProperties()) {
 				// 成员带有[JsonIgnore]时跳过生成
@@ -123,7 +123,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Angular.Support.src.Components.ScriptGenerator 
 					}
 				}
 				// 添加成员
-				classBuilder.AppendLine($"	// {propertyDescription}");
+				classBuilder.AppendLine($"	/** {propertyDescription} */");
 				classBuilder.AppendLine($"	public {propertyName}: {propertyType};");
 			}
 			classBuilder.AppendLine("}");
@@ -142,14 +142,14 @@ namespace ZKWeb.MVVMPlugins.MVVM.Angular.Support.src.Components.ScriptGenerator 
 			var enumName = pathConfig.NormalizeClassName(type);
 			var enumDescription = type.GetTypeInfo()
 				.GetCustomAttribute<DescriptionAttribute>()?.Description ?? enumName;
-			enumBuilder.AppendLine($"// {enumDescription}");
+			enumBuilder.AppendLine($"/** {enumDescription} */");
 			enumBuilder.AppendLine($"export enum {enumName} {{");
 			var enumValues = Enum.GetValues(type).OfType<Enum>().ToList();
 			foreach (var value in enumValues) {
 				var valueName = value.ToString();
 				var valueInt = value.ConvertOrDefault<int>();
 				var valueDescription = value.GetDescription();
-				enumBuilder.AppendLine($"	// {valueDescription}");
+				enumBuilder.AppendLine($"	/** {valueDescription} */");
 				enumBuilder.Append($"	{valueName} = {valueInt}");
 				if (value != enumValues.Last()) {
 					enumBuilder.Append(",");

@@ -4,20 +4,20 @@ import { AuthRequirement } from '../auth/auth-requirement';
 import { UserOutputDto } from '../../generated_module/dtos/user-output-dto';
 import { UserTypes } from '../../generated_module/privileges/user-types';
 
-// 检查权限的结果
+/** 检查权限的结果 */
 export class PrivilegeCheckResult {
-	// 是否检查成功
+	/** 是否检查成功 */
 	success: boolean;
-	// 检查失败时的s信息
+	/** 检查失败时的s信息 */
 	errorMessage: string;
 }
 
-// 检查权限使用的服务
+/** 检查权限使用的服务 */
 @Injectable()
 export class AppPrivilegeService {
 	constructor(private appTranslationService: AppTranslationService) { }
 
-	// 翻译权限
+	/** 翻译权限 */
 	translatePrivilege(privilege: string): string {
 		var index = privilege.indexOf(':');
 		var group = index > 0 ? privilege.substr(0, index) : "Other";
@@ -25,7 +25,7 @@ export class AppPrivilegeService {
 		return this.appTranslationService.translate(group) + ":" + this.appTranslationService.translate(name);
 	}
 
-	// 检查用户是否有满足指定的权限要求
+	/** 检查用户是否有满足指定的权限要求 */
 	isAuthorized(user: UserOutputDto, auth: AuthRequirement): PrivilegeCheckResult {
 		if (user == null) {
 			// 未登录时检查失败

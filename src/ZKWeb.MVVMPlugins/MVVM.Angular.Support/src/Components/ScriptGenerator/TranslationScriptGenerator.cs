@@ -30,7 +30,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Angular.Support.src.Components.ScriptGenerator 
 			var classBuilder = new StringBuilder();
 			var className = pathConfig.NormalizeClassName("Translation_" + language);
 			var classDescription = new T(language).ToString();
-			classBuilder.AppendLine($"// {classDescription}");
+			classBuilder.AppendLine($"/** {classDescription} */");
 			classBuilder.AppendLine($"export class {className} {{");
 			classBuilder.AppendLine($"	public static language = {JsonConvert.SerializeObject(language)};");
 			classBuilder.Append($"	public static translations: {{ [key: string]: string }} = ");

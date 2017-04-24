@@ -23,6 +23,11 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Components.Translates {
 				{ "Format of {0} is incorrect", "{0}的格式不正确" },
 				{ "Loading", "加载中" },
 				{ "Load Failed", "加载失败" },
+				{ "No records found", "无匹配的数据" },
+				{ "Name/Remark", "名称/备注" },
+				{ "Add", "添加" },
+				{ "Edit", "编辑" },
+				{ "Remove", "删除" }
 			};
 		}
 	}

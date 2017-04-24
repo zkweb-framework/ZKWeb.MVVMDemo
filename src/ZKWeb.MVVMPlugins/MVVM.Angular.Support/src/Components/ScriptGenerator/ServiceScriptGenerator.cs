@@ -33,7 +33,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Angular.Support.src.Components.ScriptGenerator 
 			includeBuilder.AppendLine("import { Observable } from 'rxjs/Observable';");
 			includeBuilder.AppendLine("import { AppApiService } from '../../base_module/services/app-api-service';");
 			classBuilder.AppendLine("@Injectable()");
-			classBuilder.AppendLine($"// {classDescription}");
+			classBuilder.AppendLine($"/** {classDescription} */");
 			classBuilder.AppendLine($"export class {className} {{");
 			classBuilder.AppendLine("	constructor(private appApiService: AppApiService) { }");
 			classBuilder.AppendLine();
@@ -63,7 +63,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Angular.Support.src.Components.ScriptGenerator 
 					}
 				}
 				// 添加方法
-				classBuilder.AppendLine($"	// {methodDescription}");
+				classBuilder.AppendLine($"	/** {methodDescription} */");
 				classBuilder.Append($"	{methodName}(");
 				foreach (var parameter in methodParameters) {
 					classBuilder.Append($"{parameter.name}: {parameter.type}");

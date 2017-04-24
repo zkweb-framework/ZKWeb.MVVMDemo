@@ -10,7 +10,7 @@ import {
 	BlockUIModule,
 	DataTableModule,
 	DropdownModule,
-	MultiSelectModule
+    MultiSelectModule
 } from 'primeng/primeng';
 
 import { BaseModule } from '../base_module/base.module';
@@ -51,7 +51,7 @@ const routes: Routes = [
 		BlockUIModule,
 		DataTableModule,
 		DropdownModule,
-		MultiSelectModule,
+        MultiSelectModule,
 		BaseModule,
 		GeneratedModule,
 		AuthModule,

@@ -5,11 +5,11 @@ import { ActionResponseDto } from '../dtos/action-response-dto';
 import { UserLoginRequestDto } from '../dtos/user-login-request-dto';
 
 @Injectable()
-// 用户登录服务
+/** 用户登录服务 */
 export class UserLoginService {
 	constructor(private appApiService: AppApiService) { }
 
-	// 登录用户
+	/** 登录用户 */
 	LoginUser(request: UserLoginRequestDto): Observable<ActionResponseDto> {
 		return this.appApiService.call<ActionResponseDto>(
 			"/api/UserLoginService/LoginUser",
@@ -18,7 +18,7 @@ export class UserLoginService {
 			});
 	}
 
-	// 登录管理员
+	/** 登录管理员 */
 	LoginAdmin(request: UserLoginRequestDto): Observable<ActionResponseDto> {
 		return this.appApiService.call<ActionResponseDto>(
 			"/api/UserLoginService/LoginAdmin",

@@ -1,31 +1,31 @@
 import { RoleOutputDto } from './role-output-dto';
 
-// 用户传出信息
+/** 用户传出信息 */
 export class UserOutputDto {
-	// 用户Id
+	/** 用户Id */
 	public Id: string;
-	// 用户类型
+	/** 用户类型 */
 	public Type: string;
-	// 用户名
+	/** 用户名 */
 	public Username: string;
-	// 租户Id
+	/** 租户Id */
 	public OwnerTenantId: string;
-	// 创建时间
+	/** 创建时间 */
 	public CreateTime: string;
-	// 更新时间
+	/** 更新时间 */
 	public UpdateTime: string;
-	// 已删除
+	/** 已删除 */
 	public Deleted: boolean;
-	// 角色列表
+	/** 角色列表 */
 	public Roles: RoleOutputDto[];
-	// 租户名
+	/** 租户名 */
 	public OwnerTenantName: string;
-	// 租户是主租户
+	/** 租户是主租户 */
 	public OwnerTenantIsMasterTenant: boolean;
-	// 头像图片的Base64
+	/** 头像图片的Base64 */
 	public AvatarImageBase64: string;
-	// 实现的用户类型列表
+	/** 实现的用户类型列表 */
 	public ImplementedTypes: string[];
-	// 权限列表
+	/** 权限列表 */
 	public Privileges: string[];
 }

@@ -9,19 +9,20 @@ import { AppSessionService } from '../services/app-session-service';
 import { AppPrivilegeService } from '../services/app-privilege-service';
 import { UserTypes } from '../../generated_module/privileges/user-types';
 
-// 用于给路由检查权限
-// 例:
-// {
-//	path: 'example',
-//	component: ExampleComponent,
-//	canActivate: [AuthGuard],
-//	data: {
-//		auth: {
-//			requireMasterTenant: false,
-//			requireUserType: 'ICanUseAdminPanel',
-//			requirePrivileges: ['Example:Edit']
-//		}
-// }
+/** 用于给路由检查权限
+	例:
+	{
+		path: 'example',
+		component: ExampleComponent,
+		canActivate: [AuthGuard],
+		data: {
+			auth: {
+				requireMasterTenant: false,
+				requireUserType: 'ICanUseAdminPanel',
+				requirePrivileges: ['Example:Edit']
+			}
+		}
+	} */
 @Injectable()
 export class AuthGuard implements CanActivate {
 	constructor(

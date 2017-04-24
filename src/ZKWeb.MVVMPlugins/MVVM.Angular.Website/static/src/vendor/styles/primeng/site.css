@@ -1082,3 +1082,16 @@ pre {
 .text-center {
 	text-align: center;
 }
+
+.search-icon {
+	margin: 4px 4px 0px 0px;
+}
+
+.search-header {
+	padding: 4px 10px;
+	border-bottom: 0 none !important;
+}
+
+.clearfix {
+	clear: both;
+}

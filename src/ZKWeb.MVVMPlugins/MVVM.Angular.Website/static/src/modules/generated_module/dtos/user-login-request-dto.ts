@@ -1,13 +1,13 @@
-// 用户登录请求
+/** 用户登录请求 */
 export class UserLoginRequestDto {
-	// 租户
+	/** 租户 */
 	public Tenant: string;
-	// 用户名
+	/** 用户名 */
 	public Username: string;
-	// 密码
+	/** 密码 */
 	public Password: string;
-	// 验证码
+	/** 验证码 */
 	public Captcha: string;
-	// 记住登录
+	/** 记住登录 */
 	public RememberLogin: boolean;
 }

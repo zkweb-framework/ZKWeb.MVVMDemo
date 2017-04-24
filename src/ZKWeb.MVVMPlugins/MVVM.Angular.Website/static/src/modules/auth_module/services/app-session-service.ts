@@ -6,7 +6,7 @@ import { SessionService } from '../../generated_module/services/session-service'
 import { AppConfigService } from '../../base_module/services/app-config-service';
 import { AppApiService } from '../../base_module/services/app-api-service';
 
-// 获取会话信息的服务
+/** 获取会话信息的服务 */
 @Injectable()
 export class AppSessionService {
 	private domSessionIdKey = "appSessionId";
@@ -20,7 +20,7 @@ export class AppSessionService {
 		console.log("create app session service");
 	}
 
-	// 获取当前的会话信息
+	/** 获取当前的会话信息 */
 	getSessionInfo(): Observable<SessionInfoDto> {
 		// 从DOM中获取保存的会话Id和会话信息
 		// Angular中无法实现跨路由的单例，想要防止重复获取只能借助DOM
