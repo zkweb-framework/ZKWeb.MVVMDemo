@@ -30,9 +30,9 @@ const routes: Routes = [
 		data: { auth: { requireUserType: UserTypes.ICanUseAdminPanel } }
 	},
 	{ path: 'login', component: AdminLoginComponent },
-	// { path: 'tenants', loadChildren: '../admin_tenants_module/admin_tenants.module#AdminTenantsModule' },
-	// { path: 'users', loadChildren: '../admin_users_module/admin.admin_users.module#AdminUsersModule' },
-	// { path: 'roles', loadChildren: '../admin_roles_module/admin_roles.module#AdminRolesModule' },
+	{ path: 'tenants', loadChildren: '../admin_tenants_module/admin_tenants.module#AdminTenantsModule' },
+	{ path: 'users', loadChildren: '../admin_users_module/admin_users.module#AdminUsersModule' },
+	{ path: 'roles', loadChildren: '../admin_roles_module/admin_roles.module#AdminRolesModule' },
 ];
 
 @NgModule({

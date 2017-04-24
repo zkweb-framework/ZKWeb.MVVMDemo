@@ -5,6 +5,10 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{ADA47558-C1AF-4CFA-B0FF-AF09BE8E4602}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{384C359C-2BAC-46FA-A4B9-71511EA31795}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+		TODO.md = TODO.md
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZKWeb.MVVMDemo.AspNetCore", "src\ZKWeb.MVVMDemo.AspNetCore\ZKWeb.MVVMDemo.AspNetCore.csproj", "{C01C075B-BA25-47BE-8377-DD503BAF3B17}"
 EndProject
