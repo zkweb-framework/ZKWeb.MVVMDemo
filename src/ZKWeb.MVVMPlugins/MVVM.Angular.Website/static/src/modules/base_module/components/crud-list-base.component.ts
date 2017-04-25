@@ -1,4 +1,5 @@
 ﻿import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AppTranslationService } from '../../base_module/services/app-translation-service';
 import { GridSearchRequestDto } from '../../generated_module/dtos/grid-search-request-dto';
 import { GridSearchResponseDto } from '../../generated_module/dtos/grid-search-response-dto';
@@ -35,14 +36,18 @@ export abstract class CrudListBaseComponent implements OnInit {
 
 	/** 提交搜索请求到服务器 */
 	abstract submitSearch(request: GridSearchRequestDto): Observable<GridSearchResponseDto>;
-	/** 提交编辑请求到服务器 */
-	abstract submitEdit(obj: any): Observable<ActionResponseDto>;
-	/** 提交删除请求道服务器 */
+	/** 获取添加地址 */
+	abstract getAddUrl(): string[];
+	/** 获取编辑地址 */
+	abstract getEditUrl(obj: any): string[];
+	/** 提交删除请求到服务器 */
 	abstract submitRemove(obj: any): Observable<ActionResponseDto>;
 	/** 初始化时的处理 */
 	abstract ngOnInit();
 
-	constructor(protected appTranslationService: AppTranslationService) {
+	constructor(
+		protected router: Router,
+		protected appTranslationService: AppTranslationService) {
 		this.emptyMessage = this.appTranslationService.translate("No records found");
 	}
 
@@ -132,22 +137,26 @@ export abstract class CrudListBaseComponent implements OnInit {
 
 	/** 添加数据
 		应该绑定添加按钮的点击事件
-		例如 TODO */
+		例如 (click)="add()" */
 	add() {
-		alert("add");
+		// 跳转到添加页面
+		this.router.navigate(this.getAddUrl());
 	}
 
 	/** 编辑数据
 		应该绑定编辑按钮的点击事件
-		例如 TODO */
+		例如 (click)="edit(row)" */
 	edit(obj: any) {
-		alert("edit: " + JSON.stringify(obj));
+		// 跳转到编辑页面
+		this.router.navigate(this.getEditUrl(obj));
 	}
 
 	/** 删除数据
 		应该绑定删除按钮的点击事件
-		例如 TODO */
+		例如 (click)="remove(row)" */
 	remove(obj: any) {
+		// TODO: 弹出询问框
+		// TODO: 提交删除请求
 		alert("remove: " + JSON.stringify(obj));
 	}
 }

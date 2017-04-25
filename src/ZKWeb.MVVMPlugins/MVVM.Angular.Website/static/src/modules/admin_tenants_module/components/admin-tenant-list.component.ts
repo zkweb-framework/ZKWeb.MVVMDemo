@@ -1,4 +1,5 @@
 ﻿import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { SelectItem } from 'primeng/primeng';
 import { CrudListBaseComponent } from '../../base_module/components/crud-list-base.component'
 import { GridSearchRequestDto } from '../../generated_module/dtos/grid-search-request-dto';
@@ -14,9 +15,10 @@ export class AdminTenantListComponent extends CrudListBaseComponent {
 	isMasterOptions: SelectItem[];
 
 	constructor(
-	appTranslationService: AppTranslationService,
+		router: Router,
+		appTranslationService: AppTranslationService,
 		private tenantManageService: TenantManageService) {
-		super(appTranslationService);
+		super(router, appTranslationService);
 	}
 
 	ngOnInit() {
@@ -32,12 +34,17 @@ export class AdminTenantListComponent extends CrudListBaseComponent {
 		return this.tenantManageService.Search(request);
 	}
 
-	/** 提交编辑请求到服务器 */
-	submitEdit(obj: any) {
-		return this.tenantManageService.Edit(obj);
+	/** 获取添加地址 */
+	getAddUrl() {
+		return ["/admin", "tenants", "add"];
 	}
 
-	/** 提交删除请求道服务器 */
+	/** 获取编辑地址 */
+	getEditUrl(obj: any) {
+		return ["/admin", "tenants", "edit", obj.Id];
+	}
+
+	/** 提交删除请求到服务器 */
 	submitRemove(obj: any) {
 		return this.tenantManageService.Remove(obj);
 	}

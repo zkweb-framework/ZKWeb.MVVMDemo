@@ -10,7 +10,7 @@ import {
 	BlockUIModule,
 	DataTableModule,
 	DropdownModule,
-    MultiSelectModule
+	MultiSelectModule
 } from 'primeng/primeng';
 
 import { BaseModule } from '../base_module/base.module';
@@ -20,6 +20,7 @@ import { AdminBaseModule } from '../admin_base_module/admin_base.module';
 
 import { AuthGuard } from '../auth_module/auth/auth-guard';
 import { UserTypes } from '../generated_module/privileges/user-types';
+import { Privileges } from '../generated_module/privileges/privileges';
 
 import { AdminTenantEditComponent } from './components/admin-tenant-edit.component';
 import { AdminTenantListComponent } from './components/admin-tenant-list.component';
@@ -30,12 +31,35 @@ const routes: Routes = [
 		component: AdminTenantListComponent,
 		pathMatch: 'full',
 		canActivate: [AuthGuard],
-		data: { auth: { requireMasterTenant: true, requireUserType: UserTypes.IAmAdmin } }
+		data: {
+			auth: {
+				requireMasterTenant: true,
+				requireUserType: UserTypes.IAmAdmin,
+				requirePrivileges: [Privileges.Tenant_View]
+			}
+		}
+	},
+	{
+		path: 'add', component: AdminTenantEditComponent,
+		canActivate: [AuthGuard],
+		data: {
+			auth: {
+				requireMasterTenant: true,
+				requireUserType: UserTypes.IAmAdmin,
+				requirePrivileges: [Privileges.Tenant_Edit]
+			}
+		}
 	},
 	{
 		path: 'edit/:id', component: AdminTenantEditComponent,
 		canActivate: [AuthGuard],
-		data: { auth: { requireMasterTenant: true, requireUserType: UserTypes.IAmAdmin } }
+		data: {
+			auth: {
+				requireMasterTenant: true,
+				requireUserType: UserTypes.IAmAdmin,
+				requirePrivileges: [Privileges.Tenant_Edit]
+			}
+		}
 	},
 ];
 
@@ -51,7 +75,7 @@ const routes: Routes = [
 		BlockUIModule,
 		DataTableModule,
 		DropdownModule,
-        MultiSelectModule,
+		MultiSelectModule,
 		BaseModule,
 		GeneratedModule,
 		AuthModule,
