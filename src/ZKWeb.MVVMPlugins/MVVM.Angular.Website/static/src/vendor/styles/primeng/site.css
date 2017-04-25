@@ -1096,8 +1096,13 @@ pre {
 	clear: both;
 }
 
-body .ui-datatable .ui-datatable-thead > tr > th {
-	overflow: visible;
+body .ui-datatable .ui-datatable-thead > tr > th,
+.ui-datatable-scrollable-header,
+.ui-datatable-scrollable-header-box,
+.ui-datatable-scrollable-header-box > table,
+.ui-datatable-scrollable-header-box > table > thead,
+.ui-datatable-scrollable-header-box > table > thead > tr {
+	overflow: visible !important;
 }
 
 .ui-column-filter {
