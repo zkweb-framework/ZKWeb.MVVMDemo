@@ -29,7 +29,8 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Components.Translates {
 				{ "Edit", "编辑" },
 				{ "Remove", "删除" },
 				{ "Search", "搜索" },
-				{ "Actions", "操作" }
+				{ "Actions", "操作" },
+				{ "View", "查看" }
 			};
 		}
 	}

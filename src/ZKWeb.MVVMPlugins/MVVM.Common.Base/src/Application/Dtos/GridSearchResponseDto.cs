@@ -13,9 +13,16 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Application.Dtos {
 		public IList<object> Result { get; set; }
 		[Description("分页前的总数量")]
 		public long TotalCount { get; set; }
+		[Description("附加数据")]
+		public object Extra { get; set; }
 
 		public GridSearchResponseDto() {
 			Result = new List<object>();
+		}
+
+		public GridSearchResponseDto(long totalCount, IList<object> result) {
+			TotalCount = totalCount;
+			Result = result;
 		}
 	}
 }

@@ -14,4 +14,6 @@ export class GridSearchRequestDto {
 	public Ascending: boolean;
 	/** 列过滤条件 */
 	public ColumnFilters: GridSearchColumnFilter[];
+	/** 附加数据 */
+	public Extra: any;
 }

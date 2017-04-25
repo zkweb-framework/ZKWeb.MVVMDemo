@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
+using ZKWeb.Database;
+using ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Components.GridSearchResponseBuilder;
 
 namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Application.Dtos {
 	/// <summary>
@@ -21,9 +23,22 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Application.Dtos {
 		public bool Ascending { get; set; }
 		[Description("列过滤条件")]
 		public IList<GridSearchColumnFilter> ColumnFilters { get; set; }
+		[Description("附加数据")]
+		public object Extra { get; set; }
 
 		public GridSearchRequestDto() {
 			ColumnFilters = new List<GridSearchColumnFilter>();
+		}
+
+		/// <summary>
+		/// 开始构建搜索回应
+		/// </summary>
+		/// <typeparam name="TEntity">实体类型</typeparam>
+		/// <typeparam name="TPrimaryKey">主键类型</typeparam>
+		/// <returns></returns>
+		public GridSearchResponseBuilder<TEntity, TPrimaryKey> BuildResponse<TEntity, TPrimaryKey>()
+			where TEntity : class, IEntity, IEntity<TPrimaryKey> {
+			return new GridSearchResponseBuilder<TEntity, TPrimaryKey>(this);
 		}
 	}
 }

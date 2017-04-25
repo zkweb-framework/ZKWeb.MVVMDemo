@@ -17,6 +17,7 @@ export class Translation_zh_CN {
 		"Remove": "删除",
 		"Search": "搜索",
 		"Actions": "操作",
+		"View": "查看",
 		"Admin Login": "管理员登录",
 		"Tenant": "租户",
 		"Username": "用户名",
