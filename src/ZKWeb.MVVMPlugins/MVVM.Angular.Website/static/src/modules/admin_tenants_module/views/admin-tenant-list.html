@@ -25,7 +25,7 @@
 				<p-header>
 					<div class="ui-helper-clearfix">
 						<span class="pull-left">
-							<button type="button" pButton icon="fa-plus" (click)="add()" [label]="'Add' | trans"></button>
+							<button type="button" pButton icon="fa-plus" (click)="add()" *ngIf="allowAdd" [label]="'Add' | trans"></button>
 						</span>
 						<span class="pull-right">
 							<i class="fa fa-search search-icon"></i>
@@ -46,8 +46,8 @@
 				<p-column field="UpdateTime" [header]="'UpdateTime' | trans" [sortable]="true"></p-column>
 				<p-column [header]="'Actions' | trans" styleClass="col-button">
 					<ng-template let-row="rowData" pTemplate="body">
-						<button type="button" pButton (click)="edit(row)" icon="fa-edit"></button>
-						<button type="button" pButton (click)="remove(row)" icon="fa-remove"></button>
+						<button type="button" pButton (click)="edit(row)" *ngIf="allowEdit" icon="fa-edit"></button>
+						<button type="button" pButton (click)="remove(row)" *ngIf="allowRemove" icon="fa-remove"></button>
 					</ng-template>
 				</p-column>
 			</p-dataTable>

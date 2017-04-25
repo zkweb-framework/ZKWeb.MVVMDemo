@@ -6,6 +6,9 @@ import { GridSearchResponseDto } from '../../generated_module/dtos/grid-search-r
 import { GridSearchColumnFilter } from '../../generated_module/dtos/grid-search-column-filter';
 import { GridSearchColumnFilterMatchMode } from '../../generated_module/dtos/grid-search-column-filter-match-mode';
 import { ActionResponseDto } from '../../generated_module/dtos/action-response-dto';
+import { AuthRequirement } from '../../auth_module/auth/auth-requirement';
+import { AppPrivilegeService } from '../../auth_module/services/app-privilege-service';
+import { AppSessionService } from '../../auth_module/services/app-session-service';
 import { Message } from 'primeng/primeng';
 import { Observable } from 'rxjs/Observable';
 
@@ -33,6 +36,12 @@ export abstract class CrudListBaseComponent implements OnInit {
 	rowsPerPageOptions = [10, 25, 50, 100, 500];
 	/** 找不到数据时的文本 */
 	emptyMessage: string;
+	/** 是否允许添加数据 */
+	allowAdd = false;
+	/** 是否允许编辑数据 */
+	allowEdit = false;
+	/** 是否允许删除数据 */
+	allowRemove = false;
 
 	/** 提交搜索请求到服务器 */
 	abstract submitSearch(request: GridSearchRequestDto): Observable<GridSearchResponseDto>;
@@ -42,13 +51,36 @@ export abstract class CrudListBaseComponent implements OnInit {
 	abstract getEditUrl(obj: any): string[];
 	/** 提交删除请求到服务器 */
 	abstract submitRemove(obj: any): Observable<ActionResponseDto>;
-	/** 初始化时的处理 */
-	abstract ngOnInit();
+	/** 获取添加所需的权限 */
+	abstract getAddRequirement(): AuthRequirement;
+	/** 获取编辑所需的权限 */
+	abstract getEditRequirement(): AuthRequirement;
+	/** 获取删除所需的权限 */
+	abstract getRemoveRequirement(): AuthRequirement;
 
 	constructor(
 		protected router: Router,
+		protected appSessionService: AppSessionService,
+		protected appPrivilegeService: AppPrivilegeService,
 		protected appTranslationService: AppTranslationService) {
 		this.emptyMessage = this.appTranslationService.translate("No records found");
+	}
+
+	/** 初始化时的处理 */
+	ngOnInit() {
+		this.recheckPrivileges();
+	}
+
+	/** 重新检查权限 */
+	recheckPrivileges() {
+		this.appSessionService.getSessionInfo().subscribe(sessionInfo => {
+			this.allowAdd = this.appPrivilegeService.isAuthorized(
+				sessionInfo.User, this.getAddRequirement()).success;
+			this.allowEdit = this.appPrivilegeService.isAuthorized(
+				sessionInfo.User, this.getEditRequirement()).success;
+			this.allowRemove = this.appPrivilegeService.isAuthorized(
+				sessionInfo.User, this.getRemoveRequirement()).success;
+		});
 	}
 
 	/** 显示消息 */

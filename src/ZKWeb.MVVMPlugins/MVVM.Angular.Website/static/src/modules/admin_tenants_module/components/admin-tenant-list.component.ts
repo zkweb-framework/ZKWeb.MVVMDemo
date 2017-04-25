@@ -6,6 +6,11 @@ import { GridSearchRequestDto } from '../../generated_module/dtos/grid-search-re
 import { GridSearchResponseDto } from '../../generated_module/dtos/grid-search-response-dto';
 import { AppTranslationService } from '../../base_module/services/app-translation-service';
 import { TenantManageService } from '../../generated_module/services/tenant-manage-service';
+import { UserTypes } from '../../generated_module/privileges/user-types';
+import { Privileges } from '../../generated_module/privileges/privileges';
+import { AuthRequirement } from '../../auth_module/auth/auth-requirement';
+import { AppPrivilegeService } from '../../auth_module/services/app-privilege-service';
+import { AppSessionService } from '../../auth_module/services/app-session-service';
 
 @Component({
 	selector: 'admin-tenant-list',
@@ -16,12 +21,15 @@ export class AdminTenantListComponent extends CrudListBaseComponent {
 
 	constructor(
 		router: Router,
+		appSessionService: AppSessionService,
+		appPrivilegeService: AppPrivilegeService,
 		appTranslationService: AppTranslationService,
 		private tenantManageService: TenantManageService) {
-		super(router, appTranslationService);
+		super(router, appSessionService, appPrivilegeService, appTranslationService);
 	}
 
 	ngOnInit() {
+		super.ngOnInit();
 		this.isMasterOptions = [
 			{ label: this.appTranslationService.translate("Please Select"), value: null },
 			{ label: this.appTranslationService.translate("Yes"), value: true },
@@ -29,23 +37,43 @@ export class AdminTenantListComponent extends CrudListBaseComponent {
 		];
 	}
 
-	/** 提交搜索请求到服务器 */
 	submitSearch(request: GridSearchRequestDto) {
 		return this.tenantManageService.Search(request);
 	}
 
-	/** 获取添加地址 */
 	getAddUrl() {
 		return ["/admin", "tenants", "add"];
 	}
 
-	/** 获取编辑地址 */
 	getEditUrl(obj: any) {
 		return ["/admin", "tenants", "edit", obj.Id];
 	}
 
-	/** 提交删除请求到服务器 */
 	submitRemove(obj: any) {
 		return this.tenantManageService.Remove(obj);
+	}
+
+	getAddRequirement() {
+		return {
+			requireMasterTenant: true,
+			requireUserType: UserTypes.IAmAdmin,
+			requirePrivileges: [Privileges.Tenant_Edit]
+		};
+	}
+
+	getEditRequirement() {
+		return {
+			requireMasterTenant: true,
+			requireUserType: UserTypes.IAmAdmin,
+			requirePrivileges: [Privileges.Tenant_Edit]
+		};
+	}
+
+	getRemoveRequirement() {
+		return {
+			requireMasterTenant: true,
+			requireUserType: UserTypes.IAmAdmin,
+			requirePrivileges: [Privileges.Tenant_Remove]
+		};
 	}
 }
