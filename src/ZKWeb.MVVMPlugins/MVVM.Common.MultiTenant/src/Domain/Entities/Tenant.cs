@@ -46,7 +46,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.MultiTenant.src.Domain.Entities {
 			builder.Id(t => t.Id);
 			builder.Map(t => t.Name, new EntityMappingOptions() { Unique = true });
 			builder.Map(t => t.IsMaster, new EntityMappingOptions() { Index = "Idx_IsMaster" });
-			builder.Map(t => t.CreateTime);
+			builder.Map(t => t.CreateTime, new EntityMappingOptions() { Index = "Idx_CreateTime" });
 			builder.Map(t => t.UpdateTime);
 			builder.Map(t => t.Remark);
 		}
