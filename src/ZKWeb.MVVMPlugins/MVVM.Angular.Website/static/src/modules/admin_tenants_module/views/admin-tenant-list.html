@@ -15,6 +15,8 @@
 						 [resizableColumns]="true"
 						 [reorderableColumns]="true"
 						 [emptyMessage]="emptyMessage"
+						 scrollable="true"
+						 scrollHeight="300px"
 						 [lazy]="true"
 						 (onLazyLoad)="search($event)"
 						 [loading]="loading" #table>
@@ -34,13 +36,16 @@
 					<ng-template pTemplate="filter" let-col>
 						<p-dropdown [options]="isMasterOptions" (onChange)="table.filter($event.value, col.field, col.filterMatchMode)" class="ui-column-filter"></p-dropdown>
 					</ng-template>
+					<ng-template let-row="rowData" pTemplate="body">
+						{{ (row.IsMaster ? "Yes" : "No") | trans }}
+					</ng-template>
 				</p-column>
 				<p-column field="CreateTime" [header]="'CreateTime' | trans" [sortable]="true"></p-column>
 				<p-column field="UpdateTime" [header]="'UpdateTime' | trans" [sortable]="true"></p-column>
 				<p-column [header]="'Actions' | trans" styleClass="col-button">
 					<ng-template let-row="rowData" pTemplate="body">
-						<button type="button" pButton (click)="edit(row)" icon="fa-edit" [innerHtml]="'Edit' | trans"></button>
-						<button type="button" pButton (click)="remove(row)" icon="fa-remove" [innerHtml]="'Remove' | trans"></button>
+						<button type="button" pButton (click)="edit(row)" icon="fa-edit"></button>
+						<button type="button" pButton (click)="remove(row)" icon="fa-remove"></button>
 					</ng-template>
 				</p-column>
 			</p-dataTable>

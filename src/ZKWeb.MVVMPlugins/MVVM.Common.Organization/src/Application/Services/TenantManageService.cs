@@ -24,7 +24,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Application.Services {
 			return request.BuildResponse<Tenant, Guid>()
 				.FilterKeywordWith(t => t.Name)
 				.FilterKeywordWith(t => t.Remark)
-				.ToResponse();
+				.ToResponse<TenantOutputDto>();
 		}
 
 		[Description("编辑租户")]

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using System.Linq;
+using ZKWeb.MVVMPlugins.MVVM.Common.MultiTenant.src.Domain.Entities;
 using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Application.Dtos;
 using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Entities;
 using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Extensions;
@@ -12,6 +13,9 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Application.Mappers {
 	[ExportMany]
 	public class OrganizationMapperProfile : Profile {
 		public OrganizationMapperProfile() {
+			// 租户
+			CreateMap<Tenant, TenantOutputDto>();
+
 			// 用户
 			CreateMap<User, UserOutputDto>()
 				.ForMember(d => d.OwnerTenantName, m => m.ResolveUsing(u => u.OwnerTenant?.Name))

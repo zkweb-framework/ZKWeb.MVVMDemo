@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.FastReflection;
 using System.Linq;
@@ -25,22 +26,22 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Components.GridSearchResponseBu
 		protected IList<IEntityQueryFilter> _enableFilters;
 		protected IList<Type> _disableFilters;
 		protected IList<Expression<Func<TEntity, bool>>> _keywordConditions;
-		protected IList<Func<IQueryable<TEntity>, IQueryable<TEntity>>> _queryFilters;
-		protected Func<IQueryable<TEntity>, IQueryable<TEntity>> _querySorter;
+		protected IList<Func<IQueryable<TEntity>, IQueryable<TEntity>>> _customQueryFilters;
+		protected Func<IQueryable<TEntity>, IQueryable<TEntity>> _customQuerySorter;
 
 		public GridSearchResponseBuilder(GridSearchRequestDto request) {
 			_request = request;
 			_enableFilters = new List<IEntityQueryFilter>();
 			_disableFilters = new List<Type>();
 			_keywordConditions = new List<Expression<Func<TEntity, bool>>>();
-			_queryFilters = new List<Func<IQueryable<TEntity>, IQueryable<TEntity>>>();
-			_querySorter = q => q;
+			_customQueryFilters = new List<Func<IQueryable<TEntity>, IQueryable<TEntity>>>();
+			_customQuerySorter = null;
 		}
 
 		/// <summary>
 		/// 启用查询过滤器
 		/// </summary>
-		public GridSearchResponseBuilder<TEntity, TPrimaryKey>
+		public virtual GridSearchResponseBuilder<TEntity, TPrimaryKey>
 			EnableQueryFilter(IEntityQueryFilter filter) {
 			_enableFilters.Add(filter);
 			return this;
@@ -49,7 +50,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Components.GridSearchResponseBu
 		/// <summary>
 		/// 禁用查询过滤器
 		/// </summary>
-		public GridSearchResponseBuilder<TEntity, TPrimaryKey>
+		public virtual GridSearchResponseBuilder<TEntity, TPrimaryKey>
 			DisableQueryFilter(Type type) {
 			_disableFilters.Add(type);
 			return this;
@@ -58,7 +59,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Components.GridSearchResponseBu
 		/// <summary>
 		/// 指定过滤关键词时使用的成员
 		/// </summary>
-		public GridSearchResponseBuilder<TEntity, TPrimaryKey>
+		public virtual GridSearchResponseBuilder<TEntity, TPrimaryKey>
 			FilterKeywordWith<TMember>(Expression<Func<TEntity, TMember>> memberExpr) {
 			var paramExpr = memberExpr.Parameters[0];
 			var bodyExpr = memberExpr.Body;
@@ -80,7 +81,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Components.GridSearchResponseBu
 		/// <summary>
 		/// 指定过滤关键词时使用的条件
 		/// </summary>
-		public GridSearchResponseBuilder<TEntity, TPrimaryKey>
+		public virtual GridSearchResponseBuilder<TEntity, TPrimaryKey>
 			FilterKeywordWithCondition(Expression<Func<TEntity, bool>> conditionExpr) {
 			_keywordConditions.Add(conditionExpr);
 			return this;
@@ -89,9 +90,18 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Components.GridSearchResponseBu
 		/// <summary>
 		/// 指定自定义的查询过滤函数
 		/// </summary>
-		public GridSearchResponseBuilder<TEntity, TPrimaryKey>
+		public virtual GridSearchResponseBuilder<TEntity, TPrimaryKey>
 			FilterQuery(Func<IQueryable<TEntity>, IQueryable<TEntity>> filterFunc) {
-			_queryFilters.Add(filterFunc);
+			_customQueryFilters.Add(filterFunc);
+			return this;
+		}
+
+		/// <summary>
+		/// 指定自定义的查询排序函数
+		/// </summary>
+		public virtual GridSearchResponseBuilder<TEntity, TPrimaryKey>
+			SortQuery(Func<IQueryable<TEntity>, IQueryable<TEntity>> sortFunc) {
+			_customQuerySorter = sortFunc;
 			return this;
 		}
 
@@ -170,16 +180,6 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Components.GridSearchResponseBu
 		}
 
 		/// <summary>
-		/// 过滤时使用的函数
-		/// </summary>
-		protected static MethodInfo _stringContainsMethod =
-			typeof(string).FastGetMethod(nameof(string.Contains));
-		protected static MethodInfo _stringStartsWithMethod =
-			typeof(string).FastGetMethod(nameof(string.StartsWith));
-		protected static MethodInfo _stringEndsWithMethod =
-			typeof(string).FastGetMethod(nameof(string.EndsWith));
-
-		/// <summary>
 		/// 按列查询条件进行过滤
 		/// </summary>
 		protected virtual IQueryable<TEntity> ApplyColumnFilter(IQueryable<TEntity> query) {
@@ -199,7 +199,8 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Components.GridSearchResponseBu
 				if (filterProperty == null) {
 					continue;
 				}
-				var propertyType = Nullable.GetUnderlyingType(filterProperty.PropertyType);
+				var propertyType = Nullable.GetUnderlyingType(filterProperty.PropertyType) ??
+					filterProperty.PropertyType;
 				var isNullable = propertyType != filterProperty.PropertyType;
 				// 构建过滤表达式
 				var paramExpr = Expression.Parameter(entityType, "e");
@@ -212,16 +213,19 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Components.GridSearchResponseBu
 					var valueExpr = Expression.Constant(columnFilter.Value?.ToString());
 					if (columnFilter.MatchMode == GridSearchColumnFilterMatchMode.StartsWith) {
 						// 以搜索值开始
-						bodyExpr = Expression.Call(memberExpr, _stringStartsWithMethod, valueExpr);
+						bodyExpr = Expression.Call(
+							memberValueExpr, nameof(string.StartsWith), Type.EmptyTypes, valueExpr);
 					} else if (columnFilter.MatchMode == GridSearchColumnFilterMatchMode.EndsWith) {
 						// 以搜索值结尾
-						bodyExpr = Expression.Call(memberExpr, _stringEndsWithMethod, valueExpr);
+						bodyExpr = Expression.Call(
+							memberValueExpr, nameof(string.EndsWith), Type.EmptyTypes, valueExpr);
 					} else if (columnFilter.MatchMode == GridSearchColumnFilterMatchMode.Equals) {
 						// 等于搜索值
-						bodyExpr = Expression.Equal(memberExpr, valueExpr);
+						bodyExpr = Expression.Equal(memberValueExpr, valueExpr);
 					} else {
 						// 包含搜索值
-						bodyExpr = Expression.Call(memberExpr, _stringContainsMethod, valueExpr);
+						bodyExpr = Expression.Call(
+							memberValueExpr, nameof(string.Contains), Type.EmptyTypes, valueExpr);
 					}
 				} else if (propertyType == typeof(DateTime)) {
 					// 成员类型是时间
@@ -352,11 +356,11 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Components.GridSearchResponseBu
 		/// </summary>
 		protected virtual IQueryable<TEntity> ApplyCustomFilter(IQueryable<TEntity> query) {
 			// 无自定义过滤函数时跳过
-			if (_queryFilters == null || _queryFilters.Count == 0) {
+			if (_customQueryFilters == null || _customQueryFilters.Count == 0) {
 				return query;
 			}
 			// 调用自定义的过滤函数
-			foreach (var filter in _queryFilters) {
+			foreach (var filter in _customQueryFilters) {
 				query = filter(query);
 			}
 			return query;
@@ -387,8 +391,8 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Components.GridSearchResponseBu
 		/// </summary>
 		protected virtual IQueryable<TEntity> ApplySorter(IQueryable<TEntity> query) {
 			// 有自定义的排序函数时使用自定义的排序函数
-			if (_querySorter != null) {
-				return _querySorter(query);
+			if (_customQuerySorter != null) {
+				return _customQuerySorter(query);
 			}
 			// 按查询给出的列进行排序，如果列不存在则按Id进行排序
 			var entityType = typeof(TEntity);
@@ -403,16 +407,24 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Components.GridSearchResponseBu
 				orderProperty = entityType.FastGetProperty(nameof(IEntity<object>.Id));
 			}
 			query = (IQueryable<TEntity>)_sortQueryGenericMethod
-				.MakeGenericMethod(typeof(TEntity), orderProperty.PropertyType)
+				.MakeGenericMethod(orderProperty.PropertyType)
 				.FastInvoke(this, query, orderProperty, _request.Ascending);
 			return query;
+		}
+
+		/// <summary>
+		/// 对查询进行分页
+		/// </summary>
+		protected virtual IQueryable<TEntity> ApplyPagination(IQueryable<TEntity> query) {
+			return query.Skip(_request.Page * _request.PageSize).Take(_request.PageSize);
 		}
 
 		/// <summary>
 		/// 创建搜索回应
 		/// </summary>
 		/// <returns></returns>
-		public virtual GridSearchResponseDto ToResponse() {
+		public virtual GridSearchResponseDto ToResponse<TDto>()
+			where TDto : IOutputDto {
 			return GetScopeInvoker()(() => {
 				// 获取领域服务
 				var domainService = ZKWeb.Application.Ioc.Resolve<IDomainService<TEntity, TPrimaryKey>>();
@@ -426,10 +438,14 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Components.GridSearchResponseBu
 					query = ApplyCustomFilter(query);
 					// 按自定义的排序函数或者请求的排序字段进行排序
 					query = ApplySorter(query);
-					// 构建搜索回应
+					// 获取总数量
 					var count = query.LongCount();
-					var records = query.ToList<object>();
-					return new GridSearchResponseDto(count, records);
+					// 对查询进行分页
+					query = ApplyPagination(query);
+					// 构建搜索回应
+					var records = query.ToList();
+					var dtos = records.Select(r => (object)Mapper.Map<TDto>(r)).ToList();
+					return new GridSearchResponseDto(count, dtos);
 				});
 			});
 		}

@@ -4,10 +4,10 @@ import { GridSearchColumnFilter } from './grid-search-column-filter';
 export class GridSearchRequestDto {
 	/** 关键字 */
 	public Keyword: string;
-	/** 当前页 */
+	/** 当前页，从0开始 */
 	public Page: number;
 	/** 单页数量 */
-	public Limit: number;
+	public PageSize: number;
 	/** 排序字段 */
 	public OrderBy: string;
 	/** 是否升序 */

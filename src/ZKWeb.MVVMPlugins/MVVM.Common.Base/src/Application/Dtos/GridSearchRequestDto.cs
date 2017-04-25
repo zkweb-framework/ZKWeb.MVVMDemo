@@ -13,10 +13,10 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Application.Dtos {
 	public class GridSearchRequestDto : IInputDto {
 		[Description("关键字")]
 		public string Keyword { get; set; }
-		[Description("当前页")]
-		public long Page { get; set; }
+		[Description("当前页，从0开始")]
+		public int Page { get; set; }
 		[Description("单页数量")]
-		public long Limit { get; set; }
+		public int PageSize { get; set; }
 		[Description("排序字段")]
 		public string OrderBy { get; set; }
 		[Description("是否升序")]
