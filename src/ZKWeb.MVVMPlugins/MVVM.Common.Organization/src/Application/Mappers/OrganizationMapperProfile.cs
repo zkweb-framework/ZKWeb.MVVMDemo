@@ -14,6 +14,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Application.Mappers {
 	public class OrganizationMapperProfile : Profile {
 		public OrganizationMapperProfile() {
 			// 租户
+			CreateMap<TenantInputDto, Tenant>();
 			CreateMap<Tenant, TenantOutputDto>();
 
 			// 用户

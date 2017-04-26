@@ -90,7 +90,7 @@ export abstract class CrudBaseComponent implements OnInit {
 
 	/** 显示消息 */
 	displayMessage(severity: string, detail: string) {
-		this.msgs = [{ severity: severity, detail: detail }];
+		this.msgs = [{ severity: severity, detail: this.appTranslationService.translate(detail) }];
 	}
 
 	/** 搜索数据
@@ -169,5 +169,15 @@ export abstract class CrudBaseComponent implements OnInit {
 				this.displayMessage("error", e);
 				setSearchResult([], 0);
 			});
+	}
+
+	/** 以上次的参数搜索数据 */
+	searchWithLastParameters() {
+		if (!this.searchConditionJson) {
+			return;
+		}
+		var condition = JSON.parse(this.searchConditionJson);
+		this.searchConditionJson = "";
+		this.search(condition);
 	}
 }

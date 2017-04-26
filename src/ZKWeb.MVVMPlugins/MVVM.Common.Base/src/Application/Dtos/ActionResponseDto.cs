@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using ZKWeb.Localize;
 
 namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Application.Dtos {
 	/// <summary>
@@ -14,11 +15,11 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Application.Dtos {
 		public object Extra { get; set; }
 
 		public static ActionResponseDto CreateSuccess(string message = null, object extra = null) {
-			return new ActionResponseDto() { Success = true, Message = message, Extra = extra };
+			return new ActionResponseDto() { Success = true, Message = new T(message), Extra = extra };
 		}
 
 		public static ActionResponseDto CreateFailed(string message, object extra = null) {
-			return new ActionResponseDto() { Success = false, Message = message, Extra = extra };
+			return new ActionResponseDto() { Success = false, Message = new T(message), Extra = extra };
 		}
 	}
 }

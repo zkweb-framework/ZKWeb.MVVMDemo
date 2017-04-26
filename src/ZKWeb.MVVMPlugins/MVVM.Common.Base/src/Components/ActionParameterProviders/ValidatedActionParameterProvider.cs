@@ -3,6 +3,8 @@ using ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Application.Attributes;
 using ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Application.Dtos;
 using ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Application.Extensions;
 using ZKWeb.Web;
+using ZKWebStandard.Extensions;
+using ZKWebStandard.Web;
 
 namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Components.ActionParameterProviders {
 	/// <summary>
@@ -16,6 +18,8 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Components.ActionParameterProvi
 		}
 
 		public T GetParameter<T>(string name, MethodInfo method, ParameterInfo parameterInfo) {
+			var x = HttpManager.CurrentContext.Request.Get<object>(name);
+			var xx = HttpManager.CurrentContext.Request.GetJsonBodyDictionary();
 			var result = _originalProvider.GetParameter<T>(name, method, parameterInfo);
 			// 如果结果是IInputDto并且函数未标记不验证的属性则执行验证
 			if (result is IInputDto &&

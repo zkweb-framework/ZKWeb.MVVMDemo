@@ -19,6 +19,7 @@ export class Translation_zh_CN {
 		"Search": "搜索",
 		"Actions": "操作",
 		"View": "查看",
+		"Network error, please check your internet connection": "网络错误，请检查您的网络连接",
 		"Admin Login": "管理员登录",
 		"Tenant": "租户",
 		"Username": "用户名",
@@ -61,6 +62,9 @@ export class Translation_zh_CN {
 		"Edit Tenant": "编辑租户",
 		"Edit User": "编辑用户",
 		"Edit Role": "编辑角色",
-		"Remark": "备注"
+		"Remark": "备注",
+		"You can't delete master tenant": "不能删除主租户",
+		"Saved Successfully": "保存成功",
+		"Deleted Successfully": "删除成功"
 	};
 }

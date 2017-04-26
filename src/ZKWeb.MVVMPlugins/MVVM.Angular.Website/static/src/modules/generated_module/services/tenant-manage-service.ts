@@ -4,6 +4,7 @@ import { AppApiService } from '../../base_module/services/app-api-service';
 import { GridSearchResponseDto } from '../dtos/grid-search-response-dto';
 import { GridSearchRequestDto } from '../dtos/grid-search-request-dto';
 import { ActionResponseDto } from '../dtos/action-response-dto';
+import { TenantInputDto } from '../dtos/tenant-input-dto';
 
 @Injectable()
 /** 租户管理服务 */
@@ -20,7 +21,7 @@ export class TenantManageService {
 	}
 
 	/** 编辑租户 */
-	Edit(dto: any): Observable<ActionResponseDto> {
+	Edit(dto: TenantInputDto): Observable<ActionResponseDto> {
 		return this.appApiService.call<ActionResponseDto>(
 			"/api/TenantManageService/Edit",
 			{

@@ -25,7 +25,8 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.SessionState.src.Components.SessionIdSou
 		/// <returns></returns>
 		public Guid GetSessionId() {
 			var context = HttpManager.CurrentContext;
-			return context.Request.GetHeader(SessionHeaderIn).ConvertOrDefault<Guid>();
+			var sessionIdHeader = context.Request.GetHeader(SessionHeaderIn);
+			return sessionIdHeader.ConvertOrDefault<Guid>();
 		}
 
 		/// <summary>

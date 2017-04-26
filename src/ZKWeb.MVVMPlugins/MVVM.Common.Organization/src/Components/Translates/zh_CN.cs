@@ -58,7 +58,10 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Components.Translates {
 				{ "Edit Tenant", "编辑租户" },
 				{ "Edit User", "编辑用户" },
 				{ "Edit Role", "编辑角色" },
-				{ "Remark", "备注" }
+				{ "Remark", "备注" },
+				{ "You can't delete master tenant", "不能删除主租户" },
+				{ "Saved Successfully", "保存成功" },
+				{ "Deleted Successfully", "删除成功" }
 
 				// TODO: 缩减这里的翻译
 				/* { "ZKWeb Default Website", "ZKWeb默认站点" },

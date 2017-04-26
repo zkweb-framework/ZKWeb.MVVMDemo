@@ -1,4 +1,4 @@
-@charset "UTF-8";
+﻿@charset "UTF-8";
 .ui-widget {
   font-family: Lucida Grande, Lucida Sans, Arial, sans-serif;
   font-size: 1em; }
@@ -503,5 +503,3 @@ p-togglebutton.ng-dirty.ng-invalid .ui-button {
   -moz-border-radius: 6px;
   -webkit-border-radius: 6px;
   border-radius: 6px; }
-
-/*# sourceMappingURL=theme.css.map */

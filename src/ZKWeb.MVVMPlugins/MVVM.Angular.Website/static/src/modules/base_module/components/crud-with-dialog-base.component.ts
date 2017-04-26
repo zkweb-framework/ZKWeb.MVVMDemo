@@ -28,6 +28,11 @@ export abstract class CrudWithDialogBaseComponent extends CrudBaseComponent {
 	/** 编辑表单使用的消息列表 */
 	editMsgs = [];
 
+	/** 提交编辑到服务器 */
+	abstract submitEdit(obj: any): Observable<ActionResponseDto>;
+	/** 提交删除到服务器 */
+	abstract submitRemove(obj: any): Observable<ActionResponseDto>;
+
 	constructor(
 		protected confirmationService: ConfirmationService,
 		appSessionService: AppSessionService,
@@ -38,27 +43,43 @@ export abstract class CrudWithDialogBaseComponent extends CrudBaseComponent {
 
 	/** 在编辑表单显示消息 */
 	displayEditMessage(severity: string, detail: string) {
-		this.editMsgs = [{ severity: severity, detail: detail }];
+		this.editMsgs = [{ severity: severity, detail: this.appTranslationService.translate(detail) }];
 	}
 
 	/** 添加数据 */
 	add() {
+		this.editForm.reset();
 		this.editDialogVisible = true;
 	}
 
 	/** 编辑数据 */
 	edit(obj: any) {
+		this.editForm.reset();
+		this.editForm.patchValue(obj);
 		this.editDialogVisible = true;
 	}
 
 	/* 关闭编辑框 */
-	closeEdit() {
+	editDialogClose() {
+		this.editForm.reset();
 		this.editDialogVisible = false;
 	}
 
 	/* 提交编辑表单 */
-	submitEdit() {
-		this.editDialogVisible = false;
+	editDialogSubmit() {
+		this.editFormSubmitting = true;
+		console.log("submit form", JSON.parse(JSON.stringify(this.editForm.value)));
+		this.submitEdit(this.editForm.value).subscribe(
+			s => {
+				this.displayMessage("info", s.Message);
+				this.searchWithLastParameters();
+				this.editFormSubmitting = false;
+				this.editDialogVisible = false;
+			},
+			e => {
+				this.displayEditMessage("error", e);
+				this.editFormSubmitting = false;
+			});
 	}
 
 	/** 删除数据 */
@@ -70,7 +91,12 @@ export abstract class CrudWithDialogBaseComponent extends CrudBaseComponent {
 		this.confirmationService.confirm({
 			message: confirmMessage,
 			accept: () => {
-				alert("remove");
+				this.submitRemove(obj).subscribe(
+					s => {
+						this.displayMessage("info", s.Message);
+						this.searchWithLastParameters();
+					},
+					e => this.displayMessage("error", e));
 			}
 		});
 	}

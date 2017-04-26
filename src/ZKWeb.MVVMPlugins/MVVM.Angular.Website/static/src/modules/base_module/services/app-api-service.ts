@@ -63,8 +63,13 @@ export class AppApiService {
 			console.log("api request error:", error);
 			var errorMessage: string;
 			if (error instanceof Response) {
-				// 返回过滤html标签后的文本
-				errorMessage = error.text().replace(/<[^>]+>/g, "");
+				if (error.status == 0) {
+					// 网络错误时显示特殊信息
+					errorMessage = "Network error, please check your internet connection";
+				} else {
+					// 返回过滤html标签后的文本
+					errorMessage = error.text().replace(/<[^>]+>/g, "");
+				}
 			} else {
 				// 返回错误对象的json
 				errorMessage = JSON.stringify(error);

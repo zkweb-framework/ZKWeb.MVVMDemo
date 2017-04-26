@@ -70,4 +70,12 @@ export class AdminTenantListComponent extends CrudWithDialogBaseComponent {
 			requirePrivileges: [Privileges.Tenant_Remove]
 		};
 	}
+
+	submitEdit(obj: any) {
+		return this.tenantManageService.Edit(obj);
+	}
+
+	submitRemove(obj: any) {
+		return this.tenantManageService.Remove(obj.Id);
+	}
 }

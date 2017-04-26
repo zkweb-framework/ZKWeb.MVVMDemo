@@ -31,7 +31,8 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Components.Translates {
 				{ "Remove", "删除" },
 				{ "Search", "搜索" },
 				{ "Actions", "操作" },
-				{ "View", "查看" }
+				{ "View", "查看" },
+				{ "Network error, please check your internet connection", "网络错误，请检查您的网络连接" }
 			};
 		}
 	}

@@ -55,7 +55,7 @@
 	</div>
 	<p-confirmDialog [header]="'Confirmation' | trans" [acceptLabel]="'Yes' | trans" [rejectLabel]="'No' | trans" icon="fa fa-question-circle" width="380"></p-confirmDialog>
 	<p-dialog [header]="'Edit Tenant' | trans" [(visible)]="editDialogVisible" modal="modal" width="500" responsive="true">
-		<form [formGroup]="editForm" (ngSubmit)="submitEdit()">
+		<form [formGroup]="editForm" (ngSubmit)="editDialogSubmit()">
 			<p-messages [value]="editMsgs"></p-messages>
 			<z-form-grid>
 				<z-form-hidden [formGroup]="editForm" fieldName="Id"></z-form-hidden>
@@ -65,8 +65,8 @@
 		</form>
 		<p-footer>
 			<div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
-				<button type="button" pButton icon="fa-close" (click)="closeEdit()" [label]="'Cancel' | trans"></button>
-				<button type="button" pButton icon="fa-check" (click)="submitEdit()" [label]="'Submit' | trans" [disabled]="!editForm.valid || editFormSubmitting"></button>
+				<button type="button" pButton icon="fa-close" (click)="editDialogClose()" [label]="'Cancel' | trans"></button>
+				<button type="button" pButton icon="fa-check" (click)="editDialogSubmit()" [label]="'Submit' | trans" [disabled]="!editForm.valid || editFormSubmitting"></button>
 			</div>
 		</p-footer>
 	</p-dialog>
