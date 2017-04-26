@@ -1,7 +1,7 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SelectItem } from 'primeng/primeng';
-import { CrudListBaseComponent } from '../../base_module/components/crud-list-base.component'
+import { CrudWithDialogBaseComponent } from '../../base_module/components/crud-with-dialog-base.component';
 import { GridSearchRequestDto } from '../../generated_module/dtos/grid-search-request-dto';
 import { GridSearchResponseDto } from '../../generated_module/dtos/grid-search-response-dto';
 import { AppTranslationService } from '../../base_module/services/app-translation-service';
@@ -16,7 +16,7 @@ import { AppSessionService } from '../../auth_module/services/app-session-servic
 	selector: 'admin-tenant-list',
 	templateUrl: '../views/admin-tenant-list.html'
 })
-export class AdminTenantListComponent extends CrudListBaseComponent {
+export class AdminTenantListComponent extends CrudWithDialogBaseComponent {
 	isMasterOptions: SelectItem[];
 
 	constructor(
@@ -39,18 +39,6 @@ export class AdminTenantListComponent extends CrudListBaseComponent {
 
 	submitSearch(request: GridSearchRequestDto) {
 		return this.tenantManageService.Search(request);
-	}
-
-	getAddUrl() {
-		return ["/admin", "tenants", "add"];
-	}
-
-	getEditUrl(obj: any) {
-		return ["/admin", "tenants", "edit", obj.Id];
-	}
-
-	submitRemove(obj: any) {
-		return this.tenantManageService.Remove(obj);
 	}
 
 	getAddRequirement() {

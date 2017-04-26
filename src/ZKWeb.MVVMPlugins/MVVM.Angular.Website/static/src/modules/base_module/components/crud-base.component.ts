@@ -12,8 +12,8 @@ import { AppSessionService } from '../../auth_module/services/app-session-servic
 import { Message } from 'primeng/primeng';
 import { Observable } from 'rxjs/Observable';
 
-/** 增删查改的列表页的组件基类 */
-export abstract class CrudListBaseComponent implements OnInit {
+/** 增删查改页的组件基类 */
+export abstract class CrudBaseComponent implements OnInit {
 	/** 消息列表 */
 	msgs: Message[] = [];
 	/** 是否载入中 */
@@ -45,18 +45,24 @@ export abstract class CrudListBaseComponent implements OnInit {
 
 	/** 提交搜索请求到服务器 */
 	abstract submitSearch(request: GridSearchRequestDto): Observable<GridSearchResponseDto>;
-	/** 获取添加地址 */
-	abstract getAddUrl(): string[];
-	/** 获取编辑地址 */
-	abstract getEditUrl(obj: any): string[];
-	/** 提交删除请求到服务器 */
-	abstract submitRemove(obj: any): Observable<ActionResponseDto>;
 	/** 获取添加所需的权限 */
 	abstract getAddRequirement(): AuthRequirement;
 	/** 获取编辑所需的权限 */
 	abstract getEditRequirement(): AuthRequirement;
 	/** 获取删除所需的权限 */
 	abstract getRemoveRequirement(): AuthRequirement;
+	/** 添加数据
+		应该绑定添加按钮的点击事件
+		例如 (click)="add()" */
+	abstract add(): void;
+	/** 编辑数据
+		应该绑定编辑按钮的点击事件
+		例如 (click)="edit(row)" */
+	abstract edit(obj: any): void;
+	/** 删除数据
+		应该绑定删除按钮的点击事件
+		例如 (click)="remove(row)" */
+	abstract remove(obj: any): void;
 
 	constructor(
 		protected router: Router,
@@ -108,8 +114,7 @@ export abstract class CrudListBaseComponent implements OnInit {
 			return;
 		}
 		// 检测是否重复搜索
-		// 注意搜索在开发模式会引发ExpressionChangedAfterItHasBeenCheckedError错误，只能切换到生成模式避免
-		// https://github.com/angular/angular/issues/6005
+		// 注意这个bug https://github.com/angular/angular/issues/6005
 		if (this.loading) {
 			this.loadingDuplicated = true;
 			return;
@@ -165,30 +170,5 @@ export abstract class CrudListBaseComponent implements OnInit {
 				this.displayMessage("error", e);
 				setSearchResult([], 0);
 			});
-	}
-
-	/** 添加数据
-		应该绑定添加按钮的点击事件
-		例如 (click)="add()" */
-	add() {
-		// 跳转到添加页面
-		this.router.navigate(this.getAddUrl());
-	}
-
-	/** 编辑数据
-		应该绑定编辑按钮的点击事件
-		例如 (click)="edit(row)" */
-	edit(obj: any) {
-		// 跳转到编辑页面
-		this.router.navigate(this.getEditUrl(obj));
-	}
-
-	/** 删除数据
-		应该绑定删除按钮的点击事件
-		例如 (click)="remove(row)" */
-	remove(obj: any) {
-		// TODO: 弹出询问框
-		// TODO: 提交删除请求
-		alert("remove: " + JSON.stringify(obj));
 	}
 }
