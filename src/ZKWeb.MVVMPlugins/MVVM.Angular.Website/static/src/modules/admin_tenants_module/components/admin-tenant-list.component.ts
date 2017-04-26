@@ -1,6 +1,8 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormControl, Validators } from '@angular/forms';
 import { SelectItem } from 'primeng/primeng';
+import { ConfirmationService } from 'primeng/primeng';
 import { CrudWithDialogBaseComponent } from '../../base_module/components/crud-with-dialog-base.component';
 import { GridSearchRequestDto } from '../../generated_module/dtos/grid-search-request-dto';
 import { GridSearchResponseDto } from '../../generated_module/dtos/grid-search-response-dto';
@@ -14,18 +16,19 @@ import { AppSessionService } from '../../auth_module/services/app-session-servic
 
 @Component({
 	selector: 'admin-tenant-list',
-	templateUrl: '../views/admin-tenant-list.html'
+	templateUrl: '../views/admin-tenant-list.html',
+	providers: [ConfirmationService]
 })
 export class AdminTenantListComponent extends CrudWithDialogBaseComponent {
 	isMasterOptions: SelectItem[];
 
 	constructor(
-		router: Router,
+		confirmationService: ConfirmationService,
 		appSessionService: AppSessionService,
 		appPrivilegeService: AppPrivilegeService,
 		appTranslationService: AppTranslationService,
 		private tenantManageService: TenantManageService) {
-		super(router, appSessionService, appPrivilegeService, appTranslationService);
+		super(confirmationService, appSessionService, appPrivilegeService, appTranslationService);
 	}
 
 	ngOnInit() {
@@ -35,6 +38,9 @@ export class AdminTenantListComponent extends CrudWithDialogBaseComponent {
 			{ label: this.appTranslationService.translate("Yes"), value: true },
 			{ label: this.appTranslationService.translate("No"), value: false },
 		];
+		this.editForm.addControl("Id", new FormControl(""));
+		this.editForm.addControl("Name", new FormControl("", Validators.required));
+		this.editForm.addControl("Remark", new FormControl(""));
 	}
 
 	submitSearch(request: GridSearchRequestDto) {

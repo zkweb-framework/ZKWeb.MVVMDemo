@@ -3,6 +3,7 @@ export class Translation_zh_CN {
 	public static language = "zh-CN";
 	public static translations: { [key: string]: string } = {
 		"Submit": "提交",
+		"Cancel": "取消",
 		"{0} is required": "请填写{0}",
 		"Length of {0} must not less than {1}": "{0}的长度必须不少于{1}",
 		"Length of {0} must not greater than {1}": "{0}的长度必须不大于{1}",
@@ -54,6 +55,12 @@ export class Translation_zh_CN {
 		"UpdateTime": "更新时间",
 		"Please Select": "请选择",
 		"Yes": "是",
-		"No": "否"
+		"No": "否",
+		"Confirmation": "请确认",
+		"Are you sure to remove '{0}'?": "确认删除'{0}'?",
+		"Edit Tenant": "编辑租户",
+		"Edit User": "编辑用户",
+		"Edit Role": "编辑角色",
+		"Remark": "备注"
 	};
 }

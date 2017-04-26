@@ -65,7 +65,6 @@ export abstract class CrudBaseComponent implements OnInit {
 	abstract remove(obj: any): void;
 
 	constructor(
-		protected router: Router,
 		protected appSessionService: AppSessionService,
 		protected appPrivilegeService: AppPrivilegeService,
 		protected appTranslationService: AppTranslationService) {

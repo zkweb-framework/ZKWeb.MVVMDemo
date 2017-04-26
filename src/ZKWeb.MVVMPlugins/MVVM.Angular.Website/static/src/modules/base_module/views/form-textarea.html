@@ -1,0 +1,7 @@
+﻿<div class="ui-grid-col-{{ labelGridWidth }}">
+	{{ translatedDisplayName }}:
+</div>
+<div class="ui-grid-col-{{ fieldGridWidth }}" [formGroup]="formGroup">
+	<textarea pInputTextArea [rows]="rows" [style.width]="'100%'" [formControlName]="fieldName" [placeholder]="translatedPlaceHolder"></textarea>
+	<z-form-validation-messages [formGroup]="formGroup" [fieldName]="fieldName" [displayName]="displayName" [validationMessages]="validationMessages"></z-form-validation-messages>
+</div>

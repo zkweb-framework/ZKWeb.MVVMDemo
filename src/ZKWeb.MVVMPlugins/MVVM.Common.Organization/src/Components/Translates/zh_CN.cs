@@ -52,7 +52,13 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Components.Translates {
 				{ "UpdateTime", "更新时间" },
 				{ "Please Select", "请选择" },
 				{ "Yes", "是" },
-				{ "No", "否" }
+				{ "No", "否" },
+				{ "Confirmation", "请确认" },
+				{ "Are you sure to remove '{0}'?", "确认删除'{0}'?" },
+				{ "Edit Tenant", "编辑租户" },
+				{ "Edit User", "编辑用户" },
+				{ "Edit Role", "编辑角色" },
+				{ "Remark", "备注" }
 
 				// TODO: 缩减这里的翻译
 				/* { "ZKWeb Default Website", "ZKWeb默认站点" },

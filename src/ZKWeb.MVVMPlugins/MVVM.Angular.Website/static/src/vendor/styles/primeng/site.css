@@ -1112,3 +1112,7 @@ body .ui-datatable .ui-datatable-thead > tr > th,
 	.ui-column-filter > div {
 		width: 100% !important;
 	}
+
+.hide {
+	display: none;
+}

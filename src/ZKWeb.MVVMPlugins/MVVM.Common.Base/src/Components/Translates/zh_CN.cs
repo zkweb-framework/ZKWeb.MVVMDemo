@@ -16,6 +16,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Components.Translates {
 			Translates = new Dictionary<string, string>()
 			{
 				{ "Submit", "提交" },
+				{ "Cancel", "取消" },
 				{ "{0} is required", "请填写{0}" },
 				{ "Length of {0} must not less than {1}", "{0}的长度必须不少于{1}" },
 				{ "Length of {0} must not greater than {1}", "{0}的长度必须不大于{1}" },
