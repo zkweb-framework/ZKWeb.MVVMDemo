@@ -3,6 +3,7 @@ import { AppTranslationService } from '../../base_module/services/app-translatio
 import { AuthRequirement } from '../auth/auth-requirement';
 import { UserOutputDto } from '../../generated_module/dtos/user-output-dto';
 import { UserTypes } from '../../generated_module/privileges/user-types';
+import { Privileges } from '../../generated_module/privileges/privileges';
 
 /** 检查权限的结果 */
 export class PrivilegeCheckResult {
@@ -10,6 +11,14 @@ export class PrivilegeCheckResult {
 	success: boolean;
 	/** 检查失败时的s信息 */
 	errorMessage: string;
+}
+
+/** 权限信息 */
+export class PrivilegeInfo {
+	/** 权限值 */
+	privilege: string;
+	/** 权限描述 */
+	description: string;
 }
 
 /** 检查权限使用的服务 */
@@ -23,6 +32,19 @@ export class AppPrivilegeService {
 		var group = index > 0 ? privilege.substr(0, index) : "Other";
 		var name = index > 0 ? privilege.substr(index + 1) : privilege;
 		return this.appTranslationService.translate(group) + ":" + this.appTranslationService.translate(name);
+	}
+
+	/** 获取所有权限 */
+	getAllPrivileges(): PrivilegeInfo[] {
+		var result: PrivilegeInfo[] = [];
+		for (var key in Privileges) {
+			if (Privileges.hasOwnProperty(key)) {
+				var privilege = Privileges[key];
+				var description = this.translatePrivilege(privilege);
+				result.push({ privilege, description });
+			}
+		}
+		return result;
 	}
 
 	/** 检查用户是否有满足指定的权限要求 */

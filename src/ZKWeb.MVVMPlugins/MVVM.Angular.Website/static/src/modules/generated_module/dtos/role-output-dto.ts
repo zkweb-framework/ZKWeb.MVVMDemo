@@ -6,6 +6,8 @@ export class RoleOutputDto {
 	public Name: string;
 	/** 权限列表 */
 	public Privileges: string[];
+	/** 权限名称列表 */
+	public PrivilegeNames: string;
 	/** 租户名 */
 	public OwnerTenantName: string;
 	/** 租户Id */

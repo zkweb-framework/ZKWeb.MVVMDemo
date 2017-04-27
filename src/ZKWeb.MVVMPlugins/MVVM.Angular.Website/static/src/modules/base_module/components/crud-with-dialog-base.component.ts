@@ -48,12 +48,14 @@ export abstract class CrudWithDialogBaseComponent extends CrudBaseComponent {
 
 	/** 添加数据 */
 	add() {
+		this.editMsgs = [];
 		this.editForm.reset();
 		this.editDialogVisible = true;
 	}
 
 	/** 编辑数据 */
 	edit(obj: any) {
+		this.editMsgs = [];
 		this.editForm.reset();
 		this.editForm.patchValue(obj);
 		this.editDialogVisible = true;
@@ -61,6 +63,7 @@ export abstract class CrudWithDialogBaseComponent extends CrudBaseComponent {
 
 	/* 关闭编辑框 */
 	editDialogClose() {
+		this.editMsgs = [];
 		this.editForm.reset();
 		this.editDialogVisible = false;
 	}
@@ -74,7 +77,7 @@ export abstract class CrudWithDialogBaseComponent extends CrudBaseComponent {
 				this.displayMessage("info", s.Message);
 				this.searchWithLastParameters();
 				this.editFormSubmitting = false;
-				this.editDialogVisible = false;
+				this.editDialogClose();
 			},
 			e => {
 				this.displayEditMessage("error", e);

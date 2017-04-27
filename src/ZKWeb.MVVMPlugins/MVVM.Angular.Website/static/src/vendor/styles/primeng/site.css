@@ -1079,9 +1079,6 @@ pre {
 		width: 100%;
 	}
 
-.text-center {
-	text-align: center;
-}
 
 .search-icon {
 	margin: 4px 4px 0px 0px;
@@ -1092,10 +1089,7 @@ pre {
 	border-bottom: 0 none !important;
 }
 
-.clearfix {
-	clear: both;
-}
-
+/* 修复列过滤下拉控件显示不全的问题 */
 body .ui-datatable .ui-datatable-thead > tr > th,
 .ui-datatable-scrollable-header,
 .ui-datatable-scrollable-header-box,
@@ -1105,6 +1099,7 @@ body .ui-datatable .ui-datatable-thead > tr > th,
 	overflow: visible !important;
 }
 
+/* 列过滤控件宽度100% */
 .ui-column-filter {
 	width: 100% !important;
 }
@@ -1113,6 +1108,24 @@ body .ui-datatable .ui-datatable-thead > tr > th,
 		width: 100% !important;
 	}
 
+/* 允许表格中行过长时换行 */
+.ui-datatable-resizable thead th,
+.ui-datatable-resizable tbody td,
+.ui-datatable-resizable tfoot td {
+	white-space: initial;
+}
+
+/* 辅助性css类 */
 .hide {
 	display: none;
+}
+
+/* 辅助性css类 */
+.clearfix {
+	clear: both;
+}
+
+/* 辅助性css类 */
+.text-center {
+	text-align: center;
 }

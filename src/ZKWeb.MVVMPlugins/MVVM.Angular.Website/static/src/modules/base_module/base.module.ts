@@ -2,12 +2,20 @@
 import { CommonModule } from '@angular/common';
 import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { InputTextModule, InputTextareaModule, ButtonModule } from 'primeng/primeng';
+import {
+	InputTextModule,
+	InputTextareaModule,
+	DropdownModule,
+	MultiSelectModule,
+	ButtonModule
+} from 'primeng/primeng';
 
 import { FormGridComponent } from './components/form-grid.component';
 import { FormValidationMessagesComponent } from './components/form-validation-messages.component';
 import { FormTextComponent } from './components/form-text.component';
 import { FormTextAreaComponent } from './components/form-textarea.component';
+import { FormDropdownComponent } from './components/form-dropdown.component';
+import { FormMultiSelectComponent } from './components/form-multiselect.component';
 import { FormHiddenComponent } from './components/form-hidden.component';
 import { FormPasswordComponent } from './components/form-password.component';
 import { FormCaptchaComponent } from './components/form-captcha.component';
@@ -27,6 +35,8 @@ import { AppTranslationService } from './services/app-translation-service';
 		ReactiveFormsModule,
 		InputTextModule,
 		InputTextareaModule,
+		DropdownModule,
+		MultiSelectModule,
 		ButtonModule
 	],
 	declarations: [
@@ -34,6 +44,8 @@ import { AppTranslationService } from './services/app-translation-service';
 		FormValidationMessagesComponent,
 		FormTextComponent,
 		FormTextAreaComponent,
+		FormDropdownComponent,
+		FormMultiSelectComponent,
 		FormHiddenComponent,
 		FormPasswordComponent,
 		FormCaptchaComponent,
@@ -50,6 +62,8 @@ import { AppTranslationService } from './services/app-translation-service';
 		FormValidationMessagesComponent,
 		FormTextComponent,
 		FormTextAreaComponent,
+		FormDropdownComponent,
+		FormMultiSelectComponent,
 		FormHiddenComponent,
 		FormPasswordComponent,
 		FormCaptchaComponent,

@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
+using Newtonsoft.Json;
 using System.Linq;
 using ZKWeb.MVVMPlugins.MVVM.Common.MultiTenant.src.Domain.Entities;
 using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Application.Dtos;
+using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Components.PrivilegeTranslators.Interfaces;
 using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Entities;
 using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Extensions;
 using ZKWebStandard.Ioc;
@@ -29,8 +31,18 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Application.Mappers {
 				.ForMember(d => d.Privileges, m => m.ResolveUsing(u => u.GetPrivileges().ToList()));
 
 			// 角色
+			CreateMap<RoleInputDto, Role>()
+				.ForMember(
+					d => d.PrivilegesJson,
+					m => m.ResolveUsing(u => JsonConvert.SerializeObject(u.Privileges)));
 			CreateMap<Role, RoleOutputDto>()
 				.ForMember(d => d.Privileges, m => m.ResolveUsing(r => r.GetPrivileges()))
+				.ForMember(
+					d => d.PrivilegeNames,
+					m => m.ResolveUsing(r => {
+						var translator = ZKWeb.Application.Ioc.Resolve<IPrivilegeTranslator>();
+						return string.Join(",", r.GetPrivileges().Select(p => translator.Translate(p)));
+					}))
 				.ForMember(d => d.OwnerTenantName, m => m.ResolveUsing(r => r.OwnerTenant?.Name));
 		}
 	}

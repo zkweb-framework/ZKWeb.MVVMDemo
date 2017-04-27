@@ -5,7 +5,7 @@ MVVM demo for zkweb framework
 - Use Angular JS 4.0 + Webpack 2.0
 	- Support automatic generate script form dto and application service
 	- Support return pre-compressed script bundle
-	- [TODO] Support CORS api request
+	- Support CORS api request
 - Use Entity Framework Core
 - Use Swagger
 - Use AutoMapper
@@ -17,7 +17,6 @@ MVVM demo for zkweb framework
 	- Support query filter
 	- Support operation filter
 - Support automatic validate DTOs from request
-- Support CORS api request
 - TODO
 
 ### How to start

@@ -79,7 +79,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Entities {
 		public IList<string> GetPrivileges() {
 			return string.IsNullOrEmpty(PrivilegesJson) ?
 				new List<string>() :
-				JsonConvert.DeserializeObject<IList<string>>(PrivilegesJson);
+				JsonConvert.DeserializeObject<IList<string>>(PrivilegesJson) ?? new List<string>();
 		}
 
 		/// <summary>

@@ -22,20 +22,25 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Components.GridSearchResponseBu
 	/// <typeparam name="TPrimaryKey">主键类型</typeparam>
 	public class GridSearchResponseBuilder<TEntity, TPrimaryKey>
 		where TEntity : class, IEntity, IEntity<TPrimaryKey> {
+		public delegate IQueryable<TEntity> QueryFilterDelegate(IQueryable<TEntity> query);
+		public delegate IQueryable<TEntity> QueryColumnFilterDelegate(
+			GridSearchColumnFilter columnFilter, IQueryable<TEntity> query);
 		protected GridSearchRequestDto _request;
 		protected IList<IEntityQueryFilter> _enableFilters;
 		protected IList<Type> _disableFilters;
 		protected IList<Expression<Func<TEntity, bool>>> _keywordConditions;
-		protected IList<Func<IQueryable<TEntity>, IQueryable<TEntity>>> _customQueryFilters;
-		protected Func<IQueryable<TEntity>, IQueryable<TEntity>> _customQuerySorter;
+		protected IList<QueryFilterDelegate> _customQueryFilters;
+		protected QueryFilterDelegate _customQuerySorter;
+		protected IDictionary<string, QueryColumnFilterDelegate> _customColumnFilters;
 
 		public GridSearchResponseBuilder(GridSearchRequestDto request) {
 			_request = request;
 			_enableFilters = new List<IEntityQueryFilter>();
 			_disableFilters = new List<Type>();
 			_keywordConditions = new List<Expression<Func<TEntity, bool>>>();
-			_customQueryFilters = new List<Func<IQueryable<TEntity>, IQueryable<TEntity>>>();
+			_customQueryFilters = new List<QueryFilterDelegate>();
 			_customQuerySorter = null;
+			_customColumnFilters = new Dictionary<string, QueryColumnFilterDelegate>();
 		}
 
 		/// <summary>
@@ -91,7 +96,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Components.GridSearchResponseBu
 		/// 指定自定义的查询过滤函数
 		/// </summary>
 		public virtual GridSearchResponseBuilder<TEntity, TPrimaryKey>
-			FilterQuery(Func<IQueryable<TEntity>, IQueryable<TEntity>> filterFunc) {
+			FilterQuery(QueryFilterDelegate filterFunc) {
 			_customQueryFilters.Add(filterFunc);
 			return this;
 		}
@@ -100,8 +105,17 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Components.GridSearchResponseBu
 		/// 指定自定义的查询排序函数
 		/// </summary>
 		public virtual GridSearchResponseBuilder<TEntity, TPrimaryKey>
-			SortQuery(Func<IQueryable<TEntity>, IQueryable<TEntity>> sortFunc) {
+			SortQuery(QueryFilterDelegate sortFunc) {
 			_customQuerySorter = sortFunc;
+			return this;
+		}
+
+		/// <summary>
+		/// 指定自定义的列过滤函数
+		/// </summary>
+		public virtual GridSearchResponseBuilder<TEntity, TPrimaryKey>
+			FilterColumnWith(string column, QueryColumnFilterDelegate columnFilter) {
+			_customColumnFilters[column] = columnFilter;
 			return this;
 		}
 
@@ -190,6 +204,12 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Components.GridSearchResponseBu
 			// 按列查询条件进行过滤
 			var entityType = typeof(TEntity);
 			foreach (var columnFilter in _request.ColumnFilters) {
+				// 有自定义过滤器时使用自定义过滤器
+				QueryColumnFilterDelegate customColumnFilter;
+				if (_customColumnFilters.TryGetValue(columnFilter.Column, out customColumnFilter)) {
+					query = customColumnFilter(columnFilter, query);
+					continue;
+				}
 				// 获取属性，时间或枚举列可能以Text结尾需要去掉再试
 				var filterProperty = entityType.FastGetProperty(columnFilter.Column);
 				if (filterProperty == null && columnFilter.Column.EndsWith("Text")) {
@@ -416,7 +436,12 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Components.GridSearchResponseBu
 		/// 对查询进行分页
 		/// </summary>
 		protected virtual IQueryable<TEntity> ApplyPagination(IQueryable<TEntity> query) {
-			return query.Skip(_request.Page * _request.PageSize).Take(_request.PageSize);
+			var skipCount = _request.Page * _request.PageSize;
+			if (skipCount > 0) {
+				// ef core的bug，skip 0会导致排序失效
+				query = query.Skip(skipCount);
+			}
+			return query.Take(_request.PageSize);
 		}
 
 		/// <summary>

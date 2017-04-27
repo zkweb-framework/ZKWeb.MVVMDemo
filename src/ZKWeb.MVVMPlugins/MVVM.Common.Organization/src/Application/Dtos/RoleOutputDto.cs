@@ -12,6 +12,8 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Application.Dtos {
 		public string Name { get; set; }
 		[Description("权限列表")]
 		public IList<string> Privileges { get; set; }
+		[Description("权限名称列表")]
+		public string PrivilegeNames { get; set; }
 		[Description("租户名")]
 		public string OwnerTenantName { get; set; }
 		[Description("租户Id")]

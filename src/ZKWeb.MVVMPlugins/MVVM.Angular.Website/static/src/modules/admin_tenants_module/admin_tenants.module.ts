@@ -24,7 +24,6 @@ import { AuthGuard } from '../auth_module/auth/auth-guard';
 import { UserTypes } from '../generated_module/privileges/user-types';
 import { Privileges } from '../generated_module/privileges/privileges';
 
-import { AdminTenantEditComponent } from './components/admin-tenant-edit.component';
 import { AdminTenantListComponent } from './components/admin-tenant-list.component';
 
 const routes: Routes = [
@@ -40,29 +39,7 @@ const routes: Routes = [
 				requirePrivileges: [Privileges.Tenant_View]
 			}
 		}
-	},
-	{
-		path: 'add', component: AdminTenantEditComponent,
-		canActivate: [AuthGuard],
-		data: {
-			auth: {
-				requireMasterTenant: true,
-				requireUserType: UserTypes.IAmAdmin,
-				requirePrivileges: [Privileges.Tenant_Edit]
-			}
-		}
-	},
-	{
-		path: 'edit/:id', component: AdminTenantEditComponent,
-		canActivate: [AuthGuard],
-		data: {
-			auth: {
-				requireMasterTenant: true,
-				requireUserType: UserTypes.IAmAdmin,
-				requirePrivileges: [Privileges.Tenant_Edit]
-			}
-		}
-	},
+	}
 ];
 
 @NgModule({
@@ -87,7 +64,6 @@ const routes: Routes = [
 		RouterModule.forChild(routes)
 	],
 	declarations: [
-		AdminTenantEditComponent,
 		AdminTenantListComponent,
 	],
 	exports: [

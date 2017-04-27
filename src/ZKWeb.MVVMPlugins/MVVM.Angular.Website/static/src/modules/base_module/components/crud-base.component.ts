@@ -42,6 +42,8 @@ export abstract class CrudBaseComponent implements OnInit {
 	allowEdit = false;
 	/** 是否允许删除数据 */
 	allowRemove = false;
+	/* 当前用户是否属于主租户 */
+	isMasterTenant = false;
 
 	/** 提交搜索请求到服务器 */
 	abstract submitSearch(request: GridSearchRequestDto): Observable<GridSearchResponseDto>;
@@ -85,6 +87,7 @@ export abstract class CrudBaseComponent implements OnInit {
 				sessionInfo.User, this.getEditRequirement()).success;
 			this.allowRemove = this.appPrivilegeService.isAuthorized(
 				sessionInfo.User, this.getRemoveRequirement()).success;
+			this.isMasterTenant = sessionInfo.User.OwnerTenantIsMasterTenant;
 		});
 	}
 
