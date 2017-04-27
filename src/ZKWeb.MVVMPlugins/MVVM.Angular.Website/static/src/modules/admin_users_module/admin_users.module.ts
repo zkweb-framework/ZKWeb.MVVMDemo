@@ -7,17 +7,23 @@ import {
 	PanelModule,
 	ButtonModule,
 	MessagesModule,
-	BlockUIModule
+	BlockUIModule,
+	DataTableModule,
+	DropdownModule,
+	MultiSelectModule,
+	DialogModule,
+	ConfirmDialogModule
 } from 'primeng/primeng';
 
 import { BaseModule } from '../base_module/base.module';
 import { GeneratedModule } from '../generated_module/generated.module';
 import { AuthModule } from '../auth_module/auth.module';
+import { AdminBaseModule } from '../admin_base_module/admin_base.module';
 
 import { AuthGuard } from '../auth_module/auth/auth-guard';
 import { UserTypes } from '../generated_module/privileges/user-types';
+import { Privileges } from '../generated_module/privileges/privileges';
 
-import { AdminUserEditComponent } from './components/admin-user-edit.component';
 import { AdminUserListComponent } from './components/admin-user-list.component';
 
 const routes: Routes = [
@@ -26,12 +32,12 @@ const routes: Routes = [
 		component: AdminUserListComponent,
 		pathMatch: 'full',
 		canActivate: [AuthGuard],
-		data: { auth: { requireUserType: UserTypes.IAmAdmin } }
-	},
-	{
-		path: 'edit/:id', component: AdminUserEditComponent,
-		canActivate: [AuthGuard],
-		data: { auth: { requireUserType: UserTypes.IAmAdmin } }
+		data: {
+			auth: {
+				requireUserType: UserTypes.IAmAdmin,
+				requirePrivileges: [Privileges.User_View]
+			}
+		}
 	},
 ];
 
@@ -45,13 +51,18 @@ const routes: Routes = [
 		ButtonModule,
 		MessagesModule,
 		BlockUIModule,
+		DataTableModule,
+		DropdownModule,
+		MultiSelectModule,
+		DialogModule,
+		ConfirmDialogModule,
 		BaseModule,
 		GeneratedModule,
 		AuthModule,
+		AdminBaseModule,
 		RouterModule.forChild(routes)
 	],
 	declarations: [
-		AdminUserEditComponent,
 		AdminUserListComponent,
 	],
 	exports: [

@@ -56,6 +56,10 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Entities {
 		public virtual string ItemsJson { get; set; }
 		private IDictionary<string, object> _items;
 		/// <summary>
+		/// 备注
+		/// </summary>
+		public virtual string Remark { get; set; }
+		/// <summary>
 		/// 是否已删除
 		/// </summary>
 		public virtual bool Deleted { get; set; }
@@ -141,6 +145,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Entities {
 			builder.Map(u => u.CreateTime, new EntityMappingOptions() { Index = "Idx_CreateTime" });
 			builder.Map(u => u.UpdateTime);
 			builder.Map(u => u.ItemsJson);
+			builder.Map(u => u.Remark);
 			builder.Map(u => u.Deleted);
 			builder.HasMany(r => r.Roles);
 		}

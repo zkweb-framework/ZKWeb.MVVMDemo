@@ -55,5 +55,12 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Application.Services {
 			_tenantManager.Delete(id);
 			return ActionResponseDto.CreateSuccess("Deleted Successfully");
 		}
+
+		[Description("获取所有租户")]
+		[CheckPrivilege(true, typeof(IAmAdmin))]
+		public IList<TenantOutputDto> GetAllTenants() {
+			var tenants = _tenantManager.GetMany();
+			return tenants.Select(t => Mapper.Map<TenantOutputDto>(t)).ToList();
+		}
 	}
 }

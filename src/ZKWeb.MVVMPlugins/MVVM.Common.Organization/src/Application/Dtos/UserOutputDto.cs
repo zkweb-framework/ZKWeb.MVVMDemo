@@ -18,8 +18,12 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Application.Dtos {
 		public string CreateTime { get; set; }
 		[Description("更新时间")]
 		public string UpdateTime { get; set; }
+		[Description("备注")]
+		public string Remark { get; set; }
 		[Description("已删除")]
 		public bool Deleted { get; set; }
+		[Description("角色Id列表")]
+		public IList<Guid> RoleIds { get; set; }
 		[Description("角色列表")]
 		public IList<RoleOutputDto> Roles { get; set; }
 

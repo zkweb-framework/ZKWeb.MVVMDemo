@@ -1115,6 +1115,11 @@ body .ui-datatable .ui-datatable-thead > tr > th,
 	white-space: initial;
 }
 
+/* 设置表格最低高度，防止下拉选项滚动 */
+.portlet-body > p-datatable > .ui-datatable {
+	min-height: 500px;
+}
+
 /* 辅助性css类 */
 .hide {
 	display: none;

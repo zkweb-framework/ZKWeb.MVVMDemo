@@ -1,15 +1,19 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using ZKWeb.Localize;
 using ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Components.Exceptions;
+using ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Domain.Repositories.Interfaces;
 using ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Domain.Services.Bases;
 using ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Domain.Uow.Extensions;
 using ZKWeb.MVVMPlugins.MVVM.Common.MultiTenant.src.Domain.Filters;
 using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Components.ExtraConfigKeys;
 using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Components.UserLoginHandlers.Interfaces;
 using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Entities;
+using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Entities.Interfaces;
 using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Entities.UserTypes;
 using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Extensions;
 using ZKWeb.MVVMPlugins.MVVM.Common.SessionState.src.Domain.Extensions;
@@ -198,7 +202,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Services {
 		/// 删除头像
 		/// </summary>
 		/// <param name="userId">用户Id</param>
-		public void DeleteAvatar(Guid userId) {
+		public virtual void DeleteAvatar(Guid userId) {
 			GetAvatarStorageFile(userId).Delete();
 		}
 
@@ -208,7 +212,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Services {
 		/// <param name="userId">用户Id</param>
 		/// <param name="oldPassword">原密码</param>
 		/// <param name="newPassword">新密码</param>
-		public void ChangePassword(Guid userId, string oldPassword, string newPassword) {
+		public virtual void ChangePassword(Guid userId, string oldPassword, string newPassword) {
 			using (UnitOfWork.Scope()) {
 				var user = Get(userId);
 				if (user == null) {
@@ -218,6 +222,30 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Services {
 				}
 				Save(ref user, u => u.SetPassword(newPassword));
 			}
+		}
+
+		/// <summary>
+		/// 给用户分配角色列表
+		/// </summary>
+		public virtual void AssignRoles(User user, IList<Guid> roleIds) {
+			var repository = ZKWeb.Application.Ioc.Resolve<IRepository<UserToRole, Guid>>();
+			var roleRepository = ZKWeb.Application.Ioc.Resolve<IRepository<Role, Guid>>();
+			var newRoles = roleRepository.Query().Where(r => roleIds.Contains(r.Id)).ToList();
+			var mtmEntities = newRoles.Select(r => new UserToRole() { From = user, To = r }).ToList();
+			repository.BatchDelete(t => t.From.Id == user.Id);
+			user.Roles.Clear();
+			user.Roles.AddRange(mtmEntities);
+			Repository.Save(ref user);
+		}
+
+		/// <summary>
+		/// 获取所有用户类型
+		/// 除了匿名用户类型
+		/// </summary>
+		/// <returns></returns>
+		public virtual IEnumerable<IUserType> GetAllUserTypes() {
+			return ZKWeb.Application.Ioc.ResolveMany<IUserType>()
+				.Where(t => !string.IsNullOrEmpty(t.Type));
 		}
 	}
 }

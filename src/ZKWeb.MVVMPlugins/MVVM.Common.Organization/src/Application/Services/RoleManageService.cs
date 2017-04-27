@@ -52,5 +52,11 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Application.Services {
 			_roleManager.Delete(id);
 			return ActionResponseDto.CreateSuccess("Deleted Successfully");
 		}
+
+		[Description("获取所有角色")]
+		public IList<RoleOutputDto> GetAllRoles() {
+			var roles = _roleManager.GetMany();
+			return roles.Select(r => Mapper.Map<RoleOutputDto>(r)).ToList();
+		}
 	}
 }

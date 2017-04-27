@@ -28,6 +28,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Components.Translates {
 				{ "Action require user to be '{0}'", "操作要求用户是'{0}'" },
 				{ "Action require user under master tenant", "操作要求用户属于主租户" },
 				{ "Role", "角色" },
+				{ "Roles", "角色" },
 				{ "User", "用户" },
 				{ "UserType", "用户类型" },
 				{ "Admin", "管理员" },
@@ -64,7 +65,9 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Components.Translates {
 				{ "Saved Successfully", "保存成功" },
 				{ "Deleted Successfully", "删除成功" },
 				{ "OwnerTenantName", "租户名" },
-				{ "Privileges", "权限" }
+				{ "Privileges", "权限" },
+				{ "Please provider a password for new user", "请提供新用户的密码" },
+				{ "Type", "类型" }
 
 				// TODO: 缩减这里的翻译
 				/* { "ZKWeb Default Website", "ZKWeb默认站点" },

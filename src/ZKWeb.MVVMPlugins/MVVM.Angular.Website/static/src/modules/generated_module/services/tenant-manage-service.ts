@@ -5,6 +5,7 @@ import { GridSearchResponseDto } from '../dtos/grid-search-response-dto';
 import { GridSearchRequestDto } from '../dtos/grid-search-request-dto';
 import { ActionResponseDto } from '../dtos/action-response-dto';
 import { TenantInputDto } from '../dtos/tenant-input-dto';
+import { TenantOutputDto } from '../dtos/tenant-output-dto';
 
 @Injectable()
 /** 租户管理服务 */
@@ -35,6 +36,14 @@ export class TenantManageService {
 			"/api/TenantManageService/Remove",
 			{
 				id
+			});
+	}
+
+	/** 获取所有租户 */
+	GetAllTenants(): Observable<TenantOutputDto[]> {
+		return this.appApiService.call<TenantOutputDto[]>(
+			"/api/TenantManageService/GetAllTenants",
+			{
 			});
 	}
 }

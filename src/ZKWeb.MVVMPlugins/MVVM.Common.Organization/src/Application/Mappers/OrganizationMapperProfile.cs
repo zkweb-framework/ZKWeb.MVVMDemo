@@ -20,8 +20,11 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Application.Mappers {
 			CreateMap<Tenant, TenantOutputDto>();
 
 			// 用户
+			CreateMap<UserInputDto, User>()
+				.ForMember(d => d.OwnerTenantId, m => m.Ignore()); // 租户Id为了安全原因需要手动设置
 			CreateMap<User, UserOutputDto>()
 				.ForMember(d => d.OwnerTenantName, m => m.ResolveUsing(u => u.OwnerTenant?.Name))
+				.ForMember(d => d.RoleIds, m => m.ResolveUsing(u => u.Roles.Select(r => r.Id).ToList()))
 				.ForMember(
 					d => d.OwnerTenantIsMasterTenant,
 					m => m.ResolveUsing(u => u.OwnerTenant?.IsMaster ?? false))

@@ -11,4 +11,10 @@ export class Privileges {
 	public static Tenant_Edit = "Tenant:Edit";
 	/** 租户:删除 */
 	public static Tenant_Remove = "Tenant:Remove";
+	/** 用户:查看 */
+	public static User_View = "User:View";
+	/** 用户:编辑 */
+	public static User_Edit = "User:Edit";
+	/** 用户:删除 */
+	public static User_Remove = "User:Remove";
 }

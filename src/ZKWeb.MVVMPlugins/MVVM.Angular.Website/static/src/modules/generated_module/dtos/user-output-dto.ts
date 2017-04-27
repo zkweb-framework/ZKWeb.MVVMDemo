@@ -14,8 +14,12 @@ export class UserOutputDto {
 	public CreateTime: string;
 	/** 更新时间 */
 	public UpdateTime: string;
+	/** 备注 */
+	public Remark: string;
 	/** 已删除 */
 	public Deleted: boolean;
+	/** 角色Id列表 */
+	public RoleIds: string[];
 	/** 角色列表 */
 	public Roles: RoleOutputDto[];
 	/** 租户名 */

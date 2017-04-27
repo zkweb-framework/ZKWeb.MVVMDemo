@@ -5,6 +5,7 @@ import { GridSearchResponseDto } from '../dtos/grid-search-response-dto';
 import { GridSearchRequestDto } from '../dtos/grid-search-request-dto';
 import { ActionResponseDto } from '../dtos/action-response-dto';
 import { RoleInputDto } from '../dtos/role-input-dto';
+import { RoleOutputDto } from '../dtos/role-output-dto';
 
 @Injectable()
 /** 角色管理服务 */
@@ -35,6 +36,14 @@ export class RoleManageService {
 			"/api/RoleManageService/Remove",
 			{
 				id
+			});
+	}
+
+	/** 获取所有角色 */
+	GetAllRoles(): Observable<RoleOutputDto[]> {
+		return this.appApiService.call<RoleOutputDto[]>(
+			"/api/RoleManageService/GetAllRoles",
+			{
 			});
 	}
 }
