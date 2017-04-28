@@ -73,7 +73,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Domain.Uow {
 			get {
 				var context = Data.Value?.Context;
 				if (context == null) {
-					throw new InvalidOperationException("Please call Scope() first");
+					throw new InvalidOperationException("Please call UnitOfWork.Scope() first");
 				}
 				return context;
 			}
@@ -86,7 +86,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Domain.Uow {
 			get {
 				var filters = Data.Value?.QueryFilters;
 				if (filters == null) {
-					throw new InvalidOperationException("Please call Scope() first");
+					throw new InvalidOperationException("Please call UnitOfWork.Scope() first");
 				}
 				return filters;
 			}
@@ -94,7 +94,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Domain.Uow {
 				if (value == null) {
 					throw new ArgumentNullException("value");
 				} else if (Data.Value == null) {
-					throw new InvalidOperationException("Please call Scope() first");
+					throw new InvalidOperationException("Please call UnitOfWork.Scope() first");
 				}
 				Data.Value.QueryFilters = value;
 			}
@@ -107,7 +107,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Domain.Uow {
 			get {
 				var filters = Data.Value?.OperationFilters;
 				if (filters == null) {
-					throw new InvalidOperationException("Please call Scope() first");
+					throw new InvalidOperationException("Please call UnitOfWork.Scope() first");
 				}
 				return filters;
 			}
@@ -115,7 +115,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Domain.Uow {
 				if (value == null) {
 					throw new ArgumentNullException("value");
 				} else if (Data.Value == null) {
-					throw new InvalidOperationException("Please call Scope() first");
+					throw new InvalidOperationException("Please call UnitOfWork.Scope() first");
 				}
 				Data.Value.OperationFilters = value;
 			}

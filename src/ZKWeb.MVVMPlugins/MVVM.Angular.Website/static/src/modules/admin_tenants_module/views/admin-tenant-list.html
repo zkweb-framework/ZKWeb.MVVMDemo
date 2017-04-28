@@ -42,6 +42,7 @@
 						{{ (row.IsMaster ? "Yes" : "No") | trans }}
 					</ng-template>
 				</p-column>
+				<p-column field="SuperAdminName" [header]="'SuperAdmin' | trans"></p-column>
 				<p-column field="CreateTime" [header]="'CreateTime' | trans" [sortable]="true"></p-column>
 				<p-column field="UpdateTime" [header]="'UpdateTime' | trans" [sortable]="true"></p-column>
 				<p-column [header]="'Actions' | trans" styleClass="col-button">
@@ -60,6 +61,9 @@
 			<z-form-grid>
 				<z-form-hidden [formGroup]="editForm" fieldName="Id"></z-form-hidden>
 				<z-form-text [formGroup]="editForm" fieldName="Name"></z-form-text>
+				<z-form-text [formGroup]="editForm" fieldName="SuperAdminName"></z-form-text>
+				<z-form-password [formGroup]="editForm" fieldName="SuperAdminPassword"></z-form-password>
+				<z-form-password [formGroup]="editForm" fieldName="SuperAdminConfirmPassword"></z-form-password>
 				<z-form-textarea [formGroup]="editForm" fieldName="Remark"></z-form-textarea>
 			</z-form-grid>
 		</form>

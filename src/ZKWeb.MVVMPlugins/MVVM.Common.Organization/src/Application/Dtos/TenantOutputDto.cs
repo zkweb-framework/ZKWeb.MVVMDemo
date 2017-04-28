@@ -13,6 +13,8 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Application.Dtos {
 		public string Name { get; set; }
 		[Description("是否主租户")]
 		public bool IsMaster { get; set; }
+		[Description("超级管理员名称")]
+		public string SuperAdminName { get; set; }
 		[Description("创建时间")]
 		public string CreateTime { get; set; }
 		[Description("更新时间")]

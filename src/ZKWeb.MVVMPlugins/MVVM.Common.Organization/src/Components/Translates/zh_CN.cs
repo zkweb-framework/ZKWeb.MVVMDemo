@@ -67,7 +67,12 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Components.Translates {
 				{ "OwnerTenantName", "租户名" },
 				{ "Privileges", "权限" },
 				{ "Please provider a password for new user", "请提供新用户的密码" },
-				{ "Type", "类型" }
+				{ "Type", "类型" },
+				{ "SuperAdminName", "超级管理员名称" },
+				{ "SuperAdminPassword", "超级管理员密码" },
+				{ "SuperAdminConfirmPassword", "超级管理员确认密码" },
+				{ "Confirm password not matched with password", "确认密码和密码不一致" },
+				{ "Username has been taken", "用户名已被使用" }
 
 				// TODO: 缩减这里的翻译
 				/* { "ZKWeb Default Website", "ZKWeb默认站点" },

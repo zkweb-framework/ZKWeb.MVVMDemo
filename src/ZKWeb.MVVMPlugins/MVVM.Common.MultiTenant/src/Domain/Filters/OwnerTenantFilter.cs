@@ -40,11 +40,8 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.MultiTenant.src.Domain.Filters {
 			if (!OwnerTenantTypeTrait<TEntity>.HaveOwnerTenant) {
 				return query;
 			}
-			// 主租户不过滤数据
-			if (UsingTenant != null && UsingTenant.IsMaster) {
-				return query;
-			}
 			// 按租户过滤数据
+			// 主租户也需要过滤数据
 			if (UsingTenant == null) {
 				return query.Where(e =>
 					((IHaveOwnerTenant)e).OwnerTenant == null);
@@ -63,11 +60,8 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.MultiTenant.src.Domain.Filters {
 			if (!OwnerTenantTypeTrait<TEntity>.HaveOwnerTenant) {
 				return predicate;
 			}
-			// 主租户不过滤数据
-			if (UsingTenant != null && UsingTenant.IsMaster) {
-				return predicate;
-			}
 			// 按租户过滤数据
+			// 主租户也需要过滤数据
 			if (UsingTenant == null) {
 				var paramExpr = predicate.Parameters[0];
 				var ownerTanantExpr = Expression.Property(

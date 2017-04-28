@@ -34,7 +34,6 @@
 					</div>
 				</p-header>
 				<p-column field="Username" [header]="'Username' | trans" [filter]="true" [sortable]="true" [filterPlaceholder]="'Search' | trans"></p-column>
-				<p-column *ngIf="isMasterTenant" field="OwnerTenantName" [header]="'OwnerTenantName' | trans" [filter]="true" [filterPlaceholder]="'Search' | trans"></p-column>
 				<p-column field="Type" [header]="'Type' | trans" [filter]="true" filterMatchMode="equals">
 					<ng-template pTemplate="filter" let-col>
 						<p-dropdown [options]="userTypeOptions" (onChange)="table.filter($event.value, col.field, col.filterMatchMode)" class="ui-column-filter"></p-dropdown>

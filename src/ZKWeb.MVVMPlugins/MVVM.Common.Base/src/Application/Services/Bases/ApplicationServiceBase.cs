@@ -60,6 +60,11 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Application.Services.Bases {
 				if (method.GetCustomAttribute<UnitOfWorkAttribute>() == null) {
 					action = new UnitOfWorkAttribute().Filter(action);
 				}
+				// 包装过滤器
+				var filterAttributes = method.GetCustomAttributes<ActionFilterAttribute>();
+				foreach (var filterAttribute in filterAttributes) {
+					action = filterAttribute.Filter(action);
+				}
 				// 返回函数信息
 				var info = new ApplicationServiceApiMethodInfo(
 					method.ReturnType,

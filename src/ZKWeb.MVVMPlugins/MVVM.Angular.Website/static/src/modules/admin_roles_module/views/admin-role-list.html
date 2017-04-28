@@ -34,7 +34,6 @@
 					</div>
 				</p-header>
 				<p-column field="Name" [header]="'Name' | trans" [filter]="true" [sortable]="true" [filterPlaceholder]="'Search' | trans"></p-column>
-				<p-column *ngIf="isMasterTenant" field="OwnerTenantName" [header]="'OwnerTenantName' | trans" [filter]="true" [filterPlaceholder]="'Search' | trans"></p-column>
 				<p-column field="PrivilegeNames" [header]="'Privileges' | trans"></p-column>
 				<p-column field="CreateTime" [header]="'CreateTime' | trans" [sortable]="true"></p-column>
 				<p-column field="UpdateTime" [header]="'UpdateTime' | trans" [sortable]="true"></p-column>

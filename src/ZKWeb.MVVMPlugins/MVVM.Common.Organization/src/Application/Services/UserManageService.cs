@@ -42,9 +42,6 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Application.Services {
 				.FilterKeywordWith(t => t.Username)
 				.FilterKeywordWith(t => t.Remark)
 				.FilterColumnWith(
-					nameof(UserOutputDto.OwnerTenantName),
-					(c, q) => q.Where(u => u.OwnerTenant.Name.Contains((string)c.Value)))
-				.FilterColumnWith(
 					nameof(UserOutputDto.Roles),
 					(c, q) => {
 						var roleIds = c.Value.ConvertOrDefault<IList<Guid>>();
@@ -61,11 +58,6 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Application.Services {
 		public ActionResponseDto Edit(UserInputDto dto) {
 			var user = _userManager.Get(dto.Id) ?? new User();
 			Mapper.Map(dto, user);
-			// 设置租户Id
-			if (_teantManager.GetTenant().IsMaster &&
-				dto.OwnerTenantId != Guid.Empty) {
-				user.OwnerTenant = _teantManager.Get(dto.OwnerTenantId);
-			}
 			// 设置用户密码
 			if (!string.IsNullOrEmpty(dto.Password)) {
 				user.SetPassword(dto.Password);

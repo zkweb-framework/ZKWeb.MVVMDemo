@@ -4,8 +4,10 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using ZKWeb.Localize;
 using ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Components.Exceptions;
+using ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Domain.Filters;
 using ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Domain.Repositories.Interfaces;
 using ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Domain.Services.Bases;
 using ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Domain.Uow.Extensions;
@@ -68,6 +70,23 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Services {
 			AvatarWidth = extra.GetOrDefault(OrganizationExtraConfigKeys.AvatarWidth, 150);
 			AvatarHeight = extra.GetOrDefault(OrganizationExtraConfigKeys.AvatarHeight, 150);
 			AvatarImageQuality = 90;
+		}
+
+		/// <summary>
+		/// 保存用户时检查用户名是否重复
+		/// </summary>
+		public override void Save(ref User entity, Action<User> update = null) {
+			using (UnitOfWork.Scope())
+			using (UnitOfWork.DisableFilter(typeof(DeletedFilter))) {
+				UnitOfWork.Context.BeginTransaction();
+				var e = entity;
+				if (Repository.Count(u =>
+					u.Username == e.Username && u.OwnerTenantId == e.OwnerTenantId && u.Id != e.Id) > 0) {
+					throw new BadRequestException(new T("Username has been taken"));
+				}
+				base.Save(ref entity, update);
+				UnitOfWork.Context.FinishTransaction();
+			}
 		}
 
 		/// <summary>
@@ -246,6 +265,28 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Services {
 		public virtual IEnumerable<IUserType> GetAllUserTypes() {
 			return ZKWeb.Application.Ioc.ResolveMany<IUserType>()
 				.Where(t => !string.IsNullOrEmpty(t.Type));
+		}
+
+		/// <summary>
+		/// 获取租户列表对应的超级管理员列表
+		/// </summary>
+		/// <param name="tenantIds">租户Id列表</param>
+		/// <returns></returns>
+		public virtual IDictionary<Guid, User> GetSuperAdminsFromTenants(IList<Guid> tenantIds) {
+			var superAdminTypes = ZKWeb.Application.Ioc.ResolveMany<IUserType>()
+				.Where(t => typeof(IAmSuperAdmin).GetTypeInfo().IsAssignableFrom(t.GetType()))
+				.Select(t => t.Type).ToList();
+			using (UnitOfWork.Scope())
+			using (UnitOfWork.DisableFilter(typeof(OwnerTenantFilter))) {
+				var users = GetMany(q => {
+					return q.Where(u =>
+						tenantIds.Contains(u.OwnerTenantId) &&
+						superAdminTypes.Contains(u.Type));
+				});
+				var tenantToSuperAdmins = users.GroupBy(u => u.OwnerTenantId)
+					.ToDictionary(x => x.Key, x => x.OrderBy(u => u.CreateTime).First());
+				return tenantToSuperAdmins;
+			}
 		}
 	}
 }

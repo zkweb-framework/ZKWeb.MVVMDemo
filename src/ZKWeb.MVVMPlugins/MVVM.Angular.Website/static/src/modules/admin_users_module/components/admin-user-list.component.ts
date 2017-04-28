@@ -23,7 +23,6 @@ import { AppSessionService } from '../../auth_module/services/app-session-servic
 	providers: [ConfirmationService]
 })
 export class AdminUserListComponent extends CrudWithDialogBaseComponent {
-	tenantOptions: SelectItem[];
 	roleOptions: SelectItem[];
 	userTypeOptions: SelectItem[];
 
@@ -40,16 +39,8 @@ export class AdminUserListComponent extends CrudWithDialogBaseComponent {
 
 	ngOnInit() {
 		super.ngOnInit();
-		this.tenantOptions = [];
 		this.roleOptions = [];
 		this.userTypeOptions = [];
-		if (this.isMasterTenant) {
-			this.tenantManageService.GetAllTenants().subscribe(tenants => {
-				tenants.forEach(tenant => {
-					this.tenantOptions.push({ label: tenant.Name, value: tenant.Id });
-				});
-			});
-		}
 		this.roleManageService.GetAllRoles().subscribe(roles => {
 			roles.forEach(role => {
 				this.roleOptions.push({ label: role.Name, value: role.Id });

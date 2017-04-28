@@ -31,9 +31,6 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Application.Services {
 			return request.BuildResponse<Role, Guid>()
 				.FilterKeywordWith(t => t.Name)
 				.FilterKeywordWith(t => t.Remark)
-				.FilterColumnWith(
-					nameof(RoleOutputDto.OwnerTenantName),
-					(c, q) => q.Where(r => r.OwnerTenant.Name.Contains((string)c.Value)))
 				.ToResponse<RoleOutputDto>();
 		}
 
