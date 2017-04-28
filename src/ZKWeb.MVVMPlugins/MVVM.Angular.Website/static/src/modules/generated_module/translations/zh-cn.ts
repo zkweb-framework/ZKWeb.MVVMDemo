@@ -75,6 +75,7 @@ export class Translation_zh_CN {
 		"SuperAdminName": "超级管理员名称",
 		"SuperAdminPassword": "超级管理员密码",
 		"SuperAdminConfirmPassword": "超级管理员确认密码",
-		"Confirm password not matched with password": "确认密码和密码不一致"
+		"Confirm password not matched with password": "确认密码和密码不一致",
+		"Username has been taken": "用户名已被使用"
 	};
 }

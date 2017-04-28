@@ -39,7 +39,7 @@ export class AdminContainerComponent implements OnInit {
 			AdminNavMenu.forEach(group => {
 				// 检查分组权限
 				if (group.auth != null &&
-					!this.appPrivilegeService.isAuthorized(user, group.auth)) {
+					!this.appPrivilegeService.isAuthorized(user, group.auth).success) {
 					return;
 				}
 				// 构建新的菜单项列表
@@ -52,8 +52,9 @@ export class AdminContainerComponent implements OnInit {
 				};
 				(group.items || []).forEach(item => {
 					// 检查菜单项权限
+					console.log("check", item.auth);
 					if (item.auth != null &&
-						!this.appPrivilegeService.isAuthorized(user, item.auth)) {
+						!this.appPrivilegeService.isAuthorized(user, item.auth).success) {
 						return;
 					}
 					newGroup.items.push(item);

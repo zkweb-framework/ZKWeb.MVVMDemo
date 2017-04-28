@@ -136,10 +136,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Entities {
 		public virtual void Configure(IEntityMappingBuilder<User> builder) {
 			builder.Id(u => u.Id);
 			builder.Map(u => u.Type, new EntityMappingOptions() { Index = "Idx_Type" });
-			builder.Map(u => u.Username, new EntityMappingOptions() {
-				Unique = true,
-				Length = 255
-			});
+			builder.Map(u => u.Username, new EntityMappingOptions() { Length = 255 });
 			builder.Map(u => u.PasswordJson);
 			builder.References(u => u.OwnerTenant, new EntityMappingOptions() { Nullable = false });
 			builder.Map(u => u.CreateTime, new EntityMappingOptions() { Index = "Idx_CreateTime" });

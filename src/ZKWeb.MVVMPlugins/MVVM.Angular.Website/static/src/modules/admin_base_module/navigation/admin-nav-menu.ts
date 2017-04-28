@@ -22,7 +22,7 @@ export const AdminNavMenu: NavMenuGroup[] = [
 				auth: {
 					requireMasterTenant: true,
 					requireUserType: UserTypes.IAmAdmin,
-					requirePrivileges: [ /* TODO */ ]
+					requirePrivileges: [Privileges.Tenant_View]
 				}
 			},
 			{
@@ -31,7 +31,7 @@ export const AdminNavMenu: NavMenuGroup[] = [
 				url: ["/admin", "users"],
 				auth: {
 					requireUserType: UserTypes.IAmAdmin,
-					requirePrivileges: [ /* TODO */ ]
+					requirePrivileges: [Privileges.User_View]
 				}
 			},
 			{
@@ -40,7 +40,7 @@ export const AdminNavMenu: NavMenuGroup[] = [
 				url: ["/admin", "roles"],
 				auth: {
 					requireUserType: UserTypes.IAmAdmin,
-					requirePrivileges: [ /* TODO */ ]
+					requirePrivileges: [Privileges.Role_View]
 				}
 			}
 		]
@@ -56,7 +56,7 @@ export const AdminNavMenu: NavMenuGroup[] = [
 				auth: {
 					requireMasterTenant: true,
 					requireUserType: UserTypes.IAmAdmin,
-					requirePrivileges: [ /* TODO */ ]
+					requirePrivileges: [ /* TODO */]
 				}
 			},
 		]
