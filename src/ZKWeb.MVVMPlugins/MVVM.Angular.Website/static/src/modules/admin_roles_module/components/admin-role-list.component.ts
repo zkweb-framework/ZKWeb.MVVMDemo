@@ -34,7 +34,7 @@ export class AdminRoleListComponent extends CrudWithDialogBaseComponent {
 	ngOnInit() {
 		super.ngOnInit();
 		this.privilegeOptions = [];
-		this.appPrivilegeService.getAllPrivileges().forEach(info => {
+		this.appPrivilegeService.getAllPrivileges(this.isMasterTenant).forEach(info => {
 			this.privilegeOptions.push({ label: info.description, value: info.privilege });
 		});
 		this.editForm.addControl("Id", new FormControl(""));

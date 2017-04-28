@@ -8,8 +8,8 @@ export class UserInputDto {
 	public Username: string;
 	/** 密码 */
 	public Password: string;
-	/** 租户Id */
-	public OwnerTenantId: string;
+	/** 确认密码 */
+	public ConfirmPassword: string;
 	/** 备注 */
 	public Remark: string;
 	/** 角色Id列表 */

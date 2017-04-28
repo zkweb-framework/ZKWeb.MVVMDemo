@@ -35,11 +35,14 @@ export class AppPrivilegeService {
 	}
 
 	/** 获取所有权限 */
-	getAllPrivileges(): PrivilegeInfo[] {
+	getAllPrivileges(includeTenantPrivileges = false): PrivilegeInfo[] {
 		var result: PrivilegeInfo[] = [];
 		for (var key in Privileges) {
 			if (Privileges.hasOwnProperty(key)) {
 				var privilege = Privileges[key];
+				if (!includeTenantPrivileges && privilege.indexOf("Tenant") >= 0) {
+					continue;
+				}
 				var description = this.translatePrivilege(privilege);
 				result.push({ privilege, description });
 			}

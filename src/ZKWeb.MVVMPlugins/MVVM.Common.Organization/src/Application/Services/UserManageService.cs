@@ -46,7 +46,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Application.Services {
 					(c, q) => {
 						var roleIds = c.Value.ConvertOrDefault<IList<Guid>>();
 						if (roleIds != null) {
-							return q.Where(u => u.Roles.Any(r => roleIds.Contains(r.Id)));
+							return q.Where(u => u.Roles.Any(r => roleIds.Contains(r.To.Id)));
 						}
 						return q;
 					})

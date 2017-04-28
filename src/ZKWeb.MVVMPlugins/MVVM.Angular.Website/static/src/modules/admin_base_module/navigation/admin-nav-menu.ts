@@ -54,7 +54,6 @@ export const AdminNavMenu: NavMenuGroup[] = [
 				icon: "fa fa-globe",
 				url: ["/admin", "setings", "website_settings"],
 				auth: {
-					requireMasterTenant: true,
 					requireUserType: UserTypes.IAmAdmin,
 					requirePrivileges: [ /* TODO */]
 				}

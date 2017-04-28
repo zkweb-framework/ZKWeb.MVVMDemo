@@ -45,7 +45,7 @@
 				<p-column field="SuperAdminName" [header]="'SuperAdmin' | trans"></p-column>
 				<p-column field="CreateTime" [header]="'CreateTime' | trans" [sortable]="true"></p-column>
 				<p-column field="UpdateTime" [header]="'UpdateTime' | trans" [sortable]="true"></p-column>
-				<p-column [header]="'Actions' | trans" styleClass="col-button">
+				<p-column [header]="'Actions' | trans" styleClass="col-button" *ngIf="allowEdit || allowRemove">
 					<ng-template let-row="rowData" pTemplate="body">
 						<button type="button" pButton (click)="edit(row)" *ngIf="allowEdit" icon="fa-edit"></button>
 						<button type="button" pButton (click)="remove(row)" *ngIf="allowRemove" icon="fa-remove"></button>

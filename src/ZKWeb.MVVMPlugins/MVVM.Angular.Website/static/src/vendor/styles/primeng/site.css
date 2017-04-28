@@ -1080,10 +1080,12 @@ pre {
 	}
 
 
+/* 搜索图标 */
 .search-icon {
 	margin: 4px 4px 0px 0px;
 }
 
+/* 搜索表格头 */
 .search-header {
 	padding: 4px 10px;
 	border-bottom: 0 none !important;
@@ -1133,4 +1135,9 @@ body .ui-datatable .ui-datatable-thead > tr > th,
 /* 辅助性css类 */
 .text-center {
 	text-align: center;
+}
+
+/* 修复下拉框的宽度问题 */
+.ui-fluid .ui-dropdown {
+	width: 100% !important;
 }

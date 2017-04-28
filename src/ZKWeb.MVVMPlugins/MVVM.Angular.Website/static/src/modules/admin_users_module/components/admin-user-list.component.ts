@@ -53,8 +53,10 @@ export class AdminUserListComponent extends CrudWithDialogBaseComponent {
 			});
 		});
 		this.editForm.addControl("Id", new FormControl(""));
-		this.editForm.addControl("Type", new FormControl(""));
+		this.editForm.addControl("Type", new FormControl("", Validators.required));
 		this.editForm.addControl("Username", new FormControl("", Validators.required));
+		this.editForm.addControl("Password", new FormControl("", Validators.minLength(6)));
+		this.editForm.addControl("ConfirmPassword", new FormControl("", Validators.minLength(6)));
 		this.editForm.addControl("RoleIds", new FormControl([]));
 		this.editForm.addControl("Remark", new FormControl(""));
 	}

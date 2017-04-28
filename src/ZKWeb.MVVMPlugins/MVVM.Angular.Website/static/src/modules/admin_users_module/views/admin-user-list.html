@@ -52,7 +52,7 @@
 				</p-column>
 				<p-column field="CreateTime" [header]="'CreateTime' | trans" [sortable]="true"></p-column>
 				<p-column field="UpdateTime" [header]="'UpdateTime' | trans" [sortable]="true"></p-column>
-				<p-column [header]="'Actions' | trans" styleClass="col-button">
+				<p-column [header]="'Actions' | trans" styleClass="col-button" *ngIf="allowEdit || allowRemove">
 					<ng-template let-row="rowData" pTemplate="body">
 						<button type="button" pButton (click)="edit(row)" *ngIf="allowEdit" icon="fa-edit"></button>
 						<button type="button" pButton (click)="remove(row)" *ngIf="allowRemove" icon="fa-remove"></button>
@@ -67,8 +67,11 @@
 			<p-messages [value]="editMsgs"></p-messages>
 			<z-form-grid>
 				<z-form-hidden [formGroup]="editForm" fieldName="Id"></z-form-hidden>
-
+				<z-form-dropdown [formGroup]="editForm" fieldName="Type" [options]="userTypeOptions"></z-form-dropdown>
 				<z-form-text [formGroup]="editForm" fieldName="Username"></z-form-text>
+				<z-form-password [formGroup]="editForm" fieldName="Password"></z-form-password>
+				<z-form-password [formGroup]="editForm" fieldName="ConfirmPassword"></z-form-password>
+				<z-form-multiselect [formGroup]="editForm" fieldName="RoleIds" displayName="Roles" [options]="roleOptions"></z-form-multiselect>
 				<z-form-textarea [formGroup]="editForm" fieldName="Remark"></z-form-textarea>
 			</z-form-grid>
 		</form>

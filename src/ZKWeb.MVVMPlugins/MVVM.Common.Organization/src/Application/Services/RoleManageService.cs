@@ -26,7 +26,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Application.Services {
 		}
 
 		[Description("搜索角色")]
-		[CheckPrivilege(true, typeof(IAmAdmin), "Role:View")]
+		[CheckPrivilege(typeof(IAmAdmin), "Role:View")]
 		public GridSearchResponseDto Search(GridSearchRequestDto request) {
 			return request.BuildResponse<Role, Guid>()
 				.FilterKeywordWith(t => t.Name)
@@ -35,7 +35,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Application.Services {
 		}
 
 		[Description("编辑角色")]
-		[CheckPrivilege(true, typeof(IAmAdmin), "Role:Edit")]
+		[CheckPrivilege(typeof(IAmAdmin), "Role:Edit")]
 		public ActionResponseDto Edit(RoleInputDto dto) {
 			var role = _roleManager.Get(dto.Id) ?? new Role();
 			Mapper.Map(dto, role);
@@ -44,13 +44,14 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Application.Services {
 		}
 
 		[Description("删除角色")]
-		[CheckPrivilege(true, typeof(IAmAdmin), "Role:Remove")]
+		[CheckPrivilege(typeof(IAmAdmin), "Role:Remove")]
 		public ActionResponseDto Remove(Guid id) {
 			_roleManager.Delete(id);
 			return ActionResponseDto.CreateSuccess("Deleted Successfully");
 		}
 
 		[Description("获取所有角色")]
+		[CheckPrivilege(typeof(IAmAdmin), "Role:View")]
 		public IList<RoleOutputDto> GetAllRoles() {
 			var roles = _roleManager.GetMany();
 			return roles.Select(r => Mapper.Map<RoleOutputDto>(r)).ToList();

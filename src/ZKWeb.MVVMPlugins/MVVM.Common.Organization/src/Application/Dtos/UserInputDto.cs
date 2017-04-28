@@ -15,8 +15,8 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Application.Dtos {
 		public string Username { get; set; }
 		[Description("密码")]
 		public string Password { get; set; }
-		[Description("租户Id")]
-		public Guid OwnerTenantId { get; set; }
+		[Description("确认密码")]
+		public string ConfirmPassword { get; set; }
 		[Description("备注")]
 		public string Remark { get; set; }
 		[Description("角色Id列表")]
