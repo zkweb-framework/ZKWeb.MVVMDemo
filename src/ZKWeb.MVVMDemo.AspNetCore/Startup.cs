@@ -20,6 +20,7 @@ namespace ZKWeb.MVVMDemo.AspNetCore {
 			// 使用Swagger中间件
 			app.UseSwagger();
 			app.UseSwaggerUI(c => {
+				c.InjectOnCompleteJavaScript("/swagger/swagger-site.js");
 				c.SwaggerEndpoint("/swagger/v1/swagger.json", "ZKWeb MVVM Demo V1");
 			});
 			// 使用Mvc中间件
