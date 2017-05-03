@@ -2,8 +2,8 @@
 using ZKWebStandard.Extensions;
 using ZKWebStandard.Utils;
 using ZKWebStandard.Ioc;
-using System.Drawing;
-using System.Drawing.Drawing2D;
+using System.DrawingCore;
+using System.DrawingCore.Drawing2D;
 using ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Domain.Services.Bases;
 using ZKWeb.MVVMPlugins.MVVM.Common.SessionState.src.Domain.Services;
 using ZKWeb.MVVMPlugins.MVVM.Common.SessionState.src.Domain.Extensions;

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Drawing.Imaging;
+using System.DrawingCore.Imaging;
 using System.IO;
 using ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Application.Services.Bases;
 using ZKWeb.MVVMPlugins.MVVM.Common.Captcha.src.Managers;

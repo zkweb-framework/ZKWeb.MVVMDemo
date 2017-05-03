@@ -7,10 +7,9 @@ namespace ZKWeb.MVVMDemo.AspNetCore {
 	/// </summary>
 	public class Startup : ZKWeb.Hosting.AspNetCore.StartupBase {
 		/// <summary>
-		/// 配置中间件
+		/// 配置程序
 		/// </summary>
-		/// <param name="app"></param>
-		protected override void ConfigureMiddlewares(IApplicationBuilder app) {
+		public override void Configure(IApplicationBuilder app) {
 			// 使用错误提示页面
 			var env = (IHostingEnvironment)app.ApplicationServices.GetService(typeof(IHostingEnvironment));
 			if (env.IsDevelopment()) {
@@ -29,6 +28,8 @@ namespace ZKWeb.MVVMDemo.AspNetCore {
 					name: "default",
 					template: "{controller=Home}/{action=Index}/{id?}");
 			});
+			// 使用ZKWeb中间件
+			base.Configure(app);
 			// 注册IServiceProvider
 			Application.Ioc.RegisterInstance(app.ApplicationServices);
 		}

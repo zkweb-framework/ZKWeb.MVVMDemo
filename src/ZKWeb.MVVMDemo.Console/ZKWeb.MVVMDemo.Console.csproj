@@ -10,17 +10,16 @@
 		<GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
 		<GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
 		<GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
-		<DisableImplicitFrameworkReferences Condition=" '$(TargetFramework)' == 'net461' ">true</DisableImplicitFrameworkReferences>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<PackageReference Include="AutoMapper" Version="6.0.2" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="1.0.0-rc3" />
 		<PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.1" />
-		<PackageReference Include="ZKWeb" Version="1.8.0-beta-1" />
-		<PackageReference Include="ZKWeb.Hosting.AspNetCore" Version="1.8.0-beta-1" />
-		<PackageReference Include="ZKWeb.ORM.InMemory" Version="1.8.0-beta-1" />
-		<PackageReference Include="ZKWeb.ORM.EFCore" Version="1.8.0-beta-1" />
+		<PackageReference Include="ZKWeb" Version="1.8.0-beta-3" />
+		<PackageReference Include="ZKWeb.Hosting.AspNetCore" Version="1.8.0-beta-3" />
+		<PackageReference Include="ZKWeb.ORM.InMemory" Version="1.8.0-beta-3" />
+		<PackageReference Include="ZKWeb.ORM.EFCore" Version="1.8.0-beta-3" />
 	</ItemGroup>
 
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net461' ">
