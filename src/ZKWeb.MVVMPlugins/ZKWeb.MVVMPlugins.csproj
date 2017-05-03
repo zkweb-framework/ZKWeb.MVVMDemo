@@ -29,6 +29,11 @@
 		<Reference Include="Microsoft.CSharp" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="MVVM.Common.WebsiteSettings\" />
+	  <Folder Include="MVVM.CMS.Article\" />
+	</ItemGroup>
+
 	<PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard1.6' ">
 		<DefineConstants>$(DefineConstants);NETCORE</DefineConstants>
 	</PropertyGroup>

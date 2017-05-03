@@ -1,10 +1,13 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Message } from 'primeng/primeng';
 import { NavMenuGroup } from '../navigation/nav-menu-group';
 import { AdminNavMenu } from '../navigation/admin-nav-menu';
 import { AppConfigService } from '../../base_module/services/app-config-service';
 import { AppSessionService } from '../../auth_module/services/app-session-service';
 import { AppPrivilegeService } from '../../auth_module/services/app-privilege-service';
+import { WebsiteManageService } from '../../generated_module/services/website-manage-service';
+import { AdminToastService } from '../services/admin-toast-service';
 
 @Component({
 	selector: 'admin-container',
@@ -25,7 +28,9 @@ export class AdminContainerComponent implements OnInit {
 		private router: Router,
 		private appConfigService: AppConfigService,
 		private appSessionService: AppSessionService,
-		private appPrivilegeService: AppPrivilegeService) { }
+		private appPrivilegeService: AppPrivilegeService,
+		private websiteManageService: WebsiteManageService,
+		private adminToastService: AdminToastService) { }
 
 	ngOnInit() {
 		// 更新当前登录用户的信息
@@ -82,9 +87,19 @@ export class AdminContainerComponent implements OnInit {
 		e.preventDefault();
 	}
 
+	/** 获取悬浮信息列表 */
+	getToastMessages(): Message[] {
+		return this.adminToastService.getToastMessages();
+	}
+
 	/** 清理缓存 */
 	clearCache(e) {
-		alert("TODO");
+		this.websiteManageService.ClearCache().subscribe(
+			s => {
+				this.adminToastService.showToastMessage("info", s.Message);
+				this.dropdownVisible = false;
+			},
+			e => this.adminToastService.showToastMessage("error", e));
 		e.preventDefault();
 	}
 

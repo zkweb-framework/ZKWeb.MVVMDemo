@@ -6,6 +6,7 @@ import { SessionService } from './services/session-service';
 import { TenantManageService } from './services/tenant-manage-service';
 import { UserLoginService } from './services/user-login-service';
 import { UserManageService } from './services/user-manage-service';
+import { WebsiteManageService } from './services/website-manage-service';
 
 @NgModule({
 	imports: [BaseModule],
@@ -15,7 +16,8 @@ import { UserManageService } from './services/user-manage-service';
 		SessionService,
 		TenantManageService,
 		UserLoginService,
-		UserManageService
+		UserManageService,
+		WebsiteManageService
 	]
 })
 export class GeneratedModule { }

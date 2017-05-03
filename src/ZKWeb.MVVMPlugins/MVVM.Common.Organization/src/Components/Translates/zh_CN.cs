@@ -73,7 +73,8 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Components.Translates {
 				{ "SuperAdminPassword", "超级管理员密码" },
 				{ "SuperAdminConfirmPassword", "超级管理员确认密码" },
 				{ "Confirm password not matched with password", "确认密码和密码不一致" },
-				{ "Username has been taken", "用户名已被使用" }
+				{ "Username has been taken", "用户名已被使用" },
+				{ "Clear Cache Successfully", "清理缓存成功" }
 
 				// TODO: 缩减这里的翻译
 				/* { "ZKWeb Default Website", "ZKWeb默认站点" },

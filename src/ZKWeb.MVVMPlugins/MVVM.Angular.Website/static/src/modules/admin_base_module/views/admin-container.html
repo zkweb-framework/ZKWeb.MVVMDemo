@@ -1,4 +1,5 @@
 ﻿<div class="layout-wrapper">
+	<p-growl [value]="getToastMessages()"></p-growl>
 	<div id="layout-sidebar" [ngClass]="{'active':mobileMenuActive}">
 		<span class="layout-logo">
 			<a href="#" class="sidebar-logo" [routerLink]="['/']">

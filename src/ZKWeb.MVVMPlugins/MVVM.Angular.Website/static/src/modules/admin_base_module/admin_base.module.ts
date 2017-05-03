@@ -7,7 +7,8 @@ import {
 	PanelModule,
 	ButtonModule,
 	MessagesModule,
-	BlockUIModule
+	BlockUIModule,
+	GrowlModule
 } from 'primeng/primeng';
 
 import { BaseModule } from '../base_module/base.module';
@@ -17,6 +18,7 @@ import { AuthGuard } from '../auth_module/auth/auth-guard';
 import { UserTypes } from '../generated_module/privileges/user-types';
 
 import { AdminContainerComponent } from './components/admin-container.component';
+import { AdminToastService } from './services/admin-toast-service';
 
 @NgModule({
 	imports: [
@@ -28,12 +30,16 @@ import { AdminContainerComponent } from './components/admin-container.component'
 		ButtonModule,
 		MessagesModule,
 		BlockUIModule,
+		GrowlModule,
 		BaseModule,
 		GeneratedModule,
 		RouterModule
 	],
 	declarations: [
 		AdminContainerComponent,
+	],
+	providers: [
+		AdminToastService
 	],
 	exports: [
 		RouterModule,
