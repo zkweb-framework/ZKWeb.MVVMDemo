@@ -8,7 +8,8 @@ import {
 	ButtonModule,
 	MessagesModule,
 	BlockUIModule,
-	DataTableModule
+	DataTableModule,
+	TabViewModule
 } from 'primeng/primeng';
 
 import { BaseModule } from '../base_module/base.module';
@@ -19,6 +20,7 @@ import { AdminBaseModule } from '../admin_base_module/admin_base.module';
 import { AuthGuard } from '../auth_module/auth/auth-guard';
 import { UserTypes } from '../generated_module/privileges/user-types';
 
+import { AdminAboutMeComponent } from './components/admin-about-me.component';
 import { AdminAboutWebsiteComponent } from './components/admin-about-website.component';
 import { AdminIndexComponent } from './components/admin-index.component';
 import { AdminLoginComponent } from './components/admin-login.component';
@@ -34,6 +36,11 @@ const routes: Routes = [
 	{ path: 'login', component: AdminLoginComponent },
 	{
 		path: 'about_website', component: AdminAboutWebsiteComponent,
+		canActivate: [AuthGuard],
+		data: { auth: { requireUserType: UserTypes.ICanUseAdminPanel } }
+	},
+	{
+		path: 'about_me', component: AdminAboutMeComponent,
 		canActivate: [AuthGuard],
 		data: { auth: { requireUserType: UserTypes.ICanUseAdminPanel } }
 	},
@@ -53,6 +60,7 @@ const routes: Routes = [
 		MessagesModule,
 		BlockUIModule,
 		DataTableModule,
+		TabViewModule,
 		BaseModule,
 		GeneratedModule,
 		AuthModule,
@@ -60,6 +68,7 @@ const routes: Routes = [
 		RouterModule.forChild(routes)
 	],
 	declarations: [
+		AdminAboutMeComponent,
 		AdminAboutWebsiteComponent,
 		AdminIndexComponent,
 		AdminLoginComponent

@@ -90,6 +90,9 @@ export class Translation_zh_CN {
 		"PluginName": "插件名称",
 		"Version": "版本",
 		"FullVersion": "完整版本",
-		"Description": "描述"
+		"Description": "描述",
+		"Base Information": "基本信息",
+		"Change Password": "修改密码",
+		"Change Avatar": "修改头像"
 	};
 }
