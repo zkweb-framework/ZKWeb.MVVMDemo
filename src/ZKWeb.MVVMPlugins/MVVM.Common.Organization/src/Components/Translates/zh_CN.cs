@@ -74,7 +74,19 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Components.Translates {
 				{ "SuperAdminConfirmPassword", "超级管理员确认密码" },
 				{ "Confirm password not matched with password", "确认密码和密码不一致" },
 				{ "Username has been taken", "用户名已被使用" },
-				{ "Clear Cache Successfully", "清理缓存成功" }
+				{ "Clear Cache Successfully", "清理缓存成功" },
+				{ "Language", "语言" },
+				{ "Timezone", "时区" },
+				{ "Api Url Base","Api基础地址" },
+				{ "ZKWeb Version", "ZKWeb版本" },
+				{ "ZKWeb Full Version", "ZKWeb完整版本" },
+				{ "Memory Usage", "内存占用" },
+				{ "Plugin List", "插件列表" },
+				{ "DirectoryName", "目录名称" },
+				{ "PluginName", "插件名称" },
+				{ "Version", "版本" },
+				{ "FullVersion", "完整版本" },
+				{ "Description", "描述" }
 
 				// TODO: 缩减这里的翻译
 				/* { "ZKWeb Default Website", "ZKWeb默认站点" },

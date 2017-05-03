@@ -7,7 +7,8 @@ import {
 	PanelModule,
 	ButtonModule,
 	MessagesModule,
-	BlockUIModule
+	BlockUIModule,
+	DataTableModule
 } from 'primeng/primeng';
 
 import { BaseModule } from '../base_module/base.module';
@@ -18,6 +19,7 @@ import { AdminBaseModule } from '../admin_base_module/admin_base.module';
 import { AuthGuard } from '../auth_module/auth/auth-guard';
 import { UserTypes } from '../generated_module/privileges/user-types';
 
+import { AdminAboutWebsiteComponent } from './components/admin-about-website.component';
 import { AdminIndexComponent } from './components/admin-index.component';
 import { AdminLoginComponent } from './components/admin-login.component';
 
@@ -30,6 +32,11 @@ const routes: Routes = [
 		data: { auth: { requireUserType: UserTypes.ICanUseAdminPanel } }
 	},
 	{ path: 'login', component: AdminLoginComponent },
+	{
+		path: 'about_website', component: AdminAboutWebsiteComponent,
+		canActivate: [AuthGuard],
+		data: { auth: { requireUserType: UserTypes.ICanUseAdminPanel } }
+	},
 	{ path: 'tenants', loadChildren: '../admin_tenants_module/admin_tenants.module#AdminTenantsModule' },
 	{ path: 'users', loadChildren: '../admin_users_module/admin_users.module#AdminUsersModule' },
 	{ path: 'roles', loadChildren: '../admin_roles_module/admin_roles.module#AdminRolesModule' },
@@ -45,6 +52,7 @@ const routes: Routes = [
 		ButtonModule,
 		MessagesModule,
 		BlockUIModule,
+		DataTableModule,
 		BaseModule,
 		GeneratedModule,
 		AuthModule,
@@ -52,6 +60,7 @@ const routes: Routes = [
 		RouterModule.forChild(routes)
 	],
 	declarations: [
+		AdminAboutWebsiteComponent,
 		AdminIndexComponent,
 		AdminLoginComponent
 	],

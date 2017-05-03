@@ -1,0 +1,24 @@
+﻿<admin-container>
+	<div class="portlet">
+		<h3 class="portlet-title">
+			<i class="fa fa-gear"></i>
+			<span class="caption-subject">{{ "About Website" | trans }}</span>
+		</h3>
+		<div class="portlet-body">
+			<h5>{{ "Language" | trans }}: {{ language }}</h5>
+			<h5>{{ "Timezone" | trans }}: {{ timezone }}</h5>
+			<h5>{{ "Api Url Base" | trans }}: {{ apiUrlBase }}</h5>
+			<h5>{{ "ZKWeb Version" | trans }}: {{ websiteInfo.ZKWebVersion }}</h5>
+			<h5>{{ "ZKWeb Full Version" | trans }}: {{ websiteInfo.ZKWebFullVersion }}</h5>
+			<h5>{{ "Memory Usage" | trans }}: {{ websiteInfo.MemoryUsage }}</h5>
+			<h5>{{ "Plugin List" | trans }}: </h5>
+			<p-dataTable [value]="websiteInfo.Plugins">
+				<p-column field="DirectoryName" [header]="'DirectoryName' | trans"></p-column>
+				<p-column field="Name" [header]="'PluginName' | trans"></p-column>
+				<p-column field="Version" [header]="'Version' | trans"></p-column>
+				<p-column field="FullVersion" [header]="'FullVersion' | trans"></p-column>
+				<p-column field="Description" [header]="'Description' | trans"></p-column>
+			</p-dataTable>
+		</div>
+	</div>
+</admin-container>
