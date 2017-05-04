@@ -23,8 +23,10 @@ export class AppSessionService {
 	/** 获取当前的会话信息 */
 	getSessionInfo(): Observable<SessionInfoDto> {
 		// 从DOM中获取保存的会话Id和会话信息
-		// Angular中无法实现跨路由的单例，想要防止重复获取只能借助DOM
+		// Angular中无法实现懒加载 + 跨路由的单例，想要防止重复获取只能借助DOM
 		// http://stackoverflow.com/questions/37967182/angular2-service-reinstantiated-when-changing-route
+		// http://stackoverflow.com/questions/40981306/service-is-not-being-singleton-for-angular2-router-lazy-loading-with-loadchildre
+		// https://github.com/angular/angular/issues/11125
 		if (window[this.domSessionIdKey] && window[this.domSessionInfoKey]) {
 			this.sessionId = window[this.domSessionIdKey];
 			this.sessionInfo = window[this.domSessionInfoKey];

@@ -51,7 +51,7 @@ export class AppApiService {
 			// 枚举里层检测是否有文件对象
 			var fileCount = 0;
 			var visitor = (obj) => {
-				console.log("visit", obj);
+				// console.log("visit", obj);
 				for (var key in obj) {
 					if (obj.hasOwnProperty(key)) {
 						var value = obj[key];
