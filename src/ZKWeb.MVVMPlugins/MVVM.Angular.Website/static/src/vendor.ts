@@ -8,7 +8,7 @@ import '@angular/http';
 import '@angular/router';
 
 // RxJS
-import {Observable} from 'rxjs/Rx';
+import 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 

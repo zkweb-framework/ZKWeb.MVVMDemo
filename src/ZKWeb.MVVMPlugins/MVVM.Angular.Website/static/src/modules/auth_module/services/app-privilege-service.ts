@@ -28,22 +28,22 @@ export class AppPrivilegeService {
 
 	/** 翻译权限 */
 	translatePrivilege(privilege: string): string {
-		var index = privilege.indexOf(':');
-		var group = index > 0 ? privilege.substr(0, index) : "Other";
-		var name = index > 0 ? privilege.substr(index + 1) : privilege;
+		let index = privilege.indexOf(':');
+		let group = index > 0 ? privilege.substr(0, index) : "Other";
+		let name = index > 0 ? privilege.substr(index + 1) : privilege;
 		return this.appTranslationService.translate(group) + ":" + this.appTranslationService.translate(name);
 	}
 
 	/** 获取所有权限 */
 	getAllPrivileges(includeTenantPrivileges = false): PrivilegeInfo[] {
-		var result: PrivilegeInfo[] = [];
-		for (var key in Privileges) {
+		let result: PrivilegeInfo[] = [];
+		for (let key in Privileges) {
 			if (Privileges.hasOwnProperty(key)) {
-				var privilege = Privileges[key];
+				let privilege = Privileges[key];
 				if (!includeTenantPrivileges && privilege.indexOf("Tenant") >= 0) {
 					continue;
 				}
-				var description = this.translatePrivilege(privilege);
+				let description = this.translatePrivilege(privilege);
 				result.push({ privilege, description });
 			}
 		}
@@ -57,13 +57,13 @@ export class AppPrivilegeService {
 			return { success: false, errorMessage: null };
 		} else if (auth.requireMasterTenant && !user.OwnerTenantIsMasterTenant) {
 			// 要求主租户但是用户不属于主租户时
-			var errorMessage = this.appTranslationService
+			let errorMessage = this.appTranslationService
 				.translate("Action require user under master tenant");
 			return { success: false, errorMessage: errorMessage };
 		} else if (auth.requireUserType &&
 			user.ImplementedTypes.indexOf(auth.requireUserType) < 0) {
 			// 不包含指定用户类型时检查失败
-			var errorMessage = this.appTranslationService
+			let errorMessage = this.appTranslationService
 				.translate("Action require user to be '{0}'")
 				.replace("{0}", this.appTranslationService.translate(auth.requireUserType));
 			return { success: false, errorMessage: errorMessage };
@@ -72,7 +72,7 @@ export class AppPrivilegeService {
 			auth.requirePrivileges.filter(p => user.Privileges.indexOf(p) < 0).length > 0) {
 			// 不包含指定权限时检查失败
 			// 如果用户类型是超级管理员则不检查具体权限
-			var errorMessage = this.appTranslationService
+			let errorMessage = this.appTranslationService
 				.translate("Action require user to be '{0}', and have privileges '{1}'")
 				.replace("{0}", this.appTranslationService.translate(auth.requireUserType))
 				.replace("{1}", auth.requirePrivileges.map(p => this.translatePrivilege(p)).join());

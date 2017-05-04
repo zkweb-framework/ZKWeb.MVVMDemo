@@ -36,7 +36,7 @@ export class AdminLoginComponent implements OnInit {
 			error => {
 				this.isSubmitting = false;
 				this.msgs = [{ severity: 'error', detail: error }];
-				this.captchaRefreshEvent.emit()
+				this.captchaRefreshEvent.emit();
 			});
 	}
 

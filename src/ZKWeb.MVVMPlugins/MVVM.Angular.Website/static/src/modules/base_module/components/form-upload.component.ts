@@ -9,9 +9,9 @@ import { FormFieldBaseComponent } from './form-field-base.component';
 export class FormUploadComponent extends FormFieldBaseComponent {
 	/** 把File对象设置到FormControl中，如果用默认的formControlName只会设置文件名 */
 	onFileChange(event) {
-		var files: File[] = event.target.files;
+		let files: File[] = event.target.files;
 		if (files.length > 0) {
-			var formControl = this.formGroup.controls[this.fieldName];
+			let formControl = this.formGroup.controls[this.fieldName];
 			if (formControl == null) {
 				throw `formControl '${this.fieldName}' not exist`;
 			}

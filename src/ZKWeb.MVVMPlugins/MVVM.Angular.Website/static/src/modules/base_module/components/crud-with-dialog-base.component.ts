@@ -1,18 +1,10 @@
-﻿import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { FormGroup } from '@angular/forms';
+﻿import { FormGroup } from '@angular/forms';
 import { ConfirmationService } from 'primeng/primeng';
 import { AppTranslationService } from '../../base_module/services/app-translation-service';
-import { GridSearchRequestDto } from '../../generated_module/dtos/grid-search-request-dto';
-import { GridSearchResponseDto } from '../../generated_module/dtos/grid-search-response-dto';
-import { GridSearchColumnFilter } from '../../generated_module/dtos/grid-search-column-filter';
-import { GridSearchColumnFilterMatchMode } from '../../generated_module/dtos/grid-search-column-filter-match-mode';
 import { ActionResponseDto } from '../../generated_module/dtos/action-response-dto';
-import { AuthRequirement } from '../../auth_module/auth/auth-requirement';
 import { AppPrivilegeService } from '../../auth_module/services/app-privilege-service';
 import { AppSessionService } from '../../auth_module/services/app-session-service';
 import { CrudBaseComponent } from './crud-base.component';
-import { Message } from 'primeng/primeng';
 import { Observable } from 'rxjs/Observable';
 
 /** 使用弹出框的增删查改页的组件基类 */
@@ -88,8 +80,8 @@ export abstract class CrudWithDialogBaseComponent extends CrudBaseComponent {
 	/** 删除数据 */
 	remove(obj: any) {
 		// 弹出确认框
-		var name = obj.Name || obj.DisplayName || obj.Username || obj.Title || obj.Serial;
-		var confirmMessage = this.appTranslationService.translate(this.removeConfirmTemplate)
+		let name = obj.Name || obj.DisplayName || obj.Username || obj.Title || obj.Serial;
+		let confirmMessage = this.appTranslationService.translate(this.removeConfirmTemplate)
 			.replace("{0}", name);
 		this.confirmationService.confirm({
 			message: confirmMessage,

@@ -1,11 +1,9 @@
-﻿import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+﻿import { OnInit } from '@angular/core';
 import { AppTranslationService } from '../../base_module/services/app-translation-service';
 import { GridSearchRequestDto } from '../../generated_module/dtos/grid-search-request-dto';
 import { GridSearchResponseDto } from '../../generated_module/dtos/grid-search-response-dto';
 import { GridSearchColumnFilter } from '../../generated_module/dtos/grid-search-column-filter';
 import { GridSearchColumnFilterMatchMode } from '../../generated_module/dtos/grid-search-column-filter-match-mode';
-import { ActionResponseDto } from '../../generated_module/dtos/action-response-dto';
 import { AuthRequirement } from '../../auth_module/auth/auth-requirement';
 import { AppPrivilegeService } from '../../auth_module/services/app-privilege-service';
 import { AppSessionService } from '../../auth_module/services/app-session-service';
@@ -102,8 +100,8 @@ export abstract class CrudBaseComponent implements OnInit {
 	search(e, noDelay = false) {
 		// 检查是否多余搜索
 		// 如果搜索条件和上次的一致则跳过搜索
-		var json = JSON.stringify(e);
-		if (json == this.searchConditionJson) {
+		let json = JSON.stringify(e);
+		if (json === this.searchConditionJson) {
 			return;
 		}
 		e = JSON.parse(json);
@@ -126,36 +124,36 @@ export abstract class CrudBaseComponent implements OnInit {
 		this.searchConditionJson = json;
 		console.log("search datatable", e);
 		// 构建搜索请求
-		var request = new GridSearchRequestDto();
+		let request = new GridSearchRequestDto();
 		request.Keyword = e.globalFilter;
 		request.Page = e.first / e.rows;
 		request.PageSize = e.rows;
 		request.OrderBy = e.sortField;
 		request.Ascending = e.sortOrder > 0;
 		request.ColumnFilters = [];
-		var filters = e.filters || {};
-		for (var key in filters) {
+		let filters = e.filters || {};
+		for (let key in filters) {
 			if (!filters.hasOwnProperty(key)) {
 				continue;
 			}
-			var value = filters[key];
-			var columnFilter = new GridSearchColumnFilter();
+			let value = filters[key];
+			let columnFilter = new GridSearchColumnFilter();
 			columnFilter.Column = key;
 			columnFilter.MatchMode = GridSearchColumnFilterMatchMode.Default;
-			if (value.matchMode == "startsWith") {
+			if (value.matchMode === "startsWith") {
 				columnFilter.MatchMode = GridSearchColumnFilterMatchMode.StartsWith;
-			} else if (value.matchMode == "endsWidth") {
+			} else if (value.matchMode === "endsWidth") {
 				columnFilter.MatchMode = GridSearchColumnFilterMatchMode.EndsWith;
-			} else if (value.matchMode == "equals") {
+			} else if (value.matchMode === "equals") {
 				columnFilter.MatchMode = GridSearchColumnFilterMatchMode.Equals;
-			} else if (value.matchMode = "in") {
+			} else if (value.matchMode === "in") {
 				columnFilter.MatchMode = GridSearchColumnFilterMatchMode.In;
 			}
 			columnFilter.Value = value.value;
 			request.ColumnFilters.push(columnFilter);
 		}
 		// 调用搜索函数
-		var setSearchResult = (value: any[], totalRecords: number) => {
+		let setSearchResult = (value: any[], totalRecords: number) => {
 			this.value = value;
 			this.totalRecords = totalRecords;
 			// 设置已载入
@@ -168,8 +166,8 @@ export abstract class CrudBaseComponent implements OnInit {
 		};
 		this.submitSearch(request).subscribe(
 			r => setSearchResult(r.Result, r.TotalCount),
-			e => {
-				this.displayMessage("error", e);
+			ee => {
+				this.displayMessage("error", ee);
 				setSearchResult([], 0);
 			});
 	}
@@ -179,7 +177,7 @@ export abstract class CrudBaseComponent implements OnInit {
 		if (!this.searchConditionJson) {
 			return;
 		}
-		var condition = JSON.parse(this.searchConditionJson);
+		let condition = JSON.parse(this.searchConditionJson);
 		this.searchConditionJson = "";
 		this.search(condition);
 	}

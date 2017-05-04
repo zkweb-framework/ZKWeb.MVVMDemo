@@ -1,5 +1,5 @@
-﻿import { Component, OnInit, Input } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+﻿import { OnInit, Input } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { AppTranslationService } from '../../base_module/services/app-translation-service';
 
 export abstract class FormFieldBaseComponent implements OnInit {

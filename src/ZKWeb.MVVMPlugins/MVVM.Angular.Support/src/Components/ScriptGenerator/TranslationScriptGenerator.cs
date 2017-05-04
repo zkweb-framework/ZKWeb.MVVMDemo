@@ -69,7 +69,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Angular.Support.src.Components.ScriptGenerator 
 				}
 				classBuilder.AppendLine();
 			}
-			classBuilder.AppendLine("	]");
+			classBuilder.AppendLine("	];");
 			classBuilder.AppendLine("}");
 			includeBuilder.AppendLine();
 			return includeBuilder.ToString() + classBuilder.ToString();

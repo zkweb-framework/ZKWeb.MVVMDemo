@@ -8,9 +8,9 @@ export class AppTranslationService {
 	protected translation: any;
 
 	constructor(protected appConfigService: AppConfigService) {
-		var language = appConfigService.getLanguage();
+		let language = appConfigService.getLanguage();
 		TranslationIndex.translationModules.forEach(translation => {
-			if (translation.language == language) {
+			if (translation.language === language) {
 				this.translation = translation;
 			}
 		});
@@ -18,7 +18,7 @@ export class AppTranslationService {
 
     // 翻译指定文本，翻译不存在时返回原文本
 	translate(text: string) {
-		if (this.translation == null || !text) {
+		if (!this.translation || !text) {
 			return text;
 		}
 		return this.translation.translations[text] || text;

@@ -1,16 +1,13 @@
-﻿import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+﻿import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { SelectItem } from 'primeng/primeng';
 import { ConfirmationService } from 'primeng/primeng';
 import { CrudWithDialogBaseComponent } from '../../base_module/components/crud-with-dialog-base.component';
 import { GridSearchRequestDto } from '../../generated_module/dtos/grid-search-request-dto';
-import { GridSearchResponseDto } from '../../generated_module/dtos/grid-search-response-dto';
 import { AppTranslationService } from '../../base_module/services/app-translation-service';
 import { RoleManageService } from '../../generated_module/services/role-manage-service';
 import { UserTypes } from '../../generated_module/privileges/user-types';
 import { Privileges } from '../../generated_module/privileges/privileges';
-import { AuthRequirement } from '../../auth_module/auth/auth-requirement';
 import { AppPrivilegeService } from '../../auth_module/services/app-privilege-service';
 import { AppSessionService } from '../../auth_module/services/app-session-service';
 

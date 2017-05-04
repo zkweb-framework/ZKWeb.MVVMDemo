@@ -25,7 +25,7 @@ export class AppConfigService {
 	private sessionIdKey: string;
 
 	constructor() {
-		var appConfig = window["appConfig"] || {};
+		let appConfig = window["appConfig"] || {};
 		this.apiUrlBase = appConfig.apiUrlBase ||
 			(location.protocol + "//" + location.host);
 		this.language = appConfig.language || "zh-CN";

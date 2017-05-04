@@ -30,7 +30,7 @@ const routes: Routes = [
 		data: {
 			auth: {
 				requireUserType: UserTypes.IAmAdmin,
-				requirePrivileges: []
+				requirePrivileges: [Privileges.Settings_WebsiteSettings]
 			}
 		}
 	}

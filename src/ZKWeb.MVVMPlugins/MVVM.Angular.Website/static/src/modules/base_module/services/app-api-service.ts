@@ -41,20 +41,20 @@ export class AppApiService {
 		});
 		// 如果内容包含文件对象则转换为FormData
 		this.registerBodyFilter(body => {
-			var formData = new FormData();
+			let formData = new FormData();
 			// 设置最外层的参数
-			for (var key in body) {
+			for (let key in body) {
 				if (body.hasOwnProperty(key)) {
 					formData.append(key, JSON.stringify(body[key]));
 				}
 			}
 			// 枚举里层检测是否有文件对象
-			var fileCount = 0;
-			var visitor = (obj) => {
+			let fileCount = 0;
+			let visitor = (obj) => {
 				// console.log("visit", obj);
-				for (var key in obj) {
+				for (let key in obj) {
 					if (obj.hasOwnProperty(key)) {
-						var value = obj[key];
+						let value = obj[key];
 						if (value instanceof File) {
 							// 名称用原来的key，请注意重复
 							formData.append(key, value);
@@ -73,7 +73,7 @@ export class AppApiService {
 		// 过滤回应
 		this.registerResultFilter(response => {
 			// 解析返回的会话Id
-			var newSessionId = response.headers.get(this.appConfigService.getSessionIdSetHeader());
+			let newSessionId = response.headers.get(this.appConfigService.getSessionIdSetHeader());
 			if (newSessionId) {
 				this.appConfigService.setSessionId(newSessionId);
 			}
@@ -92,9 +92,9 @@ export class AppApiService {
 		// 设置默认的错误转换器
 		this.setErrorConverter(error => {
 			console.log("api request error:", error);
-			var errorMessage: string;
+			let errorMessage: string;
 			if (error instanceof Response) {
-				if (error.status == 0) {
+				if (error.status === 0) {
 					// 网络错误时显示特殊信息
 					errorMessage = "Network error, please check your internet connection";
 				} else {
@@ -165,26 +165,26 @@ export class AppApiService {
 		resultConverter?: (Response) => any,
 		errorConverter?: (any) => any): Observable<T> {
 		// 构建完整url，可能不在同一个host
-		var fullUrl = this.appConfigService.getApiUrlBase() + url;
-		this.urlFilters.forEach(h => { fullUrl = h(fullUrl) });
+		let fullUrl = this.appConfigService.getApiUrlBase() + url;
+		this.urlFilters.forEach(h => { fullUrl = h(fullUrl); });
 		// 构建选项，包括http头等
 		options = options || {};
 		options.headers = options.headers || new Headers();
-		this.optionsFilters.forEach(h => { options = h(options) });
+		this.optionsFilters.forEach(h => { options = h(options); });
 		// 构建提交内容
-		this.bodyFilters.forEach(h => { body = h(body) });
+		this.bodyFilters.forEach(h => { body = h(body); });
 		return this.http
 			.post(fullUrl, body, options) // 使用post提交api
 			.publishLast().refCount() // 防止多次subscribe导致多次提交
 			.map(response => {
 				// 过滤返回的结果
-				this.resultFilters.forEach(f => { response = f(response) });
+				this.resultFilters.forEach(f => { response = f(response); });
 				// 转换返回的结果
 				return (resultConverter || this.resultConverter)(response);
 			})
 			.catch(error => {
 				// 过滤返回的错误
-				this.errorFilters.forEach(f => { error = f(error) });
+				this.errorFilters.forEach(f => { error = f(error); });
 				// 转换返回的错误
 				return (errorConverter || this.errorConverter)(error);
 			});

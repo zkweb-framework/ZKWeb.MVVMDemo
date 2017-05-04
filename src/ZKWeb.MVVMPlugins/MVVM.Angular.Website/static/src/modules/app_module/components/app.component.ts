@@ -1,5 +1,5 @@
-﻿import { Component, OnInit, Injector } from '@angular/core';
-import { Router, NavigationStart, NavigationEnd } from '@angular/router';
+﻿import { Component } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
 	selector: 'my-app',

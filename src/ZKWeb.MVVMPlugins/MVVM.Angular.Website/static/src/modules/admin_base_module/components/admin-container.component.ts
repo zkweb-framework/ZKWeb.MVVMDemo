@@ -38,9 +38,9 @@ export class AdminContainerComponent implements OnInit {
 		this.avatarUrl = this.defaultAvatarUrl;
 		this.username = null;
 		this.appSessionService.getSessionInfo().subscribe(sessionInfo => {
-			var user = sessionInfo.User;
+			let user = sessionInfo.User;
 			// 根据当前用户显示导航栏菜单，过滤无权限的菜单项
-			var newMenuGroups = [];
+			let newMenuGroups = [];
 			AdminNavMenu.forEach(group => {
 				// 检查分组权限
 				if (group.auth != null &&
@@ -48,7 +48,7 @@ export class AdminContainerComponent implements OnInit {
 					return;
 				}
 				// 构建新的菜单项列表
-				var newGroup: NavMenuGroup = {
+				let newGroup: NavMenuGroup = {
 					name: group.name,
 					icon: group.icon,
 					items: [],
@@ -99,7 +99,7 @@ export class AdminContainerComponent implements OnInit {
 				this.adminToastService.showToastMessage("info", s.Message);
 				this.dropdownVisible = false;
 			},
-			e => this.adminToastService.showToastMessage("error", e));
+			ee => this.adminToastService.showToastMessage("error", e));
 		e.preventDefault();
 	}
 
@@ -107,5 +107,6 @@ export class AdminContainerComponent implements OnInit {
 	logout(e) {
 		this.appConfigService.setSessionId("");
 		this.router.navigate(['/']);
+		e.preventDefault();
 	}
 }

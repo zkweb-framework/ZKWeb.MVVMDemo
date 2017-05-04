@@ -1,5 +1,4 @@
 ﻿import { NavMenuGroup } from './nav-menu-group';
-import { NavMenuItem } from './nav-menu-item';
 import { UserTypes } from '../../generated_module/privileges/user-types';
 import { Privileges } from '../../generated_module/privileges/privileges';
 

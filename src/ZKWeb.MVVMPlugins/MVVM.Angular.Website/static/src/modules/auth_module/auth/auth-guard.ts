@@ -7,7 +7,6 @@ import { AppConfigService } from '../../base_module/services/app-config-service'
 import { AppTranslationService } from '../../base_module/services/app-translation-service';
 import { AppSessionService } from '../services/app-session-service';
 import { AppPrivilegeService } from '../services/app-privilege-service';
-import { UserTypes } from '../../generated_module/privileges/user-types';
 
 /** 用于给路由检查权限
 	例:
@@ -37,13 +36,15 @@ export class AuthGuard implements CanActivate {
 			this.appSessionService.getSessionInfo().subscribe(
 				sessionInfo => {
 					// 检查权限
-					var routeData = route.data || {};
-					var user = sessionInfo.User;
-					var auth: AuthRequirement = routeData["auth"];
-					var checkResult = this.appPrivilegeService.isAuthorized(user, auth);
+					let routeData = route.data || {};
+					let user = sessionInfo.User;
+					let auth: AuthRequirement = routeData["auth"];
+					let checkResult = this.appPrivilegeService.isAuthorized(user, auth);
 					// 检查失败时跳转到登录页面
 					if (!checkResult.success) {
-						checkResult.errorMessage && alert(checkResult.errorMessage);
+						if (checkResult.errorMessage) {
+							alert(checkResult.errorMessage);
+						}
 						this.router.navigate(this.appConfigService.getLoginUrl());
 					}
 					o.next(checkResult.success);

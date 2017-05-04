@@ -5,5 +5,5 @@ export class TranslationIndex {
 	public static translationModules = [
 		Translation_zh_CN,
 		Translation_en_US
-	]
+	];
 }
