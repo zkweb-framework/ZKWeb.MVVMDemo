@@ -3,6 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { AppApiService } from '../../base_module/services/app-api-service';
 import { ActionResponseDto } from '../dtos/action-response-dto';
 import { WebsiteInfoOutputDto } from '../dtos/website-info-output-dto';
+import { WebsiteSettingsDto } from '../dtos/website-settings-dto';
 
 @Injectable()
 /** 网站管理服务 */
@@ -22,6 +23,23 @@ export class WebsiteManageService {
 		return this.appApiService.call<WebsiteInfoOutputDto>(
 			"/api/WebsiteManageService/GetWebsiteInfo",
 			{
+			});
+	}
+
+	/** 获取网站信息 */
+	GetWebsiteSettings(): Observable<WebsiteSettingsDto> {
+		return this.appApiService.call<WebsiteSettingsDto>(
+			"/api/WebsiteManageService/GetWebsiteSettings",
+			{
+			});
+	}
+
+	/** 保存网站信息 */
+	SaveWebsiteSettings(dto: WebsiteSettingsDto): Observable<ActionResponseDto> {
+		return this.appApiService.call<ActionResponseDto>(
+			"/api/WebsiteManageService/SaveWebsiteSettings",
+			{
+				dto
 			});
 	}
 }

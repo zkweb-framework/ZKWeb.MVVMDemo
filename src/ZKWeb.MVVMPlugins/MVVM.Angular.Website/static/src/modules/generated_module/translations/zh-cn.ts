@@ -104,6 +104,9 @@ export class Translation_zh_CN {
 		"Avatar": "头像",
 		"Incorrect old password": "原密码不正确",
 		"Change Password Successfully": "修改密码成功",
-		"Upload Avatar Successfully": "上传头像成功"
+		"Upload Avatar Successfully": "上传头像成功",
+		"Settings": "设置",
+		"WebsiteSettings": "网站设置",
+		"WebsiteName": "网站名称"
 	};
 }

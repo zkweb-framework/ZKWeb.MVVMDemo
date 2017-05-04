@@ -4,6 +4,7 @@ using System;
 using System.Linq;
 using ZKWeb.MVVMPlugins.MVVM.Common.MultiTenant.src.Domain.Entities;
 using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Application.Dtos;
+using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Components.GenericConfigs;
 using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Components.PrivilegeTranslators.Interfaces;
 using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Entities;
 using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Extensions;
@@ -57,6 +58,10 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Application.Mappers {
 						return string.Join(",", r.GetPrivileges().Select(p => translator.Translate(p)));
 					}))
 				.ForMember(d => d.OwnerTenantName, m => m.ResolveUsing(r => r.OwnerTenant?.Name));
+
+			// 网站设置
+			CreateMap<WebsiteSettingsDto, WebsiteSettings>();
+			CreateMap<WebsiteSettings, WebsiteSettingsDto>();
 		}
 	}
 }

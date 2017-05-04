@@ -30,7 +30,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="MVVM.Common.WebsiteSettings\" />
 	  <Folder Include="MVVM.Example.CrudExample\" />
 	</ItemGroup>
 

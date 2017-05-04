@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -8,7 +9,9 @@ using ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Application.Dtos;
 using ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Application.Services.Bases;
 using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Application.Dtos;
 using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Components.ActionFilters;
+using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Components.GenericConfigs;
 using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Entities.Interfaces;
+using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Services;
 using ZKWeb.Plugin;
 using ZKWebStandard.Ioc;
 using ZKWebStandard.Utils;
@@ -21,12 +24,15 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Application.Services {
 	public class WebsiteManageService : ApplicationServiceBase {
 		private IList<ICacheCleaner> _cacheCleaners;
 		private PluginManager _pluginManager;
+		private GenericConfigManager _configManager;
 
 		public WebsiteManageService(
 			IEnumerable<ICacheCleaner> cacheCleaners,
-			PluginManager pluginManager) {
+			PluginManager pluginManager,
+			GenericConfigManager configManager) {
 			_cacheCleaners = cacheCleaners.ToList();
 			_pluginManager = pluginManager;
+			_configManager = configManager;
 		}
 
 		[Description("清理缓存")]
@@ -56,6 +62,22 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Application.Services {
 				});
 			}
 			return websiteInfo;
+		}
+
+		[Description("获取网站信息")]
+		[CheckPrivilege(typeof(ICanUseAdminPanel))]
+		public WebsiteSettingsDto GetWebsiteSettings() {
+			var settings = _configManager.GetData<WebsiteSettings>();
+			var dto = Mapper.Map<WebsiteSettingsDto>(settings);
+			return dto;
+		}
+
+		[Description("保存网站信息")]
+		[CheckPrivilege(typeof(IAmAdmin), "Settings:WebsiteSettings")]
+		public ActionResponseDto SaveWebsiteSettings(WebsiteSettingsDto dto) {
+			var settings = Mapper.Map<WebsiteSettings>(dto);
+			_configManager.PutData(settings);
+			return ActionResponseDto.CreateSuccess("Saved Successfully");
 		}
 	}
 }

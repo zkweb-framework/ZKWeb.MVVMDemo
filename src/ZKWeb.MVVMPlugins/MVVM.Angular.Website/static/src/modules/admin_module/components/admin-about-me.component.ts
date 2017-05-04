@@ -48,14 +48,28 @@ export class AdminAboutMeComponent implements OnInit {
 	}
 
 	onChangePassword() {
+		this.isSubmitting = true;
 		this.userProfileService.ChangePassword(this.changePasswordForm.value).subscribe(
-			s => this.msgs = [{ severity: "info", detail: s.Message }],
-			e => this.msgs = [{ severity: "error", detail: e }]);
+			s => {
+				this.msgs = [{ severity: "info", detail: s.Message }];
+				this.isSubmitting = false;
+			},
+			e => {
+				this.msgs = [{ severity: "error", detail: e }];
+				this.isSubmitting = false;
+			});
 	}
 
 	onUploadAvatar() {
+		this.isSubmitting = true;
 		this.userProfileService.UploadAvatar(this.avatarUploadForm.value).subscribe(
-			s => this.msgs = [{ severity: "info", detail: s.Message }],
-			e => this.msgs = [{ severity: "error", detail: e }]);
+			s => {
+				this.msgs = [{ severity: "info", detail: s.Message }];
+				this.isSubmitting = false;
+			},
+			e => {
+				this.msgs = [{ severity: "error", detail: e }];
+				this.isSubmitting = false;
+			});
 	}
 }

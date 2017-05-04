@@ -17,4 +17,6 @@ export class Privileges {
 	public static User_Edit = "User:Edit";
 	/** 用户:删除 */
 	public static User_Remove = "User:Remove";
+	/** 设置:网站设置 */
+	public static Settings_WebsiteSettings = "Settings:WebsiteSettings";
 }

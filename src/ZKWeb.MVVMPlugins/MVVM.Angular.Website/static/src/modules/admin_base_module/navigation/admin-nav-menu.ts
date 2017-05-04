@@ -52,7 +52,7 @@ export const AdminNavMenu: NavMenuGroup[] = [
 			{
 				name: "Website Settings",
 				icon: "fa fa-globe",
-				url: ["/admin", "setings", "website_settings"],
+				url: ["/admin", "settings", "website_settings"],
 				auth: {
 					requireUserType: UserTypes.IAmAdmin,
 					requirePrivileges: [ /* TODO */]
