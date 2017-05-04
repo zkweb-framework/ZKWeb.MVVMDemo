@@ -47,7 +47,8 @@ const routes: Routes = [
 	{ path: 'tenants', loadChildren: '../admin_tenants_module/admin_tenants.module#AdminTenantsModule' },
 	{ path: 'users', loadChildren: '../admin_users_module/admin_users.module#AdminUsersModule' },
 	{ path: 'roles', loadChildren: '../admin_roles_module/admin_roles.module#AdminRolesModule' },
-	{ path: 'settings', loadChildren: '../admin_settings_module/admin_settings.module#AdminSettingsModule' }
+	{ path: 'settings', loadChildren: '../admin_settings_module/admin_settings.module#AdminSettingsModule' },
+	{ path: 'scheduled_tasks', loadChildren: '../admin_scheduled_tasks_module/admin_scheduled_tasks.module#AdminScheduledTasksModule' }
 ];
 
 @NgModule({

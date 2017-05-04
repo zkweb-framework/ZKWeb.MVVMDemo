@@ -54,9 +54,33 @@ export const AdminNavMenu: NavMenuGroup[] = [
 				url: ["/admin", "settings", "website_settings"],
 				auth: {
 					requireUserType: UserTypes.IAmAdmin,
-					requirePrivileges: [ /* TODO */]
+					requirePrivileges: [Privileges.Settings_WebsiteSettings]
 				}
 			},
 		]
-	}
+	},
+	{
+		name: "Scheduled Tasks",
+		icon: "fa fa-tasks",
+		items: [
+			{
+				name: "Scheduled Tasks",
+				icon: "fa fa-tasks",
+				url: ["/admin", "scheduled_tasks"],
+				auth: {
+					requireUserType: UserTypes.IAmAdmin,
+					requirePrivileges: [Privileges.ScheduledTask_View]
+				}
+			},
+			{
+				name: "Scheduled Tasks Log",
+				icon: "fa fa-tasks",
+				url: ["/admin", "scheduled_tasks", "log"],
+				auth: {
+					requireUserType: UserTypes.IAmAdmin,
+					requirePrivileges: [Privileges.ScheduledTask_View]
+				}
+			},
+		]
+	},
 ];

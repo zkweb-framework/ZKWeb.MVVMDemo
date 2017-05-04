@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Text;
 using ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Application.Dtos;
 
-namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Application.Dtos {
+namespace ZKWeb.MVVMPlugins.MVVM.Common.MultiTenant.src.Application.Dtos {
 	[Description("租户传出信息")]
 	public class TenantOutputDto : IOutputDto {
 		[Description("租户Id")]

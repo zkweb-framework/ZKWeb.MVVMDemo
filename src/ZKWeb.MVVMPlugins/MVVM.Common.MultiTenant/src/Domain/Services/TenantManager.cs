@@ -30,7 +30,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.MultiTenant.src.Domain.Services {
 		/// </summary>
 		/// <returns></returns>
 		public virtual Tenant GetTenant() {
-			var providers = Application.Ioc.ResolveMany<ITenantProvider>();
+			var providers = ZKWeb.Application.Ioc.ResolveMany<ITenantProvider>();
 			using (var uow = UnitOfWork.Scope()) {
 				foreach (var provider in providers.Reverse()) {
 					var tennat = provider.GetTenant();

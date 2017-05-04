@@ -12,6 +12,7 @@ using ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Application.Services.Attributes;
 using ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Application.Services.Bases;
 using ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Components.Exceptions;
 using ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Domain.Uow.Extensions;
+using ZKWeb.MVVMPlugins.MVVM.Common.MultiTenant.src.Application.Dtos;
 using ZKWeb.MVVMPlugins.MVVM.Common.MultiTenant.src.Domain.Entities;
 using ZKWeb.MVVMPlugins.MVVM.Common.MultiTenant.src.Domain.Filters;
 using ZKWeb.MVVMPlugins.MVVM.Common.MultiTenant.src.Domain.Services;

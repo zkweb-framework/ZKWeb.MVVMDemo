@@ -13,7 +13,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.TaskScheduler.src {
 		/// </summary>
 		public Plugin() {
 			// 初始化定时任务管理器
-			Application.Ioc.Resolve<ScheduledTaskManager>();
+			ZKWeb.Application.Ioc.Resolve<ScheduledTaskManager>();
 		}
 	}
 }

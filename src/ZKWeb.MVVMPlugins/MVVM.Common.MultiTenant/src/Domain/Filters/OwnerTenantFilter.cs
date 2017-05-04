@@ -28,7 +28,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.MultiTenant.src.Domain.Filters {
 		/// 初始化
 		/// </summary>
 		public OwnerTenantFilter() {
-			var tenantManager = Application.Ioc.Resolve<TenantManager>();
+			var tenantManager = ZKWeb.Application.Ioc.Resolve<TenantManager>();
 			_usingTenant = new Lazy<Tenant>(() => tenantManager.GetTenant());
 		}
 
@@ -99,7 +99,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.MultiTenant.src.Domain.Filters {
 			if (e.OwnerTenant == null) {
 				// 设置数据的租户
 				if (UsingTenant != null) {
-					var repository = Application.Ioc.Resolve<IRepository<Tenant, Guid>>();
+					var repository = ZKWeb.Application.Ioc.Resolve<IRepository<Tenant, Guid>>();
 					e.OwnerTenant = repository.Get(u => u.Id == UsingTenant.Id);
 				}
 			} else {

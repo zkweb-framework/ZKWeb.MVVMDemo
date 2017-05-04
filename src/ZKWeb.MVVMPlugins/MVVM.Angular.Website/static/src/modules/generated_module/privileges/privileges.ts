@@ -19,4 +19,6 @@ export class Privileges {
 	public static User_Remove = "User:Remove";
 	/** 设置:网站设置 */
 	public static Settings_WebsiteSettings = "Settings:WebsiteSettings";
+	/** 定时任务:查看 */
+	public static ScheduledTask_View = "ScheduledTask:View";
 }

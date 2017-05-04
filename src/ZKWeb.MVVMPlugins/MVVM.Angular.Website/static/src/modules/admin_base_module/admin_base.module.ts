@@ -8,7 +8,8 @@ import {
 	ButtonModule,
 	MessagesModule,
 	BlockUIModule,
-	GrowlModule
+	GrowlModule,
+	SlideMenuModule
 } from 'primeng/primeng';
 
 import { BaseModule } from '../base_module/base.module';
@@ -28,6 +29,7 @@ import { AdminToastService } from './services/admin-toast-service';
 		MessagesModule,
 		BlockUIModule,
 		GrowlModule,
+		SlideMenuModule,
 		BaseModule,
 		GeneratedModule,
 		RouterModule

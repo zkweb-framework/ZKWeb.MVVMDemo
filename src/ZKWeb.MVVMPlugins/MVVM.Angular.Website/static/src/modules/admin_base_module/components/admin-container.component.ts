@@ -1,6 +1,6 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Message } from 'primeng/primeng';
+import { Message, MenuItem } from 'primeng/primeng';
 import { NavMenuGroup } from '../navigation/nav-menu-group';
 import { AdminNavMenu } from '../navigation/admin-nav-menu';
 import { AppConfigService } from '../../base_module/services/app-config-service';
@@ -23,6 +23,10 @@ export class AdminContainerComponent implements OnInit {
 	defaultAvatarUrl: string = require("../../../vendor/images/default-avatar.jpg");
 	avatarUrl: string = this.defaultAvatarUrl;
 	username: string;
+	switchLanguageItems: MenuItem[] = [
+	];
+	switchTimezoneItems: MenuItem[] = [
+	];
 
 	constructor(
 		private router: Router,

@@ -27,13 +27,13 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.TaskScheduler.src.Domain.Services {
 		/// 创建执行定时任务的线程
 		/// </summary>
 		public ScheduledTaskManager() {
-			var logManager = Application.Ioc.Resolve<LogManager>();
+			var logManager = ZKWeb.Application.Ioc.Resolve<LogManager>();
 			var thread = new Thread(() => {
 				// 每分钟调查一次是否有需要执行的任务
 				while (true) {
 					Thread.Sleep(TimeSpan.FromMinutes(1));
 					// 获取定时任务
-					var tasks = Application.Ioc.ResolveMany<IScheduledTaskProvider>()
+					var tasks = ZKWeb.Application.Ioc.ResolveMany<IScheduledTaskProvider>()
 						.SelectMany(p => p.GetTasks()).ToList();
 					// 枚举并处理定时任务
 					foreach (var task in tasks) {
@@ -92,7 +92,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.TaskScheduler.src.Domain.Services {
 			}
 			// 记录日志
 			using (UnitOfWork.Scope()) {
-				var logRepository = Application.Ioc.Resolve<IRepository<ScheduledTaskLog, Guid>>();
+				var logRepository = ZKWeb.Application.Ioc.Resolve<IRepository<ScheduledTaskLog, Guid>>();
 				var log = new ScheduledTaskLog() {
 					Task = Get(executor.Key),
 					CreateTime = DateTime.UtcNow,

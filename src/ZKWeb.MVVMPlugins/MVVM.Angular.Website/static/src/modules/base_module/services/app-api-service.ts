@@ -168,13 +168,14 @@ export class AppApiService {
 		let fullUrl = this.appConfigService.getApiUrlBase() + url;
 		this.urlFilters.forEach(h => { fullUrl = h(fullUrl); });
 		// 构建选项，包括http头等
-		options = options || {};
+		options = options || { method: "POST" };
 		options.headers = options.headers || new Headers();
 		this.optionsFilters.forEach(h => { options = h(options); });
 		// 构建提交内容
 		this.bodyFilters.forEach(h => { body = h(body); });
+		options.body = body;
 		return this.http
-			.post(fullUrl, body, options) // 使用post提交api
+			.request(fullUrl, options) // 提交api
 			.publishLast().refCount() // 防止多次subscribe导致多次提交
 			.map(response => {
 				// 过滤返回的结果

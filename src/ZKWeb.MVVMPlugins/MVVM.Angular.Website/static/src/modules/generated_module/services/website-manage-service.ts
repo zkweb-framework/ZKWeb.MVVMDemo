@@ -4,6 +4,8 @@ import { AppApiService } from '../../base_module/services/app-api-service';
 import { ActionResponseDto } from '../dtos/action-response-dto';
 import { WebsiteInfoOutputDto } from '../dtos/website-info-output-dto';
 import { WebsiteSettingsDto } from '../dtos/website-settings-dto';
+import { GridSearchResponseDto } from '../dtos/grid-search-response-dto';
+import { GridSearchRequestDto } from '../dtos/grid-search-request-dto';
 
 @Injectable()
 /** 网站管理服务 */
@@ -40,6 +42,24 @@ export class WebsiteManageService {
 			"/api/WebsiteManageService/SaveWebsiteSettings",
 			{
 				dto
+			});
+	}
+
+	/** 搜索定时任务 */
+	SearchScheduledTasks(request: GridSearchRequestDto): Observable<GridSearchResponseDto> {
+		return this.appApiService.call<GridSearchResponseDto>(
+			"/api/WebsiteManageService/SearchScheduledTasks",
+			{
+				request
+			});
+	}
+
+	/** 搜索定时任务记录 */
+	SearchScheduledTaskLogs(request: GridSearchRequestDto): Observable<GridSearchResponseDto> {
+		return this.appApiService.call<GridSearchResponseDto>(
+			"/api/WebsiteManageService/SearchScheduledTaskLogs",
+			{
+				request
 			});
 	}
 }

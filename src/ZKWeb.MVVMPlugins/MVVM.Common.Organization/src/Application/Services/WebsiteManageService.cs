@@ -12,6 +12,8 @@ using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Components.ActionFilters;
 using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Components.GenericConfigs;
 using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Entities.Interfaces;
 using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Services;
+using ZKWeb.MVVMPlugins.MVVM.Common.TaskScheduler.src.Application.Dtos;
+using ZKWeb.MVVMPlugins.MVVM.Common.TaskScheduler.src.Domain.Entities;
 using ZKWeb.Plugin;
 using ZKWebStandard.Ioc;
 using ZKWebStandard.Utils;
@@ -78,6 +80,26 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Application.Services {
 			var settings = Mapper.Map<WebsiteSettings>(dto);
 			_configManager.PutData(settings);
 			return ActionResponseDto.CreateSuccess("Saved Successfully");
+		}
+
+		[Description("搜索定时任务")]
+		[CheckPrivilege(typeof(IAmAdmin), "ScheduledTask:View")]
+		public GridSearchResponseDto SearchScheduledTasks(GridSearchRequestDto request) {
+			return request.BuildResponse<ScheduledTask, string>()
+				.FilterKeywordWith(t => t.Id)
+				.ToResponse<ScheduledTaskOutputDto>();
+		}
+
+		[Description("搜索定时任务记录")]
+		[CheckPrivilege(typeof(IAmAdmin), "ScheduledTask:View")]
+		public GridSearchResponseDto SearchScheduledTaskLogs(GridSearchRequestDto request) {
+			return request.BuildResponse<ScheduledTaskLog, Guid>()
+				.FilterKeywordWith(t => t.Task.Id)
+				.FilterKeywordWith(t => t.Error)
+				.FilterColumnWith(
+					nameof(ScheduledTaskLogOutputDto.TaskId),
+					(c, q) => q.Where(t => t.Task.Id.Contains((string)c.Value)))
+				.ToResponse<ScheduledTaskLogOutputDto>();
 		}
 	}
 }

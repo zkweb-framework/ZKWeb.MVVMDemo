@@ -19,10 +19,6 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Application.Mappers {
 	[ExportMany]
 	public class OrganizationMapperProfile : Profile {
 		public OrganizationMapperProfile(UserManager userManager) {
-			// 租户
-			CreateMap<TenantInputDto, Tenant>();
-			CreateMap<Tenant, TenantOutputDto>();
-
 			// 用户
 			CreateMap<UserInputDto, User>()
 				.ForMember(d => d.OwnerTenantId, m => m.Ignore()); // 租户Id为了安全原因需要手动设置

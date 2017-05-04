@@ -107,6 +107,15 @@ export class Translation_zh_CN {
 		"Upload Avatar Successfully": "上传头像成功",
 		"Settings": "设置",
 		"WebsiteSettings": "网站设置",
-		"WebsiteName": "网站名称"
+		"WebsiteName": "网站名称",
+		"ScheduledTask": "定时任务",
+		"ScheduledTaskLog": "定时任务记录",
+		"Scheduled Tasks": "定时任务",
+		"Scheduled Tasks Log": "定时任务记录",
+		"Executed Time": "执行时间",
+		"First Executed Time": "首次执行时间",
+		"Last Executed Time": "上次执行时间",
+		"ErrorMessage": "错误信息",
+		"IsSuccess": "是否成功"
 	};
 }

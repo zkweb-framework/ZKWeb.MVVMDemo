@@ -32,39 +32,48 @@
 
 	<div id="layout-content">
 		<div id="topbar">
-			<a href="#" id="menu-button" (click)="toggleMenu($event)" [ngClass]="{'active':mobileMenuActive}">
-				<i class="fa fa-list"></i>
-			</a>
+			<div class="pull-left">
+				<a href="#" id="menu-button" (click)="toggleMenu($event)" [ngClass]="{'active':mobileMenuActive}">
+					<i class="fa fa-list"></i>
+				</a>
+			</div>
 
-			<a class="topbar-link" (mouseenter)="dropdownVisible = true" (mouseleave)="dropdownVisible = false">
-				<img class="avatar" [src]="avatarUrl" />
-				<span class="username">{{ username }}</span>
-				<div id="topbarDropdown" [style.display]="dropdownVisible ? 'block' : 'none'">
-					<div class="user-header">
-						<img class="avatar" [src]="avatarUrl" />
-						<p class="username">{{ username }}</p>
+			<div class="pull-right">
+				<p-slideMenu #switchLanguageMenu [model]="switchLanguageItems" [popup]="true"></p-slideMenu>
+				<p-slideMenu #switchTimezoneMenu [model]="switchTimezoneItems" [popup]="true"></p-slideMenu>
+				<a class="menu-item" (click)="switchLanguageMenu.toggle($event)">{{ "Switch Language" | trans }}</a>
+				<a class="menu-item" (click)="switchTimezoneMenu.toggle($event)">{{ "Switch Timezone" | trans }}</a>
+				<a class="topbar-link" (mouseenter)="dropdownVisible = true" (mouseleave)="dropdownVisible = false">
+					<img class="avatar" [src]="avatarUrl" />
+					<span class="username">{{ username }}</span>
+					<div id="topbarDropdown" [style.display]="dropdownVisible ? 'block' : 'none'">
+						<div class="user-header">
+							<img class="avatar" [src]="avatarUrl" />
+							<p class="username">{{ username }}</p>
+						</div>
+
+						<div class="user-body ui-grid ui-grid-pad ui-fluid">
+							<div class="ui-grid-col-4 text-center">
+								<a [routerLink]="['/admin']">{{ "Admin Index" | trans }}</a>
+							</div>
+							<div class="ui-grid-col-4 text-center">
+								<a [routerLink]="['/admin', 'about_website']">{{ "About Website" | trans }}</a>
+							</div>
+							<div class="ui-grid-col-4 text-center">
+								<a href="#" (click)="clearCache($event)">{{ "Clear Cache" | trans }}</a>
+							</div>
+						</div>
+						<div class="user-footer">
+							<div class="pull-left">
+								<a class="" [routerLink]="['/admin', 'about_me']">{{ "About Me" | trans }}</a>
+							</div>
+							<div class="pull-right">
+								<a class="" href="#" (click)="logout($event)">{{ "Logout" | trans }}</a>
+							</div>
+						</div>
 					</div>
-					<div class="user-body ui-grid ui-grid-pad ui-fluid">
-						<div class="ui-grid-col-4 text-center">
-							<a [routerLink]="['/admin']">{{ "Admin Index" | trans }}</a>
-						</div>
-						<div class="ui-grid-col-4 text-center">
-							<a [routerLink]="['/admin', 'about_website']">{{ "About Website" | trans }}</a>
-						</div>
-						<div class="ui-grid-col-4 text-center">
-							<a href="#" (click)="clearCache($event)">{{ "Clear Cache" | trans }}</a>
-						</div>
-					</div>
-					<div class="user-footer">
-						<div class="pull-left">
-							<a class="" [routerLink]="['/admin', 'about_me']">{{ "About Me" | trans }}</a>
-						</div>
-						<div class="pull-right">
-							<a class="" href="#" (click)="logout($event)">{{ "Logout" | trans }}</a>
-						</div>
-					</div>
-				</div>
-			</a>
+				</a>
+			</div>
 		</div>
 
 		<div id="layout-content-body">

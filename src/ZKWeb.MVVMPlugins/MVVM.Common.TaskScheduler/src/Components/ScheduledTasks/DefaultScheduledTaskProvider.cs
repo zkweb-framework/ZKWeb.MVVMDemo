@@ -14,7 +14,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.TaskScheduler.src.Components.ScheduledTa
 		/// </summary>
 		/// <returns></returns>
 		public IEnumerable<IScheduledTask> GetTasks() {
-			return Application.Ioc.ResolveMany<IScheduledTask>();
+			return ZKWeb.Application.Ioc.ResolveMany<IScheduledTask>();
 		}
 	}
 }
