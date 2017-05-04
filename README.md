@@ -17,6 +17,10 @@ MVVM demo for zkweb framework
 	- Support query filter
 	- Support operation filter
 - Support automatic validate DTOs from request
+- Provide default admin panel with PrimeNG
+	- Support manage tenants
+	- Support manage roles
+	- Support manage users
 - TODO
 
 ### How to start
