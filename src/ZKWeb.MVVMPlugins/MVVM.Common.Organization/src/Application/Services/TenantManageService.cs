@@ -79,11 +79,11 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Application.Services {
 				superAdmin.Username = dto.SuperAdminName;
 				superAdmin.OwnerTenant = tenant;
 				if (dto.SuperAdminPassword != dto.SuperAdminConfirmPassword) {
-					throw new BadRequestException(new T("Confirm password not matched with password"));
+					throw new BadRequestException("Confirm password not matched with password");
 				} else if (!string.IsNullOrEmpty(dto.SuperAdminPassword)) {
 					superAdmin.SetPassword(dto.SuperAdminPassword);
 				} else if (superAdmin.Id == Guid.Empty) {
-					throw new BadRequestException(new T("Please provider a password for new user"));
+					throw new BadRequestException("Please provider a password for new user");
 				}
 				_userManager.Save(ref superAdmin);
 			}

@@ -1,4 +1,5 @@
-﻿using ZKWebStandard.Web;
+﻿using ZKWeb.Localize;
+using ZKWebStandard.Web;
 
 namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Components.Exceptions {
 	/// <summary>
@@ -9,6 +10,6 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Components.Exceptions {
 		/// 初始化
 		/// </summary>
 		/// <param name="message">错误消息</param>
-		public NotFoundException(string message) : base(404, message) { }
+		public NotFoundException(string message) : base(404, new T(message)) { }
 	}
 }

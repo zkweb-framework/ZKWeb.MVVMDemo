@@ -1,0 +1,7 @@
+﻿<div class="ui-grid-col-{{ labelGridWidth }}">
+	{{ translatedDisplayName }}:
+</div>
+<div class="ui-grid-col-{{ fieldGridWidth }}" [formGroup]="formGroup">
+	<input pInputText type="file" [placeholder]="translatedPlaceHolder" (change)="onFileChange($event)" />
+	<z-form-validation-messages [formGroup]="formGroup" [fieldName]="fieldName" [displayName]="displayName" [validationMessages]="validationMessages"></z-form-validation-messages>
+</div>

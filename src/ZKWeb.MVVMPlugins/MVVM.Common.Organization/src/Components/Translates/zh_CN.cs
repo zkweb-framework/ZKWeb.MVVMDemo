@@ -89,7 +89,14 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Components.Translates {
 				{ "Description", "描述" },
 				{ "Base Information", "基本信息" },
 				{ "Change Password", "修改密码" },
-				{ "Change Avatar", "修改头像" }
+				{ "Change Avatar", "修改头像" },
+				{ "OldPassword", "原密码" },
+				{ "NewPassword", "新密码" },
+				{ "ConfirmNewPassword", "确认新密码" },
+				{ "Avatar", "头像" },
+				{ "Incorrect old password", "原密码不正确" },
+				{ "Change Password Successfully", "修改密码成功" },
+				{ "Upload Avatar Successfully", "上传头像成功" }
 
 				// TODO: 缩减这里的翻译
 				/* { "ZKWeb Default Website", "ZKWeb默认站点" },

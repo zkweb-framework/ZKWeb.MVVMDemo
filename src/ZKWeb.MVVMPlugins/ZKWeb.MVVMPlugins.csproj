@@ -31,7 +31,7 @@
 
 	<ItemGroup>
 	  <Folder Include="MVVM.Common.WebsiteSettings\" />
-	  <Folder Include="MVVM.CMS.Article\" />
+	  <Folder Include="MVVM.Example.CrudExample\" />
 	</ItemGroup>
 
 	<PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard1.6' ">

@@ -96,11 +96,11 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Services {
 			var user = userManager.FindUser(tenant, username);
 			// 用户不存在或密码错误时抛出例外
 			if (user == null || !user.CheckPassword(password)) {
-				throw new ForbiddenException(new T("Incorrect username or password"));
+				throw new ForbiddenException("Incorrect username or password");
 			}
 			// 只允许管理员或合作伙伴登陆到后台
 			if (!(user.GetUserType() is ICanUseAdminPanel)) {
-				throw new ForbiddenException(new T("Sorry, You have no privileges to use admin panel."));
+				throw new ForbiddenException("Sorry, You have no privileges to use admin panel.");
 			}
 			// 以指定用户登录
 			userManager.LoginWithUser(user, rememberLogin);

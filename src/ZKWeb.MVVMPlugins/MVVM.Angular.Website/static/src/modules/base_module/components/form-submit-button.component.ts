@@ -12,6 +12,7 @@ export class FormSubmitButtonComponent implements OnInit {
 	@Input() displayName: string;
 	@Input() leftGridWidth: number = 0;
 	@Input() selfGridWidth: number = 12;
+	@Input() isSubmitting: any;
 	translatedDisplayName: string;
 
 	constructor(private appTranslationService: AppTranslationService) {

@@ -19,6 +19,7 @@ import { FormMultiSelectComponent } from './components/form-multiselect.componen
 import { FormHiddenComponent } from './components/form-hidden.component';
 import { FormPasswordComponent } from './components/form-password.component';
 import { FormCaptchaComponent } from './components/form-captcha.component';
+import { FormUploadComponent } from './components/form-upload.component';
 
 import { FormSubmitButtonComponent } from './components/form-submit-button.component';
 import { TransPipe } from './pipes/trans-pipe';
@@ -49,6 +50,7 @@ import { AppTranslationService } from './services/app-translation-service';
 		FormHiddenComponent,
 		FormPasswordComponent,
 		FormCaptchaComponent,
+		FormUploadComponent,
 		FormSubmitButtonComponent,
 		TransPipe
 	],
@@ -67,6 +69,7 @@ import { AppTranslationService } from './services/app-translation-service';
 		FormHiddenComponent,
 		FormPasswordComponent,
 		FormCaptchaComponent,
+		FormUploadComponent,
 		FormSubmitButtonComponent,
 		TransPipe
 	]

@@ -62,7 +62,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Application.Services {
 			if (!string.IsNullOrEmpty(dto.Password)) {
 				user.SetPassword(dto.Password);
 			} else if (user.Id == Guid.Empty) {
-				throw new BadRequestException(new T("Please provider a password for new user"));
+				throw new BadRequestException("Please provider a password for new user");
 			}
 			// 保存用户
 			_userManager.Save(ref user);

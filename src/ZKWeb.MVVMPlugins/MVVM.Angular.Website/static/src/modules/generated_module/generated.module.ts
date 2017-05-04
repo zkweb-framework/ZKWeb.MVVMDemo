@@ -6,6 +6,7 @@ import { SessionService } from './services/session-service';
 import { TenantManageService } from './services/tenant-manage-service';
 import { UserLoginService } from './services/user-login-service';
 import { UserManageService } from './services/user-manage-service';
+import { UserProfileService } from './services/user-profile-service';
 import { WebsiteManageService } from './services/website-manage-service';
 
 @NgModule({
@@ -17,6 +18,7 @@ import { WebsiteManageService } from './services/website-manage-service';
 		TenantManageService,
 		UserLoginService,
 		UserManageService,
+		UserProfileService,
 		WebsiteManageService
 	]
 })

@@ -39,6 +39,37 @@ export class AppApiService {
 			options.headers.append(this.appConfigService.getSessionIdHeader(), this.appConfigService.getSessionId());
 			return options;
 		});
+		// 如果内容包含文件对象则转换为FormData
+		this.registerBodyFilter(body => {
+			var formData = new FormData();
+			// 设置最外层的参数
+			for (var key in body) {
+				if (body.hasOwnProperty(key)) {
+					formData.append(key, JSON.stringify(body[key]));
+				}
+			}
+			// 枚举里层检测是否有文件对象
+			var fileCount = 0;
+			var visitor = (obj) => {
+				console.log("visit", obj);
+				for (var key in obj) {
+					if (obj.hasOwnProperty(key)) {
+						var value = obj[key];
+						if (value instanceof File) {
+							// 名称用原来的key，请注意重复
+							formData.append(key, value);
+							fileCount += 1;
+						} else if (value instanceof Object && value !== obj) {
+							// 检测子对象
+							visitor(value);
+						}
+					}
+				}
+			};
+			visitor(body);
+			// 有文件对象时返回FormData，否则返回原来的Body
+			return (fileCount > 0) ? formData : body;
+		});
 		// 过滤回应
 		this.registerResultFilter(response => {
 			// 解析返回的会话Id

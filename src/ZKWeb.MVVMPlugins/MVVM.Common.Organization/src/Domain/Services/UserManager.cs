@@ -82,7 +82,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Services {
 				var e = entity;
 				if (Repository.Count(u =>
 					u.Username == e.Username && u.OwnerTenantId == e.OwnerTenantId && u.Id != e.Id) > 0) {
-					throw new BadRequestException(new T("Username has been taken"));
+					throw new BadRequestException("Username has been taken");
 				}
 				base.Save(ref entity, update);
 				UnitOfWork.Context.FinishTransaction();
@@ -127,7 +127,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Services {
 			// 用户不存在或密码错误时抛出例外
 			var user = FindUser(tenant, username);
 			if (user == null || !user.CheckPassword(password)) {
-				throw new ForbiddenException(new T("Incorrect username or password"));
+				throw new ForbiddenException("Incorrect username or password");
 			}
 			// 以指定用户登录
 			LoginWithUser(user, rememberLogin);
@@ -198,13 +198,13 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Services {
 		/// <param name="imageStream">图片数据流</param>
 		public virtual void SaveAvatar(Guid userId, Stream imageStream) {
 			if (imageStream == null) {
-				throw new BadRequestException(new T("Please select avatar file"));
+				throw new BadRequestException("Please select avatar file");
 			}
 			Image image;
 			try {
 				image = Image.FromStream(imageStream);
 			} catch {
-				throw new BadRequestException(new T("Parse uploaded image failed"));
+				throw new BadRequestException("Parse uploaded image failed");
 			}
 			using (image) {
 				var fileEntry = GetAvatarStorageFile(userId);
@@ -235,9 +235,9 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Services {
 			using (UnitOfWork.Scope()) {
 				var user = Get(userId);
 				if (user == null) {
-					throw new ForbiddenException(new T("User not found"));
+					throw new ForbiddenException("User not found");
 				} else if (!user.CheckPassword(oldPassword)) {
-					throw new ForbiddenException(new T("Incorrect old password"));
+					throw new ForbiddenException("Incorrect old password");
 				}
 				Save(ref user, u => u.SetPassword(newPassword));
 			}

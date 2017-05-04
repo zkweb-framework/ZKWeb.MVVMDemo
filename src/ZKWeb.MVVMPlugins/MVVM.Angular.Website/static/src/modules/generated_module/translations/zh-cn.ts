@@ -15,11 +15,15 @@ export class Translation_zh_CN {
 		"Name/Remark": "名称/备注",
 		"Add": "添加",
 		"Edit": "编辑",
+		"Modify": "修改",
 		"Remove": "删除",
+		"Delete": "删除",
 		"Search": "搜索",
 		"Actions": "操作",
 		"View": "查看",
 		"Network error, please check your internet connection": "网络错误，请检查您的网络连接",
+		"File extension is not allowed": "不允许上传此类型的文件",
+		"File is too big, the maximum size allowed is {0}": "文件过大，最大允许上传的大小是{0}",
 		"Admin Login": "管理员登录",
 		"Tenant": "租户",
 		"Username": "用户名",
@@ -93,6 +97,13 @@ export class Translation_zh_CN {
 		"Description": "描述",
 		"Base Information": "基本信息",
 		"Change Password": "修改密码",
-		"Change Avatar": "修改头像"
+		"Change Avatar": "修改头像",
+		"OldPassword": "原密码",
+		"NewPassword": "新密码",
+		"ConfirmNewPassword": "确认新密码",
+		"Avatar": "头像",
+		"Incorrect old password": "原密码不正确",
+		"Change Password Successfully": "修改密码成功",
+		"Upload Avatar Successfully": "上传头像成功"
 	};
 }

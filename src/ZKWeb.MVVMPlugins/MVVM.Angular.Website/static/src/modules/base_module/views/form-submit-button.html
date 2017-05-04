@@ -1,5 +1,5 @@
 ﻿<div *ngIf="leftGridWidth > 0" class="ui-grid-col-{{ leftGridWidth }}">
 </div>
 <div class="ui-grid-col-{{ selfGridWidth }}">
-	<button pButton type="submit" [label]="translatedDisplayName" [disabled]="!formGroup.valid"></button>
+	<button pButton type="submit" [label]="translatedDisplayName" [disabled]="!formGroup.valid || isSubmitting"></button>
 </div>

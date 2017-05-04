@@ -39,7 +39,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Application.Services {
 		public virtual ActionResponseDto LoginUser(UserLoginRequestDto request) {
 			// 检查验证码
 			if (!_captchaManager.Check("UserLogin", request.Captcha)) {
-				throw new BadRequestException(new T("Incorrect captcha"));
+				throw new BadRequestException("Incorrect captcha");
 			}
 			// 登录用户
 			_userManager.Login(
@@ -59,7 +59,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Application.Services {
 		public virtual ActionResponseDto LoginAdmin(UserLoginRequestDto request) {
 			// 检查验证码
 			if (!_captchaManager.Check("AdminLogin", request.Captcha)) {
-				throw new BadRequestException(new T("Incorrect captcha"));
+				throw new BadRequestException("Incorrect captcha");
 			}
 			// 登录用户
 			_adminManager.Login(

@@ -77,7 +77,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Filters {
 				var repository = ZKWeb.Application.Ioc.Resolve<IRepository<User, Guid>>();
 				var user = repository.Get(u => u.Id == ExceptedOwnerId);
 				if (user == null) {
-					throw new BadRequestException(new T("Set entity owner failed, user not found"));
+					throw new BadRequestException("Set entity owner failed, user not found");
 				}
 				e.Owner = user;
 			} else if (e.Owner != null && e.Owner.Id != ExceptedOwnerId) {

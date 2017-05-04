@@ -1,9 +1,11 @@
 ﻿import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Message } from 'primeng/primeng';
 import { AppTranslationService } from '../../base_module/services/app-translation-service';
 import { WebsiteInfoOutputDto } from '../../generated_module/dtos/website-info-output-dto';
-import { AdminToastService } from '../../admin_base_module/services/admin-toast-service';
 import { AppSessionService } from '../../auth_module/services/app-session-service';
 import { AppPrivilegeService } from '../../auth_module/services/app-privilege-service';
+import { UserProfileService } from '../../generated_module/services/user-profile-service';
 
 @Component({
 	selector: 'admin-about-me',
@@ -15,12 +17,22 @@ export class AdminAboutMeComponent implements OnInit {
 	userType: string;
 	roles: string[] = [];
 	privileges: string[] = [];
+	msgs: Message[] = [];
+	isSubmitting = false;
+	changePasswordForm = new FormGroup({
+		OldPassword: new FormControl('', Validators.compose([Validators.required, Validators.minLength(6)])),
+		NewPassword: new FormControl('', Validators.compose([Validators.required, Validators.minLength(6)])),
+		ConfirmNewPassword: new FormControl('', Validators.compose([Validators.required, Validators.minLength(6)]))
+	});
+	avatarUploadForm = new FormGroup({
+		Avatar: new FormControl('', Validators.required),
+	});
 
 	constructor(
 		private appTranslationService: AppTranslationService,
-		private adminToastService: AdminToastService,
 		private appSessionService: AppSessionService,
-		private appPrivilegeService: AppPrivilegeService) {
+		private appPrivilegeService: AppPrivilegeService,
+		private userProfileService: UserProfileService) {
 	}
 
 	ngOnInit() {
@@ -32,6 +44,18 @@ export class AdminAboutMeComponent implements OnInit {
 				this.roles = s.User.Roles.map(r => r.Name);
 				this.privileges = s.User.Privileges.map(p => this.appPrivilegeService.translatePrivilege(p));
 			},
-			e => this.adminToastService.showToastMessage("error", e));
+			e => this.msgs = [{ severity: "error", detail: e }]);
+	}
+
+	onChangePassword() {
+		this.userProfileService.ChangePassword(this.changePasswordForm.value).subscribe(
+			s => this.msgs = [{ severity: "info", detail: s.Message }],
+			e => this.msgs = [{ severity: "error", detail: e }]);
+	}
+
+	onUploadAvatar() {
+		this.userProfileService.UploadAvatar(this.avatarUploadForm.value).subscribe(
+			s => this.msgs = [{ severity: "info", detail: s.Message }],
+			e => this.msgs = [{ severity: "error", detail: e }]);
 	}
 }
