@@ -1,11 +1,14 @@
 ﻿using AutoMapper;
 using Newtonsoft.Json;
+using System;
 using System.Linq;
 using ZKWeb.MVVMPlugins.MVVM.Common.MultiTenant.src.Domain.Entities;
 using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Application.Dtos;
 using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Components.PrivilegeTranslators.Interfaces;
 using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Entities;
 using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Extensions;
+using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Services;
+using ZKWeb.Storage;
 using ZKWebStandard.Ioc;
 
 namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Application.Mappers {
@@ -14,7 +17,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Application.Mappers {
 	/// </summary>
 	[ExportMany]
 	public class OrganizationMapperProfile : Profile {
-		public OrganizationMapperProfile() {
+		public OrganizationMapperProfile(UserManager userManager) {
 			// 租户
 			CreateMap<TenantInputDto, Tenant>();
 			CreateMap<Tenant, TenantOutputDto>();
@@ -32,7 +35,13 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Application.Mappers {
 				.ForMember(
 					d => d.ImplementedTypes,
 					m => m.ResolveUsing(u => u.GetImplementedUserTypes().Select(t => t.Name).ToList()))
-				.ForMember(d => d.Privileges, m => m.ResolveUsing(u => u.GetPrivileges().ToList()));
+				.ForMember(d => d.Privileges, m => m.ResolveUsing(u => u.GetPrivileges().ToList()))
+				.ForMember(
+					d => d.AvatarImageBase64,
+					m => m.ResolveUsing(u => {
+						var file = userManager.GetAvatarStorageFile(u.Id);
+						return file.Exists ? Convert.ToBase64String(file.ReadAllBytes()) : null;
+					}));
 
 			// 角色
 			CreateMap<RoleInputDto, Role>()

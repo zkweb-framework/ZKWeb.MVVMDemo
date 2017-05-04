@@ -347,7 +347,7 @@ my-app, .app-container, admin-index, admin-container, .layout-wrapper, #layout-c
 		background-color: #34495E;
 	}
 
-		#topbarDropdown > .user-header > img {
+		#topbarDropdown > .user-header > img, .user-avatar {
 			height: 45px;
 			width: 45px;
 			border: 3px solid;

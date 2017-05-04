@@ -72,7 +72,7 @@ export class AdminContainerComponent implements OnInit {
 			this.navMenuGroups = newMenuGroups;
 			// 更新当前用户的头像地址
 			if (user.AvatarImageBase64) {
-				this.avatarUrl = "data:image/png;base64," + user.AvatarImageBase64;
+				this.avatarUrl = "data:image/jpeg;base64," + user.AvatarImageBase64;
 			} else {
 				this.avatarUrl = this.defaultAvatarUrl;
 			}

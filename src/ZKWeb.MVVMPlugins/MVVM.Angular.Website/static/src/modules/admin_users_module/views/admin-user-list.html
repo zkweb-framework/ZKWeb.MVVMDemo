@@ -33,6 +33,11 @@
 						</span>
 					</div>
 				</p-header>
+				<p-column field="Avatar" [header]="'Avatar' | trans">
+					<ng-template let-row="rowData" pTemplate="body">
+						<img class="avatar user-avatar" [alt]="'Avatar' | trans" [src]="getAvatarUrl(row)" />
+					</ng-template>
+				</p-column>
 				<p-column field="Username" [header]="'Username' | trans" [filter]="true" [sortable]="true" [filterPlaceholder]="'Search' | trans"></p-column>
 				<p-column field="Type" [header]="'Type' | trans" [filter]="true" filterMatchMode="equals">
 					<ng-template pTemplate="filter" let-col>

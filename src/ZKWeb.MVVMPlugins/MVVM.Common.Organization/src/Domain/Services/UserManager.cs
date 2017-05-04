@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.DrawingCore;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using ZKWeb.Localize;
 using ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Components.Exceptions;
 using ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Domain.Filters;
 using ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Domain.Repositories.Interfaces;
@@ -16,7 +14,6 @@ using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Components.ExtraConfigKeys;
 using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Components.UserLoginHandlers.Interfaces;
 using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Entities;
 using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Entities.Interfaces;
-using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Entities.UserTypes;
 using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Extensions;
 using ZKWeb.MVVMPlugins.MVVM.Common.SessionState.src.Domain.Extensions;
 using ZKWeb.MVVMPlugins.MVVM.Common.SessionState.src.Domain.Services;
@@ -24,7 +21,6 @@ using ZKWeb.Server;
 using ZKWeb.Storage;
 using ZKWebStandard.Extensions;
 using ZKWebStandard.Ioc;
-using ZKWebStandard.Web;
 
 namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Services {
 	/// <summary>
@@ -165,19 +161,6 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Services {
 		public virtual void Logout() {
 			var sessionManager = ZKWeb.Application.Ioc.Resolve<SessionManager>();
 			sessionManager.RemoveSession(true);
-		}
-
-		/// <summary>
-		/// 获取用户头像的网页图片路径，不存在时返回默认图片路径
-		/// </summary>
-		/// <param name="userId">用户Id</param>
-		/// <returns></returns>
-		public virtual string GetAvatarWebPath(Guid userId) {
-			if (!GetAvatarStorageFile(userId).Exists) {
-				// 没有自定义头像时使用默认头像
-				return "/static/mvvm.common.organization.images/default-avatar.jpg";
-			}
-			return string.Format("/static/mvvm.common.organization.images/avatar_{0}.jpg", userId);
 		}
 
 		/// <summary>

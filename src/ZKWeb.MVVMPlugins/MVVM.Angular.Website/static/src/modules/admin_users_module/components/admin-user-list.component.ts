@@ -25,6 +25,7 @@ import { AppSessionService } from '../../auth_module/services/app-session-servic
 export class AdminUserListComponent extends CrudWithDialogBaseComponent {
 	roleOptions: SelectItem[];
 	userTypeOptions: SelectItem[];
+	defaultAvatarUrl: string = require("../../../vendor/images/default-avatar.jpg");
 
 	constructor(
 		confirmationService: ConfirmationService,
@@ -99,5 +100,13 @@ export class AdminUserListComponent extends CrudWithDialogBaseComponent {
 
 	submitRemove(obj: any) {
 		return this.userManageService.Remove(obj.Id);
+	}
+
+	getAvatarUrl(row: UserOutputDto) {
+		if (row.AvatarImageBase64) {
+			return "data:image/jpeg;base64," + row.AvatarImageBase64;
+		} else {
+			return this.defaultAvatarUrl;
+		}
 	}
 }
