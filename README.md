@@ -21,7 +21,6 @@ MVVM demo for zkweb framework
 	- Support manage tenants
 	- Support manage roles
 	- Support manage users
-- TODO
 
 ### How to start
 

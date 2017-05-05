@@ -1,5 +1,4 @@
 ﻿import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { Message, MenuItem } from 'primeng/primeng';
 import { NavMenuGroup } from '../navigation/nav-menu-group';
 import { AdminNavMenu } from '../navigation/admin-nav-menu';
@@ -28,7 +27,6 @@ export class AdminContainerComponent implements OnInit {
 	switchTimezoneItems: MenuItem[] = [];
 
 	constructor(
-		private router: Router,
 		private appConfigService: AppConfigService,
 		private appTranslationService: AppTranslationService,
 		private appSessionService: AppSessionService,
@@ -136,7 +134,7 @@ export class AdminContainerComponent implements OnInit {
 	/** 退出登录 */
 	logout(e) {
 		this.appConfigService.setSessionId("");
-		this.router.navigate(['/']);
+		location.href = location.href;
 		e.preventDefault();
 	}
 
