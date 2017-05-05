@@ -21,4 +21,10 @@ export class Privileges {
 	public static Settings_WebsiteSettings = "Settings:WebsiteSettings";
 	/** 定时任务:查看 */
 	public static ScheduledTask_View = "ScheduledTask:View";
+	/** 示例数据:查看 */
+	public static ExampleData_View = "ExampleData:View";
+	/** 示例数据:编辑 */
+	public static ExampleData_Edit = "ExampleData:Edit";
+	/** 示例数据:删除 */
+	public static ExampleData_Remove = "ExampleData:Remove";
 }

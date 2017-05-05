@@ -122,6 +122,10 @@ export class Translation_zh_CN {
 		"ErrorMessage": "错误信息",
 		"IsSuccess": "是否成功",
 		"Switch Language": "切换语言",
-		"Switch Timezone": "切换时区"
+		"Switch Timezone": "切换时区",
+		"ExampleData": "示例数据",
+		"Example Datas": "示例数据",
+		"Edit ExampleData": "编辑示例数据",
+		"ExampleData Manage": "示例数据管理"
 	};
 }

@@ -83,4 +83,19 @@ export const AdminNavMenu: NavMenuGroup[] = [
 			},
 		]
 	},
+	{
+		name: "Example Datas",
+		icon: "fa fa-database",
+		items: [
+			{
+				name: "Example Datas",
+				icon: "fa fa-database",
+				url: ["/admin", "example_datas"],
+				auth: {
+					requireUserType: UserTypes.IAmAdmin,
+					requirePrivileges: [Privileges.ExampleData_View]
+				}
+			},
+		]
+	}
 ];

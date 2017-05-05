@@ -8,6 +8,7 @@ import { UserLoginService } from './services/user-login-service';
 import { UserManageService } from './services/user-manage-service';
 import { UserProfileService } from './services/user-profile-service';
 import { WebsiteManageService } from './services/website-manage-service';
+import { ExampleDataManageService } from './services/example-data-manage-service';
 
 @NgModule({
 	imports: [BaseModule],
@@ -19,7 +20,8 @@ import { WebsiteManageService } from './services/website-manage-service';
 		UserLoginService,
 		UserManageService,
 		UserProfileService,
-		WebsiteManageService
+		WebsiteManageService,
+		ExampleDataManageService
 	]
 })
 export class GeneratedModule { }

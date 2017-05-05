@@ -13,6 +13,7 @@
 		"MVVM.Common.SessionState",
 		"MVVM.Common.Captcha",
 		"MVVM.Common.Organization",
+		"MVVM.Example.CrudExample",
 		"MVVM.Angular.Support",
 		"MVVM.Angular.Website"
 	]

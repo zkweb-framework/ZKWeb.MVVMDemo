@@ -45,12 +45,12 @@ export class AppConfigService {
 		// 从本地储存中获取会话Id，关闭浏览器再打开后也可以继续使用
 		this.sessionId = localStorage.getItem(this.sessionIdKey);
 		// 从本地储存获取语言
-		var language = localStorage.getItem(this.languageKey);
+		let language = localStorage.getItem(this.languageKey);
 		if (language) {
 			this.language = language;
 		}
 		// 从本地储存获取时区
-		var timezone = localStorage.getItem(this.timezoneKey);
+		let timezone = localStorage.getItem(this.timezoneKey);
 		if (timezone) {
 			this.timezone = timezone;
 		}

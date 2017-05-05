@@ -69,7 +69,6 @@ export class AdminUserListComponent extends CrudWithDialogBaseComponent {
 
 	getAddRequirement() {
 		return {
-			requireMasterUser: true,
 			requireUserType: UserTypes.IAmAdmin,
 			requirePrivileges: [Privileges.User_Edit]
 		};
@@ -77,7 +76,6 @@ export class AdminUserListComponent extends CrudWithDialogBaseComponent {
 
 	getEditRequirement() {
 		return {
-			requireMasterUser: true,
 			requireUserType: UserTypes.IAmAdmin,
 			requirePrivileges: [Privileges.User_Edit]
 		};
@@ -85,7 +83,6 @@ export class AdminUserListComponent extends CrudWithDialogBaseComponent {
 
 	getRemoveRequirement() {
 		return {
-			requireMasterUser: true,
 			requireUserType: UserTypes.IAmAdmin,
 			requirePrivileges: [Privileges.User_Remove]
 		};
