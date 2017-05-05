@@ -1,66 +1,52 @@
-﻿<admin-container>
-	<div class="portlet">
-		<h3 class="portlet-title">
-			<i class="fa fa-legal"></i>
-			<span class="caption-subject">{{ "ExampleData Manage" | trans }}</span>
-		</h3>
-		<div class="portlet-body">
-			<p-messages [value]="msgs"></p-messages>
-			<p-dataTable [value]="value"
-						 [paginator]="true"
-						 [rows]="rows"
-						 [totalRecords]="totalRecords"
-						 [rowsPerPageOptions]="rowsPerPageOptions"
-						 [globalFilter]="globalFilter"
-						 [resizableColumns]="true"
-						 [reorderableColumns]="true"
-						 [emptyMessage]="emptyMessage"
-						 scrollable="true"
-						 scrollHeight="300px"
-						 sortField="CreateTime"
-						 sortOrder="-1"
-						 [lazy]="true"
-						 (onLazyLoad)="search($event)"
-						 [loading]="loading" #table>
-				<p-header>
-					<div class="ui-helper-clearfix">
-						<span class="pull-left">
+﻿<!--<admin-container>-->
+<div class="portlet">
+    <h3 class="portlet-title">
+        <i class="fa fa-legal"></i>
+        <span class="caption-subject">{{ "ExampleData Manage" | trans }}</span>
+    </h3>
+    <div class="portlet-body">
+        <p-messages [value]="msgs"></p-messages>
+        <p-dataTable [value]="value" [paginator]="true" [rows]="rows" [totalRecords]="totalRecords" [rowsPerPageOptions]="rowsPerPageOptions" [globalFilter]="globalFilter" [resizableColumns]="true" [reorderableColumns]="true" [emptyMessage]="emptyMessage" scrollable="true"
+            scrollHeight="300px" sortField="CreateTime" sortOrder="-1" [lazy]="true" (onLazyLoad)="search($event)" [loading]="loading" #table>
+            <p-header>
+                <div class="ui-helper-clearfix">
+                    <span class="pull-left">
 							<button type="button" pButton icon="fa-plus" (click)="add()" *ngIf="allowAdd" [label]="'Add' | trans"></button>
 						</span>
-						<span class="pull-right">
+                    <span class="pull-right">
 							<i class="fa fa-search search-icon"></i>
 							<input #globalFilter type="text" pInputText [placeholder]="'Name/Remark' | trans">
 						</span>
-					</div>
-				</p-header>
-				<p-column field="Name" [header]="'Name' | trans" [filter]="true" [sortable]="true" [filterPlaceholder]="'Search' | trans"></p-column>
-				<p-column field="Description" [header]="'Description' | trans" [filter]="true" [sortable]="true" [filterPlaceholder]="'Search' | trans"></p-column>
-				<p-column field="CreateTime" [header]="'CreateTime' | trans" [sortable]="true"></p-column>
-				<p-column field="UpdateTime" [header]="'UpdateTime' | trans" [sortable]="true"></p-column>
-				<p-column [header]="'Actions' | trans" styleClass="col-button" *ngIf="allowEdit || allowRemove">
-					<ng-template let-row="rowData" pTemplate="body">
-						<button type="button" pButton (click)="edit(row)" *ngIf="allowEdit" icon="fa-edit"></button>
-						<button type="button" pButton (click)="remove(row)" *ngIf="allowRemove" icon="fa-remove"></button>
-					</ng-template>
-				</p-column>
-			</p-dataTable>
-		</div>
-	</div>
-	<p-confirmDialog [header]="'Confirmation' | trans" [acceptLabel]="'Yes' | trans" [rejectLabel]="'No' | trans" icon="fa fa-question-circle" width="380"></p-confirmDialog>
-	<p-dialog [header]="'Edit ExampleData' | trans" [(visible)]="editDialogVisible" modal="modal" width="500" responsive="true">
-		<form [formGroup]="editForm" (ngSubmit)="editDialogSubmit()">
-			<p-messages [value]="editMsgs"></p-messages>
-			<z-form-grid>
-				<z-form-hidden [formGroup]="editForm" fieldName="Id"></z-form-hidden>
-				<z-form-text [formGroup]="editForm" fieldName="Name"></z-form-text>
-				<z-form-textarea [formGroup]="editForm" fieldName="Description"></z-form-textarea>
-			</z-form-grid>
-		</form>
-		<p-footer>
-			<div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
-				<button type="button" pButton icon="fa-close" (click)="editDialogClose()" [label]="'Cancel' | trans"></button>
-				<button type="button" pButton icon="fa-check" (click)="editDialogSubmit()" [label]="'Submit' | trans" [disabled]="!editForm.valid || editFormSubmitting"></button>
-			</div>
-		</p-footer>
-	</p-dialog>
-</admin-container>
+                </div>
+            </p-header>
+            <p-column field="Name" [header]="'Name' | trans" [filter]="true" [sortable]="true" [filterPlaceholder]="'Search' | trans"></p-column>
+            <p-column field="Description" [header]="'Description' | trans" [filter]="true" [sortable]="true" [filterPlaceholder]="'Search' | trans"></p-column>
+            <p-column field="CreateTime" [header]="'CreateTime' | trans" [sortable]="true"></p-column>
+            <p-column field="UpdateTime" [header]="'UpdateTime' | trans" [sortable]="true"></p-column>
+            <p-column [header]="'Actions' | trans" styleClass="col-button" *ngIf="allowEdit || allowRemove">
+                <ng-template let-row="rowData" pTemplate="body">
+                    <button type="button" pButton (click)="edit(row)" *ngIf="allowEdit" icon="fa-edit"></button>
+                    <button type="button" pButton (click)="remove(row)" *ngIf="allowRemove" icon="fa-remove"></button>
+                </ng-template>
+            </p-column>
+        </p-dataTable>
+    </div>
+</div>
+<p-confirmDialog [header]="'Confirmation' | trans" [acceptLabel]="'Yes' | trans" [rejectLabel]="'No' | trans" icon="fa fa-question-circle" width="380"></p-confirmDialog>
+<p-dialog [header]="'Edit ExampleData' | trans" [(visible)]="editDialogVisible" modal="modal" width="500" responsive="true">
+    <form [formGroup]="editForm" (ngSubmit)="editDialogSubmit()">
+        <p-messages [value]="editMsgs"></p-messages>
+        <z-form-grid>
+            <z-form-hidden [formGroup]="editForm" fieldName="Id"></z-form-hidden>
+            <z-form-text [formGroup]="editForm" fieldName="Name"></z-form-text>
+            <z-form-textarea [formGroup]="editForm" fieldName="Description"></z-form-textarea>
+        </z-form-grid>
+    </form>
+    <p-footer>
+        <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+            <button type="button" pButton icon="fa-close" (click)="editDialogClose()" [label]="'Cancel' | trans"></button>
+            <button type="button" pButton icon="fa-check" (click)="editDialogSubmit()" [label]="'Submit' | trans" [disabled]="!editForm.valid || editFormSubmitting"></button>
+        </div>
+    </p-footer>
+</p-dialog>
+<!--</admin-container>-->
