@@ -1,5 +1,7 @@
 MVVM demo for zkweb framework
 
+![preview](./docs/preview.jpg)
+
 ### Features
 
 - Use Angular JS 4.0 + Webpack 2.0
