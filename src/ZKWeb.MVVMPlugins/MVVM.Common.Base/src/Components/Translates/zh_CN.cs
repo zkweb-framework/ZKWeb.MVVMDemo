@@ -36,7 +36,11 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Components.Translates {
 				{ "View", "查看" },
 				{ "Network error, please check your internet connection", "网络错误，请检查您的网络连接" },
 				{ "File extension is not allowed", "不允许上传此类型的文件" },
-				{ "File is too big, the maximum size allowed is {0}", "文件过大，最大允许上传的大小是{0}" }
+				{ "File is too big, the maximum size allowed is {0}", "文件过大，最大允许上传的大小是{0}" },
+				{ "zh-CN", "中文" },
+				{ "en-US", "英语" },
+				{ "Asia/Shanghai", "亚洲/上海" },
+				{ "America/New_York", "美国/纽约" }
 			};
 		}
 	}

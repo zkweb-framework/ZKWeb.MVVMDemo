@@ -108,7 +108,9 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Components.Translates {
 				{ "First Executed Time", "首次执行时间" },
 				{ "Last Executed Time", "上次执行时间" },
 				{ "ErrorMessage", "错误信息" },
-				{ "IsSuccess", "是否成功" }
+				{ "IsSuccess", "是否成功" },
+				{ "Switch Language", "切换语言" },
+				{ "Switch Timezone", "切换时区" }
 			};
 		}
 	}

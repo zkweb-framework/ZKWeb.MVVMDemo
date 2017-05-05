@@ -1,4 +1,4 @@
-/** zh-CN */
+/** 中文 */
 export class Translation_zh_CN {
 	public static language = "zh-CN";
 	public static translations: { [key: string]: string } = {
@@ -24,6 +24,10 @@ export class Translation_zh_CN {
 		"Network error, please check your internet connection": "网络错误，请检查您的网络连接",
 		"File extension is not allowed": "不允许上传此类型的文件",
 		"File is too big, the maximum size allowed is {0}": "文件过大，最大允许上传的大小是{0}",
+		"zh-CN": "中文",
+		"en-US": "英语",
+		"Asia/Shanghai": "亚洲/上海",
+		"America/New_York": "美国/纽约",
 		"Admin Login": "管理员登录",
 		"Tenant": "租户",
 		"Username": "用户名",
@@ -116,6 +120,8 @@ export class Translation_zh_CN {
 		"First Executed Time": "首次执行时间",
 		"Last Executed Time": "上次执行时间",
 		"ErrorMessage": "错误信息",
-		"IsSuccess": "是否成功"
+		"IsSuccess": "是否成功",
+		"Switch Language": "切换语言",
+		"Switch Timezone": "切换时区"
 	};
 }

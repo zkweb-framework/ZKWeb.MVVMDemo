@@ -204,20 +204,19 @@ my-app, .app-container, admin-index, admin-container, .layout-wrapper, #layout-c
 }
 
 .topbar-link {
-	float: right;
-	width: 80px;
 	height: 50px;
+	line-height: 48px;
 	text-align: center;
-	padding: 10px 5px;
+	padding: 0px 8px;
 	font-size: 12px;
-	margin-left: 5px;
 	-webkit-transition: all 0.5s ease;
 	-moz-transition: all 0.5s ease;
 	-ms-transition: all 0.5s ease;
 	-o-transition: all 0.5s ease;
 	transition: all 0.5s ease;
 	overflow: hidden;
-	color: #313b3f;
+	color: #fff;
+	float: left;
 }
 
 	.topbar-link:hover {
@@ -235,12 +234,12 @@ my-app, .app-container, admin-index, admin-container, .layout-wrapper, #layout-c
 		display: block;
 		float: left;
 		border-radius: 50%;
+		margin: 11px 6px 0px 0px;
 	}
 
 	.topbar-link > span {
-		color: #ccc;
-		line-height: 25px;
 		display: block;
+		float: left;
 	}
 /*
 .PFGrayText {
@@ -337,7 +336,7 @@ my-app, .app-container, admin-index, admin-container, .layout-wrapper, #layout-c
 	-webkit-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
 	-moz-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
 	box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
-	margin: 15px 0px 0px -240px;
+	margin: 0px 0px 0px -248px;
 }
 
 	#topbarDropdown > .user-header {
@@ -367,11 +366,16 @@ my-app, .app-container, admin-index, admin-container, .layout-wrapper, #layout-c
 		border-bottom: solid 1px #dde3e7;
 		color: #87939B;
 		overflow: hidden;
+		line-height: 15px;
 	}
 
 		#topbarDropdown a:hover {
 			color: #34495E;
 		}
+
+	#topbarDropdown .placeholder {
+		line-height: 1px;
+	}
 
 .topbar-link {
 	display: block
@@ -1140,4 +1144,9 @@ body .ui-datatable .ui-datatable-thead > tr > th,
 /* 修复下拉框的宽度问题 */
 .ui-fluid .ui-dropdown {
 	width: 100% !important;
+}
+
+/* 弹出菜单项的文本向左对齐 */
+.ui-menu-list {
+	text-align: left;
 }

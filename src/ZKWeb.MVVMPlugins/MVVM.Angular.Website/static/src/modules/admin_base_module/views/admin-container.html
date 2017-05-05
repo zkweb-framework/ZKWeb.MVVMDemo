@@ -39,13 +39,18 @@
 			</div>
 
 			<div class="pull-right">
-				<p-slideMenu #switchLanguageMenu [model]="switchLanguageItems" [popup]="true"></p-slideMenu>
-				<p-slideMenu #switchTimezoneMenu [model]="switchTimezoneItems" [popup]="true"></p-slideMenu>
-				<a class="menu-item" (click)="switchLanguageMenu.toggle($event)">{{ "Switch Language" | trans }}</a>
-				<a class="menu-item" (click)="switchTimezoneMenu.toggle($event)">{{ "Switch Timezone" | trans }}</a>
+				<a class="topbar-link" (click)="switchLanguageMenu.toggle($event)">
+					{{ "Switch Language" | trans }}
+					<p-slideMenu #switchLanguageMenu [model]="switchLanguageItems" [popup]="true"></p-slideMenu>
+				</a>
+				<a class="topbar-link" (click)="switchTimezoneMenu.toggle($event)">
+					{{ "Switch Timezone" | trans }}
+					<p-slideMenu #switchTimezoneMenu [model]="switchTimezoneItems" [popup]="true"></p-slideMenu>
+				</a>
 				<a class="topbar-link" (mouseenter)="dropdownVisible = true" (mouseleave)="dropdownVisible = false">
 					<img class="avatar" [src]="avatarUrl" />
 					<span class="username">{{ username }}</span>
+					<div class="clearfix"></div>
 					<div id="topbarDropdown" [style.display]="dropdownVisible ? 'block' : 'none'">
 						<div class="user-header">
 							<img class="avatar" [src]="avatarUrl" />
@@ -63,15 +68,19 @@
 								<a href="#" (click)="clearCache($event)">{{ "Clear Cache" | trans }}</a>
 							</div>
 						</div>
-						<div class="user-footer">
-							<div class="pull-left">
+						<div class="user-footer ui-grid ui-grid-pad ui-fluid">
+							<div class="ui-grid-col-4 text-center">
 								<a class="" [routerLink]="['/admin', 'about_me']">{{ "About Me" | trans }}</a>
 							</div>
-							<div class="pull-right">
+							<div class="ui-grid-col-4 text-center placeholder">
+								<span>&nbsp;</span>
+							</div>
+							<div class="ui-grid-col-4 text-center">
 								<a class="" href="#" (click)="logout($event)">{{ "Logout" | trans }}</a>
 							</div>
 						</div>
 					</div>
+					<div class="clearfix"></div>
 				</a>
 			</div>
 		</div>

@@ -4,6 +4,7 @@ import { Message, MenuItem } from 'primeng/primeng';
 import { NavMenuGroup } from '../navigation/nav-menu-group';
 import { AdminNavMenu } from '../navigation/admin-nav-menu';
 import { AppConfigService } from '../../base_module/services/app-config-service';
+import { AppTranslationService } from '../../base_module/services/app-translation-service';
 import { AppSessionService } from '../../auth_module/services/app-session-service';
 import { AppPrivilegeService } from '../../auth_module/services/app-privilege-service';
 import { WebsiteManageService } from '../../generated_module/services/website-manage-service';
@@ -23,14 +24,13 @@ export class AdminContainerComponent implements OnInit {
 	defaultAvatarUrl: string = require("../../../vendor/images/default-avatar.jpg");
 	avatarUrl: string = this.defaultAvatarUrl;
 	username: string;
-	switchLanguageItems: MenuItem[] = [
-	];
-	switchTimezoneItems: MenuItem[] = [
-	];
+	switchLanguageItems: MenuItem[] = [];
+	switchTimezoneItems: MenuItem[] = [];
 
 	constructor(
 		private router: Router,
 		private appConfigService: AppConfigService,
+		private appTranslationService: AppTranslationService,
 		private appSessionService: AppSessionService,
 		private appPrivilegeService: AppPrivilegeService,
 		private websiteManageService: WebsiteManageService,
@@ -83,6 +83,32 @@ export class AdminContainerComponent implements OnInit {
 			// 更新当前用户的用户名
 			this.username = user.Username;
 		});
+		// 更新切换语言的菜单
+		this.switchLanguageItems = [
+			{
+				label: this.appTranslationService.translate("zh-CN"),
+				icon: "fa-language",
+				command: () => this.switchLanguage("zh-CN")
+			},
+			{
+				label: this.appTranslationService.translate("en-US"),
+				icon: "fa-language",
+				command: () => this.switchLanguage("en-US")
+			}
+		];
+		// 更新切换时区的菜单
+		this.switchTimezoneItems = [
+			{
+				label: this.appTranslationService.translate("Asia/Shanghai"),
+				icon: "fa-clock-o",
+				command: () => this.switchTimezone("Asia/Shanghai")
+			},
+			{
+				label: this.appTranslationService.translate("America/New_York"),
+				icon: "fa-clock-o",
+				command: () => this.switchTimezone("America/New_York")
+			}
+		];
 	}
 
 	/** 切换手机版菜单的显示 */
@@ -112,5 +138,17 @@ export class AdminContainerComponent implements OnInit {
 		this.appConfigService.setSessionId("");
 		this.router.navigate(['/']);
 		e.preventDefault();
+	}
+
+	/** 切换语言 */
+	switchLanguage(language: string) {
+		this.appConfigService.setLanguage(language);
+		location.href = location.href;
+	}
+
+	/** 切换时区 */
+	switchTimezone(timezone: string) {
+		this.appConfigService.setTimezone(timezone);
+		location.href = location.href;
 	}
 }
