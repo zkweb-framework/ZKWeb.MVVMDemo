@@ -55,9 +55,9 @@ namespace ZKWeb.MVVMPlugins.MVVM.Example.CrudExample.src.Domain.Entities {
 		/// </summary>
 		public void Configure(IEntityMappingBuilder<ExampleData> builder) {
 			builder.Id(e => e.Id);
-			builder.Map(e => e.Name, new EntityMappingOptions() { Index = "Idx_Name" });
+			builder.Map(e => e.Name, new EntityMappingOptions() { Index = "Idx_ExampleData_Name" });
 			builder.Map(e => e.Description);
-			builder.Map(e => e.CreateTime);
+			builder.Map(e => e.CreateTime, new EntityMappingOptions() { Index = "Idx_ExampleData_CreateTime" });
 			builder.Map(e => e.UpdateTime);
 			builder.Map(e => e.Deleted);
 			builder.References(e => e.OwnerTenant, new EntityMappingOptions() { Nullable = false });
