@@ -3,11 +3,11 @@ import { FormFieldBaseComponent } from './form-field-base.component';
 import { SelectItem } from 'primeng/primeng';
 
 @Component({
-	selector: 'z-form-multiselect',
-	templateUrl: '../views/form-multiselect.html',
-	host: { 'class': 'ui-grid-row' }
+    selector: 'z-form-multiselect',
+    templateUrl: '../views/form-multiselect.html',
+    host: { 'class': 'ui-grid-row' }
 })
 export class FormMultiSelectComponent extends FormFieldBaseComponent {
-	@Input() options: SelectItem[];
-	@Input() defaultLabel: null;
+    @Input() options: SelectItem[];
+    @Input() defaultLabel: null;
 }

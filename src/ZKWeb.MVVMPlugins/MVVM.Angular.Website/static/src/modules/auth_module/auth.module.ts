@@ -8,15 +8,15 @@ import { AppPrivilegeService } from './services/app-privilege-service';
 import { AppSessionService } from './services/app-session-service';
 
 @NgModule({
-	imports: [
-		CommonModule,
-		BaseModule,
-		GeneratedModule
-	],
-	providers: [
-		AuthGuard,
-		AppPrivilegeService,
-		AppSessionService
-	]
+    imports: [
+        CommonModule,
+        BaseModule,
+        GeneratedModule
+    ],
+    providers: [
+        AuthGuard,
+        AppPrivilegeService,
+        AppSessionService
+    ]
 })
 export class AuthModule { }

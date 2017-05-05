@@ -1,7 +1,7 @@
 /** 中文 */
 export class Translation_zh_CN {
-	public static language = "zh-CN";
-	public static translations: { [key: string]: string } = {
+    public static language = "zh-CN";
+    public static translations: { [key: string]: string } = {
 		"Submit": "提交",
 		"Cancel": "取消",
 		"{0} is required": "请填写{0}",

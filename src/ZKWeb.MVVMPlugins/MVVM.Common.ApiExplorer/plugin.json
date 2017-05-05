@@ -1,6 +1,6 @@
 {
-	"Name": "Api Explorer For MVVM",
-	"Version": "1.0",
-	"Description": "Provide support for swagger api explorer",
-	"Dependencies": [ "MVVM.Common.Base" ]
+    "Name": "Api Explorer For MVVM",
+    "Version": "1.0",
+    "Description": "Provide support for swagger api explorer",
+    "Dependencies": [ "MVVM.Common.Base" ]
 }

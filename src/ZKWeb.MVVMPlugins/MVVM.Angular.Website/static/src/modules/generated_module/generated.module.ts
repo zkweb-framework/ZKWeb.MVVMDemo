@@ -11,17 +11,17 @@ import { WebsiteManageService } from './services/website-manage-service';
 import { ExampleDataManageService } from './services/example-data-manage-service';
 
 @NgModule({
-	imports: [BaseModule],
-	providers: [
-		CaptchaService,
-		RoleManageService,
-		SessionService,
-		TenantManageService,
-		UserLoginService,
-		UserManageService,
-		UserProfileService,
-		WebsiteManageService,
-		ExampleDataManageService
-	]
+    imports: [BaseModule],
+    providers: [
+        CaptchaService,
+        RoleManageService,
+        SessionService,
+        TenantManageService,
+        UserLoginService,
+        UserManageService,
+        UserProfileService,
+        WebsiteManageService,
+        ExampleDataManageService
+    ]
 })
 export class GeneratedModule { }

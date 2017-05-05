@@ -12,70 +12,70 @@ import { AppPrivilegeService } from '../../auth_module/services/app-privilege-se
 import { AppSessionService } from '../../auth_module/services/app-session-service';
 
 @Component({
-	selector: 'admin-tenant-list',
-	templateUrl: '../views/admin-tenant-list.html',
-	providers: [ConfirmationService]
+    selector: 'admin-tenant-list',
+    templateUrl: '../views/admin-tenant-list.html',
+    providers: [ConfirmationService]
 })
 export class AdminTenantListComponent extends CrudWithDialogBaseComponent {
-	isMasterOptions: SelectItem[];
+    isMasterOptions: SelectItem[];
 
-	constructor(
-		confirmationService: ConfirmationService,
-		appSessionService: AppSessionService,
-		appPrivilegeService: AppPrivilegeService,
-		appTranslationService: AppTranslationService,
-		private tenantManageService: TenantManageService) {
-		super(confirmationService, appSessionService, appPrivilegeService, appTranslationService);
-	}
+    constructor(
+        confirmationService: ConfirmationService,
+        appSessionService: AppSessionService,
+        appPrivilegeService: AppPrivilegeService,
+        appTranslationService: AppTranslationService,
+        private tenantManageService: TenantManageService) {
+        super(confirmationService, appSessionService, appPrivilegeService, appTranslationService);
+    }
 
-	ngOnInit() {
-		super.ngOnInit();
-		this.isMasterOptions = [
-			{ label: this.appTranslationService.translate("Please Select"), value: null },
-			{ label: this.appTranslationService.translate("Yes"), value: true },
-			{ label: this.appTranslationService.translate("No"), value: false },
-		];
-		this.editForm.addControl("Id", new FormControl(""));
-		this.editForm.addControl("Name", new FormControl("", Validators.required));
-		this.editForm.addControl("SuperAdminName", new FormControl("", Validators.required));
-		this.editForm.addControl("SuperAdminPassword", new FormControl("", Validators.minLength(6)));
-		this.editForm.addControl("SuperAdminConfirmPassword", new FormControl("", Validators.minLength(6)));
-		this.editForm.addControl("Remark", new FormControl(""));
-	}
+    ngOnInit() {
+        super.ngOnInit();
+        this.isMasterOptions = [
+            { label: this.appTranslationService.translate("Please Select"), value: null },
+            { label: this.appTranslationService.translate("Yes"), value: true },
+            { label: this.appTranslationService.translate("No"), value: false },
+        ];
+        this.editForm.addControl("Id", new FormControl(""));
+        this.editForm.addControl("Name", new FormControl("", Validators.required));
+        this.editForm.addControl("SuperAdminName", new FormControl("", Validators.required));
+        this.editForm.addControl("SuperAdminPassword", new FormControl("", Validators.minLength(6)));
+        this.editForm.addControl("SuperAdminConfirmPassword", new FormControl("", Validators.minLength(6)));
+        this.editForm.addControl("Remark", new FormControl(""));
+    }
 
-	submitSearch(request: GridSearchRequestDto) {
-		return this.tenantManageService.Search(request);
-	}
+    submitSearch(request: GridSearchRequestDto) {
+        return this.tenantManageService.Search(request);
+    }
 
-	getAddRequirement() {
-		return {
-			requireMasterTenant: true,
-			requireUserType: UserTypes.IAmAdmin,
-			requirePrivileges: [Privileges.Tenant_Edit]
-		};
-	}
+    getAddRequirement() {
+        return {
+            requireMasterTenant: true,
+            requireUserType: UserTypes.IAmAdmin,
+            requirePrivileges: [Privileges.Tenant_Edit]
+        };
+    }
 
-	getEditRequirement() {
-		return {
-			requireMasterTenant: true,
-			requireUserType: UserTypes.IAmAdmin,
-			requirePrivileges: [Privileges.Tenant_Edit]
-		};
-	}
+    getEditRequirement() {
+        return {
+            requireMasterTenant: true,
+            requireUserType: UserTypes.IAmAdmin,
+            requirePrivileges: [Privileges.Tenant_Edit]
+        };
+    }
 
-	getRemoveRequirement() {
-		return {
-			requireMasterTenant: true,
-			requireUserType: UserTypes.IAmAdmin,
-			requirePrivileges: [Privileges.Tenant_Remove]
-		};
-	}
+    getRemoveRequirement() {
+        return {
+            requireMasterTenant: true,
+            requireUserType: UserTypes.IAmAdmin,
+            requirePrivileges: [Privileges.Tenant_Remove]
+        };
+    }
 
-	submitEdit(obj: any) {
-		return this.tenantManageService.Edit(obj);
-	}
+    submitEdit(obj: any) {
+        return this.tenantManageService.Edit(obj);
+    }
 
-	submitRemove(obj: any) {
-		return this.tenantManageService.Remove(obj.Id);
-	}
+    submitRemove(obj: any) {
+        return this.tenantManageService.Remove(obj.Id);
+    }
 }

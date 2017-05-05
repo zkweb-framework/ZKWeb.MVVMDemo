@@ -1,7 +1,7 @@
 ﻿<div class="ui-grid-col-{{ labelGridWidth }}">
-	{{ translatedDisplayName }}:
+    {{ translatedDisplayName }}:
 </div>
 <div class="ui-grid-col-{{ fieldGridWidth }}" [formGroup]="formGroup">
-	<input pInputText type="text" [formControlName]="fieldName" [placeholder]="translatedPlaceHolder" />
-	<z-form-validation-messages [formGroup]="formGroup" [fieldName]="fieldName" [displayName]="displayName" [validationMessages]="validationMessages"></z-form-validation-messages>
+    <input pInputText type="text" [formControlName]="fieldName" [placeholder]="translatedPlaceHolder" />
+    <z-form-validation-messages [formGroup]="formGroup" [fieldName]="fieldName" [displayName]="displayName" [validationMessages]="validationMessages"></z-form-validation-messages>
 </div>

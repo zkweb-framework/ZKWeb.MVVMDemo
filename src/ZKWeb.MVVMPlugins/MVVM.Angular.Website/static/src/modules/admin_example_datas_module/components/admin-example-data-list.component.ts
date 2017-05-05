@@ -11,58 +11,58 @@ import { AppPrivilegeService } from '../../auth_module/services/app-privilege-se
 import { AppSessionService } from '../../auth_module/services/app-session-service';
 
 @Component({
-	selector: 'admin-example-data-list',
-	templateUrl: '../views/admin-example-data-list.html',
-	providers: [ConfirmationService]
+    selector: 'admin-example-data-list',
+    templateUrl: '../views/admin-example-data-list.html',
+    providers: [ConfirmationService]
 })
 export class AdminExampleDataListComponent extends CrudWithDialogBaseComponent {
-	constructor(
-		confirmationService: ConfirmationService,
-		appSessionService: AppSessionService,
-		appPrivilegeService: AppPrivilegeService,
-		appTranslationService: AppTranslationService,
-		private exampleDataManageService: ExampleDataManageService) {
-		super(confirmationService, appSessionService, appPrivilegeService, appTranslationService);
-	}
+    constructor(
+        confirmationService: ConfirmationService,
+        appSessionService: AppSessionService,
+        appPrivilegeService: AppPrivilegeService,
+        appTranslationService: AppTranslationService,
+        private exampleDataManageService: ExampleDataManageService) {
+        super(confirmationService, appSessionService, appPrivilegeService, appTranslationService);
+    }
 
-	ngOnInit() {
-		super.ngOnInit();
-		this.editForm.addControl("Id", new FormControl(""));
-		this.editForm.addControl("Name", new FormControl("", Validators.required));
-		this.editForm.addControl("Description", new FormControl([]));
-	}
+    ngOnInit() {
+        super.ngOnInit();
+        this.editForm.addControl("Id", new FormControl(""));
+        this.editForm.addControl("Name", new FormControl("", Validators.required));
+        this.editForm.addControl("Description", new FormControl([]));
+    }
 
-	submitSearch(request: GridSearchRequestDto) {
-		return this.exampleDataManageService.Search(request);
-	}
+    submitSearch(request: GridSearchRequestDto) {
+        return this.exampleDataManageService.Search(request);
+    }
 
-	getAddRequirement() {
-		return {
-			requireUserType: UserTypes.IAmAdmin,
-			requirePrivileges: [Privileges.ExampleData_Edit]
-		};
-	}
+    getAddRequirement() {
+        return {
+            requireUserType: UserTypes.IAmAdmin,
+            requirePrivileges: [Privileges.ExampleData_Edit]
+        };
+    }
 
-	getEditRequirement() {
-		return {
-			requireUserType: UserTypes.IAmAdmin,
-			requirePrivileges: [Privileges.ExampleData_Edit]
-		};
-	}
+    getEditRequirement() {
+        return {
+            requireUserType: UserTypes.IAmAdmin,
+            requirePrivileges: [Privileges.ExampleData_Edit]
+        };
+    }
 
-	getRemoveRequirement() {
-		return {
-			requireMasterExampleData: true,
-			requireUserType: UserTypes.IAmAdmin,
-			requirePrivileges: [Privileges.ExampleData_Remove]
-		};
-	}
+    getRemoveRequirement() {
+        return {
+            requireMasterExampleData: true,
+            requireUserType: UserTypes.IAmAdmin,
+            requirePrivileges: [Privileges.ExampleData_Remove]
+        };
+    }
 
-	submitEdit(obj: any) {
-		return this.exampleDataManageService.Edit(obj);
-	}
+    submitEdit(obj: any) {
+        return this.exampleDataManageService.Edit(obj);
+    }
 
-	submitRemove(obj: any) {
-		return this.exampleDataManageService.Remove(obj.Id);
-	}
+    submitRemove(obj: any) {
+        return this.exampleDataManageService.Remove(obj.Id);
+    }
 }

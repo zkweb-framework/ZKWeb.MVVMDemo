@@ -1,9 +1,9 @@
 {
-	"Name": "AngularJS website support",
-	"Version": "1.0",
-	"Description": "AngularJS website support",
-	"Dependencies": [
-		"MVVM.Common.Base",
-		"MVVM.Common.Organization"
-	]
+    "Name": "AngularJS website support",
+    "Version": "1.0",
+    "Description": "AngularJS website support",
+    "Dependencies": [
+        "MVVM.Common.Base",
+        "MVVM.Common.Organization"
+    ]
 }

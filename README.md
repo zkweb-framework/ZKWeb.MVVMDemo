@@ -5,9 +5,9 @@ MVVM demo for zkweb framework
 ### Features
 
 - Use Angular JS 4.0 + Webpack 2.0
-	- Support automatic generate script form dto and application service
-	- Support return pre-compressed script bundle
-	- Support CORS api request
+    - Support automatic generate script form dto and application service
+    - Support return pre-compressed script bundle
+    - Support CORS api request
 - Use Entity Framework Core
 - Use Swagger
 - Use AutoMapper
@@ -16,13 +16,13 @@ MVVM demo for zkweb framework
 - Support multi-language
 - Support multi-timezone
 - Support unit of work
-	- Support query filter
-	- Support operation filter
+    - Support query filter
+    - Support operation filter
 - Support automatic validate DTOs from request
 - Provide default admin panel with PrimeNG
-	- Support manage tenants
-	- Support manage roles
-	- Support manage users
+    - Support manage tenants
+    - Support manage roles
+    - Support manage users
 
 ### How to start
 

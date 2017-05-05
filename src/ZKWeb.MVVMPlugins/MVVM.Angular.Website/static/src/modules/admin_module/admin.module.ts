@@ -3,13 +3,13 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import {
-	InputTextModule,
-	PanelModule,
-	ButtonModule,
-	MessagesModule,
-	BlockUIModule,
-	DataTableModule,
-	TabViewModule
+    InputTextModule,
+    PanelModule,
+    ButtonModule,
+    MessagesModule,
+    BlockUIModule,
+    DataTableModule,
+    TabViewModule
 } from 'primeng/primeng';
 
 import { BaseModule } from '../base_module/base.module';
@@ -26,58 +26,58 @@ import { AdminIndexComponent } from './components/admin-index.component';
 import { AdminLoginComponent } from './components/admin-login.component';
 
 const routes: Routes = [
-	{
-		path: '',
-		component: AdminIndexComponent,
-		pathMatch: 'full',
-		canActivate: [AuthGuard],
-		data: { auth: { requireUserType: UserTypes.ICanUseAdminPanel } }
-	},
-	{ path: 'login', component: AdminLoginComponent },
-	{
-		path: 'about_website', component: AdminAboutWebsiteComponent,
-		canActivate: [AuthGuard],
-		data: { auth: { requireUserType: UserTypes.ICanUseAdminPanel } }
-	},
-	{
-		path: 'about_me', component: AdminAboutMeComponent,
-		canActivate: [AuthGuard],
-		data: { auth: { requireUserType: UserTypes.ICanUseAdminPanel } }
-	},
-	{ path: 'tenants', loadChildren: '../admin_tenants_module/admin_tenants.module#AdminTenantsModule' },
-	{ path: 'users', loadChildren: '../admin_users_module/admin_users.module#AdminUsersModule' },
-	{ path: 'roles', loadChildren: '../admin_roles_module/admin_roles.module#AdminRolesModule' },
-	{ path: 'settings', loadChildren: '../admin_settings_module/admin_settings.module#AdminSettingsModule' },
-	{ path: 'scheduled_tasks', loadChildren: '../admin_scheduled_tasks_module/admin_scheduled_tasks.module#AdminScheduledTasksModule' },
-	{ path: 'example_datas', loadChildren: '../admin_example_datas_module/admin_example_datas.module#AdminExampleDatasModule' }
+    {
+        path: '',
+        component: AdminIndexComponent,
+        pathMatch: 'full',
+        canActivate: [AuthGuard],
+        data: { auth: { requireUserType: UserTypes.ICanUseAdminPanel } }
+    },
+    { path: 'login', component: AdminLoginComponent },
+    {
+        path: 'about_website', component: AdminAboutWebsiteComponent,
+        canActivate: [AuthGuard],
+        data: { auth: { requireUserType: UserTypes.ICanUseAdminPanel } }
+    },
+    {
+        path: 'about_me', component: AdminAboutMeComponent,
+        canActivate: [AuthGuard],
+        data: { auth: { requireUserType: UserTypes.ICanUseAdminPanel } }
+    },
+    { path: 'tenants', loadChildren: '../admin_tenants_module/admin_tenants.module#AdminTenantsModule' },
+    { path: 'users', loadChildren: '../admin_users_module/admin_users.module#AdminUsersModule' },
+    { path: 'roles', loadChildren: '../admin_roles_module/admin_roles.module#AdminRolesModule' },
+    { path: 'settings', loadChildren: '../admin_settings_module/admin_settings.module#AdminSettingsModule' },
+    { path: 'scheduled_tasks', loadChildren: '../admin_scheduled_tasks_module/admin_scheduled_tasks.module#AdminScheduledTasksModule' },
+    { path: 'example_datas', loadChildren: '../admin_example_datas_module/admin_example_datas.module#AdminExampleDatasModule' }
 ];
 
 @NgModule({
-	imports: [
-		CommonModule,
-		FormsModule,
-		ReactiveFormsModule,
-		InputTextModule,
-		PanelModule,
-		ButtonModule,
-		MessagesModule,
-		BlockUIModule,
-		DataTableModule,
-		TabViewModule,
-		BaseModule,
-		GeneratedModule,
-		AuthModule,
-		AdminBaseModule,
-		RouterModule.forChild(routes)
-	],
-	declarations: [
-		AdminAboutMeComponent,
-		AdminAboutWebsiteComponent,
-		AdminIndexComponent,
-		AdminLoginComponent
-	],
-	exports: [
-		RouterModule,
-	]
+    imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        InputTextModule,
+        PanelModule,
+        ButtonModule,
+        MessagesModule,
+        BlockUIModule,
+        DataTableModule,
+        TabViewModule,
+        BaseModule,
+        GeneratedModule,
+        AuthModule,
+        AdminBaseModule,
+        RouterModule.forChild(routes)
+    ],
+    declarations: [
+        AdminAboutMeComponent,
+        AdminAboutWebsiteComponent,
+        AdminIndexComponent,
+        AdminLoginComponent
+    ],
+    exports: [
+        RouterModule,
+    ]
 })
 export class AdminModule { }

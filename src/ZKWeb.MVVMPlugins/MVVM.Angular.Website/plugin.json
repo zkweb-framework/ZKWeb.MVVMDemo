@@ -1,10 +1,10 @@
 {
-	"Name": "AngularJS website files",
-	"Version": "1.0",
-	"Description": "AngularJS website files",
-	"Dependencies": [
-		"MVVM.Common.Base",
-		"MVVM.Common.AdminPanel",
-		"MVVM.Angular.Support"
-	]
+    "Name": "AngularJS website files",
+    "Version": "1.0",
+    "Description": "AngularJS website files",
+    "Dependencies": [
+        "MVVM.Common.Base",
+        "MVVM.Common.AdminPanel",
+        "MVVM.Angular.Support"
+    ]
 }

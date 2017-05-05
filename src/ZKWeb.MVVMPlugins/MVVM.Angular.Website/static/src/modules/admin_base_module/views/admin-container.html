@@ -1,99 +1,99 @@
 ﻿<div class="layout-wrapper">
-	<p-growl [value]="getToastMessages()"></p-growl>
-	<div id="layout-sidebar" [ngClass]="{'active':mobileMenuActive}">
-		<span class="layout-logo">
-			<a href="#" class="sidebar-logo" [routerLink]="['/']">
-				<img alt="logo" [src]="logoUrl" />
-			</a>
-			<a href="#" id="menu-button-mobile" (click)="toggleMenu($event)" [ngClass]="{'active':mobileMenuActive}">
-				<i class="fa fa-list"></i>
-			</a>
-		</span>
+    <p-growl [value]="getToastMessages()"></p-growl>
+    <div id="layout-sidebar" [ngClass]="{'active':mobileMenuActive}">
+        <span class="layout-logo">
+            <a href="#" class="sidebar-logo" [routerLink]="['/']">
+                <img alt="logo" [src]="logoUrl" />
+            </a>
+            <a href="#" id="menu-button-mobile" (click)="toggleMenu($event)" [ngClass]="{'active':mobileMenuActive}">
+                <i class="fa fa-list"></i>
+            </a>
+        </span>
 
-		<div *ngFor="let group of navMenuGroups" class="menu-group">
-			<a *ngIf="group.url" [routerLink]="group.url" (click)="mobileMenuActive = false">
-				<i [class]="group.icon"></i>
-				<span>{{ group.name | trans }}</span>
-			</a>
-			<a *ngIf="!group.url" [class.active-menuitem]="activeMenuId == group.name" (click)="activeMenuId = group.name">
-				<i [class]="group.icon"></i>
-				<span>{{ group.name | trans }}</span>
-			</a>
-			<div [ngClass]="{submenu: true, submenushow: (activeMenuId == group.name), submenuhide: (activeMenuId != group.name)}">
-				<div *ngFor="let item of group.items" class="menu-item">
-					<a [routerLink]="item.url" (click)="mobileMenuActive = false">
-						<i [class]="item.icon"></i>
-						<span>{{ item.name | trans }}</span>
-					</a>
-				</div>
-			</div>
-		</div>
-	</div>
+        <div *ngFor="let group of navMenuGroups" class="menu-group">
+            <a *ngIf="group.url" [routerLink]="group.url" (click)="mobileMenuActive = false">
+                <i [class]="group.icon"></i>
+                <span>{{ group.name | trans }}</span>
+            </a>
+            <a *ngIf="!group.url" [class.active-menuitem]="activeMenuId == group.name" (click)="activeMenuId = group.name">
+                <i [class]="group.icon"></i>
+                <span>{{ group.name | trans }}</span>
+            </a>
+            <div [ngClass]="{submenu: true, submenushow: (activeMenuId == group.name), submenuhide: (activeMenuId != group.name)}">
+                <div *ngFor="let item of group.items" class="menu-item">
+                    <a [routerLink]="item.url" (click)="mobileMenuActive = false">
+                        <i [class]="item.icon"></i>
+                        <span>{{ item.name | trans }}</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 
-	<div id="layout-content">
-		<div id="topbar">
-			<div class="pull-left">
-				<a href="#" id="menu-button" (click)="toggleMenu($event)" [ngClass]="{'active':mobileMenuActive}">
-					<i class="fa fa-list"></i>
-				</a>
-			</div>
+    <div id="layout-content">
+        <div id="topbar">
+            <div class="pull-left">
+                <a href="#" id="menu-button" (click)="toggleMenu($event)" [ngClass]="{'active':mobileMenuActive}">
+                    <i class="fa fa-list"></i>
+                </a>
+            </div>
 
-			<div class="pull-right">
-				<a class="topbar-link" (click)="switchLanguageMenu.toggle($event)">
-					{{ "Switch Language" | trans }}
-					<p-slideMenu #switchLanguageMenu [model]="switchLanguageItems" [popup]="true"></p-slideMenu>
-				</a>
-				<a class="topbar-link" (click)="switchTimezoneMenu.toggle($event)">
-					{{ "Switch Timezone" | trans }}
-					<p-slideMenu #switchTimezoneMenu [model]="switchTimezoneItems" [popup]="true"></p-slideMenu>
-				</a>
-				<a class="topbar-link" (mouseenter)="dropdownVisible = true" (mouseleave)="dropdownVisible = false">
-					<img class="avatar" [src]="avatarUrl" />
-					<span class="username">{{ username }}</span>
-					<div class="clearfix"></div>
-					<div id="topbarDropdown" [style.display]="dropdownVisible ? 'block' : 'none'">
-						<div class="user-header">
-							<img class="avatar" [src]="avatarUrl" />
-							<p class="username">{{ username }}</p>
-						</div>
+            <div class="pull-right">
+                <a class="topbar-link" (click)="switchLanguageMenu.toggle($event)">
+                    {{ "Switch Language" | trans }}
+                    <p-slideMenu #switchLanguageMenu [model]="switchLanguageItems" [popup]="true"></p-slideMenu>
+                </a>
+                <a class="topbar-link" (click)="switchTimezoneMenu.toggle($event)">
+                    {{ "Switch Timezone" | trans }}
+                    <p-slideMenu #switchTimezoneMenu [model]="switchTimezoneItems" [popup]="true"></p-slideMenu>
+                </a>
+                <a class="topbar-link" (mouseenter)="dropdownVisible = true" (mouseleave)="dropdownVisible = false">
+                    <img class="avatar" [src]="avatarUrl" />
+                    <span class="username">{{ username }}</span>
+                    <div class="clearfix"></div>
+                    <div id="topbarDropdown" [style.display]="dropdownVisible ? 'block' : 'none'">
+                        <div class="user-header">
+                            <img class="avatar" [src]="avatarUrl" />
+                            <p class="username">{{ username }}</p>
+                        </div>
 
-						<div class="user-body ui-grid ui-grid-pad ui-fluid">
-							<div class="ui-grid-col-4 text-center">
-								<a [routerLink]="['/admin']">{{ "Admin Index" | trans }}</a>
-							</div>
-							<div class="ui-grid-col-4 text-center">
-								<a [routerLink]="['/admin', 'about_website']">{{ "About Website" | trans }}</a>
-							</div>
-							<div class="ui-grid-col-4 text-center">
-								<a href="#" (click)="clearCache($event)">{{ "Clear Cache" | trans }}</a>
-							</div>
-						</div>
-						<div class="user-footer ui-grid ui-grid-pad ui-fluid">
-							<div class="ui-grid-col-4 text-center">
-								<a class="" [routerLink]="['/admin', 'about_me']">{{ "About Me" | trans }}</a>
-							</div>
-							<div class="ui-grid-col-4 text-center placeholder">
-								<span>&nbsp;</span>
-							</div>
-							<div class="ui-grid-col-4 text-center">
-								<a class="" href="#" (click)="logout($event)">{{ "Logout" | trans }}</a>
-							</div>
-						</div>
-					</div>
-					<div class="clearfix"></div>
-				</a>
-			</div>
-		</div>
+                        <div class="user-body ui-grid ui-grid-pad ui-fluid">
+                            <div class="ui-grid-col-4 text-center">
+                                <a [routerLink]="['/admin']">{{ "Admin Index" | trans }}</a>
+                            </div>
+                            <div class="ui-grid-col-4 text-center">
+                                <a [routerLink]="['/admin', 'about_website']">{{ "About Website" | trans }}</a>
+                            </div>
+                            <div class="ui-grid-col-4 text-center">
+                                <a href="#" (click)="clearCache($event)">{{ "Clear Cache" | trans }}</a>
+                            </div>
+                        </div>
+                        <div class="user-footer ui-grid ui-grid-pad ui-fluid">
+                            <div class="ui-grid-col-4 text-center">
+                                <a class="" [routerLink]="['/admin', 'about_me']">{{ "About Me" | trans }}</a>
+                            </div>
+                            <div class="ui-grid-col-4 text-center placeholder">
+                                <span>&nbsp;</span>
+                            </div>
+                            <div class="ui-grid-col-4 text-center">
+                                <a class="" href="#" (click)="logout($event)">{{ "Logout" | trans }}</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </a>
+            </div>
+        </div>
 
-		<div id="layout-content-body">
-			<ng-content></ng-content>
-		</div>
+        <div id="layout-content-body">
+            <ng-content></ng-content>
+        </div>
 
-		<div class="content-section footer clearfix">
-			<div class="copyright-bar">
-				<div class="text-center">Powered by <a href="https://github.com/zkweb-framework" target="_blank">zkweb framework</a></div>
-				<div class="text-center">Copyright © 2016~2017 ZKWeb All rights reserved</div>
-			</div>
-		</div>
-	</div>
+        <div class="content-section footer clearfix">
+            <div class="copyright-bar">
+                <div class="text-center">Powered by <a href="https://github.com/zkweb-framework" target="_blank">zkweb framework</a></div>
+                <div class="text-center">Copyright © 2016~2017 ZKWeb All rights reserved</div>
+            </div>
+        </div>
+    </div>
 </div>

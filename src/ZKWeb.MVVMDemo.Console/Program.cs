@@ -1,25 +1,29 @@
-namespace ZKWeb.MVVMDemo.Console {
-	using System;
-	using System.IO;
-	using System.Reflection;
-	using ZKWeb;
-	using ZKWeb.Testing;
-	using ZKWeb.Testing.TestEventHandlers;
+namespace ZKWeb.MVVMDemo.Console
+{
+    using System;
+    using System.IO;
+    using System.Reflection;
+    using ZKWeb;
+    using ZKWeb.Testing;
+    using ZKWeb.Testing.TestEventHandlers;
 
-	public class Program {
-		public static void Main(string[] args) {
-			RunTests();
-		}
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            RunTests();
+        }
 
-		public static void RunTests() {
-			Application.Initialize(
-				Path.Combine(Path.GetDirectoryName(typeof(Program).GetTypeInfo().Assembly.Location),
-				"../../../../ZKWeb.MVVMDemo.AspNetCore"));
+        public static void RunTests()
+        {
+            Application.Initialize(
+                Path.Combine(Path.GetDirectoryName(typeof(Program).GetTypeInfo().Assembly.Location),
+                "../../../../ZKWeb.MVVMDemo.AspNetCore"));
 
-			var unitTestManager = Application.Ioc.Resolve<TestManager>();
-			unitTestManager.RunAllAssemblyTest(new TestConsoleEventHandler());
+            var unitTestManager = Application.Ioc.Resolve<TestManager>();
+            unitTestManager.RunAllAssemblyTest(new TestConsoleEventHandler());
 
-			Console.WriteLine("done");
-		}
-	}
+            Console.WriteLine("done");
+        }
+    }
 }

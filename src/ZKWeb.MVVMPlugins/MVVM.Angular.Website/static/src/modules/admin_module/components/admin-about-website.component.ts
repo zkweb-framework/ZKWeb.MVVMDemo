@@ -6,30 +6,30 @@ import { WebsiteInfoOutputDto } from '../../generated_module/dtos/website-info-o
 import { AdminToastService } from '../../admin_base_module/services/admin-toast-service';
 
 @Component({
-	selector: 'admin-about-website',
-	templateUrl: '../views/admin-about-website.html'
+    selector: 'admin-about-website',
+    templateUrl: '../views/admin-about-website.html'
 })
 export class AdminAboutWebsiteComponent implements OnInit {
-	language: string;
-	timezone: string;
-	apiUrlBase: string;
-	websiteInfo: WebsiteInfoOutputDto;
+    language: string;
+    timezone: string;
+    apiUrlBase: string;
+    websiteInfo: WebsiteInfoOutputDto;
 
-	constructor(
-		private appConfigService: AppConfigService,
-		private appTranslationService: AppTranslationService,
-		private websiteManagerService: WebsiteManageService,
-		private adminToastService: AdminToastService) {
-		this.websiteInfo = new WebsiteInfoOutputDto();
-		this.websiteInfo.Plugins = [];
-	}
+    constructor(
+        private appConfigService: AppConfigService,
+        private appTranslationService: AppTranslationService,
+        private websiteManagerService: WebsiteManageService,
+        private adminToastService: AdminToastService) {
+        this.websiteInfo = new WebsiteInfoOutputDto();
+        this.websiteInfo.Plugins = [];
+    }
 
-	ngOnInit() {
-		this.language = this.appTranslationService.translate(this.appConfigService.getLanguage());
-		this.timezone = this.appTranslationService.translate(this.appConfigService.getTimezone());
-		this.apiUrlBase = this.appConfigService.getApiUrlBase();
-		this.websiteManagerService.GetWebsiteInfo().subscribe(
-			s => this.websiteInfo = s,
-			e => this.adminToastService.showToastMessage("error", e));
-	}
+    ngOnInit() {
+        this.language = this.appTranslationService.translate(this.appConfigService.getLanguage());
+        this.timezone = this.appTranslationService.translate(this.appConfigService.getTimezone());
+        this.apiUrlBase = this.appConfigService.getApiUrlBase();
+        this.websiteManagerService.GetWebsiteInfo().subscribe(
+            s => this.websiteInfo = s,
+            e => this.adminToastService.showToastMessage("error", e));
+    }
 }

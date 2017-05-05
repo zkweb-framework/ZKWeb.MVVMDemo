@@ -3,11 +3,11 @@ import { CommonModule } from '@angular/common';
 import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
-	InputTextModule,
-	InputTextareaModule,
-	DropdownModule,
-	MultiSelectModule,
-	ButtonModule
+    InputTextModule,
+    InputTextareaModule,
+    DropdownModule,
+    MultiSelectModule,
+    ButtonModule
 } from 'primeng/primeng';
 
 import { FormGridComponent } from './components/form-grid.component';
@@ -29,49 +29,49 @@ import { AppConfigService } from './services/app-config-service';
 import { AppTranslationService } from './services/app-translation-service';
 
 @NgModule({
-	imports: [
-		CommonModule,
-		HttpModule,
-		FormsModule,
-		ReactiveFormsModule,
-		InputTextModule,
-		InputTextareaModule,
-		DropdownModule,
-		MultiSelectModule,
-		ButtonModule
-	],
-	declarations: [
-		FormGridComponent,
-		FormValidationMessagesComponent,
-		FormTextComponent,
-		FormTextAreaComponent,
-		FormDropdownComponent,
-		FormMultiSelectComponent,
-		FormHiddenComponent,
-		FormPasswordComponent,
-		FormCaptchaComponent,
-		FormUploadComponent,
-		FormSubmitButtonComponent,
-		TransPipe
-	],
-	providers: [
-		AppApiService,
-		AppConfigService,
-		AppTranslationService
-	],
-	exports: [
-		FormGridComponent,
-		FormValidationMessagesComponent,
-		FormTextComponent,
-		FormTextAreaComponent,
-		FormDropdownComponent,
-		FormMultiSelectComponent,
-		FormHiddenComponent,
-		FormPasswordComponent,
-		FormCaptchaComponent,
-		FormUploadComponent,
-		FormSubmitButtonComponent,
-		TransPipe
-	]
+    imports: [
+        CommonModule,
+        HttpModule,
+        FormsModule,
+        ReactiveFormsModule,
+        InputTextModule,
+        InputTextareaModule,
+        DropdownModule,
+        MultiSelectModule,
+        ButtonModule
+    ],
+    declarations: [
+        FormGridComponent,
+        FormValidationMessagesComponent,
+        FormTextComponent,
+        FormTextAreaComponent,
+        FormDropdownComponent,
+        FormMultiSelectComponent,
+        FormHiddenComponent,
+        FormPasswordComponent,
+        FormCaptchaComponent,
+        FormUploadComponent,
+        FormSubmitButtonComponent,
+        TransPipe
+    ],
+    providers: [
+        AppApiService,
+        AppConfigService,
+        AppTranslationService
+    ],
+    exports: [
+        FormGridComponent,
+        FormValidationMessagesComponent,
+        FormTextComponent,
+        FormTextAreaComponent,
+        FormDropdownComponent,
+        FormMultiSelectComponent,
+        FormHiddenComponent,
+        FormPasswordComponent,
+        FormCaptchaComponent,
+        FormUploadComponent,
+        FormSubmitButtonComponent,
+        TransPipe
+    ]
 })
 export class BaseModule { }

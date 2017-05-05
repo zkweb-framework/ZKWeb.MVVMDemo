@@ -1,20 +1,20 @@
 {
-	"ORM": "EFCore",
-	"Database": "SQLite",
-	"ConnectionString": "Data Source={{App_Data}}/test.db;",
-	"PluginDirectories": [
-		"../ZKWeb.MVVMPlugins"
-	],
-	"Plugins": [
-		"MVVM.Common.Base",
-		"MVVM.Common.ApiExplorer",
-		"MVVM.Common.TaskScheduler",
-		"MVVM.Common.MultiTenant",
-		"MVVM.Common.SessionState",
-		"MVVM.Common.Captcha",
-		"MVVM.Common.Organization",
-		"MVVM.Example.CrudExample",
-		"MVVM.Angular.Support",
-		"MVVM.Angular.Website"
-	]
+    "ORM": "EFCore",
+    "Database": "SQLite",
+    "ConnectionString": "Data Source={{App_Data}}/test.db;",
+    "PluginDirectories": [
+        "../ZKWeb.MVVMPlugins"
+    ],
+    "Plugins": [
+        "MVVM.Common.Base",
+        "MVVM.Common.ApiExplorer",
+        "MVVM.Common.TaskScheduler",
+        "MVVM.Common.MultiTenant",
+        "MVVM.Common.SessionState",
+        "MVVM.Common.Captcha",
+        "MVVM.Common.Organization",
+        "MVVM.Example.CrudExample",
+        "MVVM.Angular.Support",
+        "MVVM.Angular.Website"
+    ]
 }

@@ -1,6 +1,6 @@
 {
-	"Name": "Captcha For MVVM",
-	"Version": "1.0",
-	"Description": "Provide captcha support",
-	"Dependencies": [ "MVVM.Common.Base", "MVVM.Common.SessionState" ]
+    "Name": "Captcha For MVVM",
+    "Version": "1.0",
+    "Description": "Provide captcha support",
+    "Dependencies": [ "MVVM.Common.Base", "MVVM.Common.SessionState" ]
 }

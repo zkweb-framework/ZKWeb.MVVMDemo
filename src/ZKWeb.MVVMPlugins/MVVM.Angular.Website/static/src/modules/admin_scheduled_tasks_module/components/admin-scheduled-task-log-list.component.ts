@@ -10,38 +10,38 @@ import { AppPrivilegeService } from '../../auth_module/services/app-privilege-se
 import { AppSessionService } from '../../auth_module/services/app-session-service';
 
 @Component({
-	selector: 'admin-scheduled-task-log-list',
-	templateUrl: '../views/admin-scheduled-task-log-list.html',
-	providers: [ConfirmationService]
+    selector: 'admin-scheduled-task-log-list',
+    templateUrl: '../views/admin-scheduled-task-log-list.html',
+    providers: [ConfirmationService]
 })
 export class AdminScheduledTaskLogListComponent extends CrudBaseComponent {
-	isSuccessOptions: SelectItem[];
+    isSuccessOptions: SelectItem[];
 
-	constructor(
-		appSessionService: AppSessionService,
-		appPrivilegeService: AppPrivilegeService,
-		appTranslationService: AppTranslationService,
-		private websiteManageService: WebsiteManageService) {
-		super(appSessionService, appPrivilegeService, appTranslationService);
-	}
+    constructor(
+        appSessionService: AppSessionService,
+        appPrivilegeService: AppPrivilegeService,
+        appTranslationService: AppTranslationService,
+        private websiteManageService: WebsiteManageService) {
+        super(appSessionService, appPrivilegeService, appTranslationService);
+    }
 
-	ngOnInit() {
-		super.ngOnInit();
-		this.isSuccessOptions = [
-			{ label: this.appTranslationService.translate("Please Select"), value: null },
-			{ label: this.appTranslationService.translate("Yes"), value: true },
-			{ label: this.appTranslationService.translate("No"), value: false },
-		];
-	}
+    ngOnInit() {
+        super.ngOnInit();
+        this.isSuccessOptions = [
+            { label: this.appTranslationService.translate("Please Select"), value: null },
+            { label: this.appTranslationService.translate("Yes"), value: true },
+            { label: this.appTranslationService.translate("No"), value: false },
+        ];
+    }
 
-	submitSearch(request: GridSearchRequestDto) {
-		return this.websiteManageService.SearchScheduledTaskLogs(request);
-	}
+    submitSearch(request: GridSearchRequestDto) {
+        return this.websiteManageService.SearchScheduledTaskLogs(request);
+    }
 
-	getAddRequirement() { return { requireUserType: UserTypes.IAmAdmin }; }
-	getEditRequirement() { return { requireUserType: UserTypes.IAmAdmin }; }
-	getRemoveRequirement() { return { requireUserType: UserTypes.IAmAdmin }; }
-	add() { }
-	edit() { }
-	remove() { }
+    getAddRequirement() { return { requireUserType: UserTypes.IAmAdmin }; }
+    getEditRequirement() { return { requireUserType: UserTypes.IAmAdmin }; }
+    getRemoveRequirement() { return { requireUserType: UserTypes.IAmAdmin }; }
+    add() { }
+    edit() { }
+    remove() { }
 }

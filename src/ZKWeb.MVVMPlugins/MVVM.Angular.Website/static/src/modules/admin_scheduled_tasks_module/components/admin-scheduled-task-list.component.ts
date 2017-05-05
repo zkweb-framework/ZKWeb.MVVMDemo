@@ -9,27 +9,27 @@ import { AppPrivilegeService } from '../../auth_module/services/app-privilege-se
 import { AppSessionService } from '../../auth_module/services/app-session-service';
 
 @Component({
-	selector: 'admin-scheduled-task-list',
-	templateUrl: '../views/admin-scheduled-task-list.html',
-	providers: [ConfirmationService]
+    selector: 'admin-scheduled-task-list',
+    templateUrl: '../views/admin-scheduled-task-list.html',
+    providers: [ConfirmationService]
 })
 export class AdminScheduledTaskListComponent extends CrudBaseComponent {
-	constructor(
-		appSessionService: AppSessionService,
-		appPrivilegeService: AppPrivilegeService,
-		appTranslationService: AppTranslationService,
-		private websiteManageService: WebsiteManageService) {
-		super(appSessionService, appPrivilegeService, appTranslationService);
-	}
+    constructor(
+        appSessionService: AppSessionService,
+        appPrivilegeService: AppPrivilegeService,
+        appTranslationService: AppTranslationService,
+        private websiteManageService: WebsiteManageService) {
+        super(appSessionService, appPrivilegeService, appTranslationService);
+    }
 
-	submitSearch(request: GridSearchRequestDto) {
-		return this.websiteManageService.SearchScheduledTasks(request);
-	}
+    submitSearch(request: GridSearchRequestDto) {
+        return this.websiteManageService.SearchScheduledTasks(request);
+    }
 
-	getAddRequirement() { return { requireUserType: UserTypes.IAmAdmin }; }
-	getEditRequirement() { return { requireUserType: UserTypes.IAmAdmin }; }
-	getRemoveRequirement() { return { requireUserType: UserTypes.IAmAdmin }; }
-	add() { }
-	edit() { }
-	remove() { }
+    getAddRequirement() { return { requireUserType: UserTypes.IAmAdmin }; }
+    getEditRequirement() { return { requireUserType: UserTypes.IAmAdmin }; }
+    getRemoveRequirement() { return { requireUserType: UserTypes.IAmAdmin }; }
+    add() { }
+    edit() { }
+    remove() { }
 }

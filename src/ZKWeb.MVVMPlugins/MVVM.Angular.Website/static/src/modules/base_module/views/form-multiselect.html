@@ -1,7 +1,7 @@
 ﻿<div class="ui-grid-col-{{ labelGridWidth }}">
-	{{ translatedDisplayName }}:
+    {{ translatedDisplayName }}:
 </div>
 <div class="ui-grid-col-{{ fieldGridWidth }}" [formGroup]="formGroup">
-	<p-multiSelect [options]="options" [formControlName]="fieldName" [defaultLabel]="(defaultLabel || 'Please Select') | trans"></p-multiSelect>
-	<z-form-validation-messages [formGroup]="formGroup" [fieldName]="fieldName" [displayName]="displayName" [validationMessages]="validationMessages"></z-form-validation-messages>
+    <p-multiSelect [options]="options" [formControlName]="fieldName" [defaultLabel]="(defaultLabel || 'Please Select') | trans"></p-multiSelect>
+    <z-form-validation-messages [formGroup]="formGroup" [fieldName]="fieldName" [displayName]="displayName" [validationMessages]="validationMessages"></z-form-validation-messages>
 </div>

@@ -5,9 +5,9 @@ import { AppTranslationService } from '../../base_module/services/app-translatio
 // 例: {{ "text" | trans }}
 @Pipe({ name: 'trans' })
 export class TransPipe implements PipeTransform {
-	constructor(private appTranslationService: AppTranslationService) { }
+    constructor(private appTranslationService: AppTranslationService) { }
 
-	transform(value: string): string {
-		return this.appTranslationService.translate(value);
-	}
+    transform(value: string): string {
+        return this.appTranslationService.translate(value);
+    }
 }

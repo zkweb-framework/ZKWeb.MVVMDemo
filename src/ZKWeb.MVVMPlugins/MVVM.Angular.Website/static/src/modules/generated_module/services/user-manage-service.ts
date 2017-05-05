@@ -10,40 +10,40 @@ import { UserTypeOutputDto } from '../dtos/user-type-output-dto';
 @Injectable()
 /** 用户管理服务 */
 export class UserManageService {
-	constructor(private appApiService: AppApiService) { }
+    constructor(private appApiService: AppApiService) { }
 
-	/** 搜索用户 */
-	Search(request: GridSearchRequestDto): Observable<GridSearchResponseDto> {
-		return this.appApiService.call<GridSearchResponseDto>(
-			"/api/UserManageService/Search",
-			{
-				request
-			});
-	}
+    /** 搜索用户 */
+    Search(request: GridSearchRequestDto): Observable<GridSearchResponseDto> {
+        return this.appApiService.call<GridSearchResponseDto>(
+            "/api/UserManageService/Search",
+            {
+                request
+            });
+    }
 
-	/** 编辑用户 */
-	Edit(dto: UserInputDto): Observable<ActionResponseDto> {
-		return this.appApiService.call<ActionResponseDto>(
-			"/api/UserManageService/Edit",
-			{
-				dto
-			});
-	}
+    /** 编辑用户 */
+    Edit(dto: UserInputDto): Observable<ActionResponseDto> {
+        return this.appApiService.call<ActionResponseDto>(
+            "/api/UserManageService/Edit",
+            {
+                dto
+            });
+    }
 
-	/** 删除用户 */
-	Remove(id: string): Observable<ActionResponseDto> {
-		return this.appApiService.call<ActionResponseDto>(
-			"/api/UserManageService/Remove",
-			{
-				id
-			});
-	}
+    /** 删除用户 */
+    Remove(id: string): Observable<ActionResponseDto> {
+        return this.appApiService.call<ActionResponseDto>(
+            "/api/UserManageService/Remove",
+            {
+                id
+            });
+    }
 
-	/** 获取所有用户类型 */
-	GetAllUserTypes(): Observable<UserTypeOutputDto[]> {
-		return this.appApiService.call<UserTypeOutputDto[]>(
-			"/api/UserManageService/GetAllUserTypes",
-			{
-			});
-	}
+    /** 获取所有用户类型 */
+    GetAllUserTypes(): Observable<UserTypeOutputDto[]> {
+        return this.appApiService.call<UserTypeOutputDto[]>(
+            "/api/UserManageService/GetAllUserTypes",
+            {
+            });
+    }
 }
