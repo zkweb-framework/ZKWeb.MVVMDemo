@@ -1,44 +1,42 @@
-﻿<admin-container>
-    <div class="portlet">
-        <h3 class="portlet-title">
-            <i class="fa fa-user"></i>
-            <span class="caption-subject">{{ "About Me" | trans }}</span>
-        </h3>
-        <div class="portlet-body">
-            <p-messages [value]="msgs"></p-messages>
-            <p-tabView>
-                <p-tabPanel [header]="'Base Information' | trans">
-                    <h5>{{ "Tenant" | trans }}: {{ tenant }}</h5>
-                    <h5>{{ "Username" | trans }}: {{ username }}</h5>
-                    <h5>{{ "UserType" | trans }}: {{ userType }}</h5>
-                    <h5>{{ "Roles" | trans }}: </h5>
-                    <ul>
-                        <li *ngFor="let role of roles">{{ role }}</li>
-                    </ul>
-                    <h5>{{ "Privileges" | trans }}: </h5>
-                    <ul>
-                        <li *ngFor="let privilege of privileges">{{ privilege }}</li>
-                    </ul>
-                </p-tabPanel>
-                <p-tabPanel [header]="'Change Password' | trans">
-                    <form [formGroup]="changePasswordForm" (ngSubmit)="onChangePassword()">
-                        <z-form-grid>
-                            <z-form-password [formGroup]="changePasswordForm" fieldName="OldPassword"></z-form-password>
-                            <z-form-password [formGroup]="changePasswordForm" fieldName="NewPassword"></z-form-password>
-                            <z-form-password [formGroup]="changePasswordForm" fieldName="ConfirmNewPassword"></z-form-password>
-                            <z-form-submit-button [formGroup]="changePasswordForm" [isSubmitting]="isSubmitting"></z-form-submit-button>
-                        </z-form-grid>
-                    </form>
-                </p-tabPanel>
-                <p-tabPanel [header]="'Change Avatar' | trans">
-                    <form [formGroup]="avatarUploadForm" (ngSubmit)="onUploadAvatar()">
-                        <z-form-grid>
-                            <z-form-upload [formGroup]="avatarUploadForm" fieldName="Avatar"></z-form-upload>
-                            <z-form-submit-button [formGroup]="avatarUploadForm" [isSubmitting]="isSubmitting"></z-form-submit-button>
-                        </z-form-grid>
-                    </form>
-                </p-tabPanel>
-            </p-tabView>
-        </div>
+﻿<div class="portlet">
+    <h3 class="portlet-title">
+        <i class="fa fa-user"></i>
+        <span class="caption-subject">{{ "About Me" | trans }}</span>
+    </h3>
+    <div class="portlet-body">
+        <p-messages [value]="msgs"></p-messages>
+        <p-tabView>
+            <p-tabPanel [header]="'Base Information' | trans">
+                <h5>{{ "Tenant" | trans }}: {{ tenant }}</h5>
+                <h5>{{ "Username" | trans }}: {{ username }}</h5>
+                <h5>{{ "UserType" | trans }}: {{ userType }}</h5>
+                <h5>{{ "Roles" | trans }}: </h5>
+                <ul>
+                    <li *ngFor="let role of roles">{{ role }}</li>
+                </ul>
+                <h5>{{ "Privileges" | trans }}: </h5>
+                <ul>
+                    <li *ngFor="let privilege of privileges">{{ privilege }}</li>
+                </ul>
+            </p-tabPanel>
+            <p-tabPanel [header]="'Change Password' | trans">
+                <form [formGroup]="changePasswordForm" (ngSubmit)="onChangePassword()">
+                    <z-form-grid>
+                        <z-form-password [formGroup]="changePasswordForm" fieldName="OldPassword"></z-form-password>
+                        <z-form-password [formGroup]="changePasswordForm" fieldName="NewPassword"></z-form-password>
+                        <z-form-password [formGroup]="changePasswordForm" fieldName="ConfirmNewPassword"></z-form-password>
+                        <z-form-submit-button [formGroup]="changePasswordForm" [isSubmitting]="isSubmitting"></z-form-submit-button>
+                    </z-form-grid>
+                </form>
+            </p-tabPanel>
+            <p-tabPanel [header]="'Change Avatar' | trans">
+                <form [formGroup]="avatarUploadForm" (ngSubmit)="onUploadAvatar()">
+                    <z-form-grid>
+                        <z-form-upload [formGroup]="avatarUploadForm" fieldName="Avatar"></z-form-upload>
+                        <z-form-submit-button [formGroup]="avatarUploadForm" [isSubmitting]="isSubmitting"></z-form-submit-button>
+                    </z-form-grid>
+                </form>
+            </p-tabPanel>
+        </p-tabView>
     </div>
-</admin-container>
+</div>
