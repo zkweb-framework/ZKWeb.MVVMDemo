@@ -24,6 +24,7 @@ import { AdminAboutMeComponent } from './components/admin-about-me.component';
 import { AdminAboutWebsiteComponent } from './components/admin-about-website.component';
 import { AdminIndexComponent } from './components/admin-index.component';
 import { AdminLoginComponent } from './components/admin-login.component';
+import { AdminContainerComponent } from '../admin_base_module/components/admin-container.component';
 
 const routes: Routes = [
     {
