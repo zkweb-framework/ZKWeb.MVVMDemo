@@ -4,7 +4,7 @@
 
 这份示例的开源协议是MIT，你可以随意的修改并用于个人或商业用途
 
-![preview](./docs/preview.jpg)
+![preview](./preview.jpg)
 
 ### 功能一览
 
@@ -69,6 +69,7 @@ npm run watch
 - [组织架构的说明](./TODO.md)
 - [多语言和多时区](./TODO.md)
 - [添加定时任务](./TODO.md)
+- [在Ubuntu上开发和打包](./TODO.md)
 - AngularJS
 	- [前端的项目结构](./TODO.md)
 	- [PrimeNG的官方文档](https://www.primefaces.org/primeng/#/setup)
