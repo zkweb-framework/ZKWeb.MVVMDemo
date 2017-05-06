@@ -52,7 +52,7 @@ Open `ZKWeb.MVVMDemo.sln` with VS2017 and run the project.
 
 ### Documents
 
-- [Chinese Documents](./docs/cn)
+- [Chinese Documents(中文文档)](./docs/cn)
 
 ### LICENSE
 

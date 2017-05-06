@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Linq;
+using ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Components.CORSExposeHeaders.Interfaces;
 using ZKWeb.Web;
-using ZKWebStandard.Extensions;
 using ZKWebStandard.Ioc;
 using ZKWebStandard.Web;
 
@@ -17,22 +15,22 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Components.RequestHandlers
         public void OnRequest()
         {
             var context = HttpManager.CurrentContext;
-            // 仅对ajax请求启用
-            if (context.Request.IsAjaxRequest())
+            // 允许不使用OPTIONS直接发来的请求
+            context.Response.AddHeader("Access-Control-Allow-Origin", "*");
+            // 指定允许客户端获取的头列表
+            var exposeHeaders = ZKWeb.Application.Ioc.ResolveMany<ICORSExposeHeader>();
+            context.Response.AddHeader("Access-Control-Expose-Headers",
+                string.Join(",", exposeHeaders.Select(e => e.ExposeHeader.ToLower())));
+            // 允许使用OPTIONS探测的请求
+            if (context.Request.Method == "OPTIONS")
             {
-                // 允许不使用OPTIONS直接发来的请求
-                context.Response.AddHeader("Access-Control-Allow-Origin", "*");
-                // 允许使用OPTIONS探测的请求
-                if (context.Request.Method == "OPTIONS")
-                {
-                    var requestHeaders = context.Request.GetHeader("Access-Control-Request-Headers");
-                    var requestMethod = context.Request.GetHeader("Access-Control-Request-Method");
-                    context.Response.AddHeader("Access-Control-Allow-Headers", requestHeaders);
-                    context.Response.AddHeader("Access-Control-Allow-Methods", requestMethod);
-                    context.Response.AddHeader("Access-Control-Max-Age", "1296000");
-                    context.Response.StatusCode = 200;
-                    context.Response.End();
-                }
+                var requestHeaders = context.Request.GetHeader("Access-Control-Request-Headers");
+                var requestMethod = context.Request.GetHeader("Access-Control-Request-Method");
+                context.Response.AddHeader("Access-Control-Allow-Headers", requestHeaders);
+                context.Response.AddHeader("Access-Control-Allow-Methods", requestMethod);
+                context.Response.AddHeader("Access-Control-Max-Age", "1296000");
+                context.Response.StatusCode = 200;
+                context.Response.End();
             }
         }
     }

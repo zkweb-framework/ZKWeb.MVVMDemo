@@ -103,11 +103,13 @@ export class AppConfigService {
         if (!this.sessionId) {
             this.sessionId = localStorage.getItem(this.sessionIdKey);
         }
+        // console.log("get session:", this.sessionId);
         return this.sessionId;
     }
 
     // 设置当前会话Id
     setSessionId(sessionId: string): void {
+        // console.log("set session:", sessionId);
         this.sessionId = sessionId;
         localStorage.setItem(this.sessionIdKey, sessionId);
     }

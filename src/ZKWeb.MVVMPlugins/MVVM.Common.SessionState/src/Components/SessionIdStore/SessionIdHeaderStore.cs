@@ -1,4 +1,5 @@
 ﻿using System;
+using ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Components.CORSExposeHeaders.Interfaces;
 using ZKWeb.MVVMPlugins.MVVM.Common.SessionState.src.Components.SessionIdStore.Interfaces;
 using ZKWebStandard.Extensions;
 using ZKWebStandard.Ioc;
@@ -10,7 +11,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.SessionState.src.Components.SessionIdSou
     /// 使用Http头获取和保存会话Id
     /// </summary>
     [ExportMany, SingletonReuse]
-    public class SessionIdHeaderStore : ISessionIdStore
+    public class SessionIdHeaderStore : ISessionIdStore, ICORSExposeHeader
     {
         /// <summary>
         /// 客户端发过来的会话Id
@@ -20,6 +21,11 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.SessionState.src.Components.SessionIdSou
         /// 发送给客户端的会话Id
         /// </summary>
         public const string SessionHeaderOut = "X-Set-ZKWeb-SessionId";
+
+        /// <summary>
+        /// 允许跨站请求返回的头
+        /// </summary>
+        public string ExposeHeader => SessionHeaderOut;
 
         /// <summary>
         /// 获取会话Id
