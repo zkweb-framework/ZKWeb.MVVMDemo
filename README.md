@@ -50,6 +50,10 @@ Open `ZKWeb.MVVMDemo.AspNetCore\App_Data\config.json` and modify database config
 
 Open `ZKWeb.MVVMDemo.sln` with VS2017 and run the project.
 
+### Documents
+
+- [Chinese Documents](./docs/cn)
+
 ### LICENSE
 
 MIT LICENSE<br/>
