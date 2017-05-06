@@ -16,7 +16,7 @@ namespace ZKWeb.MVVMDemo.AspNetCore.Swagger
         {
             get
             {
-                var provider = Application.Ioc
+                var provider = ZKWeb.Application.Ioc
                     .Resolve<IApiDescriptionGroupCollectionProvider>(IfUnresolved.ReturnDefault);
                 if (provider != null)
                 {

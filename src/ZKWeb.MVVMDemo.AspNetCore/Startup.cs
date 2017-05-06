@@ -40,7 +40,7 @@ namespace ZKWeb.MVVMDemo.AspNetCore
             // 使用ZKWeb中间件
             base.Configure(app);
             // 注册IServiceProvider
-            Application.Ioc.RegisterInstance(app.ApplicationServices);
+            ZKWeb.Application.Ioc.RegisterInstance(app.ApplicationServices);
         }
     }
 }
