@@ -4,7 +4,7 @@ MVVM demo for zkweb framework
 
 ### Features
 
-- Use Angular JS 4.0 + Webpack 2.0
+- Use AngularJS 4.0 + Webpack 2.0
     - Support automatic generate script form dto and application service
     - Support return pre-compressed script bundle
     - Support CORS api request
@@ -15,6 +15,7 @@ MVVM demo for zkweb framework
 - Support multi-tenant
 - Support multi-language
 - Support multi-timezone
+- Support scheduled task
 - Support unit of work
     - Support query filter
     - Support operation filter
