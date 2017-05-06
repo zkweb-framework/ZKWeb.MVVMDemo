@@ -23,6 +23,7 @@ MVVM demo for zkweb framework
     - Support manage tenants
     - Support manage roles
     - Support manage users
+- Provide command line compile and publish script
 
 ### How to start
 
