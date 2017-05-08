@@ -13,7 +13,7 @@
     - 支持返回预压缩好的脚本包
     - 支持跨站Api请求
 - 使用Entity Framework Core查询数据
-- 使用Swagger浏览和测试Api
+- 使用Swagger浏览和测试API
 - 使用AutoMapper转换Dto
 - 支持.Net Core
 - 支持多租户
@@ -47,7 +47,7 @@ npm install
 npm run watch
 ```
 
-**修改数据库配置"
+**修改数据库配置**
 
 打开`ZKWeb.MVVMDemo.AspNetCore\App_Data\config.json`并修改到你使用的数据库连接
 
@@ -64,9 +64,9 @@ npm run watch
 - [插件的建立](./CreatePlugin.md)
 - [实体的建立](./CreateEntity.md)
 - [数据的增删查改](./CRUD.md)
-- [添加和测试Api](./TODO.md)
-- [多租户的说明](./TODO.md)
-- [组织架构的说明](./TODO.md)
+- [添加和测试Api](./ApplicationService.md)
+- [多租户的说明](./MultiTenant.md)
+- [组织架构的说明](./Organization.md)
 - [多语言和多时区](./TODO.md)
 - [添加定时任务](./TODO.md)
 - [在Ubuntu上开发和打包](./TODO.md)
