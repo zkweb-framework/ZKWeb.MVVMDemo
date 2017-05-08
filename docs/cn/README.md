@@ -4,7 +4,7 @@
 
 这份示例的开源协议是MIT，你可以随意的修改并用于个人或商业用途
 
-![preview](./preview.jpg)
+![preview](../preview.jpg)
 
 ### 功能一览
 
@@ -61,9 +61,9 @@ npm run watch
 - [ZKWeb的官方文档(备用))](http://zkweb.org/static/docs/index.html)
 - [后端的项目结构](./BackendStruction.md)
 - [管理后台的说明](./AdminPanel.md)
-- [插件的建立](./TODO.md)
-- [实体的建立](./TODO.md)
-- [数据的增删查改](./TODO.md)
+- [插件的建立](./CreatePlugin.md)
+- [实体的建立](./CreateEntity.md)
+- [数据的增删查改](./CRUD.md)
 - [添加和测试Api](./TODO.md)
 - [多租户的说明](./TODO.md)
 - [组织架构的说明](./TODO.md)

@@ -76,3 +76,9 @@
 - [插件系统](http://zkweb-framework.github.io/cn/site/core/plugin/index.html)
 
 前端的文件夹说明请参考后面的文档
+
+如果你想把这个Demo变为自己的项目，可以使用重命名脚本`project_rename.sh`，
+这个是shell文件需要安装git bash shell或者bash on windows 10执行，
+运行后会让你填写一个新的项目名称，回车后文件名和命名空间会被批量替换
+
+![重命名脚本](img/rename_script.jpg)
