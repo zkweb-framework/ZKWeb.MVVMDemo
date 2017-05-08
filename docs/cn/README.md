@@ -59,8 +59,8 @@ npm run watch
 
 - [ZKWeb的官方文档](http://zkweb-framework.github.io)
 - [ZKWeb的官方文档(备用))](http://zkweb.org/static/docs/index.html)
-- [后端的项目结构](./TODO.md)
-- [管理后台的说明](./TODO.md)
+- [后端的项目结构](./BackendStruction.md)
+- [管理后台的说明](./AdminPanel.md)
 - [插件的建立](./TODO.md)
 - [实体的建立](./TODO.md)
 - [数据的增删查改](./TODO.md)
