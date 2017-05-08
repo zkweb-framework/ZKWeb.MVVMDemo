@@ -7,7 +7,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Components.Translates
     /// <summary>
     /// 中文翻译
     /// </summary>
-    [ExportMany]
+    [ExportMany, SingletonReuse]
     public class zh_CN : DictionaryTranslationProviderBase
     {
         /// <summary>

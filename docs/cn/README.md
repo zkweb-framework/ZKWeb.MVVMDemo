@@ -67,9 +67,9 @@ npm run watch
 - [添加和测试Api](./ApplicationService.md)
 - [多租户的说明](./MultiTenant.md)
 - [组织架构的说明](./Organization.md)
-- [多语言和多时区](./TODO.md)
-- [添加定时任务](./TODO.md)
-- [在Ubuntu上开发和打包](./TODO.md)
+- [多语言和多时区](./Locale.md)
+- [添加定时任务](./ScheduledTask.md)
+- [在Ubuntu上开发和打包](./UbuntuSupport.md)
 - AngularJS
 	- [前端的项目结构](./TODO.md)
 	- [PrimeNG的官方文档](https://www.primefaces.org/primeng/#/setup)
