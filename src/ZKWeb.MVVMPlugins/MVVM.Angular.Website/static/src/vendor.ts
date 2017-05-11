@@ -6,6 +6,7 @@ import '@angular/common';
 import '@angular/forms';
 import '@angular/http';
 import '@angular/router';
+import 'primeng/primeng';
 
 // RxJS
 import 'rxjs/Rx';
