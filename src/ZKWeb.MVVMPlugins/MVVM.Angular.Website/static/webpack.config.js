@@ -29,9 +29,9 @@ var webpackConfig = {
         }),
         new webpack.optimize.CommonsChunkPlugin({
             name: ['app', 'vendor', 'polyfills'],
-            minChunks: 2,
-            children: true,
-            async: true
+            // minChunks: 2,
+            // children: true,
+            // async: true
         }),
         new HtmlWebpackPlugin({
             filename: 'index.html',
