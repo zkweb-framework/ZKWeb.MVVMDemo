@@ -1,7 +1,7 @@
 ﻿import { Component, OnInit, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Message } from 'primeng/primeng';
+import { Message } from 'primeng/components/common/api';
 
 import { UserLoginService } from '../../generated_module/services/user-login-service';
 

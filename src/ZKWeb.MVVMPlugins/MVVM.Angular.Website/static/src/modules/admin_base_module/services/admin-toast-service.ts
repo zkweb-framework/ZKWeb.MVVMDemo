@@ -1,5 +1,5 @@
 ﻿import { Injectable } from '@angular/core';
-import { Message } from 'primeng/primeng';
+import { Message } from 'primeng/components/common/api';
 
 /** 在后台页面显示悬浮信息的服务 */
 @Injectable()

@@ -1,5 +1,6 @@
 ﻿import { Component, OnInit } from '@angular/core';
-import { Message, MenuItem } from 'primeng/primeng';
+import { Message } from 'primeng/components/common/api';
+import { MenuItem } from 'primeng/components/common/api';
 import { NavMenuGroup } from '../navigation/nav-menu-group';
 import { AdminNavMenu } from '../navigation/admin-nav-menu';
 import { AppConfigService } from '../../base_module/services/app-config-service';

@@ -1,6 +1,6 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Message } from 'primeng/primeng';
+import { Message } from 'primeng/components/common/api';
 import { WebsiteManageService } from '../../generated_module/services/website-manage-service';
 
 @Component({

@@ -7,7 +7,7 @@ import { GridSearchColumnFilterMatchMode } from '../../generated_module/dtos/gri
 import { AuthRequirement } from '../../auth_module/auth/auth-requirement';
 import { AppPrivilegeService } from '../../auth_module/services/app-privilege-service';
 import { AppSessionService } from '../../auth_module/services/app-session-service';
-import { Message } from 'primeng/primeng';
+import { Message } from 'primeng/components/common/api';
 import { Observable } from 'rxjs/Observable';
 
 /** 增删查改页的组件基类 */

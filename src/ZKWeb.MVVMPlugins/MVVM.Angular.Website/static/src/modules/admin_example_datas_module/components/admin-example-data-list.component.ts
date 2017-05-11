@@ -1,6 +1,6 @@
 ﻿import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { ConfirmationService } from 'primeng/primeng';
+import { ConfirmationService } from 'primeng/components/common/api';
 import { CrudWithDialogBaseComponent } from '../../base_module/components/crud-with-dialog-base.component';
 import { GridSearchRequestDto } from '../../generated_module/dtos/grid-search-request-dto';
 import { AppTranslationService } from '../../base_module/services/app-translation-service';

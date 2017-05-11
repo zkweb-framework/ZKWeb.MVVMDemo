@@ -1,6 +1,6 @@
 ﻿import { Component, Input } from '@angular/core';
 import { FormFieldBaseComponent } from './form-field-base.component';
-import { SelectItem } from 'primeng/primeng';
+import { SelectItem } from 'primeng/components/common/api';
 
 @Component({
     selector: 'z-form-dropdown',

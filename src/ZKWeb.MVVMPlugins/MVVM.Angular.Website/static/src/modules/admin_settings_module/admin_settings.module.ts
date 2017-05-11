@@ -2,13 +2,11 @@
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-import {
-    InputTextModule,
-    PanelModule,
-    ButtonModule,
-    MessagesModule,
-    BlockUIModule,
-} from 'primeng/primeng';
+import { InputTextModule } from 'primeng/components/inputtext/inputtext';
+import { PanelModule } from 'primeng/components/panel/panel';
+import { ButtonModule } from 'primeng/components/button/button';
+import { MessagesModule } from 'primeng/components/messages/messages';
+import { BlockUIModule } from 'primeng/components/blockui/blockui';
 
 import { BaseModule } from '../base_module/base.module';
 import { GeneratedModule } from '../generated_module/generated.module';

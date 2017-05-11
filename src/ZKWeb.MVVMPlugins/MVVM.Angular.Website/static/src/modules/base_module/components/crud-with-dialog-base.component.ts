@@ -1,5 +1,5 @@
 ﻿import { FormGroup } from '@angular/forms';
-import { ConfirmationService } from 'primeng/primeng';
+import { ConfirmationService } from 'primeng/components/common/api';
 import { AppTranslationService } from '../../base_module/services/app-translation-service';
 import { ActionResponseDto } from '../../generated_module/dtos/action-response-dto';
 import { AppPrivilegeService } from '../../auth_module/services/app-privilege-service';
