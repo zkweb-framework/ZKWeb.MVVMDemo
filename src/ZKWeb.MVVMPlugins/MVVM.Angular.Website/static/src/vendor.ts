@@ -36,3 +36,9 @@ import './vendor/styles/primeng/primeng.min.css';
 import './vendor/styles/primeng/theme.css';
 import './vendor/styles/primeng/site.css';
 import './vendor/styles/font-awesome/font-awesome.css';
+
+// Generated
+import './modules/generated_module/generated.module';
+import './modules/generated_module/privileges/privileges';
+import './modules/generated_module/privileges/user-types';
+import './modules/generated_module/translations/index';
