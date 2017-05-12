@@ -77,7 +77,7 @@ export class AppConfigService {
     // 获取当前使用的时区
     getTimezone(): string {
         if (!this.timezone) {
-            this.timezone = localStorage.getItem(this.timezone) || this.defaultTimezone;
+            this.timezone = localStorage.getItem(this.timezoneKey) || this.defaultTimezone;
         }
         return this.timezone;
     }
