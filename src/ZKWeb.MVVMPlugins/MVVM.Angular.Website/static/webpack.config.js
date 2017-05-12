@@ -117,7 +117,6 @@ var defaultConfig = {
         inline: true,
         stats: 'errors-only',
         historyApiFallback: true,
-        watchOptions: { aggregateTimeout: 100, poll: 500 }
     },
     node: {
         global: true,
@@ -127,7 +126,12 @@ var defaultConfig = {
         Buffer: false,
         clearImmediate: false,
         setImmediate: false
-    }
+    },
+    watchOptions: {
+        aggregateTimeout: 1000,
+        poll: 1000,
+        ignored: /(node_modules|dist)/
+    },
 };
 
 module.exports = webpackMerge(defaultConfig, webpackConfig);
