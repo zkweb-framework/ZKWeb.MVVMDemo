@@ -1,0 +1,134 @@
+diff --git a/C:/ProgramData/Git/zkweb.mvvmdemo/src/ZKWeb.MVVMPlugins/MVVM.Angular.Website/static/webpack.config.js b/C:/Users/admin/Documents/Tencent Files/303248153/FileRecv/webpack.config.dev.js
+index 2085898..6415503 100644
+--- a/C:/ProgramData/Git/zkweb.mvvmdemo/src/ZKWeb.MVVMPlugins/MVVM.Angular.Website/static/webpack.config.js
++++ b/C:/Users/admin/Documents/Tencent Files/303248153/FileRecv/webpack.config.dev.js	
+@@ -5,56 +5,50 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
+ var CompressionPlugin = require("compression-webpack-plugin");
+ var ngtools = require('@ngtools/webpack');
+ var CopyWebpackPlugin = require("copy-webpack-plugin");
++const { CheckerPlugin } = require('awesome-typescript-loader');
++const { TsConfigPathsPlugin } = require('awesome-typescript-loader');
++const NamedModulesPlugin = require('webpack/lib/NamedModulesPlugin');
+ 
+ var webpackConfig = {
+     entry: {
+         polyfills: './src/polyfills.ts',
+-        vendor: './src/vendor.ts',
+-        app: './src/main.ts'
++        vendor: './src/dev/vendor.ts',
++        app: './src/dev/main-hmr.module.ts'
+     },
+     output: {
+         publicPath: '/',
+-        path: path.resolve(__dirname, './dist'),
++        path: path.resolve(__dirname, './bin/debug'),
+     },
+     plugins: [
+-        new ngtools.AotPlugin({
+-            tsConfigPath: path.resolve(__dirname, './tsconfig.json'),
+-            skipMetadataEmit: false,
+-            entryModule: path.resolve(__dirname, './src/modules/app_module/app.module#AppModule'),
+-            compilerOptions: {
+-                emitDecoratorMetadata: true,
+-                experimentalDecorators: true,
+-                sourceMap: true,
+-            }
+-        }),
++        new CheckerPlugin(),
+         new webpack.optimize.CommonsChunkPlugin({
+-            name: ['app', 'vendor', 'polyfills'],
+-            // minChunks: 2,
+-            // children: true,
+-            // async: true
++            names: ['vendor', 'manifest']
+         }),
++        new webpack.ContextReplacementPlugin(/angular(\\|\/)core(\\|\/)@angular/,
++            path.resolve(__dirname, '../src')
++        ),
+         new HtmlWebpackPlugin({
+             filename: 'index.html',
+-            template: './src/index.html',
++            template: './src/dev/index.dev.html',
+             inject: true,
+             chunksSortMode: 'dependency'
+         }),
+-        new CompressionPlugin({
+-            asset: "[path].gz[query]",
+-            algorithm: "gzip",
+-            test: /\.js$|\.html$/
+-        }),
+-        new webpack.optimize.UglifyJsPlugin({ minimize: false }),
+         new CopyWebpackPlugin([
+             { from: path.resolve(__dirname, "./src/vendor/images/favicon.ico"), to: "favicon.ico" },
+             { from: path.resolve(__dirname, "./src/vendor/styles/preloader/preloader.css"), to: "preloader.css" },
++            { from: path.resolve(__dirname, "./src/app-config.json"), to: "." }
+         ]),
++        new NamedModulesPlugin(),
+     ],
+     module: {
+-        rules: [
+-            {
++        rules: [{
+                 test: /\.ts$/,
+-                loaders: ['@ngtools/webpack'],
++                loaders: [
++                    "awesome-typescript-loader",
++                    "@angularclass/hmr-loader",
++                    "angular-router-loader",
++                    "angular2-template-loader"
++                ]
+             },
+             {
+                 test: /\.js$/,
+@@ -102,21 +96,29 @@ var webpackConfig = {
+ };
+ 
+ var defaultConfig = {
+-    devtool: 'inline-source-map',
++    // devtool: 'inline-source-map',
++    devtool: 'source-map',
+     output: {
+         filename: '[name].bundle.js',
+         chunkFilename: '[id].chunk.js'
+     },
+     resolve: {
+         extensions: ['.ts', '.js'],
+-        modules: [path.resolve(__dirname, 'node_modules')]
++        modules: [path.resolve(__dirname, 'node_modules')],
++        plugins: [
++            new TsConfigPathsPlugin( /* { tsconfig, compiler } */ )
++        ]
+     },
+     devServer: {
+-        contentBase: './',
+-        port: 3000,
+-        inline: true,
+-        stats: 'errors-only',
++        contentBase: path.join(__dirname, 'bin/debug'),
++        port: 9000,
++        hot: true,
++        stats: "normal",
+         historyApiFallback: true,
++        compress: true,
++        proxy: {
++            "/api": "http://localhost:53128"
++        }
+     },
+     node: {
+         global: true,
+@@ -126,12 +128,7 @@ var defaultConfig = {
+         Buffer: false,
+         clearImmediate: false,
+         setImmediate: false
+-    },
+-    watchOptions: {
+-        aggregateTimeout: 1000,
+-        poll: 1000,
+-        ignored: /(node_modules|dist)/
+-    },
++    }
+ };
+ 
+-module.exports = webpackMerge(defaultConfig, webpackConfig);
++module.exports = webpackMerge(defaultConfig, webpackConfig);
+\ No newline at end of file

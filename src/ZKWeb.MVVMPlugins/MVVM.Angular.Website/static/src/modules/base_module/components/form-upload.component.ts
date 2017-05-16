@@ -1,5 +1,6 @@
 ﻿import { Component } from '@angular/core';
 import { FormFieldBaseComponent } from './form-field-base.component';
+import { AppTranslationService } from '../../base_module/services/app-translation-service';
 
 @Component({
     selector: 'z-form-upload',
@@ -7,6 +8,10 @@ import { FormFieldBaseComponent } from './form-field-base.component';
     host: { 'class': 'ui-grid-row' }
 })
 export class FormUploadComponent extends FormFieldBaseComponent {
+    constructor(appTranslationService: AppTranslationService) {
+        super(appTranslationService);
+    }
+
     /** 把File对象设置到FormControl中，如果用默认的formControlName只会设置文件名 */
     onFileChange(event) {
         let files: File[] = event.target.files;

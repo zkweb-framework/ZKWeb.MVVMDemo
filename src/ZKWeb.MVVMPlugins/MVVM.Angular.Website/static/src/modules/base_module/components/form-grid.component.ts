@@ -1,4 +1,5 @@
 ﻿import { Component } from '@angular/core';
+import { AppTranslationService } from '../../base_module/services/app-translation-service';
 
 @Component({
     selector: 'z-form-grid',
