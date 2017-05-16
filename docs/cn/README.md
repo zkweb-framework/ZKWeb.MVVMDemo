@@ -44,7 +44,7 @@ npm config set sass_binary_site http://npm.taobao.org/mirrors/node-sass
 ```
 cd src/ZKWeb.MVVMPlugins/MVVM.Angular.Website/static
 npm install
-npm run watch
+npm run build
 ```
 
 **修改数据库配置**
@@ -54,6 +54,15 @@ npm run watch
 **启动网站**
 
 使用VS2017打开`ZKWeb.MVVMDemo.sln`并启动项目即可
+
+**使用webpack-dev-server (可选)**
+
+如果你想要更详细的错误信息和更快的编译速度可以使用webpack-dev-server,<br/>
+运行以下命令并在浏览器打开`http://127.0.0.1:3000`.
+
+```
+npm run dev
+```
 
 ### 更多内容
 

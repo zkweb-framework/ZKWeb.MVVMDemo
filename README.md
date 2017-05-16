@@ -40,7 +40,7 @@ npm config set sass_binary_site http://npm.taobao.org/mirrors/node-sass
 ```
 cd src/ZKWeb.MVVMPlugins/MVVM.Angular.Website/static
 npm install
-npm run watch
+npm run build
 ```
 
 **Modify database configuration"
@@ -50,6 +50,15 @@ Open `ZKWeb.MVVMDemo.AspNetCore\App_Data\config.json` and modify database config
 **Start website**
 
 Open `ZKWeb.MVVMDemo.sln` with VS2017 and run the project.
+
+**Use webpack-dev-server (optional)**
+
+If you want more verbose error message and faster recompilation you can use webpack-dev-server, <br/>
+Run following command and open `http://127.0.0.1:3000` in your browser.
+
+```
+npm run dev
+```
 
 ### Documents
 
