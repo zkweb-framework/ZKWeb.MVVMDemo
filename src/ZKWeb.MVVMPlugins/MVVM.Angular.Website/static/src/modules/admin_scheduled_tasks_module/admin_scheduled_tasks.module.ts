@@ -14,8 +14,6 @@ import { DialogModule } from 'primeng/components/dialog/dialog';
 import { ConfirmDialogModule } from 'primeng/components/confirmdialog/confirmdialog';
 
 import { BaseModule } from '../base_module/base.module';
-import { GeneratedModule } from '../generated_module/generated.module';
-import { AuthModule } from '../auth_module/auth.module';
 import { AdminBaseModule } from '../admin_base_module/admin_base.module';
 
 import { AuthGuard } from '../auth_module/auth/auth-guard';
@@ -67,8 +65,6 @@ const routes: Routes = [
         DialogModule,
         ConfirmDialogModule,
         BaseModule,
-        GeneratedModule,
-        AuthModule,
         AdminBaseModule,
         RouterModule.forChild(routes)
     ],
