@@ -6,6 +6,7 @@ using ZKWeb.MVVMDemo.AspNetCore.Swagger;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using System;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Configuration;
 
 namespace ZKWeb.MVVMDemo.AspNetCore
 {
@@ -22,7 +23,12 @@ namespace ZKWeb.MVVMDemo.AspNetCore
         {
             try
             {
+                var config = new ConfigurationBuilder()
+                    .AddJsonFile("hosting.json", optional: true)
+                    .AddCommandLine(args)
+                    .Build();
                 var host = new WebHostBuilder()
+                    .UseConfiguration(config)
                     .ConfigureServices(s =>
                     {
                         // 添加Mvc组件
@@ -48,6 +54,7 @@ namespace ZKWeb.MVVMDemo.AspNetCore
             catch (Exception e)
             {
                 Console.WriteLine(e.ToString());
+                Environment.Exit(-1);
             }
         }
     }
