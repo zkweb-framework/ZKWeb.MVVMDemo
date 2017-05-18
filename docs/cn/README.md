@@ -29,6 +29,7 @@
     - 支持管理角色
     - 支持管理用户
 - 提供编译和发布的命令行脚本
+- 提供Dockerfile, 支持在Docker中运行
 
 ### 如何开始
 
@@ -79,6 +80,7 @@ npm run dev
 - [多语言和多时区](./Locale.md)
 - [添加定时任务](./ScheduledTask.md)
 - [在Ubuntu上开发和打包](./UbuntuSupport.md)
+- [在Docker上运行](./DockerSupport.md)
 - AngularJS
 	- [前端的项目结构](./NgFrontendStruction.md)
 	- [PrimeNG的官方文档](https://www.primefaces.org/primeng/#/setup)

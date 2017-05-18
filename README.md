@@ -25,6 +25,7 @@ MVVM demo for zkweb framework
     - Support manage roles
     - Support manage users
 - Provide command line compile and publish script
+- Provide Dockerfile, support running in docker
 
 ### How to start
 

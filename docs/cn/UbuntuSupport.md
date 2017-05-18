@@ -56,4 +56,4 @@ dotnet run -c Release -f netcoreapp1.1
   - src
   - publish_ubuntu.sh
 
-完成后运行publish_ubuntu.sh，运行完以后会发布网站和插件文件到`../publish/zkweb.mvvm`下
+完成后运行publish_ubuntu.sh，运行完以后会发布网站和插件文件到`publish`文件夹下
