@@ -33,4 +33,4 @@ cd ../..
 echo "publishing website..."
 cd ../ZKWeb/ZKWeb.Toolkits/ZKWeb.Toolkits.WebsitePublisher.Cmd
 dotnet restore
-dotnet run -c Debug -f netcoreapp1.1 -- -f netcoreapp1.1 -x ".*node_modules.*" -r ../../../ZKWeb.MVVMDemo/src/ZKWeb.MVVMDemo.AspNetCore -n "zkweb.mvvm" -o "../../../publish"
+dotnet run -c Debug -f netcoreapp1.1 -- -f netcoreapp1.1 -x ".*node_modules.*" -r ../../../ZKWeb.MVVMDemo/src/ZKWeb.MVVMDemo.AspNetCore -n "publish" -o "../../../ZKWeb.MVVMDemo"
