@@ -69,7 +69,10 @@ namespace ZKWeb.MVVMPlugins.MVVM.Angular.Support.src.Application
                     pathConfig.DtosDirectoryName,
                     filename);
                 PathUtils.EnsureParentDirectory(path);
-                File.WriteAllText(path, script);
+                if (!File.Exists(path) || File.ReadAllText(path) != script)
+                {
+                    File.WriteAllText(path, script);
+                }
                 // 添加到已生成的集合
                 GeneratedDtoTypes.Add(discoveredType);
             }
@@ -96,7 +99,10 @@ namespace ZKWeb.MVVMPlugins.MVVM.Angular.Support.src.Application
                 pathConfig.ServicesDirectoryName,
                 filename);
             PathUtils.EnsureParentDirectory(path);
-            File.WriteAllText(path, script);
+            if (!File.Exists(path) || File.ReadAllText(path) != script)
+            {
+                File.WriteAllText(path, script);
+            }
             // 添加到已生成的集合
             GeneratedApplicationServices.Add(service);
         }
@@ -121,7 +127,10 @@ namespace ZKWeb.MVVMPlugins.MVVM.Angular.Support.src.Application
                 pathConfig.TranslationsDirectoryName,
                 filename);
             PathUtils.EnsureParentDirectory(path);
-            File.WriteAllText(path, script);
+            if (!File.Exists(path) || File.ReadAllText(path) != script)
+            {
+                File.WriteAllText(path, script);
+            }
             // 添加到已生成的集合
             GeneratedTranslationLanguages.Add(language);
         }
@@ -140,7 +149,10 @@ namespace ZKWeb.MVVMPlugins.MVVM.Angular.Support.src.Application
                 pathConfig.TranslationsDirectoryName,
                 filename);
             PathUtils.EnsureParentDirectory(path);
-            File.WriteAllText(path, script);
+            if (!File.Exists(path) || File.ReadAllText(path) != script)
+            {
+                File.WriteAllText(path, script);
+            }
         }
 
         /// <summary>
@@ -161,8 +173,14 @@ namespace ZKWeb.MVVMPlugins.MVVM.Angular.Support.src.Application
                 pathConfig.PrivilegesDirectoryName,
                 "privileges.ts");
             PathUtils.EnsureParentDirectory(userTypesPath);
-            File.WriteAllText(userTypesPath, userTypesScript);
-            File.WriteAllText(privilegesPath, privilegesScript);
+            if (!File.Exists(userTypesPath) || File.ReadAllText(userTypesPath) != userTypesScript)
+            {
+                File.WriteAllText(userTypesPath, userTypesScript);
+            }
+            if (!File.Exists(privilegesPath) || File.ReadAllText(privilegesPath) != privilegesScript)
+            {
+                File.WriteAllText(privilegesPath, privilegesScript);
+            }
         }
 
         /// <summary>
@@ -177,7 +195,10 @@ namespace ZKWeb.MVVMPlugins.MVVM.Angular.Support.src.Application
                 pathConfig.GenerateModuleDirectory,
                 pathConfig.GeneratedModuleFilename);
             PathUtils.EnsureParentDirectory(path);
-            File.WriteAllText(path, script);
+            if (!File.Exists(path) || File.ReadAllText(path) != script)
+            {
+                File.WriteAllText(path, script);
+            }
         }
 
         /// <summary>
