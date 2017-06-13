@@ -1,4 +1,4 @@
-MVVM demo for zkweb framework
+MVVM demo for zkweb framework [![Build status](https://ci.appveyor.com/api/projects/status/412kh8yf7yd915j1?svg=true)](https://ci.appveyor.com/project/303248153/zkweb-mvvmdemo)
 
 ![preview](./docs/preview.jpg)
 
