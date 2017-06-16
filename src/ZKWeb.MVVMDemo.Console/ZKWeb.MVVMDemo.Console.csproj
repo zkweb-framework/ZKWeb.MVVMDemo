@@ -19,7 +19,7 @@
 		<PackageReference Include="ZKWeb" Version="1.9.0.1" />
 		<PackageReference Include="ZKWeb.Hosting.AspNetCore" Version="1.9.0" />
 		<PackageReference Include="ZKWeb.ORM.InMemory" Version="1.9.0" />
-		<PackageReference Include="ZKWeb.ORM.EFCore" Version="1.9.0" />
+		<PackageReference Include="ZKWeb.ORM.EFCore" Version="1.9.0.1" />
 	</ItemGroup>
 
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net461' ">
