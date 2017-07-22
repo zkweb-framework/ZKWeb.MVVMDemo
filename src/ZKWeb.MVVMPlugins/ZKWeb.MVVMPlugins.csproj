@@ -1,38 +1,42 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-	<PropertyGroup>
-		<TargetFramework>netstandard1.6</TargetFramework>
-		<AssemblyName>ZKWeb.MVVMPlugins</AssemblyName>
-		<PackageId>ZKWeb.MVVMPlugins</PackageId>
-		<GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
-		<GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
-		<GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
-	</PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>ZKWeb.MVVMPlugins</AssemblyName>
+    <PackageId>ZKWeb.MVVMPlugins</PackageId>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+  </PropertyGroup>
 
-	<ItemGroup>
-	  <Compile Remove="MVVM.Angular.Website\static\dist\**" />
-	  <EmbeddedResource Remove="MVVM.Angular.Website\static\dist\**" />
-	  <None Remove="MVVM.Angular.Website\static\dist\**" />
-	  <Compile Remove="MVVM.Angular.Website\static\node_modules\**" />
-	  <EmbeddedResource Remove="MVVM.Angular.Website\static\node_modules\**" />
-	  <None Remove="MVVM.Angular.Website\static\node_modules\**" />
-	</ItemGroup>
-	
-	<ItemGroup>
-		<PackageReference Include="AutoMapper" Version="6.0.2" />
-		<PackageReference Include="Swashbuckle.AspNetCore" Version="1.0.0-rc3" />
-		<PackageReference Include="ZKWeb" Version="1.9.0.1" />
-		<PackageReference Include="ZKWeb.ORM.EFCore" Version="1.9.0.1" />
-	</ItemGroup>
+  <ItemGroup>
+    <Compile Remove="MVVM.Angular.Website\static\dist\**" />
+    <EmbeddedResource Remove="MVVM.Angular.Website\static\dist\**" />
+    <None Remove="MVVM.Angular.Website\static\dist\**" />
+    <Compile Remove="MVVM.Angular.Website\static\node_modules\**" />
+    <EmbeddedResource Remove="MVVM.Angular.Website\static\node_modules\**" />
+    <None Remove="MVVM.Angular.Website\static\node_modules\**" />
+  </ItemGroup>
 
-	<ItemGroup Condition=" '$(TargetFramework)' == 'net461' ">
-		<Reference Include="System" />
-		<Reference Include="Microsoft.CSharp" />
-	</ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="6.1.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="1.0.0" />
+    <PackageReference Include="ZKWeb" Version="2.0.0-beta-1" />
+    <PackageReference Include="ZKWeb.ORM.EFCore" Version="2.0.0-beta-1a" />
+  </ItemGroup>
 
-	<PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard1.6' ">
-		<DefineConstants>$(DefineConstants);NETCORE</DefineConstants>
-	</PropertyGroup>
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net461' ">
+    <Reference Include="System" />
+    <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
 
-	<ProjectExtensions><VisualStudio><UserProperties MVVM_1Angular_1Website_4static_4package_1json__JSONSchema="" /></VisualStudio></ProjectExtensions>
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard1.6' ">
+    <DefineConstants>$(DefineConstants);NETCORE</DefineConstants>
+  </PropertyGroup>
+
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties MVVM_1Angular_1Website_4static_4package_1json__JSONSchema="" />
+    </VisualStudio>
+  </ProjectExtensions>
 
 </Project>
