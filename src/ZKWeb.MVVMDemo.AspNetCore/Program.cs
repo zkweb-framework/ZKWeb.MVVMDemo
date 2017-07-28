@@ -44,6 +44,7 @@ namespace ZKWeb.MVVMDemo.AspNetCore
                             c.DocInclusionPredicate((a, b) => true);
                             c.SwaggerDoc("v1", new Info() { Title = "ZKWeb MVVM Demo", Version = "V1" });
                         });
+						var provider = s.BuildServiceProvider();
                     })
                     .UseKestrel()
                     .UseIISIntegration()
