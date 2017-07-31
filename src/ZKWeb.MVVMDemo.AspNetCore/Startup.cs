@@ -1,5 +1,10 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Swashbuckle.AspNetCore.Swagger;
+using ZKWeb.MVVMDemo.AspNetCore.Swagger;
 
 namespace ZKWeb.MVVMDemo.AspNetCore
 {
@@ -9,12 +14,32 @@ namespace ZKWeb.MVVMDemo.AspNetCore
     public class Startup : ZKWeb.Hosting.AspNetCore.StartupBase
     {
         /// <summary>
-        /// 配置程序
+        /// 配置其他服务
         /// </summary>
-        public override void Configure(IApplicationBuilder app)
+        protected override void ConfigureOtherServices(IServiceCollection services)
+        {
+            // 添加Mvc组件
+            services.AddMvcCore().AddControllersAsServices().AddApiExplorer();
+            // 添加Swgger组件，使用自定义的Api列表提供器
+            services.Replace(new ServiceDescriptor(
+                typeof(IApiDescriptionGroupCollectionProvider),
+                new ZKWebSwaggerApiProvider()));
+            services.AddSwaggerGen(c =>
+            {
+                c.OperationFilter<ZKWebSwaggerOperationFilter>();
+                c.SchemaFilter<ZKWebSwaggerSchemaFilter>();
+                c.DocInclusionPredicate((a, b) => true);
+                c.SwaggerDoc("v1", new Info() { Title = "ZKWeb MVVM Demo", Version = "V1" });
+            });
+        }
+
+        /// <summary>
+        /// 配置其他中间件
+        /// </summary>
+        protected override void ConfigureMiddlewares(IApplicationBuilder app)
         {
             // 使用错误提示页面
-            var env = (IHostingEnvironment)app.ApplicationServices.GetService(typeof(IHostingEnvironment));
+            var env = app.ApplicationServices.GetService<IHostingEnvironment>();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -37,10 +62,6 @@ namespace ZKWeb.MVVMDemo.AspNetCore
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
-            // 使用ZKWeb中间件
-            base.Configure(app);
-            // 注册IServiceProvider
-            ZKWeb.Application.Ioc.RegisterInstance(app.ApplicationServices);
         }
     }
 }
