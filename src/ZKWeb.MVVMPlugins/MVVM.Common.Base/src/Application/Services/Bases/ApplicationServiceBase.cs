@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.FastReflection;
 using System.Linq;
 using System.Reflection;
+using ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Application.Extensions;
 using ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Application.Services.Attributes;
 using ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Application.Services.Interfaces;
 using ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Application.Services.Structs;
@@ -71,8 +72,16 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Application.Services.Bases
                 {
                     action = filterAttribute.Filter(action);
                 }
+                // 请求时自动设置当前的Api信息
+                ApplicationServiceApiMethodInfo info = null;
+                var innerAction = action;
+                action = () =>
+                {
+                    Context.SetApiMethodInfo(info);
+                    return innerAction();
+                };
                 // 返回函数信息
-                var info = new ApplicationServiceApiMethodInfo(
+                info = new ApplicationServiceApiMethodInfo(
                     method.ReturnType,
                     method.Name,
                     $"{UrlBase}/{method.Name}",

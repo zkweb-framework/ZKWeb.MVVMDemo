@@ -6,7 +6,9 @@ using System.Linq;
 using ZKWeb.Cache;
 using ZKWeb.Localize;
 using ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Application.Dtos;
+using ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Application.Extensions;
 using ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Application.Services.Bases;
+using ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Application.Services.Structs;
 using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Application.Dtos;
 using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Components.ActionFilters;
 using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Components.GenericConfigs;
@@ -112,6 +114,13 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Application.Services
                     nameof(ScheduledTaskLogOutputDto.TaskId),
                     (c, q) => q.Where(t => t.Task.Id.Contains((string)c.Value)))
                 .ToResponse<ScheduledTaskLogOutputDto>();
+        }
+
+        [Description("获取当前的Api函数信息")]
+        public string GetApiMethodInfo()
+        {
+            var info = Context.GetApiMethodInfo();
+            return info.Name;
         }
     }
 }

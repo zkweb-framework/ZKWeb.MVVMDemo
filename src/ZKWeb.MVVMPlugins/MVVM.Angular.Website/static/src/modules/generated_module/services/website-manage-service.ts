@@ -62,4 +62,12 @@ export class WebsiteManageService {
                 request
             });
     }
+
+    /** 获取当前的Api函数信息 */
+    GetApiMethodInfo(): Observable<string> {
+        return this.appApiService.call<string>(
+            "/api/WebsiteManageService/GetApiMethodInfo",
+            {
+            });
+    }
 }
