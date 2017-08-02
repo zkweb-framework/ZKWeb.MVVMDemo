@@ -17,7 +17,7 @@ namespace ZKWeb.MVVMDemo.AspNetCore.Swagger
             get
             {
                 var provider = ZKWeb.Application.Ioc
-                    .Resolve<IApiDescriptionGroupCollectionProvider>(IfUnresolved.ReturnDefault);
+                    .Resolve<IApiDescriptionGroupCollectionProvider>(IfUnresolved.ReturnDefault, "Plugin");
                 if (provider != null)
                 {
                     return provider.ApiDescriptionGroups;

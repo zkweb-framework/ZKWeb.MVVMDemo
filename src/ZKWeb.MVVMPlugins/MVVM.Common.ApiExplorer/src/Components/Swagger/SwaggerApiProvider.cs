@@ -20,7 +20,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.ApiExplorer.src.Components.Swagger
     /// <summary>
     /// 根据应用服务获取Api列表
     /// </summary>
-    [ExportMany]
+    [ExportMany(ContractKey = "Plugin")]
     public class SwaggerApiProvider : IApiDescriptionGroupCollectionProvider
     {
         /// <summary>

@@ -19,7 +19,7 @@ namespace ZKWeb.MVVMDemo.AspNetCore
         protected override void ConfigureOtherServices(IServiceCollection services)
         {
             // 添加Mvc组件
-            services.AddMvcCore().AddControllersAsServices().AddApiExplorer();
+            services.AddMvcCore().AddApiExplorer();
             // 添加Swgger组件，使用自定义的Api列表提供器
             services.Replace(new ServiceDescriptor(
                 typeof(IApiDescriptionGroupCollectionProvider),
@@ -33,10 +33,10 @@ namespace ZKWeb.MVVMDemo.AspNetCore
             });
         }
 
-        /// <summary>
-        /// 配置其他中间件
-        /// </summary>
-        protected override void ConfigureMiddlewares(IApplicationBuilder app)
+		/// <summary>
+		/// 配置其他中间件
+		/// </summary>
+		protected override void ConfigureMiddlewares(IApplicationBuilder app)
         {
             // 使用错误提示页面
             var env = app.ApplicationServices.GetService<IHostingEnvironment>();
