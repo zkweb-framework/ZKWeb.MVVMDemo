@@ -14,10 +14,10 @@
     <PackageReference Include="AutoMapper" Version="6.1.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="1.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.0-preview2-final" />
-    <PackageReference Include="ZKWeb" Version="2.0.0-beta-8" />
-    <PackageReference Include="ZKWeb.Hosting.AspNetCore" Version="2.0.0-beta-8" />
-    <PackageReference Include="ZKWeb.ORM.InMemory" Version="2.0.0-beta-8" />
-    <PackageReference Include="ZKWeb.ORM.EFCore" Version="2.0.0-beta-8" />
+    <PackageReference Include="ZKWeb" Version="2.0.0-beta-9a" />
+    <PackageReference Include="ZKWeb.Hosting.AspNetCore" Version="2.0.0-beta-9" />
+    <PackageReference Include="ZKWeb.ORM.InMemory" Version="2.0.0-beta-9" />
+    <PackageReference Include="ZKWeb.ORM.EFCore" Version="2.0.0-beta-9" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net461' ">
