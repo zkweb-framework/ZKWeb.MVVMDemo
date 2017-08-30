@@ -1,8 +1,13 @@
-MVVM demo for zkweb framework [![Build status](https://ci.appveyor.com/api/projects/status/412kh8yf7yd915j1?svg=true)](https://ci.appveyor.com/project/303248153/zkweb-mvvmdemo)
+# SPA demo based on ZKWeb framework [![Build status](https://ci.appveyor.com/api/projects/status/412kh8yf7yd915j1?svg=true)](https://ci.appveyor.com/project/303248153/zkweb-mvvmdemo)
+
+Different to [ZKWeb.Demo](https://github.com/zkweb-framework/ZKWeb.Demo), this demo use Entity Framework Core and it's a single page application.
+Also it supports linux (docker) hosting, which [ZKWeb.Demo](https://github.com/zkweb-framework/ZKWeb.Demo) doesn't for now.
+
+# Screenshots
 
 ![preview](./docs/preview.jpg)
 
-### Features
+# Features
 
 - Use AngularJS 4.0 + Webpack 2.0
     - Support automatic generate script form dto and application service
@@ -27,7 +32,7 @@ MVVM demo for zkweb framework [![Build status](https://ci.appveyor.com/api/proje
 - Provide command line compile and publish script
 - Provide Dockerfile, support running in docker
 
-### How to start
+# How to start
 
 **Use taobao npm mirror if needed**
 
@@ -61,12 +66,12 @@ Run following command and open `http://127.0.0.1:3000` in your browser.
 npm run dev
 ```
 
-### Documents
+# Documents
 
 - [Chinese Documents(中文文档)](./docs/cn)
 
-### LICENSE
+# LICENSE
 
-MIT LICENSE<br/>
+LICENSE: MIT LICENSE<br/>
 Copyright © 2017 303248153@github<br/>
 If you have any license issue please contact 303248153@qq.com.<br/>
