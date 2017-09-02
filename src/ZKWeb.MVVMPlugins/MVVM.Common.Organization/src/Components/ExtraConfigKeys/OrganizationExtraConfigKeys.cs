@@ -14,6 +14,10 @@
         /// </summary>
         public const string SessionExpireDaysWithoutRememberLogin = "Common.Admin.SessionExpireDaysWithoutRememberLogin";
         /// <summary>
+        /// 是否禁止修改或删除超级管理员
+        /// </summary>
+        public const string PreventModifySuperAdmin = "Common.Admin.PreventModifySuperAdmin";
+        /// <summary>
         /// 头像宽度
         /// </summary>
         public const string AvatarWidth = "Common.Admin.AvatarWidth";

@@ -16,5 +16,8 @@
         "MVVM.Example.CrudExample",
         "MVVM.Angular.Support",
         "MVVM.Angular.Website"
-    ]
+    ],
+    "Extra": {
+        "Common.Admin.PreventModifySuperAdmin": true
+    }
 }

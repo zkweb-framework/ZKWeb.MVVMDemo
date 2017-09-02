@@ -113,7 +113,11 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Components.Translates
                 { "ErrorMessage", "错误信息" },
                 { "IsSuccess", "是否成功" },
                 { "Switch Language", "切换语言" },
-                { "Switch Timezone", "切换时区" }
+                { "Switch Timezone", "切换时区" },
+                { "Modify super admin is disabled, please modify website configuration",
+                    "网站已禁止修改超级管理员, 有需要请修改网站设置启用" },
+                { "Delete super admin is disabled, please modify website configuration",
+                    "网站已禁止删除超级管理员, 有需要请修改网站设置启用" },
             };
         }
     }

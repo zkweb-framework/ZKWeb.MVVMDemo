@@ -16,7 +16,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.MultiTenant.src.Domain.Services
         /// <summary>
         /// 主租户的名称
         /// </summary>
-        protected const string MasterTenantName = "Master";
+        public const string MasterTenantName = "Master";
         /// <summary>
         /// 主租户的实例
         /// </summary>

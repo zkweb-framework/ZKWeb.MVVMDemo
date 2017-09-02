@@ -123,6 +123,8 @@ export class Translation_zh_CN {
 		"IsSuccess": "是否成功",
 		"Switch Language": "切换语言",
 		"Switch Timezone": "切换时区",
+		"Modify super admin is disabled, please modify website configuration": "网站已禁止修改超级管理员, 有需要请修改网站设置启用",
+		"Delete super admin is disabled, please modify website configuration": "网站已禁止删除超级管理员, 有需要请修改网站设置启用",
 		"ExampleData": "示例数据",
 		"Example Datas": "示例数据",
 		"Edit ExampleData": "编辑示例数据",

@@ -242,6 +242,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Services
         {
             using (UnitOfWork.Scope())
             {
+                UnitOfWork.Context.BeginTransaction();
                 var user = Get(userId);
                 if (user == null)
                 {
@@ -252,6 +253,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Services
                     throw new ForbiddenException("Incorrect old password");
                 }
                 Save(ref user, u => u.SetPassword(newPassword));
+                UnitOfWork.Context.FinishTransaction();
             }
         }
 

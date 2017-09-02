@@ -1,9 +1,6 @@
-﻿using System;
-using System.Linq;
-using ZKWeb.Localize;
+﻿using System.Linq;
 using ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Components.Exceptions;
 using ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Domain.Services.Bases;
-using ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Domain.Services.Interfaces;
 using ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Domain.Uow.Extensions;
 using ZKWeb.MVVMPlugins.MVVM.Common.MultiTenant.src.Domain.Filters;
 using ZKWeb.MVVMPlugins.MVVM.Common.MultiTenant.src.Domain.Services;
@@ -11,9 +8,8 @@ using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Entities;
 using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Entities.Interfaces;
 using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Entities.UserTypes;
 using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Extensions;
-using ZKWebStandard.Extensions;
+using ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Filters;
 using ZKWebStandard.Ioc;
-using ZKWebStandard.Web;
 
 namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Services
 {
@@ -26,11 +22,11 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Services
         /// <summary>
         /// 超级管理员的名称
         /// </summary>
-        protected const string SuperAdminName = "admin";
+        public const string SuperAdminName = "admin";
         /// <summary>
         /// 超级管理员的密码
         /// </summary>
-        protected const string SuperAdminPassword = "123456";
+        public const string SuperAdminPassword = "123456";
         /// <summary>
         /// 生成超级管理员时使用的锁
         /// </summary>
@@ -59,6 +55,7 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Organization.src.Domain.Services
         {
             using (UnitOfWork.Scope())
             using (UnitOfWork.DisableFilter(typeof(OwnerTenantFilter)))
+            using (UnitOfWork.DisableFilter(typeof(PreventModifySuperAdminFilter)))
             {
                 var admin = GetSuperAdmin();
                 if (admin != null)
