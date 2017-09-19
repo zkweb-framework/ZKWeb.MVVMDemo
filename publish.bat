@@ -3,7 +3,7 @@ echo this script is for build and publish mvvm demo site
 echo please ensure you have this directory layout
 echo - zkweb
 echo   - tools
-echo - zkweb.demo
+echo - zkweb.mvvmdemo
 echo   - publish.bat
 echo.
 
