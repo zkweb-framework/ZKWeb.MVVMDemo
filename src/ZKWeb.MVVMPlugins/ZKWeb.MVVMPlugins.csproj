@@ -21,7 +21,7 @@
     <PackageReference Include="AutoMapper" Version="6.1.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="1.0.0" />
     <PackageReference Include="ZKWeb" Version="2.0.0" />
-    <PackageReference Include="ZKWeb.ORM.EFCore" Version="2.0.0" />
+    <PackageReference Include="ZKWeb.ORM.EFCore" Version="2.0.2" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net461' ">
