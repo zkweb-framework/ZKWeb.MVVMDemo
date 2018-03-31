@@ -21,5 +21,6 @@ dotnet run -c Release -f netcoreapp2.0
 cd ..\..
 
 echo publishing website...
-..\ZKWeb\Tools\WebsitePublisher.Cmd.Windows\ZKWeb.Toolkits.WebsitePublisher.Cmd.exe -f netcoreapp2.0 -x ".*node_modules.*" -r src\ZKWeb.MVVMDemo.AspNetCore -n "zkweb.mvvm" -o "..\..\publish"
+..\ZKWeb\Tools\WebsitePublisher.Cmd.Windows\ZKWeb.Toolkits.WebsitePublisher.Cmd.exe -f netcoreapp2.0 -x ".*node_modules.*" -r src\ZKWeb.MVVMDemo.AspNetCore -n "ZKWeb.MVVMDemo.Windows" -o "..\ZKWeb.MVVMDemo.Publish"
+echo output directory: ..\ZKWeb.MVVMDemo.Publish
 pause
