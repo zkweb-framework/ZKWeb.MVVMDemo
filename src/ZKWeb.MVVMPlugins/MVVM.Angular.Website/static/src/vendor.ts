@@ -31,11 +31,11 @@ import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/publishLast';
 
-// Styles
-import './vendor/styles/primeng/primeng.min.css';
-import './vendor/styles/primeng/theme.css';
-import './vendor/styles/primeng/site.css';
-import './vendor/styles/font-awesome/font-awesome.css';
+// Styles (included in angular.json)
+// import './vendor/styles/primeng/primeng.min.css';
+// import './vendor/styles/primeng/theme.css';
+// import './vendor/styles/primeng/site.css';
+// import './vendor/styles/font-awesome/font-awesome.css';
 
 // Generated
 import './modules/generated_module/generated.module';

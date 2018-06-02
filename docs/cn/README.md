@@ -1,6 +1,6 @@
 基于ZKWeb网页框架的MVVM示例
 
-这份示例使用了ZKWeb提供的插件系统和AngularJS 4.0编写的模块化前端，支持前后端分离，并且提供了一套基本的后台管理系统
+这份示例使用了ZKWeb提供的插件系统和AngularJS 6.0编写的模块化前端，支持前后端分离，并且提供了一套基本的后台管理系统
 
 这份示例的开源协议是MIT，你可以随意的修改并用于个人或商业用途
 
@@ -8,7 +8,7 @@
 
 ### 功能一览
 
-- 使用AngularJS 4.0 + Webpack 2.0
+- 使用AngularJS 6.0 + NgCli
     - 支持自动生成Api服务和DTO的TypeScript脚本
     - 支持返回预压缩好的脚本包
     - 支持跨站Api请求
@@ -33,7 +33,7 @@
 
 ### 如何开始
 
-**如果你访问官方npm源较慢，可以设置使用淘宝的npm镜像**
+**设置使用淘宝的npm镜像 (可选)**
 
 ```
 npm config set registry http://registry.npm.taobao.org
@@ -44,26 +44,25 @@ npm config set sass_binary_site http://npm.taobao.org/mirrors/node-sass
 
 ```
 cd src/ZKWeb.MVVMPlugins/MVVM.Angular.Website/static
+npm install -g @angular/cli
 npm install
-npm run build
+ng build --prod --aot
 ```
 
-**修改数据库配置**
+**修改数据库配置 (可选)**
 
-打开`ZKWeb.MVVMDemo.AspNetCore\App_Data\config.json`并修改到你使用的数据库连接
+打开`ZKWeb.MVVMDemo.AspNetCore\App_Data\config.json`并修改到你使用的数据库连接.
+如果不修改默认会使用sqlite.
 
 **启动网站**
 
-使用VS2017打开`ZKWeb.MVVMDemo.sln`并启动项目即可
+使用VS2017打开`ZKWeb.MVVMDemo.sln`并启动项目即可.<br/>
+如果你使用的是linux，请参考[这里](https://github.com/zkweb-framework/ZKWeb.System.Drawing)的步骤安装libgdiplus.
 
-**使用webpack-dev-server (可选)**
+**使用ng-serve (可选)**
 
-如果你想要更详细的错误信息和更快的编译速度可以使用webpack-dev-server,<br/>
-运行以下命令并在浏览器打开`http://127.0.0.1:3000`.
-
-```
-npm run dev
-```
+如果你想要更详细的错误信息和更快的编译速度可以使用ng-serve,<br/>
+首先你需要修改`src/ZKWeb.MVVMPlugins/MVVM.Angular.Website/static/index.html`中的`apiUrlBase`, 填写服务端对应的地址, 然后在`src/ZKWeb.MVVMPlugins/MVVM.Angular.Website/static`目录下运行`ng serve`命令.
 
 ### 更多内容
 

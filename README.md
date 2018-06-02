@@ -11,7 +11,7 @@ This demo is host on [http://mvvmdemo.zkweb.org](http://mvvmdemo.zkweb.org)<br/>
 
 # Features
 
-- Use AngularJS 4.0 + Webpack 2.0
+- Use AngularJS 6.0 + NgCli
     - Support automatic generate script form dto and application service
     - Support return pre-compressed script bundle
     - Support CORS api request
@@ -36,7 +36,9 @@ This demo is host on [http://mvvmdemo.zkweb.org](http://mvvmdemo.zkweb.org)<br/>
 
 # How to start
 
-**Use taobao npm mirror if needed**
+**Use taobao npm mirror (optional)**
+
+If you're in china, use taobao registry will make the npm command much happier.
 
 ```
 npm config set registry http://registry.npm.taobao.org
@@ -47,26 +49,25 @@ npm config set sass_binary_site http://npm.taobao.org/mirrors/node-sass
 
 ```
 cd src/ZKWeb.MVVMPlugins/MVVM.Angular.Website/static
+npm install -g @angular/cli
 npm install
-npm run build
+ng build --prod --aot
 ```
 
-**Modify database configuration"
+**Modify database configuration (optional)**
 
-Open `ZKWeb.MVVMDemo.AspNetCore\App_Data\config.json` and modify database configuration.
+Open `ZKWeb.MVVMDemo.AspNetCore\App_Data\config.json` and modify database configuration.<br/>
+By default it uses sqlite.
 
 **Start website**
 
-Open `ZKWeb.MVVMDemo.sln` with VS2017 and run the project.
+Open `ZKWeb.MVVMDemo.sln` with visual studio (>= 2017) and run the project.<br/>
+If you're using linux, please install libgdiplus by following the instruction on [here](https://github.com/zkweb-framework/ZKWeb.System.Drawing).
 
-**Use webpack-dev-server (optional)**
+**Use ng-serve (optional)**
 
-If you want more verbose error message and faster recompilation you can use webpack-dev-server, <br/>
-Run following command and open `http://127.0.0.1:3000` in your browser.
-
-```
-npm run dev
-```
+If you want more verbose error message and faster recompilation you can use ng-serve, <br/>
+First, modify `apiUrlBase` in `src/ZKWeb.MVVMPlugins/MVVM.Angular.Website/static/index.html`, use the proper api server address, then run `ng serve` under `src/ZKWeb.MVVMPlugins/MVVM.Angular.Website/static`.
 
 # Documents
 
@@ -75,5 +76,5 @@ npm run dev
 # LICENSE
 
 LICENSE: MIT LICENSE<br/>
-Copyright © 2017 303248153@github<br/>
+Copyright © 2017-2018 303248153@github<br/>
 If you have any license issue please contact 303248153@qq.com.<br/>
