@@ -1,4 +1,4 @@
-/** 中文 */
+/** zh-CN */
 export class Translation_zh_CN {
     public static language = "zh-CN";
     public static translations: { [key: string]: string } = {

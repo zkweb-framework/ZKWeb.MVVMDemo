@@ -18,10 +18,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="6.2.2" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="1.0.0" />
-    <PackageReference Include="ZKWeb" Version="2.1.0" />
-    <PackageReference Include="ZKWeb.ORM.EFCore" Version="2.1.0" />
+    <PackageReference Include="AutoMapper" Version="7.0.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="1.2.0" />
+    <PackageReference Include="ZKWeb" Version="2.1.1" />
+    <PackageReference Include="ZKWeb.ORM.EFCore" Version="2.1.1" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net461' ">
@@ -29,14 +29,8 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
 
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard1.6' ">
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
     <DefineConstants>$(DefineConstants);NETCORE</DefineConstants>
   </PropertyGroup>
-
-  <ProjectExtensions>
-    <VisualStudio>
-      <UserProperties MVVM_1Angular_1Website_4static_4package_1json__JSONSchema="" />
-    </VisualStudio>
-  </ProjectExtensions>
 
 </Project>

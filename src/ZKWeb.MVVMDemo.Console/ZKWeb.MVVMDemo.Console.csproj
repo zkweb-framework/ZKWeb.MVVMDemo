@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
     <AssemblyName>ZKWeb.MVVMDemo.Console</AssemblyName>
     <OutputType>Exe</OutputType>
     <PackageId>ZKWeb.MVVMDemo.Console</PackageId>
@@ -11,13 +11,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="6.2.2" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="1.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.3" />
-    <PackageReference Include="ZKWeb" Version="2.1.0" />
-    <PackageReference Include="ZKWeb.Hosting.AspNetCore" Version="2.1.0" />
-    <PackageReference Include="ZKWeb.ORM.InMemory" Version="2.1.0" />
-    <PackageReference Include="ZKWeb.ORM.EFCore" Version="2.1.0" />
+    <PackageReference Include="AutoMapper" Version="7.0.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="1.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.1.1" />
+    <PackageReference Include="ZKWeb" Version="2.1.1" />
+    <PackageReference Include="ZKWeb.Hosting.AspNetCore" Version="2.1.1" />
+    <PackageReference Include="ZKWeb.ORM.InMemory" Version="2.1.1" />
+    <PackageReference Include="ZKWeb.ORM.EFCore" Version="2.1.1" />
+    <PackageReference Update="Microsoft.NETCore.App" Version="2.1.0" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net461' ">
@@ -25,7 +26,7 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
 
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'netcoreapp1.0' ">
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.1' ">
     <DefineConstants>$(DefineConstants);NETCORE</DefineConstants>
   </PropertyGroup>
 
