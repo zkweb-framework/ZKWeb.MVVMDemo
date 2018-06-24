@@ -4,11 +4,16 @@ Angular的前端文件储存在`src\ZKWeb.MVVMPlugins\MVVM.Angular.Website\stati
 
 ![前端项目](img/frontend_struction.jpg)
 
-它们的作用如下
+TODO: 更新上图（结构还是使用webpack时的结构，现在已经换成了ngcli）
 
-- dist: webpack生成的最终前端文件，发布时只需要这个文件夹
+它们的作用如下:
+
+- dist: ngcli生成的最终前端文件，发布时只需要这个文件夹
 - node_modules: npm安装的库
 - src: 前端源代码
+  - environments: 保存ngcli使用的编译配置
+    - environment.prod.ts: 生产环境的编译配置 (编译时用--prod选项)
+    - environment.ts: 开发环境使用的编译配置
   - modules: 保存前端模块的文件夹
     - admin_base_module: 后台的基础模块，包含导航菜单等，其他后台模块需要引用此模块
     - admin_module: 后台主模块，包含后台的路由信息，其他后台模块不能引用此模块
@@ -29,12 +34,15 @@ Angular的前端文件储存在`src\ZKWeb.MVVMPlugins\MVVM.Angular.Website\stati
   - index.html: Html主程序文件
   - main.ts: Angular主程序文件
   - polyfills.ts: 用于引用为旧浏览器提供新功能支持的脚本
+  - tsconfig.app.json: TypeScript相关配置
+  - tsconfig.spec.json: TypeScript相关配置
+  - tslint.json: TypeScript规范设置
   - vendor.ts: 用于引用第三方脚本
 - .gitignore: git忽略文件，这里用于忽略dist和node_modules
+- angular.json: ngcli的配置文件
 - package.json: npm库文件，用于指定当前包名称和需要安装哪些包
 - tsconfig.json: TypeScript设置
-- tslint.json: TypeScript规范设置，使用npm run lint可以检查代码规范
-- webpack.config.js: Webpack设置，使用npm run build可以编译和打包前端
+- tslint.json: TypeScript规范设置，使用ng lint可以检查代码规范
 
 ### **路由的定义**
 

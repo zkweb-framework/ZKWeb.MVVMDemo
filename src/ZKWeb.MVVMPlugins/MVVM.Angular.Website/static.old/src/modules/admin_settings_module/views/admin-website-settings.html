@@ -1,0 +1,17 @@
+﻿<div class="portlet">
+        <h3 class="portlet-title">
+            <i class="fa fa-globe"></i>
+            <span class="caption-subject">{{ "Website Settings" | trans }}</span>
+        </h3>
+        <div class="portlet-body">
+            <form [formGroup]="websiteSettingsForm" (ngSubmit)="onSubmit()">
+                <p-panel [header]="'Website Settings' | trans">
+                    <p-messages [value]="msgs"></p-messages>
+                    <z-form-grid>
+                        <z-form-text [formGroup]="websiteSettingsForm" fieldName="WebsiteName"></z-form-text>
+                        <z-form-submit-button [formGroup]="websiteSettingsForm" [isSubmitting]="isSubmitting"></z-form-submit-button>
+                    </z-form-grid>
+                </p-panel>
+            </form>
+        </div>
+    </div>
