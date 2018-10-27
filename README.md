@@ -3,8 +3,6 @@
 Different to [ZKWeb.Demo](https://github.com/zkweb-framework/ZKWeb.Demo), this demo use Entity Framework Core and it's a single page application.<br/>
 Also it supports linux (docker) hosting, which [ZKWeb.Demo](https://github.com/zkweb-framework/ZKWeb.Demo) doesn't for now.
 
-This demo is host on [http://mvvmdemo.zkweb.org](http://mvvmdemo.zkweb.org)<br/>
-
 # Screenshots
 
 ![preview](./docs/preview.jpg)
