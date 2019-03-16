@@ -79,7 +79,8 @@ namespace ZKWeb.MVVMPlugins.MVVM.Common.Base.src.Components.GridSearchResponseBu
             {
                 newBodyExpr = Expression.Call(
                     bodyExpr,
-                    typeof(string).FastGetMethod(nameof(string.Contains)),
+                    nameof(string.Contains),
+                    Type.EmptyTypes,
                     Expression.Constant(_request.Keyword));
             }
             else

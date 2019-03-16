@@ -1,5 +1,11 @@
 ﻿import { Component } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import {
+    Router,
+    NavigationStart,
+    NavigationEnd,
+    NavigationCancel,
+    NavigationError
+} from '@angular/router';
 
 @Component({
     selector: 'my-app',
@@ -10,7 +16,13 @@ export class AppComponent {
 
     constructor(private router: Router) {
         router.events.subscribe(e => {
-            this.routerActivated = (e instanceof NavigationEnd);
+            if (e instanceof NavigationStart) {
+                this.routerActivated = false;
+            } else if ((e instanceof NavigationEnd) ||
+                (e instanceof NavigationCancel) ||
+                (e instanceof NavigationError)) {
+                this.routerActivated = true;
+            }
         });
     }
 }
